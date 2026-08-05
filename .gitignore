@@ -1,0 +1,6 @@
+# Local, derived, or secret. Nothing here is the source of truth.
+.env
+*.local
+__pycache__/
+.venv/
+.DS_Store
