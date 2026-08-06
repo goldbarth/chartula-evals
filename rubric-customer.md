@@ -62,5 +62,4 @@ Fails C1 (`max_tokens`, `llm.maxOutputTokens`, 1024, 16000, "the categorizer", t
 
 ## Open
 
-- C2 needs a fail example that isolates the axis.
 - The remaining five runs in `test-runs/` are not labelled yet. Disagreements found there are the input for the next revision.
