@@ -32,8 +32,7 @@ The cause follows, in everyday language.
 
 **Pass:** "Generated text could be cut off mid-sentence in some runs because no output length limit was set."
 
-**Fail:** to be written.
-The example must pass C1 and C3 and fail only on the order, so that a failure on this axis is unambiguous.
+**Fail:** "There's now a configurable output length limit with a higher default, so generated text that used to be cut off mid-sentence completes properly."
 
 ## C3 - Explicit user benefit
 
