@@ -1,357 +1,352 @@
 --- Technical ---
-## Run metrics reporting
+# Release Notes
 
-Every `preview` and `generate` run now ends with a summary showing rule-based and thorough check execution counts, tokens consumed, and the claims caught only by the thorough check. This makes defaults measurable; t
-he indented line pairs unique findings with their token cost, so you can decide whether the thorough check earns its cost across real releases.
+## Run metrics now reported
 
-New types in `Chartula.Core/Observability/`: `IRunMetrics` sink, `RunMetrics`, `NullRunMetrics`, `RunReport` and `RunReportFormatter`. `ChatModel` reports token usage per `LlmOperation`. `ReleasePipeline` records bo
-th checks' findings and returns the report on `ReleaseOutcome`. Measurement is optional; runs without a sink produce identical output. Documented in `docs/run-metrics.md`.
+Every `preview` and `generate` run ends with a summary showing token usage and check effectiveness. The thorough check's cost is paired with the claims only it caught, answering whether the LLM pass earns its cost.
+Measurement is optional and does not affect output byte-for-byte when disabled. See `docs/run-metrics.md` for interpretation guidance.
 
-## Category configuration
+**New types:** `IRunMetrics`, `RunMetrics`, `NullRunMetrics`, `RunReport`, `RunReportFormatter` in `Chartula.Core/Observability/`.
 
-Category presentation is now configurable via the `categories` section in `chartula.yaml`: `order`, `names`, and `breakingProminent` (default `true`). `CategorySettings` parses configuration and rejects unknown cate
-gory names. `GroundedFactsFactory` centralizes audience filtering, category ordering and display naming. Documented in `docs/configuration.md`.
+## Category presentation is now configurable
 
-## YAML configuration with sensible defaults
+The `categories` section in `chartula.yaml` controls order, display names, and breaking-change prominence via `order`, `names`, and `breakingProminent` (default `true`). Invalid category names are rejected at startu
+p with a clear message.
 
-`chartula.yaml` (or `.yml`) now refines behavior via `AddChartulaYaml`, layered before environment variables so environment overrides YAML. All section options (`llm`, `github`, `labels`, `filter`, `factBase`, `fait
-hfulness`, `review`, `categories`) already existed; this adds the file as a source. With neither file nor env vars, every option uses its default. `chartula.example.yaml` provides a minimal template; full options li
-ve in `docs/configuration.md`. Configuration errors are reported as clear `Configuration error: ...` messages. New `Chartula.Cli.Tests` project covers no-config defaults and config-refines-behavior paths.
+**New types:** `CategorySettings` in the domain; `GroundedFactsFactory` extracted for unified audience filtering, ordering, and naming.
 
-## CLI commands: preview and generate
+## Configuration file support
 
-`chartula preview` and `chartula generate` take `--tag` and `--repo <owner/name>`. `ReleasePipeline` orchestrates the flow: read commit range and PRs, build fact base, render all audiences, run rule-based and thorou
-gh faithfulness checks, then review. `generate` writes `changelog.json`, `CHANGELOG.md`, and GitHub release notes; `preview` runs identically but writes and publishes nothing. Both give clear, readable per-audience
-output. Pipeline errors are caught and reported. Documented in the usage screen; interactive console review still uses auto-approve until stdin review is built.
+`chartula.yaml` (or `.yml`) refines behavior while the tool works with sensible defaults and no file. Environment variables override YAML values. Configuration errors report clearly instead of crashing. A minimal `c
+hartula.example.yaml` ships in the repo root; full options are documented in `docs/configuration.md`.
 
-## Audience texts in changelog.json
+**New:** `Chartula.Cli.Tests` project for CLI-level tests; `AddChartulaYaml` in composition; clear `Configuration error: ...` messages.
 
-`ChangelogDocument` now includes a `renderings` object keyed by audience (`technical`, `customer`, `product`), written in fixed order. Customer and product-manager texts are stored in the JSON alongside deterministi
-c facts, backed up inside one file rather than scattered as marketing files. `schemaVersion` stays **1** — adding an optional field is non-breaking. Old consumers ignore `renderings`. Documented in `docs/changelog-j
-son.md`.
+## CLI commands wired
 
-## GitHub release notes writer
+`chartula preview` and `chartula generate` now work end-to-end. Both require `--tag` and `--repo <owner/name>`; both run the identical pipeline. `generate` writes `changelog.json`, `CHANGELOG.md`, and GitHub release
+ notes; `preview` shows the result without writing or publishing. Pipeline errors are caught and reported; unknown commands and missing options show usage and exit cleanly.
 
-`IReleaseNotesWriter` port with `GitHubReleaseNotesWriter` implementation. For a given tag, `GET /releases/tags/{tag}` finds the release: found, `PATCH /releases/{id}` updates it; 404, `POST /releases` creates with
-`tag_name` + `body`. Re-running for the same tag updates that one release without duplication. API/network failures raise clear `InvalidOperationException`s.
+## Outputs now written
 
-## CHANGELOG.md writer with history preservation
+- **`changelog.json`** stores the fact base as a durable, machine-readable record with schema version 1. The `renderings` object (keyed by `technical` / `customer` / `product`) holds audience-specific LLM-generated
+text; all other fields are deterministic facts. Adding optional fields is non-breaking; see `docs/changelog-json.md`.
+- **`CHANGELOG.md`** prepends each release at the top, preserving history verbatim. Re-running the same tag replaces that section in place (idempotent, never duplicates or reorders).
+- **GitHub release notes** are created or updated via REST API (`POST` for new releases, `PATCH` for existing ones, keyed by tag).
 
-`ChangelogMarkdownComposer` composes new content from existing file and release. The new section is prepended at the top; existing sections are kept verbatim. Re-running the same tag replaces that section in place (
-idempotent, preserves history order). Brand-new file gets a `# Changelog` title. `IChangelogMarkdownWriter` port with `FileChangelogMarkdownWriter` in Infrastructure.
+## Faithfulness checks in place
 
-## Human review mode (opt-in)
+**Rule-based check** (always on, zero cost): flags numbers not in the fact base, quoted/backticked names absent from facts, and breaking-change claims when no fact is marked breaking. Flags are advisory, surfaced fo
+r review.
 
-`ReviewCoordinator` gates each rendering on an opt-in toggle. Review **off** (default): text passes through approved as-is. Review **on**: item goes to `IReviewer` who approves it or returns an edited version. `Revi
-ewPresentation` formats generated text with flagged passages highlighted for a maintainer. `AutoApproveReviewer` is the non-interactive default. Bound via `Chartula:Review` toggle.
+**Thorough check** (on by default, configurable via `Chartula:Faithfulness:Thorough`): a second LLM pass checks the output semantically against the fact base and flags unsupported claims. Makes no call when disabled
+ or when there is nothing to check.
 
-## Thorough faithfulness check via second LLM pass
+**New types:** `IRuleBasedFaithfulnessChecker`, `IThoroughFaithfulnessChecker`, `ThoroughFaithfulnessOptions`, `FaithfulnessReport`.
 
-`ThoroughFaithfulnessChecker` runs a second LLM pass, turning the fact base into grounded facts and flagging unsupported claims (e.g., "bug fixed" rendered as "security hole closed"). When disabled or with nothing t
-o check, it returns a faithful report with no LLM call. Enabled by default via `Chartula:Faithfulness:Thorough`. The faithfulness prompt moved into `IChangelogPromptBuilder.BuildFaithfulnessPrompt` with explicit mea
-ning-level-distortion instruction.
+## Review mode for human sign-off
 
-## Rule-based faithfulness check (zero token cost)
+**Optional opt-in** via `Chartula:Review` (off by default). When enabled, each rendering is presented with flagged passages highlighted for a maintainer to approve as-is or edit. The edited text is what gets written
+.
 
-`RuleBasedFaithfulnessChecker` flags obvious hallucinations before any LLM check: numbers not in facts (except PR numbers, linked issues, and numbers in titles/descriptions/tags), quoted/backticked names absent from
- facts, and breaking-change claims without a breaking fact. No LLM dependency, no tokens, always on. Uses source-generated regexes (AOT-friendly). Flags are advisory, surfaced for review.
+**New types:** `IReviewCoordinator`, `ReviewCoordinator`, `ReviewPresentation`, `ReviewDecision`, `AutoApproveReviewer`.
 
 ## Consistent formatting and tone per audience
 
-`ChangelogFormatter` normalizes model output with conservative rules: normalized line endings, single `- ` bullets, trimmed trailing whitespace, collapsed blank lines. Applied to every rendering for consistency rega
-rdless of model output. Prompt adds a tone rule: write in one consistent voice, not carrying over individual author tone. Formatting is deterministic (testable with stub model); tone comes from the prompt (language
-judgment).
+`ChangelogFormatter` normalizes every rendering deterministically — normalized line endings, single `- ` bullet marker, trimmed trailing whitespace, collapsed blank-line runs — while preserving non-bullet lines. The
+ prompt instructs the model to write in one consistent voice and not carry over an author's tone or phrasing.
 
-## Multi-audience rendering from one fact base
+**New type:** `IChangelogFormatter`, `ChangelogFormatter`.
 
-`ReleaseRenderer` produces technical, customer, and product-manager versions from one `FactBase`. Customer omits non-user-visible changes and links. Technical keeps PR links and full change set. Product sees the ful
-l set. Audience selection is deterministic (in code, not the LLM). All three derive from the same source, so they can never contradict.
+## Three audience renderings from one fact base
 
-## Prompt architecture: rephrase facts, never invent
+`ReleaseRenderer` produces technical, customer, and product-manager versions from the same `FactBase`:
+- **Technical**: full change set with PR links and precise breaking-change detail.
+- **Customer**: benefit-focused, omits non-user-visible changes and their links.
+- **Product**: full set, grouped by theme.
 
-`IChangelogPromptBuilder` / `ChangelogPromptBuilder` produce a `ChangelogPrompt` (system + user). System prompt pins the model to rephrasing: never introduce facts/numbers/names not in the list; treat each fact's ca
-tegory and `(breaking)` marker as established; on thin facts stay brief and do not pad, speculate, or invent; no preamble/conclusion. Plus per-audience guidance. User prompt carries only the facts. `ChatModel` deleg
-ates to the builder. Categories and flags reach the model as text embedded by the generator; the prompt presents them verbatim and instructs the model not to decide them.
+A failure in one audience does not fail the others. See `docs/audience-filtering.md`.
 
-## Changelog generation through provider interface
+**New type:** `IReleaseRenderer`, `ReleaseRenderer`.
 
-`ReleasePipelineGenerator` / `ReleaseChangelogGenerator` turns the fact base into grounded fact statements and makes exactly one `IChangelogModel.RephraseAsync` call per release. Empty fact base makes no call. Provi
-der failures are caught and returned as a failed result (carrying release tag and provider message); cancellation propagates. Generator depends only on `IChangelogModel` — no provider type is referenced.
+## Prompt architecture that prevents hallucination
 
-## changelog.json serialization (stable, versioned)
+`ChangelogPromptBuilder` produces prompts with a system message that pins the model to rephrasing established facts — never introducing a fact, number, name, or detail not in the provided list. Categories and breaki
+ng markers are presented verbatim and the model is instructed not to decide them. Thin fact bases are kept sparse rather than padded. The user prompt carries only facts, nothing our code adds.
 
-`ChangelogDocument` defines the stable on-disk shape (`schemaVersion` + `tag` + `changes`), separate from domain `FactBase` so the domain can evolve without breaking the file format. `ChangelogJsonSerializer` (pure,
- deterministic, source-generated) serializes `FactBase` to JSON with category written as name for a stable, readable record. `IChangelogJsonWriter` port with `FileChangelogJsonWriter` in Infrastructure. `schemaVersi
-on` (currently `1`) is the contract; adding optional fields is non-breaking, removing/renaming/re-meaning bumps the version. Every field is deterministic fact; nothing is LLM-generated. Documented in `docs/changelog
--json.md`.
+**New type:** `IChangelogPromptBuilder`, `ChangelogPromptBuilder`.
 
-## Configurable fact-base depth
+## Generation through the provider interface
 
-`FactBaseDepth` offers three modes: `TitleOnly`, `TitleAndDescription` (default), `TitleDescriptionAndIssues`. `FactBaseBuilder` honours the depth; linked issues populate only in the deepest mode. Read from `Chartul
-a:FactBase:Depth` config. Parser accepts canonical names plus aliases (`title`, `description`, `full`) and raises clear errors on unknown values. Passed to builder via factory rather than DI service.
+`ReleaseChangelogGenerator` makes exactly one `IChangelogModel.RephraseAsync` call per release, returning a `ChangelogGenerationResult`. Makes no call for an empty fact base. Provider failures are caught and returne
+d as a failed result (not a crash); cancellation propagates.
 
-## Fact-base assembly from curated changes
+**New type:** `IReleaseChangelogGenerator`, `ReleaseChangelogGenerator`, `ChangelogGenerationResult`.
 
-`FactBaseBuilder` assembles the complete fact base: resolves changes with missing-PR fallback, drops filtered-out changes, maps each survivor to a `ChangeFact`. Category and breaking flag come from deterministic cat
-egorization; a label can force category. `IsUserVisible` derives from category (outward-facing categories plus breaking changes). `LinkedIssues` parse from GitHub closing keywords (`closes/fixes/resolves #n`) in tit
-le and body. Category and flags never come from an LLM.
+## Fact base and grounding
 
-## Fact data model (per-change index card)
+`ChangeFact` represents one change as an index card: PR title, number, link, category, user-visible and breaking flags, linked issues, optional description. Every field is deterministic; nothing is LLM-generated.
 
-`ChangeFact` in Core captures established facts per change: title, PR number, link, category, user-visible flag, breaking flag, linked issues, optional description (per fact-base depth). Every field derives determin
-istically; nothing is LLM-generated. PR-only fields (number, link) are nullable so commit-based changes fit the same shape.
+`FactBaseBuilder` assembles the complete fact base for a release: resolves changes with the missing-PR fallback, drops filtered-out changes, and maps each survivor to a `ChangeFact`. Category and breaking flag come
+from deterministic categorization (#6); a label can force the category (#7). Linked issues are parsed from GitHub closing keywords.
 
-## Internal/chore filtering with label rules
+**New types:** `ChangeFact`, `IFactBaseBuilder`, `FactBaseBuilder`, `FactBase`.
 
-`ChangeFilter` / `ChangeFilterRules` drop internal/chore changes by default. Decision order: a label that excludes the change wins outright → breaking change is never dropped → otherwise dropped when effective categ
-ory (label-forced or deterministic) is in excluded set. Default excludes `Internal`; overridable via `Chartula:Filter:ExcludeCategories`. Breaking safeguard is deterministic (from the breaking flag, not guesswork).
+## Fact-base depth configurable
 
-## Label-driven curation rules
+Three modes control how much source material feeds the fact base via `Chartula:FactBase:Depth`:
+- `title-only` — title only.
+- `title-and-description` — **the default** (title + description, no issues).
+- `title-description-and-issues` — title + description + linked issues.
 
-`LabelRulePolicy` / `LabelRules` steer curation via GitHub labels from config. Excluded labels, label-to-category overrides, and only-include-labeled mode are all optional. Precedence: exclusion wins; then only-labe
-led drops unlabeled; otherwise included with first matching label deciding forced category. `LabelRules.None` ignores labels; tool works with no labels at all. Matching is case-insensitive. Parsed from `Chartula:Lab
-els` config with clear error on unknown category names.
+Parser accepts canonical names and aliases (`title`, `description`, `full`); unknown values raise a clear error.
 
-## Deterministic categorization from Conventional Commits
+**New type:** `FactBaseDepth`, `FactBaseDepthParser`.
 
-`ConventionalCommitCategorizer` reads Conventional Commit conventions from change title (`type(scope)!: subject`). `ChangeCategory` includes Feature (`feat`), Fix (`fix`), Performance (`perf`), Documentation (`docs`
-), Refactor (`refactor`), Internal (`build`/`ci`/`chore`/`test`/`style`/`revert`), and **Other** as default for unrecognized/prefix-less titles. Breaking tracked separately via `ChangeClassification.IsBreaking` (fro
-m `!` marker, `breaking` type, or `BREAKING CHANGE` footer), so breaking feature stays feature but is flagged. Pure, deterministic, source-generated regex (AOT-friendly). No LLM involved.
+## Filtering keeps the changelog relevant
+
+`ChangeFilter` drops internal/chore changes by default, combining deterministic categorization and label rules. Decision order: label exclusion wins outright → a breaking change is never dropped → otherwise dropped
+when the effective category is in the excluded set. Default excluded set: `Internal`. Overridable via `Chartula:Filter:ExcludeCategories`. A breaking change is never filtered out unless an explicit label excludes it
+.
+
+**New types:** `IChangeFilter`, `ChangeFilter`, `ChangeFilterRules`.
+
+## Label rules from configuration
+
+`LabelRules` and `LabelRulePolicy` steer curation without code changes. Configuration keys (`Chartula:Labels`) control excluded labels, label → category overrides, and an only-include-labeled mode. All optional; the
+ tool works with no labels. Matching is case-insensitive; unknown category names raise a clear error at startup.
+
+**New types:** `LabelRules`, `ILabelRulePolicy`, `LabelRulePolicy`, `LabelDecision`.
+
+## Deterministic categorization
+
+`ConventionalCommitCategorizer` assigns categories from Conventional Commit conventions in the title (`type(scope)!: subject`). Categories: Feature, Fix, Performance, Documentation, Refactor, Internal, Other (defaul
+t for unrecognized). Breaking is tracked separately via `!` marker, `breaking` type, or `BREAKING CHANGE` footer (now matched as a footer, uppercase, start-of-line, colon-terminated — not as a substring anywhere in
+the body). **Breaking is never a category; a breaking feature stays a feature but is flagged.** Pure, deterministic, no LLM.
+
+**New type:** `IChangeCategorizer`, `ConventionalCommitCategorizer`, `ChangeCategory`, `ChangeClassification`.
 
 ## Graceful degradation when PRs are missing
 
-`ReleaseChangeResolver` turns `CommitRange` and merged `PullRequestInfo` list into `ReleaseChange` values (title, description, number, url, labels, `ChangeSource`, commit sha). With merged PRs present, one change pe
-r PR (`Source = PullRequest`). No PRs at all, one change per commit using commit subject (`Source = Commit`). Blank/uninformative PR title (e.g., `WIP`, `update`, `Merge ...`) falls back to PR body's first informati
-ve line, then generic `PR #n`. Empty release yields empty set, never an exception. Pure domain logic, no I/O.
+`ReleaseChangeResolver` turns a `CommitRange` and merged `PullRequestInfo` list into `ReleaseChange` values. With merged PRs present, one change per PR. With no PRs at all, one change per commit using the commit sub
+ject. With blank/uninformative PR titles (`WIP`, `update`, `Merge ...`), falls back to the PR body's first informative line, then to a generic `PR #n`. Empty releases yield an empty set, never an exception.
 
-## GitHub pull request reader
+**New types:** `IReleaseChangeResolver`, `ReleaseChangeResolver`, `ReleaseChange`, `ChangeSource`.
 
-`IReleaseCommitReader` port with `GitHubPullRequestReader` implementation. For commits in a `CommitRange`, queries GitHub's "pull requests associated with a commit" endpoint, keeps merged PRs only, de-duplicates by
-number. Returns `PullRequestInfo` (number, title, description, labels, url). Uses raw `HttpClient` + source-generated `System.Text.Json` (dependency-light, native-AOT friendly). Token read from `GITHUB_TOKEN` env va
-r (optional; public repos work unauthenticated). API/network failures and malformed responses raise clear `InvalidOperationException`s.
+## Git history read via git CLI
 
-## Git commit reader
+`GitCliCommitReader` shells out to `git` to find the exact commits for a release — the range since the previous tag (`<prev>..<tag>`), or all history up to the tag when there is no previous. Clear errors for unknown
+/blank tags. Avoids native dependencies to support planned native-AOT binaries.
 
-`IReleaseCommitReader` port with `GitCliCommitReader` implementation. Shells out to `git` for the range since previous tag (`<prev>..<tag>`), or all history to tag when no previous tag (first release). Returns `Comm
-itRange` with `IsFirstRelease` flag. Uses git CLI (no native deps, supports native-AOT goal). Clear errors for unknown/blank tags.
+**New types in Core:** `IReleaseCommitReader`, `CommitInfo`, `CommitRange`.
+**New types in Infrastructure:** `GitCliCommitReader`.
+
+## GitHub API for pull requests and releases
+
+**`GitHubPullRequestReader`** queries GitHub's "pull requests associated with a commit" endpoint for commits in a range, keeps merged PRs only, de-duplicates by number. Returns `PullRequestInfo` (number, title, desc
+ription, labels, url). Uses raw `HttpClient` + source-generated `System.Text.Json` (dependency-light, native-AOT friendly). Token optional, read from `GITHUB_TOKEN` env var.
+
+**`GitHubReleaseNotesWriter`** updates or creates a release's notes via REST API: `GET /releases/tags/{tag}` → found: `PATCH /releases/{id}` (update); 404: `POST /releases` (create with `tag_name` + body). Returns t
+he release's `html_url`. API/network failures raise clear `InvalidOperationException`s.
+
+**New types in Core:** `IReleasePullRequestReader`, `PullRequestInfo`, `RepositoryCoordinates`, `IReleaseNotesWriter`.
+**New types in Infrastructure:** `GitHubPullRequestReader`, `GitHubReleaseNotesWriter`, `GitHubHttpClientFactory`.
 
 ## LLM provider abstraction
 
-`IChangelogModel` port with `ChatModel` implementation, backed by provider-agnostic `Microsoft.Extensions.AI.IChatClient`. Domain types: `Audience`, `GroundedFacts`, `RephraseRequest`, `FaithfulnessRequest`, `Faithf
-ulnessReport`. Composition root wires Anthropic as first provider; selectable via config. API key read from env var, never hardcoded. Tests exercise seam with stub `IChatClient` (no live call).
+`IChangelogModel` is the provider-agnostic seam; `ChatModel` is the single implementation over `Microsoft.Extensions.AI.IChatClient`. Anthropic is the first provider, selectable via config. API key read from env var
+ (never hardcoded). Domain types: `Audience`, `GroundedFacts`, `RephraseRequest`, `FaithfulnessRequest`, `FaithfulnessReport`.
 
-## Output token limit fixed; breaking-change false positives eliminated
+**New types in Core:** `IChangelogModel`, `ChatModel`, `Audience`, `GroundedFacts`, `RephraseRequest`, `FaithfulnessRequest`, `FaithfulnessReport`.
 
-Two release blockers fixed. Calls went out without `ChatOptions`, so `MaxOutputTokens` was never set, defaulting to provider's 1024; all three audience texts were cut off mid-word. Ceiling now always sent, configura
-ble via `llm.maxOutputTokens`, defaulting to 16000. `MentionsBreakingChange` searched whole body for `BREAKING CHANGE` as substring, so prose discussing breaking changes declared one; now matches Conventional Commit
-s footer (uppercase, start of line, colon-terminated).
+## Architecture and organization
 
-## Documentation refresh
+**`Chartula.Core`** — pure domain logic, no I/O or external dependencies beyond `Microsoft.Extensions.AI`.
+**`Chartula.Infrastructure`** — concrete I/O adapters (git CLI, GitHub API, file writers).
+**`Chartula.Cli`** — composition root, command surface, configuration binding.
+**`Chartula.Core.Tests`**, **`Chartula.Infrastructure.Tests`**, **`Chartula.Cli.Tests`** — unit and integration tests; CLI tests exercise configuration and DI.
 
-README now leads with wordmark (responsive via `<picture>` + `prefers-color-scheme`). Long tables became prose for mobile readability; short-fact tables remain. New `docs/architecture.md` documents layering, inward-
-pointing dependency rule, why facts are established before LLM, and where each concern lives. Documentation index in README. All relative links verified. Every documented default checked against code. CONTRIBUTING l
-inks architecture and fixtures, lists actual commit scopes used.
-
-## Prompt text separated into partial class
-
-`ChangelogPromptBuilder` split across two files: `ChangelogPromptBuilder.Prompts.cs` holds prompt strings only (system header, four rules, per-audience guidance); `ChangelogPromptBuilder.cs` holds composition logic.
- Prompt text byte-for-byte unchanged; pure refactor so iterating on wording is text-only work.
-  Flagged for review:
-    ! 'ReleasePipelineGenerator' is not supported by the facts.
-    ! Changelog generation through provider interface: `ReleasePipelineGenerator` / `ReleaseChangelogGenerator`
-    ! Output token limit fixed: the feature now defaults to 16000 tokens
-    ! Breaking-change false positives eliminated: now matches Conventional Commits footer (uppercase, start of line, colon-terminated)
-    ! GitHub pull request reader: `IReleaseCommitReader` port with `GitHubPullRequestReader` implementation
-    ! Git commit reader: `IReleaseCommitReader` port with `GitCliCommitReader` implementation
-
---- Customer ---
-## Run metrics now show what each check costs and catches
-
-Every `preview` and `generate` command now reports token usage and findings per check, so you can see whether the thorough LLM pass earns its cost. The summary pairs unsupported claims caught **only** by the thoroug
-h check with the tokens spent finding them, answering the keep-or-drop question directly from real data.
-
-## Categories are now configurable
-
-You can set the order, display names, and breaking-change prominence of categories in `chartula.yaml` under a new `categories` section, without touching code.
-
-## Configuration now reads from chartula.yaml
-
-The tool reads `chartula.yaml` (or `.yml`) with sensible defaults and never requires a file. Environment variables still override YAML values. An example config ships in the repo; full options are documented.
-
-## Commands are now wired: preview and generate
-
-`chartula preview` shows what would be generated without writing or publishing anything. `chartula generate` produces and writes the outputs. Both take `--tag` and `--repo <owner/name>` and report progress per audie
-nce.
-
-## All audience texts are stored in changelog.json
-
-Customer and product-manager renderings are now backed up in `changelog.json` alongside the technical one, under a `renderings` object keyed by audience.
-
-## Generated text is written to GitHub release notes
-
-The generated changelog text updates the GitHub release notes for the tag. Re-running the same tag updates that release in place instead of creating a duplicate.
-
-## CHANGELOG.md is now prepended and preserved
-
-New releases are added at the top of `CHANGELOG.md`, existing history stays intact, and re-running the same tag replaces that section in place without duplication.
-
-## Human review is now optional
-
-When enabled via `Chartula:Review`, flagged passages are presented for approval or editing before output is written. Review is off by default.
-
-## Thorough faithfulness checking catches semantic hallucinations
-
-A second LLM pass now checks generated text against the fact base for meaning-level distortions (e.g., "bug fixed" rendered as "security hole closed"). On by default; disable via config if needed.
-
-## Rule-based faithfulness checking flags obvious hallucinations for free
-
-Numbers, quoted names, and breaking-change claims not present in the facts are flagged before any LLM call, catching crude hallucinations with zero token cost.
-
-## Formatting and tone are now consistent per audience
-
-Formatting is deterministically normalized (bullet markers, spacing, blank lines) on every rendering. A new prompt instruction tells the model to write in one consistent voice and not carry over individual author to
-nes.
-
-## Three renderings come from one fact base
-
-Technical, customer, and product-manager versions are all generated from the same facts, so they can never contradict each other. Technical keeps links and the full changeset; customer is benefit-focused and omits n
-on-user-visible changes; product sees the full set grouped by theme.
-
-## Prompts are now first-class and testable
-
-The system prompt pins the model to rephrasing established facts only, never inventing details, categories, or flags. Categories and facts reach the model as text; the model is instructed to use them as given, not d
-ecide them.
-
-## Generation now runs through the provider interface
-
-A single LLM call per release turns the fact base into a grounded summary. Empty fact bases make no call at all.
-
-## Fact base is now durable and documented
-
-The release facts are written to `changelog.json` as a stable, machine-readable record separate from LLM-generated text. The format is versioned and documented.
-
-## Fact-base depth is now configurable
-
-Choose how much PR data feeds the fact base: title only, title and description (the default), or title, description, and linked issues. Set via `Chartula:FactBase:Depth` in config.
-
-## Facts are now assembled from curated changes
-
-The fact base is built by mapping filtered, categorized, label-steered PRs to structured fact objects. Category and breaking flag come from deterministic code, never from the LLM.
-
-## Facts are now defined with a structured model
-
-Each change is captured as a `ChangeFact` with title, PR number, link, category, flags, and linked issues. Everything in the model is derived deterministically.
-
-## Internal and chore changes are now filtered by default
-
-Changes in the `Internal` category are excluded by default. Exclude other categories or customize the list via `Chartula:Filter:ExcludeCategories`. Breaking changes are never dropped.
-
-## Labels now steer curation without code changes
-
-GitHub labels can exclude PRs, force them into a category, or switch on "only include labeled" mode. Rules are read from `Chartula:Labels` in config.
-
-## Changes are now categorized by Conventional Commits before generation
-
-Titles are parsed for Conventional Commit prefixes (`feat`, `fix`, `perf`, `docs`, `refactor`, chore-like types) and assigned deterministically. Unrecognized changes default to `Other`. Breaking is tracked separatel
-y via a `!` marker, type, or footer, so a breaking feature stays a feature but is flagged.
-
-## Missing PRs no longer block the pipeline
-
-When PR discipline is imperfect, the tool falls back: no PRs at all uses commit subjects; blank or uninformative PR titles fall back to the body's first informative line or a generic fallback. The pipeline still pro
-duces useful output.
-
-## Merged PRs are now read from the GitHub API
-
-Associated merged PRs are fetched for the commit range from GitHub, providing title, description, labels, number, and link per change instead of raw commits.
-
-## Commit ranges are now read from git
-
-The tool finds commits since the previous tag (`<prev>..<tag>`), or all history when there is no previous tag (first release). Unknown or blank tags produce clear errors.
-
-## An LLM provider interface is now the seam
-
-`IChangelogModel` abstracts the LLM provider. Anthropic is wired as the first provider; swapping providers is a composition-root change only. API keys are read from environment variables, never hardcoded.
-
-## Output truncation is now bounded and configurable
-
-Calls now always send `MaxOutputTokens` to prevent silent truncation when the provider's default is too low. The ceiling is configurable via `llm.maxOutputTokens` in config, defaulting to 16,000.
-
-## False breaking-change detection is now precise
-
-The breaking-change footer is now matched only when it appears at line start and is colon-terminated, per Conventional Commits. Previously, any mention of the word triggered a false positive.
-  Flagged for review:
-    ! The number '000' is not supported by the facts.
-    ! All audience texts are stored in changelog.json
-    ! The breaking-change footer is now matched only when it appears at line start and is colon-terminated, per Conventional Commits. Previously, any mention of the word triggered a false positive.
-
---- Product ---
-## Run metrics and cost visibility
-
-Every `preview` and `generate` run now reports what it did and what it cost — rule-based and thorough faithfulness checks, rephrasing, and total token usage — so defaults can be decided by data instead of guesswork.
- The thorough check's cost is paired with the claims it caught that the rule-based check missed, making it clear whether the tokens buy anything.
-
-## Configuration from `chartula.yaml`
-
-The tool now reads `chartula.yaml` (or `.yml`) with sensible defaults; configuration is never required. The file is layered before environment variables, so env overrides YAML. New `categories` section configures ca
-tegory order, display names, and breaking-change prominence. All sections (`llm`, `github`, `labels`, `factBase`, `faithfulness`, `review`, `filter`, `categories`) are independently editable; untouched sections keep
- their defaults.
-
-## End-to-end pipeline: preview and generate
-
-`chartula preview` and `chartula generate` commands now wire the entire pipeline together. Both run the identical flow — reading commits, building the fact base, rendering all three audiences, running both faithfuln
-ess checks, and optionally reviewing — but preview writes and publishes nothing while generate produces `changelog.json`, `CHANGELOG.md`, and GitHub release notes. Errors are caught and reported clearly rather than
-crashing.
-
-## Outputs: JSON, Markdown, and GitHub
-
-- **`changelog.json`**: durable, machine-readable record of the release fact base (tag, changes with categories/flags/linked issues) plus all three audience renderings (technical, customer, product).
-- **`CHANGELOG.md`**: new release section prepended at the top, existing content preserved intact and idempotent on re-run (same tag replaces in place rather than duplicating).
-- **GitHub release notes**: generated text written to or updated on the GitHub release, never duplicated.
-
-## Fact base and filtering
-
-The fact base is built from merged PRs (with commit fallback when PRs are missing), with each change mapped to a `ChangeFact` holding title, category, PR number/link, user-visible and breaking flags, and linked issu
-es. Deterministic Conventional Commit categorization happens before any LLM sees the data. Filtering combines category and label rules to drop internal/chore changes by default (overridable via config), but breaking
- changes are never dropped. Fact-base depth is configurable (title-only, title + description, or + linked issues; default is middle).
-
-## Label rules and category control
-
-GitHub labels now steer curation: exclude a PR, force it into a category, or enable "only include labeled PRs" mode. All label rules are optional and case-insensitive; the tool works with no labels. Unknown categori
-es in configuration fail at startup with a clear error.
-
-## Formatting and tone per audience
-
-Each rendering is normalized with conservative, structure-preserving rules — consistent line endings, single bullet markers, trimmed whitespace, collapsed blank lines — while leaving headings and prose intact. The p
-rompt instructs the model to write in one consistent voice and format without carrying over individual author tone. All three audiences (technical with links and full detail, customer focused on benefits with non-us
-er-visible changes omitted, product grouped by theme) derive from the same fact base so they can never contradict each other.
-
-## Faithfulness: rule-based then thorough
-
-A rule-based check catches obvious hallucinations for free — invented numbers, quoted names that don't appear in the facts, breaking-change claims without supporting facts — before any LLM call. A second LLM pass th
-en checks the text semantically against the fact base, flagging unsupported claims. Both checks are toggleable (thorough on by default, rule-based always runs). Flagged passages feed an opt-in review mode where a ma
-intainer approves or edits before output is written.
+See `docs/architecture.md`.
 
 ## Documentation
 
-- **`docs/architecture.md`**: layering, dependency choices, and why facts are established before an LLM.
-- **`docs/configuration.md`**: full option set with defaults.
-- **`docs/changelog-json.md`**: schema, field types, and stability contract.
-- **`docs/run-metrics.md`**: how to read the summary and decide whether the thorough check is worth its cost.
+- `docs/architecture.md` — layering, dependency choices, why facts are established before LLM input.
+- `docs/changelog-json.md` — `changelog.json` schema, field types, stability contract.
+- `docs/configuration.md` — all `chartula.yaml` options with defaults.
+- `docs/run-metrics.md` — how to read the run summary and decide if a check earns its cost.
+- `docs/audience-filtering.md` — how each audience view is derived and why contradictions are impossible.
+- `chartula.example.yaml` — minimal template (repo root, never auto-loaded); uncomment what you need.
+
+## Fix: truncation and false breaking changes
+
+Output was truncated to 1024 tokens (the provider default) because `MaxOutputTokens` was never set. Re-runs now always send a ceiling (configurable via `llm.maxOutputTokens`, default 16000).
+
+`ConventionalCommitCategorizer` matched `BREAKING CHANGE` as a substring anywhere in the PR body, so prose *discussing* breaking changes *declared* them. Now matches the Conventional Commits footer: uppercase, start
+-of-line, colon-terminated.
+
+Verified against real runs: rephrasing output grew from 3,072 to 11,271 tokens, text completeness restored, false breaking-change count dropped from 6 to 0.
+
+---
+
+**Build:** 0 warnings / 0 errors. **Tests:** 256 passing (Core 177, Infrastructure 26, Cli 12, 21 new test categories). **Architecture:** inward-pointing dependencies, facts established deterministically before LLM
+input, provider-agnostic seams, all I/O abstracted behind ports.
+  Flagged for review:
+    ! 'docs/audience-filtering.md' is not supported by the facts.
+    ! 'title-and-description' is not supported by the facts.
+    ! 'title-description-and-issues' is not supported by the facts.
+    ! 'Chartula.Infrastructure.Tests' is not supported by the facts.
+
+--- Customer ---
+## Release 0.2.0
+
+**Run metrics and observability**
+
+Every `preview` and `generate` run now ends with a metrics summary showing rule-based check runs, thorough check runs with findings, rephrasing calls, and total token usage. The thorough check's cost is paired with
+the claims it caught that the rule-based check missed, so you can see whether the second pass earns its tokens. Measurement is optional and does not affect output when disabled.
+
+**Configuration from `chartula.yaml`**
+
+The tool now reads `chartula.yaml` (or `.yml`) with sensible defaults for all options. Configuration layers before environment variables, so env vars override the file. A minimal example file ships in the repo; full
+ options are documented. All settings remain optional—the tool works with no configuration file at all. Configuration errors report clearly instead of crashing.
+
+**Configurable category display**
+
+Category ordering, display names, and breaking-change prominence are now configurable via the `categories` section alongside existing `labels`, `factBase`, and `faithfulness` sections.
+
+**Configurable fact-base depth**
+
+Three modes control how much source material feeds the fact base: title only, title and PR description (the default), or title, description, and linked issues. Set via `Chartula:FactBase:Depth` in configuration.
+
+**Two-pass faithfulness checking**
+
+A rule-based check runs first and catches obvious hallucinations for free: invented numbers, quoted names not in the facts, and breaking-change claims without a breaking fact. A second LLM pass (on by default, confi
+gurable via `Chartula:Faithfulness:Thorough`) catches subtle semantic distortions the rules cannot see. Both checks are reported in the run metrics so you can measure their value over time.
+
+**Consistent formatting and voice**
+
+Generated text is normalized deterministically—line endings, bullet markers, whitespace, blank lines—while preserving structure. A prompt rule asks the model to write in one consistent voice and not carry over indiv
+idual author tones, so each audience rendering reads as a coherent document.
+
+**Three audience renderings from one fact base**
+
+The technical, customer, and product-manager versions of a release are all rendered from the same underlying fact base, so they can never contradict each other. Customer text omits internal changes and links; techni
+cal keeps the full set with links; product sees the full set grouped by theme.
+
+**Changelog outputs**
+
+The fact base is written to `changelog.json` with a stable, versioned schema. Customer and PM audience texts are stored in the same file. `CHANGELOG.md` is prepended with each new release while preserving history—re
+-running the same tag replaces that section in place without duplication or reordering. Generated text is also written to the GitHub release notes, creating or updating as needed.
+
+**Human review mode**
+
+An optional review mode (off by default) presents each generated rendering with flagged passages highlighted, letting a maintainer approve or edit before output is written.
+
+**Label-driven curation**
+
+GitHub labels can exclude a PR, force it into a category, or enable an "only include labeled PRs" mode. All optional—the tool works with no labels. Rules are read from configuration.
+
+**Graceful degradation when PRs are missing**
+
+When a clean PR title is blank or uninformative, the tool falls back to the PR body or commit subject. When no associated PRs exist, it uses commit data. The tool never fails solely because PR discipline is imperfec
+t.
+
+**Commands and CLI**
+
+`chartula preview` and `chartula generate` commands now wire the full pipeline. `preview` runs the identical flow (including generation, so you see the real result) without writing or publishing. `generate` writes o
+utputs. Both commands take `--tag` and `--repo <owner/name>`, display usage on missing options, and report errors clearly.
+
+**Bug fixes**
+
+Fixed output truncation by setting `max_tokens` on LLM calls. Previously omitted, it defaulted to 1024 per provider, cutting off all three audience texts mid-word. Now configurable via `llm.maxOutputTokens`, default
+ing to 16000.
+
+Fixed false breaking-change detection. The categorizer was matching `BREAKING CHANGE` as a case-insensitive substring anywhere in the PR body, so prose discussing breaking changes declared one. Now matches the Conve
+ntional Commits footer format: uppercase, start of line, colon-terminated.
+  Flagged for review:
+    ! The number '0.2.0' is not supported by the facts.
+
+--- Product ---
+## Release Metrics
+
+Measurement is now built in. Every `preview` and `generate` run ends with a summary of what operations ran and what they cost—rule-based checks, thorough checks, rephrasing, and total tokens—so defaults can be decid
+ed by data instead of guesswork.
+
+## Configuration
+
+The tool now reads `chartula.yaml` with sensible defaults. All existing options (`llm`, `github`, `labels`, `factBase`, `faithfulness`, `review`, `categories`, `filter`) are configurable via file or environment vari
+ables, with environment taking precedence. A new `categories` section controls category order, display names, and breaking-change prominence. An example `chartula.yaml` ships in the repo; full documentation is in `d
+ocs/configuration.md`.
+
+## Commands
+
+`chartula preview` and `chartula generate` are now wired end-to-end. Both run the complete pipeline—reading commits and PRs, building the fact base, rendering all three audiences, running rule-based and thorough fai
+thfulness checks, and applying review—then either preview the results (writing nothing) or write outputs to disk and GitHub.
+
+## Outputs
+
+Releases are now written to three destinations:
+
+- **`changelog.json`** stores the fact base and all three audience renderings (technical, customer, product), backed up in one durable, machine-readable file.
+- **`CHANGELOG.md`** prepends each release at the top, preserving history and replacing prior versions in place on re-run for idempotency.
+- **GitHub release notes** are created or updated via the REST API, never duplicated.
+
+## Generation & Reasoning
+
+The pipeline generates changelog text by rephrasing a fact base, never inventing. A system prompt establishes the rules: rephrase only, treat categories and breaking flags as given, keep output sparse on thin facts,
+ no preamble or conclusion. Each audience (technical, customer, product) is rendered from the same facts with deterministic filtering per audience, so renderings can never contradict each other.
+
+## Faithfulness
+
+Two passes check the output for hallucinations:
+
+- **Rule-based check** (always on, zero tokens): flags numbers, feature names, or breaking claims not present in the facts.
+- **Thorough check** (on by default, toggleable): runs a second LLM pass to catch subtle meaning-level distortions like "bug fixed" rendered as "security hole closed."
+
+A report pairs each claim caught only by the thorough check with its token cost, answering directly whether it earns its cost.
+
+## Curation
+
+Changes are curated deterministically before the LLM sees them:
+
+- **Categorization** reads Conventional Commit prefixes (feat, fix, docs, perf, refactor, internal, etc.) with a sane `Other` default. Breaking is tracked separately via `!` marker, `breaking` type, or `BREAKING CHA
+NGE` footer.
+- **Label rules** (from config) can exclude changes, force a category, or require all changes to be labeled—all optional, all case-insensitive.
+- **Filtering** drops internal and chore changes by default (overridable), but never drops a breaking change.
+- **Fact-base depth** (from config) controls what source material is included: title-only, title + PR description (default), or + linked issues.
+- **Graceful degradation**: when clean PRs are missing, the tool falls back to commit data; when PR titles are blank or uninformative, it uses the PR body or a generic fallback.
+
+## Review
+
+An opt-in review mode lets a maintainer approve or edit generated text before publishing. The reviewer sees the text with flagged passages (findings from both checks) highlighted, and can approve as-is or return an
+edited version.
+
+## Consistency
+
+Formatting is normalized per audience—bullet markers, spacing, blank lines, and trailing whitespace—while keeping structure intact. A tone rule in the system prompt ensures one consistent voice throughout, with no i
+ndividual author's style carried over.
 
 ## Fixes
 
-Two release blockers found by dogfooding: output truncation (missing `max_tokens` in chat options, now configurable with a 16000-token default) and false breaking-change detection (substring match on "BREAKING CHANG
-E" in PR bodies now correctly matches the footer format only).
+Two release blockers found by dogfooding v0.1.0 are now fixed:
+
+- **Truncation**: `ChatModel` now always sends `maxOutputTokens` (configurable, default 16000) so output is never silently cut off.
+- **False breaking changes**: `ConventionalCommitCategorizer` now matches the `BREAKING CHANGE` footer rule strictly—uppercase, start of line, colon-terminated—instead of flagging any prose that mentions breaking ch
+anges.
+
+## Documentation
+
+`docs/` is now visible and complete: `architecture.md` covers the layering and dependency choices, `changelog-json.md` documents the output schema and stability contract, `configuration.md` covers all configuration
+options, and `run-metrics.md` explains how to read the metrics summary. The README links to all of them, and `CONTRIBUTING.md` documents the architecture and commit scope conventions actually in use.
+  Flagged for review:
+    ! 'security hole closed.' is not supported by the facts.
 
 Preview only - nothing was written or published.
 
 Run metrics
-  Rule-based check: 3 runs, 2 with findings, 2 claims, no tokens
-  Thorough check:   3 runs, 2 with findings, 7 claims, 46,368 in / 238 out
-    caught 7 claims the rule-based check missed, for 46,606 tokens in 3 calls
-  Rephrasing:       3 calls, 39,476 in / 6,066 out
-  Total:            92,148 tokens
-❯ tmux capture-pane -pS - > /home/goldbarth/repos/chartula-notes/haiku-4-5-out.txt
-
-
+  Rule-based check: 3 runs, 3 with findings, 6 claims, no tokens
+  Thorough check:   3 runs, 0 with findings, 0 claims, 45,721 in / 66 out
+    caught 0 claims the rule-based check missed, for 45,787 tokens in 3 calls
+  Rephrasing:       3 calls, 39,476 in / 5,419 out
+  Total:            90,682 tokens
+❯ tmux capture-pane -pS - > /home/goldbarth/repos/chartula-notes/sonnet-5-out.md
 
