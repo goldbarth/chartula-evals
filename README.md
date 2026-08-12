@@ -24,13 +24,14 @@ Cost per run is measured.
 Six runs against the same release, four models, every figure confirmed against the invoice.
 
 Whether the cheap end writes something worth sending out is not.
-That half needs a written criterion before it needs any code, and the criterion does not exist yet.
+That half needs a written criterion before it needs any code.
+A first version of that criterion now exists for the customer rendering; it has not been calibrated against a judge.
 
 ## Status
 
-Empty, deliberately.
-The first piece of work is writing down what a shippable changelog is, by labelling the runs that already exist.
-Nothing here is automated until that criterion holds up.
+The runs to be judged are in [`test-runs/`](test-runs), seven renderings of the same release across four models and two reasoning settings.
+A first criterion for the customer rendering is in [`rubric-customer.md`](rubric-customer.md), derived from one of them.
+Labelling the remaining runs against it is the open work, and nothing here is automated until that criterion holds up.
 
 ## Licence
 

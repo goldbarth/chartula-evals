@@ -1,7 +1,8 @@
 # First pass over the customer rendering
 
 Impressions, not labels.
-Written in one sitting across the six runs in `test-runs/`, before the rubric was applied to anything.
+Written in one sitting across six of the seven runs in `test-runs/`, before the rubric was applied to anything.
+The second Haiku 4.5 run was not part of this pass.
 They are kept because the rubric came out of them, not because they are evidence.
 
 Proper labelling against C1 to C3 is still open, see issue #1.
