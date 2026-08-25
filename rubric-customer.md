@@ -83,6 +83,8 @@ The document is scannable and does not oversell.
 **Decision procedure**
 
 1. Each item is one or two sentences. Three is the ceiling and needs a reason.
+   Sentences that follow the outcome count here: C3 is satisfied once the
+   outcome is stated, and what trails behind it is a length problem.
 2. Minor items are collapsed into a single closing line rather than listed
    individually.
 3. No superlatives, no marketing adjectives, no exclamation marks.
@@ -108,9 +110,10 @@ The slots are the same for every change type; only what fills them differs.
 | **1 - Observation** | what went wrong, as the user saw it | what is now possible             | what no longer works as before         |
 | **2 - Scope**       | when it occurred                    | who it is for, if not everyone   | who is affected                        |
 | **3 - Outcome**     | what you can now rely on            | the detour that disappears       | secondary, may be omitted              |
-| **4 - Action**      | usually "nothing to do"             | where to find it, what to enable | the migration step - carries the entry |
+| **4 - Action**      | usually "nothing to do"             | what to set, where, if anything  | the migration step - carries the entry |
 
 Slots 2, 3 and 4 may be absent. Slot 1 never is.
+Slot 4 is absent when there is nothing to set: see C4.
 
 ### C1 - Observation leads
 
@@ -161,6 +164,10 @@ negative does not count.
 2. If the closing is slot 1 with "no longer" in front of it: fail.
 3. The outcome names a consequence one step out - what becomes possible, what
    no longer needs checking, what can be trusted.
+4. C3 judges substance only: is there an outcome, yes or no. Where it sits in
+   the item is not this axis. An item that states the outcome and then keeps
+   going - an edge case, a caveat, a footnote - passes C3 and is a length
+   finding under B3 rule 1.
 
 **Pass:** "…so you can generate notes for a large release without checking the
 output for truncation."
@@ -169,21 +176,44 @@ output for truncation."
 
 *This example passes C1, C2, C5 and only fails here.*
 
+**Observed pair**, `sonnet-5-out` item `s5-03`, the same violation from a real
+run rather than constructed:
+
+> Configuration mistakes now show a clear error message instead of crashing.
+
+C1, C2, C4 and C5 all pass on that item. The closing restates the negative
+event.
+
 ### C4 - Action explicit
 
 The reader is never left wondering whether they must do something.
+The axis judges a withheld action, not a missing sentence.
 
 **Decision procedure**
 
-1. Is an action required - update, configuration change, migration? If yes, it
-   is stated as the last slot.
-2. If no action is required and the item is a fix, "nothing to do" may be
-   implicit only when the document says so once, globally.
-3. For a feature, slot 4 is where to find it. It is not optional.
-4. For a breaking change, slot 4 is mandatory and explicit.
+1. Does this change give the user anything to do or decide - a migration, a
+   setting, an opt-in, a command to run, a place they have to go to reach it?
+2. If not - it runs by itself, always, with nothing to configure - C4 is
+   **n/a**. Not a pass, not a fail. There is no action to withhold, and a line
+   saying so is optional, not required.
+3. If yes, the action is the last slot, concrete enough to act on: the setting
+   by its plain name, the command, the place. Announcing that an option exists
+   without saying where it is set is a fail.
+4. For a breaking change, slot 4 is mandatory and explicit. Never n/a.
+5. For a fix whose only action is "nothing to do", C4 is n/a, provided the
+   document says so once, globally.
 
 **Pass:** "Existing configuration files keep working; the new setting is
 optional."
+
+**Pass (stated redundantly):** "No configuration change is needed." - allowed
+where nothing has to be done, never demanded.
+
+**n/a:** a metrics summary printed at the end of every run. It is on, it is
+where the run ends, and there is nothing to switch.
+
+**Fail (option withheld):** "How much detail each entry carries can be
+customised." - the reader now knows a setting exists and not where it is.
 
 **Fail:** a breaking change described entirely in slots 1–3, with no statement of
 what to change.
@@ -249,8 +279,11 @@ Fixed false breaking-change detection. The categorizer was matching `BREAKING CH
 ntional Commits footer format: uppercase, start of line, colon-terminated.
 ```
 
-Fails C1 (opens with the change), C3 (ends on the mechanism), C4 (no action
-statement), C5 (identifiers, values, "the categorizer", the format spec).
+Fails C1 (opens with the change), C3 (ends on the mechanism), C5 (identifiers,
+values, "the categorizer", the format spec).
+C4 is not among them: the first item does say where the ceiling is set, the
+second has nothing to set. That the first says it as a configuration key is
+C5's finding, not C4's.
 Scope is absent in both items without it being clear whether that is
 *not applicable* or *unknown*.
 
@@ -281,7 +314,17 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 
 ## Open
 
-- The minimal pairs exist for C1, C3 and C5. A1/B-level pairs are not written.
+- The minimal pairs exist for C1, C3 and C5. C3 now also has an observed pair
+  from `sonnet-5-out`; C1 and C5 are still constructed. A1/B-level pairs are not
+  written.
+- C4 and C3 were sharpened after the first pass over `sonnet-5-out`, and both
+  columns have been re-judged since: C4 fails fell from 23 to 9, C3 fails from
+  20 to 15, and 6 of 26 items are shippable instead of 1. A1, C1 and C2 are
+  still first-pass verdicts; of C5 only `s5-01` was revisited, and it is now a
+  fail on `(thorough)` as a mode value.
+- Whether writing to GitHub (s5-06) and generating text (s5-14) count as
+  actions the item must state, when the credential is set up once and not per
+  release, is the next C4 borderline. Both are currently `fail`.
 - The remaining five runs in `test-runs/` are not labelled.
 - Not yet calibrated against a judge. The first calibration run should test
   axis separation on the minimal pairs before anything else.
