@@ -23,6 +23,11 @@ An item that fails level A is removed, not rewritten.
 An item that fails level C is rewritten.
 A document that fails level B is re-assembled from unchanged items.
 
+A1 judges the subject of an entry, C5 its language. The two are independent:
+a change that is internal in substance can be described in faultless customer
+language, and then A1 fails while C5 passes. Failing A1 does not drag C5 with
+it, and the item is removed rather than rephrased.
+
 ---
 
 ## Level A - Selection
@@ -153,36 +158,40 @@ pull requests."
 
 **Fail:** "…in some runs." - a hedge standing in for a condition nobody looked up.
 
-### C3 - Outcome beyond the negation
+### C3 - Outcome present
 
-The closing states what the user can now rely on or do. Restating slot 1 in the
-negative does not count.
+The item says what the user can now rely on or do.
+Anywhere in the item, not necessarily at the end.
 
 **Decision procedure**
 
-1. Remove slot 1 from the sentence. Does the closing still say something?
-2. If the closing is slot 1 with "no longer" in front of it: fail.
-3. The outcome names a consequence one step out - what becomes possible, what
-   no longer needs checking, what can be trusted.
-4. C3 judges substance only: is there an outcome, yes or no. Where it sits in
-   the item is not this axis. An item that states the outcome and then keeps
-   going - an edge case, a caveat, a footnote - passes C3 and is a length
-   finding under B3 rule 1.
+1. Does the item name an outcome at all - what becomes possible, what no longer
+   needs checking, what can be trusted, what detour disappears? If no, fail.
+2. A candidate that only restates slot 1 is not an outcome. Two shapes recur:
+   slot 1 with "no longer" or "instead of" in front of it, and a repetition of
+   the mechanism the item already described. Both are fail.
+3. Position is not this axis. An item that names its outcome and then keeps
+   going - an edge case, a caveat, a footnote - passes C3. The trailing
+   sentences are a length finding under B3 rule 1.
+4. One outcome is enough. C3 does not ask whether it is the strongest one
+   available.
 
 **Pass:** "…so you can generate notes for a large release without checking the
 output for truncation."
 
-**Fail:** "…so text is no longer cut off." - the negation of slot 1.
+**Pass (outcome not last):** "…so you see the real result before anything is
+written, and the same flags apply as in a normal run."
+The outcome is stated; what follows it is B3's problem, not C3's.
 
-*This example passes C1, C2, C5 and only fails here.*
+**Fail:** "…so text is no longer cut off." - the negation of slot 1.
 
 **Observed pair**, `sonnet-5-out` item `s5-03`, the same violation from a real
 run rather than constructed:
 
 > Configuration mistakes now show a clear error message instead of crashing.
 
-C1, C2, C4 and C5 all pass on that item. The closing restates the negative
-event.
+The item names no outcome anywhere. Its only candidate, "instead of crashing",
+restates the negative event of slot 1. C1, C2, C4 and C5 all pass on that item.
 
 ### C4 - Action explicit
 
@@ -199,8 +208,13 @@ The axis judges a withheld action, not a missing sentence.
 3. If yes, the action is the last slot, concrete enough to act on: the setting
    by its plain name, the command, the place. Announcing that an option exists
    without saying where it is set is a fail.
-4. For a breaking change, slot 4 is mandatory and explicit. Never n/a.
-5. For a fix whose only action is "nothing to do", C4 is n/a, provided the
+4. C4 asks for the plain name, never for the key. "How much detail feeds the
+   facts is set in the configuration file" satisfies this axis; the raw key
+   does too, but fails C5 for it. The two axes are satisfiable at once, and an
+   item that names the setting in prose passes both. Where an item gives only
+   the key, C4 passes and C5 fails, and the finding belongs to C5.
+5. For a breaking change, slot 4 is mandatory and explicit. Never n/a.
+6. For a fix whose only action is "nothing to do", C4 is n/a, provided the
    document says so once, globally.
 
 **Pass:** "Existing configuration files keep working; the new setting is
@@ -279,8 +293,8 @@ Fixed false breaking-change detection. The categorizer was matching `BREAKING CH
 ntional Commits footer format: uppercase, start of line, colon-terminated.
 ```
 
-Fails C1 (opens with the change), C3 (ends on the mechanism), C5 (identifiers,
-values, "the categorizer", the format spec).
+Fails C1 (opens with the change), C3 (names no outcome, only the mechanism),
+C5 (identifiers, values, "the categorizer", the format spec).
 C4 is not among them: the first item does say where the ceiling is set, the
 second has nothing to set. That the first says it as a configuration key is
 C5's finding, not C4's.
