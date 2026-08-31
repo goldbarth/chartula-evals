@@ -1,0 +1,67 @@
+{
+  "model": "claude-sonnet-5",
+  "effort": "low",
+  "run_at": "2026-08-31T1619",
+  "provenance": {
+    "commit": "d9e2080",
+    "dirty": true,
+    "rubric_last_changed": "c57ec89 2026-08-31",
+    "prompt_last_changed": "f34e11b 2026-08-31",
+    "labels_last_changed": "b2e92ac 2026-08-31"
+  },
+  "axes": {
+    "B3": "1f94446"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 3,
+  "quotes_found_in_subject": 2,
+  "cost_usd": 0.0287,
+  "per_axis": {
+    "B3": {
+      "n": 3,
+      "agree": 3,
+      "human_fail": 3,
+      "caught": 3,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B3",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "",
+      "reason": "The document lacks a header giving version, date, and one sentence on what the release is about, failing rule 4 of B3's decision procedure.",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "opus-5-out::document::B3",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "**`preview` and `generate` commands.** Run `chartula preview` or `chartula generate` with `--tag` and `--repo <owner/name>`. `generate` writes `changelog.json`, `CHANGELOG.md` and the GitHub release notes; `preview` runs the identical flow, including generation, so you see the real result, but writes and publishes nothing. Both print a usage screen, a readable per-audience summary, and clear messages for unknown commands, a missing `--tag` or an invalid `--repo` instead of crashing. `--repo` must be given explicitly for now, and review mode uses the auto-approve reviewer until the interactive console reviewer is built.",
+      "reason": "Rule 1 caps items at three sentences without justification, and this item (like many others in the list) runs to four or five sentences with no stated reason for the excess length.",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B3",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "Generated text could be cut off mid-sentence. Requests to the language model didn't set an output length limit, so the provider silently applied its own default and truncated all three audience texts. This failed quietly \u2014 the run reported success, and the thorough check spent tens of thousands of tokens flagging the cut-off text as an unsupported claim, when the real problem was truncation. The output limit is now always set explicitly, configurable via `llm.maxOutputTokens`, defaulting to 16000.",
+      "reason": "This item runs four sentences past the three-sentence ceiling in rule 1 without any stated reason, and the document also lacks the version/date opening required by rule 4.",
+      "agree": true,
+      "quote_found": true
+    }
+  ]
+}
