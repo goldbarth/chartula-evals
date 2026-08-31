@@ -199,6 +199,12 @@ def main() -> None:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--run", help="only this run")
     parser.add_argument("--axis", help="only this axis")
+    parser.add_argument(
+        "--allow-stale",
+        action="store_true",
+        help="judge an axis that changed after the labels were written. The "
+        "result is then a comparison of two rubrics, not of two judgements.",
+    )
     args = parser.parse_args()
 
     items, documents = human_labels()
@@ -207,6 +213,20 @@ def main() -> None:
         calls = calls[: args.limit]
     if not calls:
         sys.exit("nothing to judge with those filters")
+    axes = sorted({c["axis"] for c in calls})
+    stale = [a for a in axes if sep.labels_are_older_than(a)]
+    print("axis   last changed   labels older than the axis")
+    for axis in axes:
+        print(f"{axis:<7}{sep.axis_last_changed(axis):<15}{'YES' if axis in stale else 'no'}")
+    if stale and not args.allow_stale:
+        sys.exit(
+            f"\n{', '.join(stale)} changed after labels/customer.md was last written.\n"
+            "Judging across that line measures the difference between two rubrics and\n"
+            "reports it as disagreement between a person and a model. Re-pass those\n"
+            "columns by hand first, or pass --allow-stale if you have checked that the\n"
+            "change cannot move a verdict - and say so in the friction log."
+        )
+
     client = anthropic.Anthropic()
 
     if args.dry_run:
@@ -266,6 +286,9 @@ def main() -> None:
                 "model": args.model,
                 "effort": args.effort,
                 "run_at": stamp,
+                "provenance": sep.provenance(),
+                "axes": {a: sep.axis_last_changed(a) for a in axes},
+                "judged_stale": stale if args.allow_stale else [],
                 "calls": len(results),
                 "agreed": sum(r["agree"] for r in results),
                 "quotes_found_in_subject": sum(r["quote_found"] for r in results),

@@ -46,6 +46,66 @@ PRICES = {
 }
 
 
+def _git(*args: str) -> str:
+    import subprocess
+
+    try:
+        return subprocess.run(
+            ["git", *args], cwd=REPO, capture_output=True, text=True, check=True
+        ).stdout.strip()
+    except Exception:
+        return ""
+
+
+def _section_at(commit: str, heading: str) -> str:
+    import re as _re
+
+    text = _git("show", f"{commit}:rubric-customer.md")
+    pattern = rf"^(#{{2,3}} {_re.escape(heading)}[^\n]*\n.*?)(?=^#{{2,3}} |\Z)"
+    found = _re.search(pattern, text, _re.DOTALL | _re.MULTILINE)
+    return found.group(1) if found else ""
+
+
+def axis_last_changed(axis: str) -> str:
+    """The commit that last changed this axis' own section, not the file."""
+    heading = axis if axis == "Units" else f"{axis} -"
+    commits = _git("log", "--format=%h", "--", "rubric-customer.md").split()
+    for newer, older in zip(commits, commits[1:]):
+        if _section_at(newer, heading) != _section_at(older, heading):
+            return newer
+    return commits[-1] if commits else ""
+
+
+def labels_are_older_than(axis: str) -> bool:
+    """True when the axis changed after the labels were last written by hand.
+    A comparison across that line measures two rubrics, not two judgements."""
+    axis_commit = axis_last_changed(axis)
+    labels_commit = _git("log", "-1", "--format=%h", "--", "labels/customer.md")
+    if not axis_commit or not labels_commit:
+        return False
+    import subprocess
+
+    return (
+        subprocess.run(
+            ["git", "merge-base", "--is-ancestor", labels_commit, axis_commit],
+            cwd=REPO,
+            capture_output=True,
+        ).returncode
+        == 0
+        and axis_commit != labels_commit
+    )
+
+
+def provenance() -> dict:
+    return {
+        "commit": _git("rev-parse", "--short", "HEAD"),
+        "dirty": bool(_git("status", "--porcelain")),
+        "rubric_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "rubric-customer.md"),
+        "prompt_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "judge/axis-prompt.md"),
+        "labels_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "labels/customer.md"),
+    }
+
+
 def rubric_section(heading: str) -> str:
     """One `### AXIS - ...` or `## Units` section of the rubric, verbatim."""
     text = RUBRIC.read_text(encoding="utf-8")
@@ -271,6 +331,7 @@ def main() -> None:
                 "model": args.model,
                 "effort": args.effort,
                 "run_at": stamp,
+                "provenance": provenance(),
                 "calls": len(results),
                 "matched": matched,
                 "quotes_found_in_subject": quoted,
