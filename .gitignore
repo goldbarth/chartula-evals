@@ -7,3 +7,6 @@ __pycache__/
 
 # JetBrains
 .idea
+
+# Assembled from the rubric by tools/build_calibration_set.py, never edited by hand.
+calibration/
