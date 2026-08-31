@@ -156,6 +156,10 @@ def render(call: dict) -> tuple[str, list[dict]]:
     return body, system
 
 
+def _collapse(text: str) -> str:
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
 def parse_answer(text: str) -> dict:
     stripped = re.sub(r"^```(?:json)?\n|\n```$", "", text.strip())
     try:
@@ -232,12 +236,16 @@ def main() -> None:
         spent += cost(response.usage, args.model)
 
         quote = answer.get("quote") or ""
+        # The documents are hard-wrapped, so a quote read as flowing text will
+        # not match character for character even when it is verbatim. Compare
+        # with whitespace collapsed; anything still missing is invented.
         record = {
             "id": call["id"],
             "axis": call["axis"],
             "expected": call["expected"],
             **answer,
-            "quote_found": bool(quote) and quote in call["subject"],
+            "quote_found": bool(quote)
+            and _collapse(quote) in _collapse(call["subject"]),
             "usage": {
                 "input": response.usage.input_tokens,
                 "output": response.usage.output_tokens,

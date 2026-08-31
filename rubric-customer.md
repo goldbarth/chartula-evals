@@ -78,24 +78,45 @@ every entry is still an item.
 
 ### A1 - Product surface relevance
 
-A change appears in the customer rendering only if a user could notice it
-without reading the source.
+The rendering carries every change the reader could notice, and nothing else.
 
-**Decision procedure**
+The axis has two halves and both are judged. An entry that should not be there
+is visible in the document. A change that should be there and is missing is not
+visible in the document at all - it can only be found against the release's
+facts, and it is the more expensive omission, because a reader cannot ask about
+something they were never told.
 
-1. Could a user observe this change by using the product - different output,
-   different behaviour, a new command, a new setting? If no, exclude.
+**Decision procedure, half one: is anything here that should not be**
+
+1. For each entry, could a reader observe this change by using the product -
+   different output, different behaviour, a new command, a new setting? If no,
+   the entry fails.
 2. Refactors, test changes, CI changes, dependency bumps without behaviour
-   change: exclude.
-3. A dependency bump *with* observable behaviour change: include, described by
-   the behaviour, not the dependency.
-4. If a change is excluded here but a user might still ask about it, it belongs
-   in the technical rendering, not here.
+   change: they do not belong here.
+3. A dependency bump *with* observable behaviour change does belong, described
+   by the behaviour, not the dependency.
+4. A change excluded here belongs in the technical rendering, not nowhere.
 
-**Pass:** a change to how much text the tool generates before stopping.
+**Decision procedure, half two: is anything missing**
 
-**Fail:** a change to which internal class performs the categorisation, with
-identical output.
+5. Only when the facts of the release are given alongside the document. Without
+   them this half cannot be judged and is not guessed at.
+6. Go through the facts, not through the document. For each fact a reader could
+   observe, find the entry that carries it. Reading the document and asking
+   whether it looks complete finds nothing - an omission has no text to notice.
+7. A fact with no entry is a fail, and the fact is named. Several omissions are
+   one verdict; the axis asks whether the rendering is complete, not how
+   incomplete it is.
+8. A fact that no reader could observe needs no entry. Its absence is correct.
+
+**Pass:** a change to how much text the tool generates before stopping, carried
+by an entry.
+
+**Fail (present, should not be):** an entry about which internal class performs
+the categorisation, with identical output.
+
+**Fail (absent, should be there):** the facts carry a change that stops the tool
+failing when a release has no pull requests attached, and no entry mentions it.
 
 ---
 
@@ -166,22 +187,54 @@ Slot 4 is absent when there is nothing to set: see C4.
 
 ### C1 - Observation leads
 
-The item opens with what the user can observe, not with what was changed.
-The cause, if given, follows.
+The item opens with what the reader can observe. What was built, changed or
+configured comes later, or not at all.
+
+What counts as an observation depends on the change type, and it is the same
+thing slot 1 of the item is for:
+
+| Change type     | The observation is                                     |
+|-----------------|--------------------------------------------------------|
+| Fix             | what went wrong, as the user ran into it               |
+| Feature         | what the reader can now do or now sees                  |
+| Breaking change | what no longer works the way it did                     |
+
+A feature does not need a problem. "You can now preview a release before
+anything is published" opens on an observation: the reader can do it, and can
+see that they can. Requiring a symptom there is a misreading of this axis.
 
 **Decision procedure**
 
-1. Does the first clause describe something a user could have noticed?
-2. If the first clause names a change, a setting, or a mechanism: fail.
+1. Ignore a bold label and the colon after it. It names the entry, it is not
+   the opening of the sentence, and the format specifies it that way. Judge the
+   first clause of the text that follows it.
+2. Does that clause describe something the reader can observe - a thing that
+   happens to them, something they can now do, something they ran into? If yes,
+   pass.
+3. If it instead names what was built or altered - a component, a setting, an
+   implementation, "we added", "support was introduced" - fail.
+4. The test: could the clause be rewritten as "you can now …" or "X happened to
+   you when …" without inventing anything that is not already in it? If yes, it
+   is an observation, whatever its grammatical shape.
 
-**Pass:** "Generated text could be cut off mid-sentence because no output length
-limit was set."
+**Pass (fix):** "Generated text could be cut off mid-sentence because no output
+length limit was set."
+
+**Pass (feature):** "You can see the finished notes before anything is written
+or published."
+
+**Pass (feature, stated as a property):** "Technical, customer and product notes
+are written from the same set of facts." The reader sees the three renderings;
+this says what is true of them now.
 
 **Fail:** "There is now a configurable output length limit, so text no longer
 gets cut off mid-sentence."
 
-*This is the only axis this example violates: no jargon, outcome stated, length
+*This is the only axis that example violates: no jargon, outcome stated, length
 fine. It fails on order alone.*
+
+**Fail (feature):** "Support for previewing a release was added." Same fact as
+the feature pass above, opened on the building of it.
 
 ### C2 - Scope stated or deliberately absent
 
