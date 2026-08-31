@@ -215,7 +215,10 @@ tags:
 - Whether `publishedAt` is the tag date or the date the notes were published.
 - Whether the release heading carries a name as well as a number.
 - Whether an empty release - every change filtered out - produces a document
-  saying so, or no document at all.
+  saying so, or no document at all. It produces one, and the text is written by
+  hand: a filler line configured by the project, not generated. Slack's
+  maintenance releases are the model. What is still open is where it is
+  configured and whether more than one can be held and rotated.
 
 ---
 

@@ -45,7 +45,7 @@ Changes in release 0.1.0, as the fact base holds them:
    User-visible.
 4. Generated text is no longer cut off when a release is long. User-visible.
 5. A release whose commits have no pull requests attached no longer fails; the
-   commit subjects are used instead. User-visible.   <-- no entry in the document
+   commit subjects are used instead. User-visible.
 6. The categoriser moved into its own component, with identical output.
    Not user-visible.
 """
@@ -185,7 +185,11 @@ def main() -> None:
         if name == "a1.md":
             (out / "a1-facts.md").write_text(A1_FACTS, encoding="utf-8")
             entry["facts"] = "a1-facts.md"
-            entry["note"] = "the document is the base; the omission is in the facts"
+            entry["note"] = (
+                "the document is the base; fact 5 is the user-visible change it "
+                "has no entry for. The fixture carries no marker - the judge has "
+                "to find the omission, and a hint in the text would answer it."
+            )
         manifest.append(entry)
 
     (out / "manifest.json").write_text(
