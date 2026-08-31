@@ -76,23 +76,38 @@ def axis_last_changed(axis: str) -> str:
     return commits[-1] if commits else ""
 
 
+def column_passed_against(axis: str) -> str:
+    """The rubric commit a column was last read against, from
+    labels/column-state.md. Kept by hand on purpose: only the person who
+    re-read the column knows that they did."""
+    import re as _re
+
+    text = (REPO / "labels" / "column-state.md").read_text(encoding="utf-8")
+    for line in text.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0] == axis:
+            return cells[1]
+    return ""
+
+
 def labels_are_older_than(axis: str) -> bool:
-    """True when the axis changed after the labels were last written by hand.
-    A comparison across that line measures two rubrics, not two judgements."""
+    """True when the axis changed after the column was last read by hand. The
+    date of labels/customer.md cannot answer this - a note about one axis would
+    mark every other column as freshly checked."""
     axis_commit = axis_last_changed(axis)
-    labels_commit = _git("log", "-1", "--format=%h", "--", "labels/customer.md")
-    if not axis_commit or not labels_commit:
-        return False
+    column_commit = column_passed_against(axis)
+    if not axis_commit or not column_commit:
+        return True
     import subprocess
 
     return (
         subprocess.run(
-            ["git", "merge-base", "--is-ancestor", labels_commit, axis_commit],
+            ["git", "merge-base", "--is-ancestor", column_commit, axis_commit],
             cwd=REPO,
             capture_output=True,
         ).returncode
         == 0
-        and axis_commit != labels_commit
+        and axis_commit != column_commit
     )
 
 
