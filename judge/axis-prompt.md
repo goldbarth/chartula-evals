@@ -46,6 +46,10 @@ Rules:
 - For a `fail`, the quote is the passage that fails. For a `pass`, it is the
   passage that satisfies the axis. Where an axis is satisfied by something
   being correctly absent, quote nothing and say so in the reason.
+- When the finding is that something is missing from the changelog, there is no
+  passage to quote - quote the fact it is missing from instead, verbatim from
+  the fact base you were given. Never write a sentence of your own in the quote
+  field.
 - Do not rewrite, improve or continue the text. Do not comment on anything
   outside the axis.
 

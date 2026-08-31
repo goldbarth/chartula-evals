@@ -269,7 +269,10 @@ The reader can tell whether they were affected.
 
 1. Did this affect everyone, always? If yes, slot 2 is correctly absent.
 2. Did it affect a subset? Then the condition is named in plain terms.
-3. Is the condition **unknown** - the source data does not say? Then slot 2 is
+3. A condition may be qualitative. "On longer releases" and "if you publish
+   from a fork" name a condition; they do not become hedges for lacking a
+   number. What fails is a phrase that names no condition at all.
+4. Is the condition **unknown** - the source data does not say? Then slot 2 is
    omitted entirely and the item is marked for review.
    Vague hedges are a fail, not a fallback.
 
@@ -278,7 +281,9 @@ pull requests."
 
 **Pass (not applicable):** no scope clause at all, because it affected every run.
 
-**Fail:** "…in some runs." - a hedge standing in for a condition nobody looked up.
+**Fail:** "…in some runs." - names no condition at all: every run is some run.
+Contrast rule 3, where "on longer releases" passes although it carries no
+number.
 
 ### C3 - Outcome present
 
@@ -415,9 +420,9 @@ Nothing here needs a configuration change unless the entry says so.
 
 ### What needs action
 
-- **Breaking:** Release notes are now written to the GitHub release itself, so
-  a project that published them elsewhere has to change where it looks. Point
-  your publishing step at the release page.
+- **Breaking:** Release notes published anywhere but the GitHub release itself
+  stop being updated, so a project that read them from a file no longer sees
+  new ones. Point your publishing step at the release page.
 
 ### What's New
 
@@ -534,9 +539,22 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 
 ## Open
 
+Decided against the material there was at the time, and meant to be argued
+with. Anything here is a reasonable place for someone else to disagree from
+experience, and several of these belong in configuration rather than in a
+rubric once there is a reason to make them settable.
+
 - The minimal pairs are written for every axis except the wrongly-included half
   of A1, which cannot be isolated from C1 - see the note there. C3 has an
   observed pair from `sonnet-5-out`; the rest are constructed.
+- C2 allows a qualitative condition. Two runs disagreed with each other on
+  "on longer releases" before this was written down, which is what an
+  undecided rule looks like from the outside. Whether a condition should have
+  to be checkable by the reader - a number, a name, a version - is the open
+  half.
+- Two cells of the separation set are unstable across four runs, both on the
+  breaking-change entry: C1 and C3. C1 was the entry's fault and the entry is
+  fixed. C3 is the contradiction below, still open.
 - B2 no longer asks whether the most consequential entry leads its group. Two
   separation runs showed why: which of two entries is more consequential is not
   derivable from the text, so the axis could not be applied by a judge, and
