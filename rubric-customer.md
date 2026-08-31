@@ -204,7 +204,7 @@ The slots are the same for every change type; only what fills them differs.
 |---------------------|-------------------------------------|----------------------------------|----------------------------------------|
 | **1 - Observation** | what went wrong, as the user saw it | what is now possible             | what no longer works as before         |
 | **2 - Scope**       | when it occurred                    | who it is for, if not everyone   | who is affected                        |
-| **3 - Outcome**     | what you can now rely on            | the detour that disappears       | secondary, may be omitted              |
+| **3 - Outcome**     | what you can now rely on            | the detour that disappears       | what holds once the migration is done  |
 | **4 - Action**      | usually "nothing to do"             | what to set, where, if anything  | the migration step - carries the entry |
 
 Slots 2, 3 and 4 may be absent. Slot 1 never is.
@@ -302,6 +302,11 @@ Anywhere in the item, not necessarily at the end.
    sentences are a length finding under B3 rule 1.
 4. One outcome is enough. C3 does not ask whether it is the strongest one
    available.
+5. A breaking change is not exempt. Its outcome is what holds once the reader
+   has done what the entry asks - what they get for the migration, not what
+   they lose without it. "Once your publishing step points at the release page,
+   the notes and the release stay in one place" is an outcome; "you have to
+   change where it looks" is the action restated.
 
 **Pass:** "…so you can generate notes for a large release without checking the
 output for truncation."
@@ -422,7 +427,8 @@ Nothing here needs a configuration change unless the entry says so.
 
 - **Breaking:** Release notes published anywhere but the GitHub release itself
   stop being updated, so a project that read them from a file no longer sees
-  new ones. Point your publishing step at the release page.
+  new ones. Point your publishing step at the release page and the notes stay
+  with the release they belong to.
 
 ### What's New
 
@@ -539,11 +545,6 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 
 ## Open
 
-Decided against the material there was at the time, and meant to be argued
-with. Anything here is a reasonable place for someone else to disagree from
-experience, and several of these belong in configuration rather than in a
-rubric once there is a reason to make them settable.
-
 - The minimal pairs are written for every axis except the wrongly-included half
   of A1, which cannot be isolated from C1 - see the note there. C3 has an
   observed pair from `sonnet-5-out`; the rest are constructed.
@@ -552,17 +553,11 @@ rubric once there is a reason to make them settable.
   undecided rule looks like from the outside. Whether a condition should have
   to be checkable by the reader - a number, a name, a version - is the open
   half.
-- Two cells of the separation set are unstable across four runs, both on the
-  breaking-change entry: C1 and C3. C1 was the entry's fault and the entry is
-  fixed. C3 is the contradiction below, still open.
 - B2 no longer asks whether the most consequential entry leads its group. Two
   separation runs showed why: which of two entries is more consequential is not
   derivable from the text, so the axis could not be applied by a judge, and
   arguably not by a person either. It returns if a criterion is found that can
   be read off the entry rather than guessed at.
-- The slot table calls the outcome "secondary, may be omitted" for a breaking
-  change, while C3 fails an item that names no outcome at all. Nothing in the
-  runs has hit it yet, since v0.1.0 has no breaking change.
 - C4 and C3 were sharpened after the first pass over `sonnet-5-out`, and both
   columns have been re-judged since: C4 fails fell from 23 to 9, C3 fails from
   20 to 15, and 6 of 26 items are shippable instead of 1. A1, C1 and C2 are
