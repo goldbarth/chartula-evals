@@ -294,9 +294,12 @@ Anywhere in the item, not necessarily at the end.
 
 1. Does the item name an outcome at all - what becomes possible, what no longer
    needs checking, what can be trusted, what detour disappears? If no, fail.
-2. A candidate that only restates slot 1 is not an outcome. Two shapes recur:
-   slot 1 with "no longer" or "instead of" in front of it, and a repetition of
-   the mechanism the item already described. Both are fail.
+2. A candidate that only restates slot 1 is not an outcome. Strike slot 1 from
+   the item and read what is left: does it still tell the reader something they
+   did not already have? If no, fail. Wording does not enter into it - the
+   negation of slot 1 and its positive twin are the same statement, and so is
+   the mechanism described a second time. Do not look for particular phrases;
+   there is no list of them that ends.
 3. Position is not this axis. An item that names its outcome and then keeps
    going - an edge case, a caveat, a footnote - passes C3. The trailing
    sentences are a length finding under B3 rule 1.
@@ -316,6 +319,16 @@ written, and the same flags apply as in a normal run."
 The outcome is stated; what follows it is B3's problem, not C3's.
 
 **Fail:** "…so text is no longer cut off." - the negation of slot 1.
+
+**Fail (the same statement, positively):** "…so text completes properly."
+Slot 1 said the text broke off. Saying it now does not is the same fact worded
+the other way round, and a reader learns nothing from the second half they did
+not have from the first.
+
+**Pass (a contrast that adds something):** "…updates the existing release notes
+instead of creating a duplicate." Slot 1 said the notes are written. That
+re-running leaves one release rather than two is not in it, so the clause
+carries information of its own - the contrast is not what decides it.
 
 **Observed pair**, `sonnet-5-out` item `s5-03`, the same violation from a real
 run rather than constructed:
