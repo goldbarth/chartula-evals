@@ -1,0 +1,611 @@
+{
+  "model": "claude-sonnet-5",
+  "effort": "low",
+  "run_at": "2026-08-31T1500",
+  "calls": 40,
+  "matched": 40,
+  "quotes_found_in_subject": 28,
+  "cost_usd": 0.1132,
+  "results": [
+    {
+      "id": "base.md::A1",
+      "axis": "A1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No facts base provided to check for omissions, and all entries describe observable product behaviour without internal implementation details, satisfying both halves of the decision procedure.",
+      "quote_found": false,
+      "usage": {
+        "input": 1041,
+        "output": 72,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md::B1",
+      "axis": "B1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Release notes published anywhere but the GitHub release itself\n  stop being updated, so a project that read them from a file no longer sees\n  new ones.",
+      "reason": "The only marked (breaking) entry stands first in the document, above all unmarked entries, satisfying rule 4/5.",
+      "quote_found": true,
+      "usage": {
+        "input": 816,
+        "output": 109,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md::B2",
+      "axis": "B2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "### What needs action",
+      "reason": "Groups appear in the defined order (what needs action, new, fixed) with changed omitted since absent, satisfying rules 1-3",
+      "quote_found": true,
+      "usage": {
+        "input": 643,
+        "output": 84,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md::B3",
+      "axis": "B3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "The first release you can point at a repository and get release notes out of.\nNothing here needs a configuration change unless the entry says so.",
+      "reason": "Header includes version, date, and a sentence on the release, items are one-two sentences with no superlatives, satisfying rule 4 and rule 3",
+      "quote_found": true,
+      "usage": {
+        "input": 680,
+        "output": 108,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b1.md::A1",
+      "axis": "A1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "All entries describe observable product behaviour changes (per rule 1-3), and no release facts were provided alongside the document to judge half two (rule 5), so the axis passes.",
+      "quote_found": false,
+      "usage": {
+        "input": 1101,
+        "output": 140,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b1.md::B1",
+      "axis": "B1",
+      "expected": "fail",
+      "verdict": "fail",
+      "quote": "A project that steers curation with labels has to\n  move those rules into the new section of the configuration file. The old\n  section stops being read after this release.",
+      "reason": "This entry asks the reader to migrate configuration (marked) but sits under 'What's Changed', below unmarked entries in 'What's New', violating rule 4.",
+      "quote_found": true,
+      "usage": {
+        "input": 876,
+        "output": 198,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b1.md::B2",
+      "axis": "B2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "### What needs action",
+      "reason": "Groups appear in order needs action, new, changed, fixed and all present groups are in that order, satisfying rule 1",
+      "quote_found": true,
+      "usage": {
+        "input": 703,
+        "output": 79,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b1.md::B3",
+      "axis": "B3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "The first release you can point at a repository and get release notes out of.",
+      "reason": "Items are each one to two sentences with no superlatives or marketing language, and the document opens with version, date, and a single descriptive sentence, satisfying rule 4.",
+      "quote_found": true,
+      "usage": {
+        "input": 740,
+        "output": 159,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b2.md::A1",
+      "axis": "A1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No facts base was provided to check for omissions and all entries describe observable product behaviour, so both halves of the procedure pass with nothing to flag.",
+      "quote_found": false,
+      "usage": {
+        "input": 1041,
+        "output": 69,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b2.md::B1",
+      "axis": "B1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "stop being updated, so a project that read them from a file no longer sees\n  new ones. Point your publishing step at the release page",
+      "reason": "The only entry asking something of the reader (breaking change) stands first, above all unmarked entries, satisfying rule 4 and 5.",
+      "quote_found": true,
+      "usage": {
+        "input": 816,
+        "output": 104,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b2.md::B2",
+      "axis": "B2",
+      "expected": "fail",
+      "verdict": "fail",
+      "quote": "### Bug Fixes",
+      "reason": "Fixed group appears before New group, violating the required order (rule 1)",
+      "quote_found": true,
+      "usage": {
+        "input": 643,
+        "output": 53,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b2.md::B3",
+      "axis": "B3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "The first release you can point at a repository and get release notes out of.",
+      "reason": "Items are one to two sentences with no superlatives or marketing language, and the document opens with version, date, and a one-sentence description of the release, satisfying B3.",
+      "quote_found": true,
+      "usage": {
+        "input": 680,
+        "output": 185,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b3.md::A1",
+      "axis": "A1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "All entries describe observable product behaviour (rule 1-2) and no release facts were provided to check for omissions (rule 5), so both halves pass.",
+      "quote_found": false,
+      "usage": {
+        "input": 1082,
+        "output": 113,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b3.md::B1",
+      "axis": "B1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "**Breaking:** Release notes published anywhere but the GitHub release itself\n  stop being updated",
+      "reason": "The only entry that asks something of the reader (the breaking change requiring a publishing step change) is first, above all unmarked entries, satisfying rule 4 and 5.",
+      "quote_found": true,
+      "usage": {
+        "input": 857,
+        "output": 123,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b3.md::B2",
+      "axis": "B2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "### What needs action",
+      "reason": "Groups appear in the correct order (what needs action, new, fixed) per rule 1, with no empty or extraneous groups per rules 2 and 3.",
+      "quote_found": true,
+      "usage": {
+        "input": 684,
+        "output": 91,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "b3.md::B3",
+      "axis": "B3",
+      "expected": "fail",
+      "verdict": "fail",
+      "quote": "Truncation is completely gone and generation is blazingly reliable now.",
+      "reason": "Rule 3 is violated by the superlative/marketing phrase 'blazingly reliable' with no supporting number, and it also exceeds the sentence limit of rule 1.",
+      "quote_found": true,
+      "usage": {
+        "input": 721,
+        "output": 162,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "a1.md::A1",
+      "axis": "A1",
+      "expected": "fail",
+      "verdict": "fail",
+      "quote": "A release whose commits have no pull requests attached no longer fails; the\n   commit subjects are used instead. User-visible.",
+      "reason": "Fact 5 describes a user-visible fix that no entry in the document carries, failing half two of the decision procedure (rule 7).",
+      "quote_found": false,
+      "usage": {
+        "input": 1264,
+        "output": 147,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "a1.md::B1",
+      "axis": "B1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Release notes published anywhere but the GitHub release itself\n  stop being updated",
+      "reason": "The only entry that asks something of the reader (the breaking change) stands first, above all unmarked entries, satisfying rule 4/5.",
+      "quote_found": true,
+      "usage": {
+        "input": 816,
+        "output": 125,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "a1.md::B2",
+      "axis": "B2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "### What needs action\n\n- **Breaking:**",
+      "reason": "Groups appear in the defined order (needs action, new, fixed) with changed correctly omitted, satisfying rule 1 and 2",
+      "quote_found": true,
+      "usage": {
+        "input": 643,
+        "output": 97,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "a1.md::B3",
+      "axis": "B3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "The first release you can point at a repository and get release notes out of.",
+      "reason": "Header opens with version, date, and one sentence describing the release (rule 4), items are within length limits and free of superlative/marketing language (rules 1 and 3)",
+      "quote_found": true,
+      "usage": {
+        "input": 680,
+        "output": 92,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry1::C1",
+      "axis": "C1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Release notes published anywhere but the GitHub release itself\n  stop being updated, so a project that read them from a file no longer sees\n  new ones.",
+      "reason": "The clause after the bold label opens on what no longer works (observation for a breaking change), satisfying rule 2/4.",
+      "quote_found": true,
+      "usage": {
+        "input": 863,
+        "output": 122,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry1::C2",
+      "axis": "C2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Release notes published anywhere but the GitHub release itself\n  stop being updated, so a project that read them from a file no longer sees\n  new ones.",
+      "reason": "The condition (publishing release notes anywhere other than the GitHub release) is named in plain, specific terms per rule 2",
+      "quote_found": true,
+      "usage": {
+        "input": 486,
+        "output": 109,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry1::C3",
+      "axis": "C3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Point your publishing step at the release page and the notes stay with the release they belong to.",
+      "reason": "Under rule 5, the item states what holds once the reader migrates - notes staying with the release - which is a genuine outcome, not just the action restated.",
+      "quote_found": true,
+      "usage": {
+        "input": 793,
+        "output": 143,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry1::C4",
+      "axis": "C4",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Point your publishing step at the release page and the notes stay with the release they belong to.",
+      "reason": "This is a breaking change and slot 4 gives an explicit, concrete action to take, satisfying rule 5.",
+      "quote_found": true,
+      "usage": {
+        "input": 788,
+        "output": 98,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry1::C5",
+      "axis": "C5",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "The entry describes the change in plain product-surface language without any code identifiers, config keys, or internal component names, satisfying step 1 of the decision procedure.",
+      "quote_found": false,
+      "usage": {
+        "input": 584,
+        "output": 86,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry2::C1",
+      "axis": "C1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Technical, customer and product notes\n  are written from the same set of facts, so they cannot disagree about what\n  changed.",
+      "reason": "The clause following the bold label states a property the reader observes (the three renderings share one source), matching the 'stated as a property' pass example, so rule 2 applies.",
+      "quote_found": true,
+      "usage": {
+        "input": 831,
+        "output": 126,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry2::C2",
+      "axis": "C2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "This entry describes a change that applies universally with no subset affected, so per rule 1 slot 2 is correctly absent, satisfying C2.",
+      "quote_found": false,
+      "usage": {
+        "input": 454,
+        "output": 82,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry2::C3",
+      "axis": "C3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "so they cannot disagree about what changed",
+      "reason": "The item names an outcome (consistency across audiences) rather than merely restating slot 1's mechanism, satisfying step 1 of the decision procedure",
+      "quote_found": true,
+      "usage": {
+        "input": 761,
+        "output": 97,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry2::C4",
+      "axis": "C4",
+      "expected": "pass",
+      "verdict": "n/a",
+      "quote": "",
+      "reason": "This item describes an automatic behavior with nothing to configure, opt into, or act on, so per step 2 C4 is n/a",
+      "quote_found": false,
+      "usage": {
+        "input": 756,
+        "output": 78,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry2::C5",
+      "axis": "C5",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "The entry describes the change in plain language with no internal identifiers, config keys, or code references, satisfying the decision procedure.",
+      "quote_found": false,
+      "usage": {
+        "input": 552,
+        "output": 76,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry3::C1",
+      "axis": "C1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "You can see the finished notes before anything\n  is written or published",
+      "reason": "After ignoring the bold label, the clause opens on what the reader can observe/do, satisfying step 2 of the decision procedure",
+      "quote_found": true,
+      "usage": {
+        "input": 840,
+        "output": 96,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry3::C2",
+      "axis": "C2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "This item affects everyone who chooses to ask for a preview, so no scope clause is needed and its correct absence satisfies rule 1/2 pass condition",
+      "quote_found": false,
+      "usage": {
+        "input": 463,
+        "output": 86,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry3::C3",
+      "axis": "C3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "so the first real result is not the one your users read",
+      "reason": "Names an outcome beyond restating slot 1: the user can catch problems before the result reaches users, satisfying step 1/2",
+      "quote_found": true,
+      "usage": {
+        "input": 770,
+        "output": 75,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry3::C4",
+      "axis": "C4",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Ask for a preview instead of a full run.",
+      "reason": "The action is concrete and actionable (ask for a preview), satisfying C4 rule 3.",
+      "quote_found": true,
+      "usage": {
+        "input": 765,
+        "output": 74,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry3::C5",
+      "axis": "C5",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "The entry describes the change and user action in plain language with no internal identifiers, config keys, or code references, satisfying the decision procedure at step 1.",
+      "quote_found": false,
+      "usage": {
+        "input": 561,
+        "output": 83,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry4::C1",
+      "axis": "C1",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "Generated text could stop mid-sentence on longer\n  releases, because no output length limit was set.",
+      "reason": "After the bold label, the clause describes what went wrong as the user ran into it, satisfying rule 2.",
+      "quote_found": true,
+      "usage": {
+        "input": 855,
+        "output": 101,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry4::C2",
+      "axis": "C2",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "on longer releases",
+      "reason": "The condition is qualitative but plainly named, satisfying rule 3 which allows non-numeric conditions like 'on longer releases'.",
+      "quote_found": true,
+      "usage": {
+        "input": 478,
+        "output": 86,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry4::C3",
+      "axis": "C3",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "so you can generate notes for a large release without checking the end of the text",
+      "reason": "The item names a concrete outcome (no longer needing to check for truncation) rather than merely restating slot 1, satisfying step 1 of the decision procedure",
+      "quote_found": true,
+      "usage": {
+        "input": 785,
+        "output": 106,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry4::C4",
+      "axis": "C4",
+      "expected": "pass",
+      "verdict": "n/a",
+      "quote": "",
+      "reason": "This change runs by itself with nothing to configure or decide, so per rule 2 C4 is n/a.",
+      "quote_found": false,
+      "usage": {
+        "input": 780,
+        "output": 71,
+        "cache_read": 1355
+      },
+      "match": true
+    },
+    {
+      "id": "base.md#entry4::C5",
+      "axis": "C5",
+      "expected": "pass",
+      "verdict": "pass",
+      "quote": "because no output length limit was set",
+      "reason": "The item describes the change in plain language without any code identifiers or config keys, satisfying step 3 of the decision procedure",
+      "quote_found": true,
+      "usage": {
+        "input": 576,
+        "output": 82,
+        "cache_read": 1355
+      },
+      "match": true
+    }
+  ]
+}
