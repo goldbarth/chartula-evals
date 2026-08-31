@@ -10,7 +10,7 @@ Substituted before sending:
 |------------------------|-----------------------------------------------------------------------------|
 | `{{AXIS_ID}}`          | `A1`, `B1`, `B2`, `B3`, `C1` … `C5`                                          |
 | `{{AXIS_SECTION}}`     | that axis's section of `rubric-customer.md`, verbatim, headings included     |
-| `{{UNITS_SECTION}}`    | the `## Units` section of `rubric-customer.md`, verbatim                      |
+| `{{UNITS_SECTION}}`    | the `## Units` section of `rubric-customer.md`, verbatim, in the system block |
 | `{{ALLOWED_VERDICTS}}` | `pass`, `fail`, and `n/a` only for the axes whose section defines it          |
 | `{{SUBJECT_LABEL}}`    | `The document` for A1 and B1 to B3, `The entry` for C1 to C5                  |
 | `{{SUBJECT}}`          | the document, or the single entry when judging a C axis                       |
@@ -49,6 +49,10 @@ Rules:
 - Do not rewrite, improve or continue the text. Do not comment on anything
   outside the axis.
 
+How the changelog is cut into units, from the rubric:
+
+{{UNITS_SECTION}}
+
 Answer with JSON and nothing else:
 
 ```json
@@ -71,10 +75,6 @@ Allowed verdicts: {{ALLOWED_VERDICTS}}
 The axis, from the rubric:
 
 {{AXIS_SECTION}}
-
-How the document is cut into units, from the same rubric:
-
-{{UNITS_SECTION}}
 
 {{FACTS_BLOCK}}
 
