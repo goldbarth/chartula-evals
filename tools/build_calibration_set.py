@@ -135,14 +135,11 @@ def case_b1(base: str, insert: str) -> str:
 
 
 def case_b2(base: str) -> str:
-    """The two entries of What's New swapped, so the lesser one leads."""
+    """What's New and Bug Fixes swapped, so the fixes are printed first."""
     groups = split_groups(base)
     i = group_index(groups, "What's New")
-    heading, body = groups[i]
-    found = entries(body)
-    if len(found) != 2:
-        sys.exit(f"expected two entries in What's New, found {len(found)}")
-    groups[i] = (heading, "\n" + found[1] + "\n" + found[0] + "\n")
+    j = group_index(groups, "Bug Fixes")
+    groups[i], groups[j] = groups[j], groups[i]
     return join_groups(groups)
 
 

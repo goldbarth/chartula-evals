@@ -113,9 +113,13 @@ means the judge is reading the trailing sentences as a missing outcome - the
 confusion this rubric already had once, now in the model rather than in the
 text.
 
-*A fail on the base.* The base document passes every axis by construction, so a
-fail there is the judge scoring overall impression rather than the axis. That
-is the more serious result: it cannot be fixed by sharpening one axis.
+*A fail on the base.* The base passes every axis by construction, so a fail
+there is a disagreement about what the axis says. Read the quote and the reason
+before concluding anything: in the first run, five of the six such fails were
+defensible readings of an underspecified axis, with a verbatim quote and sound
+reasoning, and sharpening the axis removed them. Only a fail with no quote, or
+with a quote that has nothing to do with the axis, is the judge scoring overall
+impression instead.
 
 The quotes matter as much as the verdicts. A correct verdict with a quote that
 points at the wrong passage is a coincidence, not a measurement, and it will

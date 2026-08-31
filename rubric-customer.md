@@ -124,27 +124,52 @@ failing when a release has no pull requests attached, and no entry mentions it.
 
 ### B1 - Action first
 
-Anything requiring the user to do something appears before anything that does
+An entry that asks something of the reader stands above every entry that does
 not. Breaking changes lead the document.
+
+An entry asks something when ignoring it costs the reader: a migration, a
+rename they have to follow, a setting they must set for things to keep working.
+Telling a reader where a new feature lives, or how to reach it, is not asking
+something of them - that is C4's subject, and an optional setting is not an
+obligation.
 
 **Decision procedure**
 
-1. Does any item have a non-empty action slot other than "nothing to do"?
-2. If yes, does it appear above the informational groups? If no, fail.
+1. Go entry by entry. Group headings decide nothing here: a group called "What
+   needs action" can stand at the top while an entry that asks something sits
+   three groups below it, and that is the failure this axis is for.
+2. Mark every entry that asks something of the reader, in the sense above.
+3. No marked entry: pass. There is no order to get wrong.
+4. Every marked entry must stand above every unmarked one. One marked entry
+   below one unmarked entry is a fail, whichever groups the two sit in.
+5. A breaking change is always marked, and comes first of all.
 
-**Pass:** breaking changes, then new, then improved, then fixed.
+**Pass:** the only entry carrying a migration is the first entry of the
+document, under the group for it.
 
-**Fail:** a migration step listed under "Fixed", four groups down.
+**Fail:** an entry saying the old configuration section stops being read, placed
+under "What's Changed", below two entries that ask nothing.
 
 ### B2 - Grouping and order
 
-Items are grouped by kind and the most consequential item leads each group.
+Groups are the ones the format defines, in the order it defines, and the ones
+with nothing in them are not there.
 
 **Decision procedure**
 
-1. Groups present in this order: what needs action, new, improved, fixed.
-2. Empty groups are omitted, not shown empty.
-3. Within a group, the item affecting the most users comes first.
+1. Groups appear in this order: what needs action, new, changed, fixed. A group
+   out of order is a fail whatever it contains.
+2. A group with no entries is omitted, not printed empty.
+3. No group outside the defined set.
+
+This axis does not judge which group an entry belongs in when the entry asks
+something of the reader - that is B1. It also no longer judges the order of
+entries inside a group: see the note in Open.
+
+**Pass:** what needs action, then new, then fixed, with changed absent because
+the release has none.
+
+**Fail:** fixes printed above the new entries.
 
 ### B3 - Length and tone
 
@@ -413,19 +438,20 @@ Nothing here needs a configuration change unless the entry says so.
 
 **B1 - action first.** Add to a new **What's Changed** group, below What's New:
 
-> - **Category order:** The order categories appear in follows your own
->   preference now rather than a fixed one. Set the order you want in the
->   configuration file.
+> - **Label rules moved:** A project that steers curation with labels has to
+>   move those rules into the new section of the configuration file. The old
+>   section stops being read after this release.
 
-The document then carries an action below two informational groups. Group order
-itself stays correct, so B2 is untouched - which is the only way to separate
-the two axes, since both of them are about where things sit.
+An entry that asks something of the reader then sits below two entries that ask
+nothing. The groups themselves stay in the defined order and none is empty, so
+B2 is untouched - which is the only way to separate the two axes, since both of
+them are about where things sit.
 
-**B2 - grouping and order.** Swap the two items in **What's New**, so the
-preview entry comes first. Both are still in the right group, the groups are
-still in the right order, and no action has moved: B1 passes, B3 passes, every
-item is unchanged. It fails on rule 3 alone, the most consequential item no
-longer leading its group.
+**B2 - grouping and order.** Swap the **What's New** and **Bug Fixes** groups,
+so the fixes are printed first. Every entry is unchanged and stays in its own
+group, no group is empty, and the only entry that asks anything of the reader
+is still the first in the document: B1 passes, B3 passes, the item axes are
+untouched. It fails on rule 1 alone.
 
 **B3 - length and tone.** Replace the Bug Fixes entry with:
 
@@ -511,6 +537,11 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 - The minimal pairs are written for every axis except the wrongly-included half
   of A1, which cannot be isolated from C1 - see the note there. C3 has an
   observed pair from `sonnet-5-out`; the rest are constructed.
+- B2 no longer asks whether the most consequential entry leads its group. Two
+  separation runs showed why: which of two entries is more consequential is not
+  derivable from the text, so the axis could not be applied by a judge, and
+  arguably not by a person either. It returns if a criterion is found that can
+  be read off the entry rather than guessed at.
 - The slot table calls the outcome "secondary, may be omitted" for a breaking
   change, while C3 fails an item that names no outcome at all. Nothing in the
   runs has hit it yet, since v0.1.0 has no breaking change.
