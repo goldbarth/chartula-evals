@@ -30,6 +30,50 @@ it, and the item is removed rather than rephrased.
 
 ---
 
+## Units
+
+The levels apply to different things, so the document has to be cut into units
+before anything can be judged. A customer rendering is made of four kinds of
+text, and only one of them is an item.
+
+| Unit                | What it is                                                                                        | Judged by    |
+|---------------------|---------------------------------------------------------------------------------------------------|--------------|
+| **Header**          | version, date, one sentence on what the release is about                                          | B3 rule 4    |
+| **Group heading**   | the label over a set of items - what needs action, new, improved, fixed                           | B1, B2       |
+| **Item**            | one entry reporting one change, built from the four slots                                         | A1, C1 to C5 |
+| **Connective text** | prose that is not about one change: a lead-in, a closing note, a remark on the release as a whole | B1, B2, B3   |
+
+**What makes a piece of text an item**
+
+1. It reports a change to the product, and it is about that change rather than
+   about the release. If it can be read as a row in a table of changes, it is
+   an item.
+2. It carries slot 1. An entry with no observable event is still an item; it
+   fails A1 or C1 and is scored as one.
+3. Headings are never items, whatever they contain. A heading that carries the
+   only description of a change is a B2 finding, and the change counts as
+   missing at level A.
+4. A paragraph about several changes at once, about something that was *not*
+   changed, or about the release as a whole is connective text. It gets no row
+   in the item table and is judged at level B.
+
+**Two cases the runs have already produced**
+
+*One entry, two changes.* An entry that reports two unrelated changes stays one
+item and is judged as it stands - the axes are applied to the entry, not to
+each change inside it. That an entry bundles two changes is a B2 finding, since
+grouping is a document-level property.
+
+*The collapsed line.* B3 rule 2 asks for minor changes to be gathered into a
+single closing line. That line is an item: it reports changes, a reader reads
+it as content, and its slot 1 covers the group it stands for. C2 to C4 are
+usually `n/a` on it, which is the point of collapsing them.
+
+A run that has no group headings at all is still judged: B1 and B2 fail, and
+every entry is still an item.
+
+---
+
 ## Level A - Selection
 
 ### A1 - Product surface relevance
@@ -269,9 +313,92 @@ without checking the output for truncation."
 
 ### Minimal pairs
 
-Each axis above carries an example that violates **only** that axis. Those are
-the calibration set: a judge that cannot separate them is not scoring axes, it
-is scoring overall impression.
+Each axis carries an example that violates **only** that axis. Those are the
+calibration set: a judge that cannot separate them is not scoring axes, it is
+scoring overall impression.
+
+The item-level pairs sit with their axes above: C1 at its Fail example, C2 at
+the hedge, C3 with the observed pair from `s5-03`, C4 at the withheld option,
+C5 at the jargon example.
+
+The document-level pairs cannot be single sentences, because A1 and B1 to B3
+judge a whole document. They are given below as one base document that passes
+every axis, plus one change per axis. Written as deltas rather than as four
+near-identical documents on purpose: five copies of the same text drift apart,
+which is the failure this rubric already had once.
+
+**Base document** - passes A1, B1, B2, B3 and every C axis on every item:
+
+```markdown
+## 0.1.0 - 2026-06-14
+
+The first release you can point at a repository and get release notes out of.
+Nothing here needs a configuration change unless the entry says so.
+
+### What needs action
+
+- **Breaking:** Release notes are now written to the GitHub release itself, so
+  a project that published them elsewhere has to change where it looks. Point
+  your publishing step at the release page.
+
+### What's New
+
+- **Three audiences from one source:** Technical, customer and product notes
+  are written from the same set of facts, so they cannot disagree about what
+  changed.
+- **Preview before publishing:** You can see the finished notes before anything
+  is written or published, so the first real result is not the one your users
+  read. Ask for a preview instead of a full run.
+
+### Bug Fixes
+
+- **Text no longer cut off:** Generated text could stop mid-sentence on longer
+  releases, because no output length limit was set. There is a limit now, so
+  you can generate notes for a large release without checking the end of the
+  text.
+```
+
+**B1 - action first.** Add to a new **What's Changed** group, below What's New:
+
+> - **Category order:** The order categories appear in follows your own
+>   preference now rather than a fixed one. Set the order you want in the
+>   configuration file.
+
+The document then carries an action below two informational groups. Group order
+itself stays correct, so B2 is untouched - which is the only way to separate
+the two axes, since both of them are about where things sit.
+
+**B2 - grouping and order.** Swap the two items in **What's New**, so the
+preview entry comes first. Both are still in the right group, the groups are
+still in the right order, and no action has moved: B1 passes, B3 passes, every
+item is unchanged. It fails on rule 3 alone, the most consequential item no
+longer leading its group.
+
+**B3 - length and tone.** Replace the Bug Fixes entry with:
+
+> - **Text no longer cut off:** Generated text could stop mid-sentence on
+>   longer releases, because no output length limit was set. There is a limit
+>   now, so you can generate notes for a large release without checking the end
+>   of the text. The limit can be raised if your releases are unusually large.
+>   Truncation is completely gone and generation is blazingly reliable now.
+
+Four sentences and a superlative without a number. C3 still passes - the
+outcome is stated and what trails behind it is B3's problem, not C3's - and
+that is exactly what this pair tests.
+
+**A1 - selection.** Not a change to the document but to what is handed with it:
+the base document plus the fact base for the release, in which one user-visible
+change has no entry. Say, a change that stops the tool failing when a release
+has no pull requests at all. Every entry present is correct; the question is
+only whether the missing one is noticed.
+
+That is the expensive half of A1, and the half a judge is actually needed for.
+The other half - an entry that should not be there - has no minimal pair, and
+the labelled runs say why: an internal change cannot produce an observable
+opening, so it fails C1 along with A1 every time. `o5-10`, `o5-17`, `o5-25` and
+`s5-23` all show the pattern. A pair isolating A1 from C1 would have to be
+written against the grain of both axes, and would test nothing a judge will
+meet.
 
 ### Realistic case
 
@@ -328,9 +455,12 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 
 ## Open
 
-- The minimal pairs exist for C1, C3 and C5. C3 now also has an observed pair
-  from `sonnet-5-out`; C1 and C5 are still constructed. A1/B-level pairs are not
-  written.
+- The minimal pairs are written for every axis except the wrongly-included half
+  of A1, which cannot be isolated from C1 - see the note there. C3 has an
+  observed pair from `sonnet-5-out`; the rest are constructed.
+- The slot table calls the outcome "secondary, may be omitted" for a breaking
+  change, while C3 fails an item that names no outcome at all. Nothing in the
+  runs has hit it yet, since v0.1.0 has no breaking change.
 - C4 and C3 were sharpened after the first pass over `sonnet-5-out`, and both
   columns have been re-judged since: C4 fails fell from 23 to 9, C3 fails from
   20 to 15, and 6 of 26 items are shippable instead of 1. A1, C1 and C2 are
@@ -339,7 +469,6 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 - Whether writing to GitHub (s5-06) and generating text (s5-14) count as
   actions the item must state, when the credential is set up once and not per
   release, is the next C4 borderline. Both are currently `fail`.
-- The remaining five runs in `test-runs/` are not labelled.
 - Not yet calibrated against a judge. The first calibration run should test
   axis separation on the minimal pairs before anything else.
 - Feature and breaking-change items have no labelled reference case yet; the
