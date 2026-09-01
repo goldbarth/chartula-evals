@@ -18,6 +18,7 @@ against the text it is now compared with.
 | C2 | f34e11b | `s5-26` stays `fail`: "in some runs" names no condition at all, which the widened rule still fails and now says so in as many words. `o5-13` moves to `pass`: "re-running the same tag" is a condition, and it no longer has to carry a number. |
 | B1 | ce900ac | All three runs move from `fail` to `pass`. The axis now asks whether an entry demands something the reader pays for ignoring, not whether any action slot is filled. v0.1.0 has no breaking change and the entries name only optional configuration, so no entry is marked and rule 3 applies: nothing to put in the wrong order. |
 | B2 | ce900ac | All three stay `fail`, on a reason the axis did not have before. `sonnet-5-out` and `sonnet-5-no-thinking-out` carry no group headings at all; `opus-5-out` has `Features` and `Fixes`, which are not the defined set. The old note on `sonnet-5-out` pointed at the most-consequential rule, which no longer exists, and was rewritten. |
+| C3 | c57ec89 | Two of the 21 fails move to `pass`: `o5-04` and `o5-14`, whose closings were read as error-handling rather than as an outcome. Six more reasons were rewritten without the verdict moving - they argued from where the clause sat ("closes on ..."), which the axis stopped asking about when it went to substance only. The column now stands at 19 fail and 34 pass. |
 
 ### `sonnet-5-out`
 

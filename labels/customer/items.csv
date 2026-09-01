@@ -3,320 +3,320 @@ sonnet-5-out,s5-01,feature,*,,,no,"Reasons for every axis are in the worked exam
 sonnet-5-out,s5-01,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-01,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-01,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-01,feature,C3,pass,1f94446,no,
+sonnet-5-out,s5-01,feature,C3,pass,c57ec89,no,
 sonnet-5-out,s5-01,feature,C4,n/a,d9dad7f,no,
 sonnet-5-out,s5-01,feature,C5,fail,83e9d24,no,
 sonnet-5-out,s5-02,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-02,feature,C1,fail,83e9d24,no,"opens with ""Added a categories section to chartula.yaml"" (mechanism, not observation)."
 sonnet-5-out,s5-02,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-02,feature,C3,fail,1f94446,no,no outcome beyond enumerating settings.
+sonnet-5-out,s5-02,feature,C3,fail,c57ec89,no,no outcome beyond enumerating settings.
 sonnet-5-out,s5-02,feature,C4,pass,d9dad7f,no,"names the section and the file, concrete enough to act on."
 sonnet-5-out,s5-02,feature,C5,fail,83e9d24,no,"""categories"" named as a raw key, not framed in prose."
 sonnet-5-out,s5-03,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-03,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-03,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-03,feature,C3,fail,1f94446,no,"""letting you customize behavior without touching code"" is slot 1 rephrased, not a step out; strip slot 1 and only ""clear error message instead of crashing"" is left. The rubric's observed C3 minimal pair."
+sonnet-5-out,s5-03,feature,C3,fail,c57ec89,no,"""letting you customize behavior without touching code"" is slot 1 rephrased, not a step out; strip slot 1 and only ""clear error message instead of crashing"" is left. The rubric's observed C3 minimal pair."
 sonnet-5-out,s5-03,feature,C4,pass,d9dad7f,no,
 sonnet-5-out,s5-03,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-04,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-04,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-04,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-04,feature,C3,pass,1f94446,yes,"""so you can see the result first"" is a consequence one step out - pass on substance; the trailing feedback sentence is counted under B3."
+sonnet-5-out,s5-04,feature,C3,pass,c57ec89,yes,"""so you can see the result first"" is a consequence one step out - pass on substance; the trailing feedback sentence is counted under B3."
 sonnet-5-out,s5-04,feature,C4,pass,d9dad7f,yes,both commands are named.
 sonnet-5-out,s5-04,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-05,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-05,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-05,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-05,feature,C3,fail,1f94446,no,"closing (""instead of being written as separate files..."") restates the location contrast, no ""so you can..."" payoff."
+sonnet-5-out,s5-05,feature,C3,fail,c57ec89,no,"fails on substance, not on position (""instead of being written as separate files..."") restates the location contrast, no ""so you can..."" payoff."
 sonnet-5-out,s5-05,feature,C4,pass,d9dad7f,no,the file the texts now live in is named.
 sonnet-5-out,s5-05,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-06,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-06,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-06,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-06,feature,C3,pass,1f94446,no,
+sonnet-5-out,s5-06,feature,C3,pass,c57ec89,no,
 sonnet-5-out,s5-06,feature,C4,fail,d9dad7f,no,"writing to GitHub release notes needs credentials, and the item names none."
 sonnet-5-out,s5-06,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-07,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-07,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-07,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-07,feature,C3,pass,1f94446,yes,
+sonnet-5-out,s5-07,feature,C3,pass,c57ec89,yes,
 sonnet-5-out,s5-07,feature,C4,n/a,d9dad7f,yes,"n/a - happens with each release, nothing to enable; the file is named."
 sonnet-5-out,s5-07,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-08,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-08,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-08,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-08,feature,C3,pass,1f94446,no,
+sonnet-5-out,s5-08,feature,C3,pass,c57ec89,no,
 sonnet-5-out,s5-08,feature,C4,fail,d9dad7f,no,"""You can now enable a review step"" plus ""off by default"" announces the option and never says where it is turned on."
 sonnet-5-out,s5-08,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-09,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-09,feature,C1,fail,83e9d24,no,"opens with ""Added an optional second-pass check"" - names the mechanism, not what the user observes."
 sonnet-5-out,s5-09,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-09,feature,C3,pass,1f94446,no,
+sonnet-5-out,s5-09,feature,C3,pass,c57ec89,no,
 sonnet-5-out,s5-09,feature,C4,fail,d9dad7f,no,"""can be turned off"" without saying where."
 sonnet-5-out,s5-09,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-10,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-10,feature,C1,fail,83e9d24,no,"opens with ""Added a lightweight check"" (mechanism)."
 sonnet-5-out,s5-10,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-10,feature,C3,fail,1f94446,no,"closing (""doesn't use the AI model at all"") restates mechanism."
+sonnet-5-out,s5-10,feature,C3,fail,c57ec89,no,"closing (""doesn't use the AI model at all"") restates mechanism."
 sonnet-5-out,s5-10,feature,C4,n/a,d9dad7f,no,"n/a - always on, nothing to switch."
 sonnet-5-out,s5-10,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-11,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-11,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-11,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-11,feature,C3,fail,1f94446,no,"no forward outcome - ends describing robustness, not what this lets you skip."
+sonnet-5-out,s5-11,feature,C3,fail,c57ec89,no,"no forward outcome - ends describing robustness, not what this lets you skip."
 sonnet-5-out,s5-11,feature,C4,n/a,d9dad7f,no,n/a - automatic.
 sonnet-5-out,s5-11,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-12,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-12,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-12,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-12,feature,C3,pass,1f94446,yes,
+sonnet-5-out,s5-12,feature,C3,pass,c57ec89,yes,
 sonnet-5-out,s5-12,feature,C4,n/a,d9dad7f,yes,"n/a - all three versions are always generated, nothing to enable."
 sonnet-5-out,s5-12,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-13,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-13,feature,C1,fail,83e9d24,no,"opens with ""Reworked how instructions are sent to the AI model"" (mechanism)."
 sonnet-5-out,s5-13,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-13,feature,C3,pass,1f94446,no,"""only rephrases the given facts and never invents details"" is what can be trusted - pass on substance; the trailing brevity sentence is B3."
+sonnet-5-out,s5-13,feature,C3,pass,c57ec89,no,"""only rephrases the given facts and never invents details"" is what can be trusted - pass on substance; the trailing brevity sentence is B3."
 sonnet-5-out,s5-13,feature,C4,n/a,d9dad7f,no,n/a.
 sonnet-5-out,s5-13,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-14,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-14,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-14,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-14,feature,C3,fail,1f94446,no,"closing (""handled gracefully instead of crashing"") restates the negative event."
+sonnet-5-out,s5-14,feature,C3,fail,c57ec89,no,"fails on substance, not on position (""handled gracefully instead of crashing"") restates the negative event."
 sonnet-5-out,s5-14,feature,C4,fail,d9dad7f,no,"generation needs a provider key and this item names no setup - s5-25 mentions it, this one does not."
 sonnet-5-out,s5-14,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-15,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-15,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-15,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-15,feature,C3,pass,1f94446,yes,"""durable, machine-readable record that can also feed future outputs"" is a real outcome - pass; the format-and-versioning footnote behind it is B3."
+sonnet-5-out,s5-15,feature,C3,pass,c57ec89,yes,"""durable, machine-readable record that can also feed future outputs"" is a real outcome - pass; the format-and-versioning footnote behind it is B3."
 sonnet-5-out,s5-15,feature,C4,n/a,d9dad7f,yes,n/a.
 sonnet-5-out,s5-15,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-16,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-16,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-16,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-16,feature,C3,fail,1f94446,no,"closing (""default is title plus description"") states a setting value, not a consequence."
+sonnet-5-out,s5-16,feature,C3,fail,c57ec89,no,"closing (""default is title plus description"") states a setting value, not a consequence."
 sonnet-5-out,s5-16,feature,C4,fail,d9dad7f,no,"""You can now configure how much information..."" without saying where it is configured."
 sonnet-5-out,s5-16,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-17,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-17,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-17,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-17,feature,C3,fail,1f94446,no,"""ready to feed into generation"" restates internal process purpose, not a user-facing consequence."
+sonnet-5-out,s5-17,feature,C3,fail,c57ec89,no,"""ready to feed into generation"" restates internal process purpose, not a user-facing consequence."
 sonnet-5-out,s5-17,feature,C4,n/a,d9dad7f,no,n/a.
 sonnet-5-out,s5-17,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-18,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-18,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-18,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-18,feature,C3,pass,1f94446,yes,"""ensuring nothing in the generated text is made up"" is what can be trusted - pass on substance; that it duplicates s5-13's promise is a document-level finding, not C3."
+sonnet-5-out,s5-18,feature,C3,pass,c57ec89,yes,"""ensuring nothing in the generated text is made up"" is what can be trusted - pass on substance; that it duplicates s5-13's promise is a document-level finding, not C3."
 sonnet-5-out,s5-18,feature,C4,n/a,d9dad7f,yes,
 sonnet-5-out,s5-18,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-19,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-19,feature,C1,fail,83e9d24,no,"opens with the internal categorization (""Internal and maintenance-only changes"")."
 sonnet-5-out,s5-19,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-19,feature,C3,fail,1f94446,no,"no outcome anywhere, closes on an edge-case caveat - fails on substance, not on position."
+sonnet-5-out,s5-19,feature,C3,fail,c57ec89,no,"no outcome anywhere, closes on an edge-case caveat - fails on substance, not on position."
 sonnet-5-out,s5-19,feature,C4,fail,d9dad7f,no,"""This can be customized"" without saying where."
 sonnet-5-out,s5-19,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-20,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-20,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-20,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-20,feature,C3,fail,1f94446,no,"closes on a no-op clarification (""no effect if you don't use labels""), no outcome stated."
+sonnet-5-out,s5-20,feature,C3,fail,c57ec89,no,"closes on a no-op clarification (""no effect if you don't use labels""), no outcome stated."
 sonnet-5-out,s5-20,feature,C4,fail,d9dad7f,no,"""all configurable"" without naming the setting or the labels."
 sonnet-5-out,s5-20,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-21,feature,A1,pass,83e9d24,yes,
 sonnet-5-out,s5-21,feature,C1,pass,83e9d24,yes,
 sonnet-5-out,s5-21,feature,C2,pass,f34e11b,yes,
-sonnet-5-out,s5-21,feature,C3,pass,1f94446,yes,"""so the kind of change is never guessed by the model"" is an outcome - pass; the breaking-change detail behind it is B3."
+sonnet-5-out,s5-21,feature,C3,pass,c57ec89,yes,"""so the kind of change is never guessed by the model"" is an outcome - pass; the breaking-change detail behind it is B3."
 sonnet-5-out,s5-21,feature,C4,n/a,d9dad7f,yes,n/a.
 sonnet-5-out,s5-21,feature,C5,pass,83e9d24,yes,
 sonnet-5-out,s5-22,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-22,feature,C1,fail,83e9d24,no,"opens with condition + fallback mechanism (""falls back to commit messages...""), not an observed problem."
 sonnet-5-out,s5-22,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-22,feature,C3,fail,1f94446,no,"closes with negation (""rather than failing"")."
+sonnet-5-out,s5-22,feature,C3,fail,c57ec89,no,"fails on substance, not on position with negation (""rather than failing"")."
 sonnet-5-out,s5-22,feature,C4,n/a,d9dad7f,no,n/a.
 sonnet-5-out,s5-22,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-23,feature,A1,fail,83e9d24,no,describes an internal data-source change (PR API vs. raw commits) with no user-observable output difference - belongs in the technical rendering.
 sonnet-5-out,s5-23,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-23,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-23,feature,C3,fail,1f94446,no,"closes on a source contrast, not an outcome."
+sonnet-5-out,s5-23,feature,C3,fail,c57ec89,no,"closes on a source contrast, not an outcome."
 sonnet-5-out,s5-23,feature,C4,n/a,d9dad7f,no,n/a.
 sonnet-5-out,s5-23,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-24,feature,A1,pass,83e9d24,no,
 sonnet-5-out,s5-24,feature,C1,pass,83e9d24,no,
 sonnet-5-out,s5-24,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-24,feature,C3,fail,1f94446,no,no consequence stated (e.g. the changelog never omits or double-counts changes) - ends on the first-release edge case.
+sonnet-5-out,s5-24,feature,C3,fail,c57ec89,no,no consequence stated (e.g. the changelog never omits or double-counts changes) - ends on the first-release edge case.
 sonnet-5-out,s5-24,feature,C4,n/a,d9dad7f,no,n/a.
 sonnet-5-out,s5-24,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-25,feature,A1,fail,83e9d24,no,"internal scaffolding (""added the underlying support...""), not observable behaviour distinct from s5-14."
 sonnet-5-out,s5-25,feature,C1,fail,83e9d24,no,opens naming the internal work.
 sonnet-5-out,s5-25,feature,C2,pass,f34e11b,no,
-sonnet-5-out,s5-25,feature,C3,fail,1f94446,no,closes on an env-var detail.
+sonnet-5-out,s5-25,feature,C3,fail,c57ec89,no,closes on an env-var detail.
 sonnet-5-out,s5-25,feature,C4,fail,d9dad7f,no,setup exists (provider key) and neither variable nor reference is named.
 sonnet-5-out,s5-25,feature,C5,pass,83e9d24,no,
 sonnet-5-out,s5-26,fix,*,,,no,"The rubric's own worked example (fix section, v0.1.0)."
 sonnet-5-out,s5-26,fix,A1,pass,83e9d24,no,
 sonnet-5-out,s5-26,fix,C1,pass,83e9d24,no,
 sonnet-5-out,s5-26,fix,C2,fail,f34e11b,no,"""in some runs"" - the hedge the rubric names as the C2 fail pattern."
-sonnet-5-out,s5-26,fix,C3,fail,1f94446,no,"""so text completes properly"" restates the negation; the breaking-change fix states no outcome either."
+sonnet-5-out,s5-26,fix,C3,fail,c57ec89,no,"""so text completes properly"" restates the negation; the breaking-change fix states no outcome either."
 sonnet-5-out,s5-26,fix,C4,fail,d9dad7f,no,"""a configurable ceiling"" without saying where it is set."
 sonnet-5-out,s5-26,fix,C5,pass,83e9d24,no,
 opus-5-out,o5-01,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-01,feature,C1,fail,83e9d24,no,"opens with invocation syntax (""Run `chartula preview` or `chartula generate` with `--tag` and `--repo`""), not observed behavior."
 opus-5-out,o5-01,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-01,feature,C3,pass,1f94446,no,"`""so you see the real result, but writes and publishes nothing""` is a consequence one step out - pass on substance; the `--repo` limitation behind it is B3."
+opus-5-out,o5-01,feature,C3,pass,c57ec89,no,"`""so you see the real result, but writes and publishes nothing""` is a consequence one step out - pass on substance; the `--repo` limitation behind it is B3."
 opus-5-out,o5-01,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-01,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-02,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-02,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""Chartula now reads `chartula.yaml`...""), not an observation."
 opus-5-out,o5-02,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-02,feature,C3,pass,1f94446,no,"`""works with no configuration at all - every option falls back to its default""` is what can be relied on; the docs pointer and the error sentence behind it are B3."
+opus-5-out,o5-02,feature,C3,pass,c57ec89,no,"`""works with no configuration at all - every option falls back to its default""` is what can be relied on; the docs pointer and the error sentence behind it are B3."
 opus-5-out,o5-02,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-02,feature,C5,fail,83e9d24,no,`docs/configuration.md` is a file reference.
 opus-5-out,o5-03,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-03,feature,C1,fail,83e9d24,no,"opens naming the config keys (""Control how categories are presented with `order`, `names` and `breakingProminent`""), mechanism before observation."
 opus-5-out,o5-03,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-03,feature,C3,pass,1f94446,no,"`""Sections stay independently editable - untouched sections keep their defaults""` is a reliance statement; the docs pointer behind it is B3."
+opus-5-out,o5-03,feature,C3,pass,c57ec89,no,"`""Sections stay independently editable - untouched sections keep their defaults""` is a reliance statement; the docs pointer behind it is B3."
 opus-5-out,o5-03,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-03,feature,C5,fail,83e9d24,no,
 opus-5-out,o5-04,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-04,feature,C1,fail,83e9d24,no,"opens naming the setting (""Choose how much source material feeds the fact base via `Chartula:FactBase:Depth`""), mechanism-first."
 opus-5-out,o5-04,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-04,feature,C3,fail,1f94446,no,"closes on error-handling for invalid input, not an outcome."
+opus-5-out,o5-04,feature,C3,pass,c57ec89,no,"(""an unknown value fails at startup with a clear error."") is not a negation from slot 1."
 opus-5-out,o5-04,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-04,feature,C5,fail,83e9d24,no,"`Chartula:FactBase:Depth` raw key, plus quoted alias values."
 opus-5-out,o5-05,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-05,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""Steer curation with GitHub labels under `Chartula:Labels`""), not observation."
 opus-5-out,o5-05,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-05,feature,C3,pass,1f94446,no,"`""without touching code""` is the detour that disappears."
+opus-5-out,o5-05,feature,C3,pass,c57ec89,no,"`""without touching code""` is the detour that disappears."
 opus-5-out,o5-05,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-05,feature,C5,fail,83e9d24,no,`Chartula:Labels` raw key.
 opus-5-out,o5-06,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-06,feature,C1,fail,83e9d24,no,"opens describing internal decision logic (""Filtering is based on category and labels rather than guesswork""), not something observed."
 opus-5-out,o5-06,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-06,feature,C3,pass,1f94446,no,"`""A breaking change is never dropped for being in an excluded category""` is what can be relied on."
+opus-5-out,o5-06,feature,C3,pass,c57ec89,no,"`""A breaking change is never dropped for being in an excluded category""` is what can be relied on."
 opus-5-out,o5-06,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-06,feature,C5,fail,83e9d24,no,`Chartula:Filter:ExcludeCategories` raw key.
 opus-5-out,o5-07,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-07,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""Categories are decided in code from Conventional Commit titles""), not observation."
 opus-5-out,o5-07,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-07,feature,C3,pass,1f94446,no,"`""so a breaking feature stays a feature while still being flagged""` is a consequence one step out."
+opus-5-out,o5-07,feature,C3,pass,c57ec89,no,"`""so a breaking feature stays a feature while still being flagged""` is a consequence one step out."
 opus-5-out,o5-07,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-07,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-08,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-08,feature,C1,fail,83e9d24,no,"opens describing the internal process (""Given a tag, Chartula determines the commits since the previous tag...""), not observation."
 opus-5-out,o5-08,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-08,feature,C3,pass,1f94446,no,"`""public repositories work unauthenticated""` states what the reader can rely on without setup."
+opus-5-out,o5-08,feature,C3,pass,c57ec89,no,"`""public repositories work unauthenticated""` states what the reader can rely on without setup."
 opus-5-out,o5-08,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-08,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-09,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-09,feature,C1,fail,83e9d24,no,"opens naming the fallback mechanism (""With no associated pull requests, Chartula falls back to commit data""), not observation."
 opus-5-out,o5-09,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-09,feature,C3,pass,1f94446,no,"`""so a run never hard-fails purely because pull request hygiene was imperfect""` is a consequence one step out."
+opus-5-out,o5-09,feature,C3,pass,c57ec89,no,"`""so a run never hard-fails purely because pull request hygiene was imperfect""` is a consequence one step out."
 opus-5-out,o5-09,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-09,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-10,feature,A1,fail,83e9d24,no,describes the internal fact-base record structure — no observable behavior distinct from the `changelog.json` items (o5-11/o5-12) that already cover the user-visible artifact.
 opus-5-out,o5-10,feature,C1,fail,83e9d24,no,"opens describing the record's internal fields, same problem as A1."
 opus-5-out,o5-10,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-10,feature,C3,pass,1f94446,no,"`""Nothing in the record is produced by an LLM""` is what can be trusted - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-10,feature,C3,pass,c57ec89,no,"`""Nothing in the record is produced by an LLM""` is what can be trusted - pass on substance, though the item fails A1 regardless."
 opus-5-out,o5-10,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-10,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-11,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-11,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""The fact base is written to `changelog.json`...""), not observation."
 opus-5-out,o5-11,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-11,feature,C3,pass,1f94446,no,"`""schemaVersion as the contract consumers can check""` plus `""Fields are always present""` is what can be relied on; the docs pointer behind it is B3."
+opus-5-out,o5-11,feature,C3,pass,c57ec89,no,"`""schemaVersion as the contract consumers can check""` plus `""Fields are always present""` is what can be relied on; the docs pointer behind it is B3."
 opus-5-out,o5-11,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-11,feature,C5,fail,83e9d24,no,`schemaVersion` raw field name; `docs/changelog-json.md` file reference.
 opus-5-out,o5-12,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-12,feature,C1,fail,83e9d24,no,"opens naming the internal structure (""texts now live in a `renderings` object keyed by audience""), mechanism-first."
 opus-5-out,o5-12,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-12,feature,C3,pass,1f94446,no,"`""so no separate marketing files are written into your repository""` is the consequence; the schemaVersion footnote behind it is B3."
+opus-5-out,o5-12,feature,C3,pass,c57ec89,no,"`""so no separate marketing files are written into your repository""` is the consequence; the schemaVersion footnote behind it is B3."
 opus-5-out,o5-12,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-12,feature,C5,fail,83e9d24,no,"`renderings`, `schemaVersion` — raw internal field names."
 opus-5-out,o5-13,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-13,feature,C1,fail,83e9d24,no,"opens describing the write mechanism (""Each release is added as a new section at the top of the file...""), not observation."
 opus-5-out,o5-13,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-13,feature,C3,pass,1f94446,no,"`""running the same release twice produces a byte-identical file""` is what can be relied on."
+opus-5-out,o5-13,feature,C3,pass,c57ec89,no,"`""running the same release twice produces a byte-identical file""` is what can be relied on."
 opus-5-out,o5-13,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-13,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-14,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-14,feature,C1,fail,83e9d24,no,"opens describing the lookup/update mechanism, not observation."
 opus-5-out,o5-14,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-14,feature,C3,fail,1f94446,no,"closes on error-handling (""surface as clear errors""), not an outcome."
+opus-5-out,o5-14,feature,C3,pass,c57ec89,no,"first outcome (""updates the existing release notes instead of creating a duplicate""). second outcome (""API and network failures surface as clear errors"")."
 opus-5-out,o5-14,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-14,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-15,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-15,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""rendered from the same set of established facts""), not observation."
 opus-5-out,o5-15,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-15,feature,C3,pass,1f94446,no,"`""so they cannot contradict each other""` is the consequence; the failure-isolation sentence behind it is B3."
+opus-5-out,o5-15,feature,C3,pass,c57ec89,no,"`""so they cannot contradict each other""` is the consequence; the failure-isolation sentence behind it is B3."
 opus-5-out,o5-15,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-15,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-16,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-16,feature,C1,fail,83e9d24,no,"opens describing the prompting instruction itself (""The model is instructed to introduce no fact...""), not observation."
 opus-5-out,o5-16,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-16,feature,C3,fail,1f94446,no,"closes on internal prompt-construction detail (""handed to the model as text, not decided by it""), not a user outcome."
+opus-5-out,o5-16,feature,C3,fail,c57ec89,no,"closes on internal prompt-construction detail (""handed to the model as text, not decided by it""), not a user outcome."
 opus-5-out,o5-16,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-16,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-17,feature,A1,fail,83e9d24,no,"""one model call per release"", ""sits behind a single interface"" — internal architecture, not a behavior noticeable through product use."
 opus-5-out,o5-17,feature,C1,fail,83e9d24,no,opens with the same internal call-count/interface framing.
 opus-5-out,o5-17,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-17,feature,C3,pass,1f94446,no,"`""Swapping providers is a configuration and wiring change only""` is a consequence for whoever swaps - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-17,feature,C3,pass,c57ec89,no,"`""Swapping providers is a configuration and wiring change only""` is a consequence for whoever swaps - pass on substance, though the item fails A1 regardless."
 opus-5-out,o5-17,feature,C4,fail,d9dad7f,no,"""model and provider are selectable via configuration"" announces a setting without naming where — matches the axis's own fail example."
 opus-5-out,o5-17,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-18,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-18,feature,C1,fail,83e9d24,no,"opens naming the mechanism (""Model output is normalised with conservative, structure-preserving rules""), not observation."
 opus-5-out,o5-18,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-18,feature,C3,pass,1f94446,no,"`""so an individual author's tone or phrasing is not carried over""` is the consequence."
+opus-5-out,o5-18,feature,C3,pass,c57ec89,no,"`""so an individual author's tone or phrasing is not carried over""` is the consequence."
 opus-5-out,o5-18,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-18,feature,C5,fail,83e9d24,no,"""a single `-` bullet marker"" is a format specification."
 opus-5-out,o5-19,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-19,feature,C1,fail,83e9d24,no,"opens describing the check's internal comparison process, not observation."
 opus-5-out,o5-19,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-19,feature,C3,pass,1f94446,no,"`""The check makes no model call and costs zero tokens""` is what can be relied on."
+opus-5-out,o5-19,feature,C3,pass,c57ec89,no,"`""The check makes no model call and costs zero tokens""` is what can be relied on."
 opus-5-out,o5-19,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-19,feature,C5,pass,83e9d24,no,
 opus-5-out,o5-20,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-20,feature,C1,fail,83e9d24,no,"opens describing the internal comparison mechanism (""A second LLM pass compares the text semantically...""), not observation."
 opus-5-out,o5-20,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-20,feature,C3,pass,1f94446,no,"`""catching distortions the rule-based check cannot see""` is the consequence."
+opus-5-out,o5-20,feature,C3,pass,c57ec89,no,"`""catching distortions the rule-based check cannot see""` is the consequence."
 opus-5-out,o5-20,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-20,feature,C5,fail,83e9d24,no,`Chartula:Faithfulness:Thorough` raw key.
 opus-5-out,o5-21,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-21,feature,C1,fail,83e9d24,no,"opens describing the toggle's default state and mechanics (""Review is off by default and text passes straight through""), not an observed effect."
 opus-5-out,o5-21,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-21,feature,C3,fail,1f94446,no,"closes describing review-step mechanics (approve/edit), not a benefit beyond slot 1."
+opus-5-out,o5-21,feature,C3,fail,c57ec89,no,"describing review-step mechanics (approve/edit), not a benefit beyond slot 1."
 opus-5-out,o5-21,feature,C4,pass,d9dad7f,no,
 opus-5-out,o5-21,feature,C5,fail,83e9d24,no,`Chartula:Review` raw key.
 opus-5-out,o5-22,feature,A1,pass,83e9d24,no,
 opus-5-out,o5-22,feature,C1,fail,83e9d24,no,opens describing the summary's content/cost framing rather than the observed moment of encountering it.
 opus-5-out,o5-22,feature,C2,pass,f34e11b,no,
-opus-5-out,o5-22,feature,C3,pass,1f94446,no,"`""so across a few releases you can tell whether those tokens are buying anything""` is the consequence; the side-channel and docs sentences behind it are B3."
+opus-5-out,o5-22,feature,C3,pass,c57ec89,no,"`""so across a few releases you can tell whether those tokens are buying anything""` is the consequence; the side-channel and docs sentences behind it are B3."
 opus-5-out,o5-22,feature,C4,n/a,d9dad7f,no,
 opus-5-out,o5-22,feature,C5,fail,83e9d24,no,`docs/run-metrics.md` file reference.
 opus-5-out,o5-23,fix,A1,pass,83e9d24,no,
 opus-5-out,o5-23,fix,C1,pass,83e9d24,no,
 opus-5-out,o5-23,fix,C2,pass,f34e11b,no,
-opus-5-out,o5-23,fix,C3,fail,1f94446,no,"closes on token counts (""3,072 tokens to 11,271"") and ""texts end in complete sentences,"" which restates slot 1's negation rather than a further consequence."
+opus-5-out,o5-23,fix,C3,fail,c57ec89,no,"closes on token counts (""3,072 tokens to 11,271"") and ""texts end in complete sentences,"" which restates slot 1's negation rather than a further consequence."
 opus-5-out,o5-23,fix,C4,pass,d9dad7f,no,
 opus-5-out,o5-23,fix,C5,fail,83e9d24,no,`llm.maxOutputTokens` raw key.
 opus-5-out,o5-24,fix,A1,pass,83e9d24,no,
 opus-5-out,o5-24,fix,C1,pass,83e9d24,no,
 opus-5-out,o5-24,fix,C2,pass,f34e11b,no,
-opus-5-out,o5-24,fix,C3,fail,1f94446,no,"closes on a raw count (""went from six reported breaking changes to zero""), restating the fix numerically rather than stating what the reader can now rely on."
+opus-5-out,o5-24,fix,C3,fail,c57ec89,no,"closes on a raw count (""went from six reported breaking changes to zero""), restating the fix numerically rather than stating what the reader can now rely on."
 opus-5-out,o5-24,fix,C4,n/a,d9dad7f,no,
 opus-5-out,o5-24,fix,C5,pass,83e9d24,no,
 opus-5-out,o5-25,fix,A1,fail,83e9d24,no,"nothing was fixed — no user-observable change exists to report; this is an internal issue-tracking note, not a changelog item."
 opus-5-out,o5-25,fix,C1,fail,83e9d24,no,"opens describing the check's persisting internal matching behavior, not an observation of a change."
 opus-5-out,o5-25,fix,C2,pass,f34e11b,no,
-opus-5-out,o5-25,fix,C3,pass,1f94446,no,"`""These flags are advisory and do not fail a run""` is what can be relied on - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-25,fix,C3,pass,c57ec89,no,"`""These flags are advisory and do not fail a run""` is what can be relied on - pass on substance, though the item fails A1 regardless."
 opus-5-out,o5-25,fix,C4,n/a,d9dad7f,no,
 opus-5-out,o5-25,fix,C5,pass,83e9d24,no,
 sonnet-5-no-thinking-out,sn5-01,fix,A1,pass,83e9d24,yes,
 sonnet-5-no-thinking-out,sn5-01,fix,C1,pass,83e9d24,yes,
 sonnet-5-no-thinking-out,sn5-01,fix,C2,pass,f34e11b,yes,
-sonnet-5-no-thinking-out,sn5-01,fix,C3,pass,1f94446,yes,
+sonnet-5-no-thinking-out,sn5-01,fix,C3,pass,c57ec89,yes,
 sonnet-5-no-thinking-out,sn5-01,fix,C4,n/a,d9dad7f,yes,
 sonnet-5-no-thinking-out,sn5-01,fix,C5,pass,83e9d24,yes,
 sonnet-5-no-thinking-out,sn5-02,fix,*,,,no,An internal reference was cited instead of translating it into plain language.
 sonnet-5-no-thinking-out,sn5-02,fix,A1,pass,83e9d24,no,
 sonnet-5-no-thinking-out,sn5-02,fix,C1,pass,83e9d24,no,
 sonnet-5-no-thinking-out,sn5-02,fix,C2,pass,f34e11b,no,
-sonnet-5-no-thinking-out,sn5-02,fix,C3,pass,1f94446,no,
+sonnet-5-no-thinking-out,sn5-02,fix,C3,pass,c57ec89,no,
 sonnet-5-no-thinking-out,sn5-02,fix,C4,pass,d9dad7f,no,
 sonnet-5-no-thinking-out,sn5-02,fix,C5,fail,83e9d24,no,
