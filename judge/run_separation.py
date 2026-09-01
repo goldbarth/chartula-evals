@@ -25,8 +25,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-import anthropic
-
 REPO = Path(__file__).resolve().parent.parent
 PROMPT = REPO / "judge" / "axis-prompt.md"
 
@@ -395,6 +393,8 @@ def cost(usage, model: str) -> float:
 
 
 def main() -> None:
+    import anthropic
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=DEFAULT_AUDIENCE)
     parser.add_argument("--model", default="claude-opus-5")

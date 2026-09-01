@@ -7,17 +7,21 @@ Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 |------|-----------------|
 | [`items.csv`](items.csv) | level C verdicts, plus A1 - one row per (run, item, axis) |
 | [`runs.csv`](runs.csv) | level B verdicts - one row per (run, axis) |
-| [`run-summary.csv`](run-summary.csv) | overall shippable / not shippable per run |
+| [`run-summary.csv`](run-summary.csv) | overall shippable / not shippable per run - written by `labels.py sync`, never by hand |
 | [`missing.md`](missing.md) | level A1, the other half - changes with no entry at all |
 | [`friction-log.md`](friction-log.md) | where the rubric did not decide a case on its own |
 
 ## Runs labelled so far
 
+<!-- labels.py sync: runs labelled -->
+
 | run                      | items | shippable     |
-|---------------------------|-------|----------------|
-| sonnet-5-out              | 26    | not shippable  |
-| opus-5-out                | 25    | not shippable  |
-| sonnet-5-no-thinking-out  | 2     | not shippable  |
+|--------------------------|-------|---------------|
+| sonnet-5-out             | 26    | not shippable |
+| opus-5-out               | 25    | not shippable |
+| sonnet-5-no-thinking-out | 2     | not shippable |
+
+<!-- labels.py sync: end -->
 
 `sonnet-5-no-thinking-out` carries only two item rows because the run produced
 no feature entries at all - that absence is an A1 finding, recorded in

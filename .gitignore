@@ -10,3 +10,6 @@ __pycache__/
 
 # Assembled from the rubric by tools/build_calibration_set.py, never edited by hand.
 calibration/
+
+# Worksheets: one axis cut out for a pass, read back with `labels.py column --write`.
+labels/*/pass-*.md

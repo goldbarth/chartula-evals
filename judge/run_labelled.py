@@ -31,8 +31,6 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-import anthropic
-
 REPO = Path(__file__).resolve().parent.parent
 RUNS = REPO / "test-runs"
 
@@ -56,14 +54,17 @@ def human_labels(audience: str = sep.DEFAULT_AUDIENCE) -> tuple[dict, dict]:
 
     One row per (run, item, axis) in `items.csv`, per (run, axis) in `runs.csv`.
     A row whose axis is `*` carries a note about the item or the run as a whole
-    and holds no verdict, so it contributes the entry and nothing else."""
+    and holds no verdict, so it contributes the entry and nothing else.
+
+    Whether an item ships is not read from the table: it follows from the C
+    verdicts, and `tools/labels.py` is where that rule is applied."""
     labels = sep.labels_dir(audience)
     items, documents = {}, {}
 
     for row in _rows(labels / "items.csv"):
         entry = items.setdefault(
             (row["run"], row["item"]),
-            {"kind": row["kind"], "verdicts": {}, "shippable": row["shippable"].strip().lower()},
+            {"kind": row["kind"], "verdicts": {}},
         )
         if row["axis"] in ITEM_AXES:
             entry["verdicts"][row["axis"]] = row["verdict"].strip().lower()
@@ -204,6 +205,8 @@ def print_report(summary: dict) -> None:
 
 
 def main() -> None:
+    import anthropic
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
     parser.add_argument("--model", default="claude-opus-5")
