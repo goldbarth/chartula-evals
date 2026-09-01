@@ -319,13 +319,38 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
     return calls
 
 
+# An axis that refers to the output format has to be given that part of the
+# format, or the model is asked about a rule it cannot read. Written down as a
+# rule in rubric/README.md, and enforced here.
+AXIS_NEEDS_FORMAT = {"B2": ["Two serialisations", "Groups"]}
+
+
+def format_sections(names: list[str]) -> str:
+    text = (REPO / "docs" / "output-format.md").read_text(encoding="utf-8")
+    out = []
+    for name in names:
+        start = text.index(f"### {name}")
+        end = text.index("\n### ", start + 1)
+        out.append(text[start:end].rstrip())
+    return "\n\n".join(out)
+
+
 def render(call: dict) -> tuple[str, list[dict]]:
     verdicts = "`pass`, `fail`" + (", `n/a`" if call["axis"] in NA_AXES else "")
     body = (
         call["user_template"]
         .replace("{{AXIS_ID}}", call["axis"])
         .replace("{{ALLOWED_VERDICTS}}", verdicts)
-        .replace("{{AXIS_SECTION}}", rubric_section(call["axis"], call["audience"]))
+        .replace(
+            "{{AXIS_SECTION}}",
+            rubric_section(call["axis"], call["audience"])
+            + (
+                "\n\nThe part of the output format this axis refers to:\n\n"
+                + format_sections(AXIS_NEEDS_FORMAT[call["axis"]])
+                if call["axis"] in AXIS_NEEDS_FORMAT
+                else ""
+            ),
+        )
         .replace("{{FACTS_BLOCK}}", call["facts"])
         .replace("{{SUBJECT_LABEL}}", call["subject_label"])
         .replace("{{SUBJECT}}", call["subject"])

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import sys
 import importlib.util
 from pathlib import Path
 
@@ -22,6 +23,32 @@ REPO = Path(__file__).resolve().parent.parent
 _s = importlib.util.spec_from_file_location("sep", Path(__file__).with_name("run_separation.py"))
 sep = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(sep)
+
+
+GONE, NEW, OFF = "\033[31m", "\033[32m", "\033[0m"
+
+
+def _print_prose_diff(before: str, now: str, color: str) -> None:
+    """A diff meant to be read, not applied. Each change is shown as what is
+    gone and what stands there now, in blocks rather than as +/- lines around
+    hunk headers - these sections are prose and read that way."""
+    tint = color == "always" or (color == "auto" and sys.stdout.isatty())
+    gone, new, off = (GONE, NEW, OFF) if tint else ("", "", "")
+    a, b = before.splitlines(), now.splitlines()
+
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b).get_opcodes():
+        if tag == "equal":
+            continue
+        if tag in ("replace", "delete"):
+            print(f"{gone}- gone{off}")
+            for line in a[i1:i2]:
+                print(f"{gone}  {line}{off}")
+            print()
+        if tag in ("replace", "insert"):
+            print(f"{new}+ now{off}")
+            for line in b[j1:j2]:
+                print(f"{new}  {line}{off}")
+            print()
 
 
 def main() -> None:
@@ -33,6 +60,12 @@ def main() -> None:
         help="commit to diff from (default: the rubric_commit the column carries)",
     )
     parser.add_argument("--full", action="store_true", help="also print the current section")
+    parser.add_argument(
+        "--color",
+        choices=["auto", "always", "never"],
+        default="auto",
+        help="colour the removed and added text (default: only on a terminal)",
+    )
     args = parser.parse_args()
 
     axis, audience = args.axis, args.audience
@@ -49,11 +82,8 @@ def main() -> None:
     if before == now:
         print(f"{axis}: unchanged since {since}. The column does not need re-reading.")
     else:
-        print(f"{axis}: changed since {since} (the commit the column was passed against)\n")
-        for line in difflib.unified_diff(
-            before.splitlines(), now.splitlines(), fromfile=f"{axis} at {since}", tofile=f"{axis} now", lineterm=""
-        ):
-            print(line)
+        print(f"{axis}: changed since {since}, the version the column was read against.\n")
+        _print_prose_diff(before, now, args.color)
 
     if args.full:
         print("\n" + "=" * 70 + f"\nthe section as it stands, which is what to read against:\n")

@@ -23,10 +23,8 @@ An item that fails level A is removed, not rewritten.
 An item that fails level C is rewritten.
 A document that fails level B is re-assembled from unchanged items.
 
-A1 judges the subject of an entry, C5 its language. The two are independent:
-a change that is internal in substance can be described in faultless customer
-language, and then A1 fails while C5 passes. Failing A1 does not drag C5 with
-it, and the item is removed rather than rephrased.
+What each axis owns, and what it leaves to a neighbour, is stated in the axis
+itself - see [`README.md`](README.md) for why that is the first thing written.
 
 ---
 
@@ -78,7 +76,13 @@ every entry is still an item.
 
 ### A1 - Product surface relevance
 
-The rendering carries every change the reader could notice, and nothing else.
+**Judges:** whether the rendering carries the changes a reader could notice,
+and nothing else.
+
+**Does not judge:** how a change is worded once it is there - that is C5 - nor
+whether the entry opens on the right thing, which is C1, nor where it sits,
+which is B1 and B2. A change can belong here and be described badly; the entry
+is then rewritten, not removed.
 
 The axis has two halves and both are judged. An entry that should not be there
 is visible in the document. A change that should be there and is missing is not
@@ -88,35 +92,40 @@ something they were never told.
 
 **Decision procedure, half one: is anything here that should not be**
 
-1. For each entry, could a reader observe this change by using the product -
-   different output, different behaviour, a new command, a new setting? If no,
-   the entry fails.
-2. Refactors, test changes, CI changes, dependency bumps without behaviour
-   change: they do not belong here.
-3. A dependency bump *with* observable behaviour change does belong, described
-   by the behaviour, not the dependency.
-4. A change excluded here belongs in the technical rendering, not nowhere.
+1. For each entry, ask what a reader would have to do to notice this change by
+   using the product: run something, look at an output, meet a different
+   behaviour, set something that was not there. If nothing they do can bring
+   them into contact with it, the entry fails.
+2. The question is about the change, not about the words. An entry describing
+   internal work in faultless prose still fails; an entry describing an
+   observable change in jargon passes here and fails C5.
 
 **Decision procedure, half two: is anything missing**
 
-5. Only when the facts of the release are given alongside the document. Without
+3. Only when the facts of the release are given alongside the document. Without
    them this half cannot be judged and is not guessed at.
-6. Go through the facts, not through the document. For each fact a reader could
-   observe, find the entry that carries it. Reading the document and asking
-   whether it looks complete finds nothing - an omission has no text to notice.
-7. A fact with no entry is a fail, and the fact is named. Several omissions are
-   one verdict; the axis asks whether the rendering is complete, not how
-   incomplete it is.
-8. A fact that no reader could observe needs no entry. Its absence is correct.
+4. Go through the facts, not through the document. For each fact, apply rule 1:
+   could a reader come into contact with this change? If yes, find the entry
+   that carries it.
+5. A fact that passes rule 1 and has no entry is a fail, and the fact is named.
+   Several omissions are one verdict; the axis asks whether the rendering is
+   complete, not how incomplete it is.
+6. A fact no reader could come into contact with needs no entry. Its absence is
+   correct.
 
 **Pass:** a change to how much text the tool generates before stopping, carried
-by an entry.
+by an entry - a reader meets it by generating a long release.
 
-**Fail (present, should not be):** an entry about which internal class performs
-the categorisation, with identical output.
+**Fail (present, should not be):** an entry about which internal component
+performs the categorisation, with identical output. Nothing the reader does
+brings them into contact with it.
 
 **Fail (absent, should be there):** the facts carry a change that stops the tool
 failing when a release has no pull requests attached, and no entry mentions it.
+
+*A dependency upgrade shows both sides: it fails rule 1 when nothing observable
+changed, and passes when it did - described by what changed for the reader,
+never by the dependency.*
 
 ---
 
@@ -124,74 +133,95 @@ failing when a release has no pull requests attached, and no entry mentions it.
 
 ### B1 - Action first
 
-An entry that asks something of the reader stands above every entry that does
-not. Breaking changes lead the document.
+**Judges:** whether every entry that asks something of the reader stands above
+every entry that does not.
 
-An entry asks something when ignoring it costs the reader: a migration, a
-rename they have to follow, a setting they must set for things to keep working.
-Telling a reader where a new feature lives, or how to reach it, is not asking
-something of them - that is C4's subject, and an optional setting is not an
-obligation.
+**Does not judge:** whether an entry says clearly enough what to do - that is
+C4 - nor which group an entry sits in, which is B2. Both axes use the same test
+for what counts as asking something; B1 asks where it stands, C4 asks whether
+it is stated.
+
+An entry asks something when not doing it costs the reader: their setup stops
+working, their output changes under them, they have to move or rename
+something. An optional setting, or where a new feature can be reached, costs
+them nothing if ignored.
 
 **Decision procedure**
 
 1. Go entry by entry. Group headings decide nothing here: a group called "What
    needs action" can stand at the top while an entry that asks something sits
    three groups below it, and that is the failure this axis is for.
-2. Mark every entry that asks something of the reader, in the sense above.
+2. Mark every entry where the test above says the reader pays for ignoring it.
 3. No marked entry: pass. There is no order to get wrong.
 4. Every marked entry must stand above every unmarked one. One marked entry
    below one unmarked entry is a fail, whichever groups the two sit in.
-5. A breaking change is always marked, and comes first of all.
+5. A breaking change always costs the reader something and comes first of all.
 
 **Pass:** the only entry carrying a migration is the first entry of the
-document, under the group for it.
+document.
 
 **Fail:** an entry saying the old configuration section stops being read, placed
-under "What's Changed", below two entries that ask nothing.
+below two entries that ask nothing.
 
 ### B2 - Grouping and order
 
-Groups are the ones the format defines, in the order it defines, and the ones
-with nothing in them are not there.
+**Judges:** whether the document is built out of the groups the format defines,
+in the order it defines, and whether the document opens the way the format
+says.
+
+**Does not judge:** what an entry says, which is level C, nor whether an entry
+that asks something sits high enough, which is B1. This axis reads structure
+only.
+
+The groups, their order and the opening are defined in
+[`../docs/output-format.md`](../docs/output-format.md). They are not repeated
+here: a group name written in two documents is a contradiction waiting for one
+of them to be edited.
 
 **Decision procedure**
 
-1. Groups appear in this order: what needs action, new, changed, fixed. A group
-   out of order is a fail whatever it contains.
-2. A group with no entries is omitted, not printed empty.
-3. No group outside the defined set.
+1. Read the group headings in order and compare them with the set and order the
+   format defines. A group out of that order is a fail whatever it contains.
+2. A group the format does not define is a fail. A group with no entries is
+   omitted, not printed empty.
+3. Compare the document's opening with what the format requires of it for the
+   serialisation at hand. A missing or incomplete opening is a fail.
+4. A document with no group headings at all fails: it cannot satisfy rule 1.
 
-This axis does not judge which group an entry belongs in when the entry asks
-something of the reader - that is B1. It also no longer judges the order of
-entries inside a group: see the note in Open.
+**Pass:** the groups the format defines, in its order, with the ones that have
+no entries left out.
 
-**Pass:** what needs action, then new, then fixed, with changed absent because
-the release has none.
-
-**Fail:** fixes printed above the new entries.
+**Fail:** fixes printed above the new entries; or a rendering that is one flat
+list of bullets with no headings.
 
 ### B3 - Length and tone
 
-The document is scannable and does not oversell.
+**Judges:** whether the document can be scanned, and whether it claims more
+than it can show.
+
+**Does not judge:** whether an entry contains an outcome, a scope or an action -
+those are C2 to C4 - nor the groups and the opening, which are B2. This axis
+reads how much is written and in what register.
 
 **Decision procedure**
 
-1. Each item is one or two sentences. Three is the ceiling and needs a reason.
-   Sentences that follow the outcome count here: C3 is satisfied once the
-   outcome is stated, and what trails behind it is a length problem.
-2. Minor items are collapsed into a single closing line rather than listed
-   individually.
-3. No superlatives, no marketing adjectives, no exclamation marks.
-   "Faster" needs a number or it is not claimed.
-4. The document opens with version, date, and one sentence on what this release
-   is about.
+1. Count the sentences of each entry. One or two is the shape; three needs a
+   reason a reader would accept; four or more is a fail however good the
+   content is. Sentences that follow the outcome count here: C3 is satisfied
+   once the outcome is stated, and what trails behind it is length.
+2. Minor changes are gathered into one closing line of their group rather than
+   listed one by one. A run of entries a reader would not act on, each with its
+   own bullet, is a fail.
+3. Take every claim of degree - faster, smaller, more reliable - and ask what
+   in the entry lets a reader check it. A claim with nothing to check it
+   against is a fail, whether it is written as a superlative, an adjective or
+   an exclamation.
 
 **Pass:** "Generation is roughly twice as fast on releases with more than 50
 pull requests."
 
 **Fail:** "We've completely reimagined generation performance - it's blazingly
-fast now!"
+fast now!" - nothing in it can be checked.
 
 ---
 
@@ -212,45 +242,42 @@ Slot 4 is absent when there is nothing to set: see C4.
 
 ### C1 - Observation leads
 
-The item opens with what the reader can observe. What was built, changed or
-configured comes later, or not at all.
+**Judges:** whether the opening of the entry says what the reader meets, or
+what was built.
 
-What counts as an observation depends on the change type, and it is the same
-thing slot 1 of the item is for:
+**Does not judge:** which words appear in it - a setting, a file, a command may
+all stand in an opening that is about the reader, and whether they are named
+well enough to act on is C4, whether they are prose or a raw key is C5. Nor
+does it judge what follows the opening: the outcome is C3, the length is B3.
 
-| Change type     | The observation is                                     |
-|-----------------|--------------------------------------------------------|
-| Fix             | what went wrong, as the user ran into it               |
-| Feature         | what the reader can now do or now sees                  |
-| Breaking change | what no longer works the way it did                     |
+What counts as what the reader meets depends on the change type, and it is the
+same thing slot 1 of the item is for:
+
+| Change type     | The reader meets                                        |
+|-----------------|---------------------------------------------------------|
+| Fix             | what went wrong, as they ran into it                     |
+| Feature         | what they can now do or now see                          |
+| Breaking change | what no longer works the way it did                      |
 
 A feature does not need a problem. "You can now preview a release before
-anything is published" opens on an observation: the reader can do it, and can
-see that they can. Requiring a symptom there is a misreading of this axis.
+anything is published" is something the reader meets: they can do it, and can
+see that they can.
 
 **Decision procedure**
 
-1. Ignore a bold label and the colon after it. It names the entry, it is not
-   the opening of the sentence, and the format specifies it that way. Judge the
-   first clause of the text that follows it.
-2. Does that clause describe something the reader can observe - a thing that
-   happens to them, something they can now do, something they ran into? If yes,
-   pass.
-3. If it instead names what was built or altered - a component, an
-   implementation, "we added", "support was introduced" - fail.
-4. Naming a setting does not fail this axis. "Choose how much detail feeds the
-   notes, in the configuration file" opens on what the reader can now do; that
-   it names the setting they do it with is C4's subject if the naming is too
-   vague to act on, and C5's if the name is a key rather than prose. C1 asks
-   one thing: does the opening say what the reader meets, or what was built.
-5. "The product now does X" is an observation when X is something the reader
-   sees or gets, and it does not become "what was built" by having the product
-   as its subject. "Chartula now writes the customer and product texts into the
-   same file" and "the customer and product texts are now written into the same
-   file" are the same statement.
-6. The test: could the clause be rewritten as "you can now …" or "X happened to
-   you when …" without inventing anything that is not already in it? If yes, it
-   is an observation, whatever its grammatical shape.
+1. Ignore a bold label and the colon after it. It names the entry, not the
+   sentence, and the format specifies it that way. Judge the first clause of
+   the text that follows.
+2. Try to rewrite that clause as "you can now …" or "this happened to you
+   when …", using only what the clause already contains.
+3. If the rewrite works, the opening is about the reader: pass.
+4. If the rewrite has to invent the reader's side - because the clause is about
+   the work that was done, whoever or whatever its grammatical subject is -
+   fail.
+5. Grammatical shape does not decide it. "Chartula now writes the customer and
+   product texts into the same file" and "the customer and product texts are
+   now written into the same file" are one statement, and both rewrite cleanly
+   as "you can now find both texts in one file".
 
 **Pass (fix):** "Generated text could be cut off mid-sentence because no output
 length limit was set."
@@ -259,11 +286,12 @@ length limit was set."
 or published."
 
 **Pass (feature, stated as a property):** "Technical, customer and product notes
-are written from the same set of facts." The reader sees the three renderings;
-this says what is true of them now.
+are written from the same set of facts." The reader has the three renderings in
+front of them; this says what is true of them now.
 
 **Fail:** "There is now a configurable output length limit, so text no longer
-gets cut off mid-sentence."
+gets cut off mid-sentence." The rewrite would have to invent what the reader
+ran into.
 
 *This is the only axis that example violates: no jargon, outcome stated, length
 fine. It fails on order alone.*
@@ -273,32 +301,39 @@ the feature pass above, opened on the building of it.
 
 ### C2 - Scope stated or deliberately absent
 
-The reader can tell whether they were affected.
+**Judges:** whether the reader can tell whether they were affected.
+
+**Does not judge:** whether the condition is true - that is the faithfulness
+check, not this rubric - nor how it is worded, which is C5.
 
 **Decision procedure**
 
-1. Did this affect everyone, always? If yes, slot 2 is correctly absent.
-2. Did it affect a subset? Then the condition is named in plain terms.
-3. A condition may be qualitative. "On longer releases" and "if you publish
-   from a fork" name a condition; they do not become hedges for lacking a
-   number. What fails is a phrase that names no condition at all.
-4. Is the condition **unknown** - the source data does not say? Then slot 2 is
-   omitted entirely and the item is marked for review.
-   Vague hedges are a fail, not a fallback.
+1. Did this affect everyone, always? Then slot 2 is correctly absent: pass.
+2. Did it affect a subset? Then the entry names the condition, and a reader can
+   put themselves inside or outside it. "On longer releases" and "if you
+   publish from a fork" do that without a number.
+3. Does the entry gesture at a condition without naming one, so that a reader
+   cannot tell which side they are on? Fail. "In some runs" is the shape: every
+   run is some run.
+4. Is the condition unknown, because the source data does not say? Then slot 2
+   is omitted entirely and the item is marked for review. An unknown condition
+   is not written as a guess.
 
 **Pass (condition known):** "…on releases containing more than about thirty
 pull requests."
 
 **Pass (not applicable):** no scope clause at all, because it affected every run.
 
-**Fail:** "…in some runs." - names no condition at all: every run is some run.
-Contrast rule 3, where "on longer releases" passes although it carries no
-number.
+**Fail:** "…in some runs."
 
 ### C3 - Outcome present
 
-The item says what the user can now rely on or do.
-Anywhere in the item, not necessarily at the end.
+**Judges:** whether the item says what the reader can now rely on or do.
+
+**Does not judge:** where in the item that sits - trailing sentences are B3's
+length problem - nor whether the opening was right, which is C1.
+
+The outcome may stand anywhere in the item, not necessarily at the end.
 
 **Decision procedure**
 
@@ -350,73 +385,86 @@ restates the negative event of slot 1. C1, C2, C4 and C5 all pass on that item.
 
 ### C4 - Action explicit
 
-The reader is never left wondering whether they must do something.
-The axis judges a withheld action, not a missing sentence.
+**Judges:** whether an entry that requires something of the reader says what,
+concretely enough to act on.
+
+**Does not judge:** where that entry stands in the document - B1 - nor whether
+the name it uses is prose or a raw key, which is C5. B1 and C4 use the same
+test for what counts as requiring something; B1 asks where it stands, C4 asks
+whether it is stated.
 
 **Decision procedure**
 
-1. Does this change give the user anything to do or decide - a migration, a
-   setting, an opt-in, a command to run, a place they have to go to reach it?
-2. If not - it runs by itself, always, with nothing to configure - C4 is
-   **n/a**. Not a pass, not a fail. There is no action to withhold, and a line
-   saying so is optional, not required.
-3. If yes, the action is the last slot, concrete enough to act on: the setting
-   by its plain name, the command, the place. Announcing that an option exists
-   without saying where it is set is a fail.
-4. C4 asks for the plain name, never for the key. "How much detail feeds the
-   facts is set in the configuration file" satisfies this axis; the raw key
-   does too, but fails C5 for it. The two axes are satisfiable at once, and an
-   item that names the setting in prose passes both. Where an item gives only
-   the key, C4 passes and C5 fails, and the finding belongs to C5.
-5. For a breaking change, slot 4 is mandatory and explicit. Never n/a.
-6. For a fix whose only action is "nothing to do", C4 is n/a, provided the
-   document says so once, globally.
+1. Does this change require anything of the reader - is there something they
+   pay for not doing, or a step without which the change does not reach them?
+2. If not, C4 is **n/a**. Not a pass, not a fail: there is no action to
+   withhold, and a line saying so is allowed but never demanded.
+3. If yes, the entry names it, and a reader could act on the naming without
+   looking anywhere else: the setting by a name they can find, the command,
+   the place. Announcing that something can be set, without saying where, is a
+   fail - the reader now knows a decision exists and cannot reach it.
+4. For a breaking change there is always something to do, so C4 is never n/a
+   there.
 
 **Pass:** "Existing configuration files keep working; the new setting is
 optional."
 
-**Pass (stated redundantly):** "No configuration change is needed." - allowed
-where nothing has to be done, never demanded.
+**Pass (stated redundantly):** "No configuration change is needed."
 
-**n/a:** a metrics summary printed at the end of every run. It is on, it is
-where the run ends, and there is nothing to switch.
+**n/a:** a metrics summary printed at the end of every run. Nothing is asked of
+the reader and nothing stands between them and it.
 
 **Fail (option withheld):** "How much detail each entry carries can be
-customised." - the reader now knows a setting exists and not where it is.
+customised." - a decision the reader cannot reach.
 
-**Fail:** a breaking change described entirely in slots 1–3, with no statement of
-what to change.
+**Fail:** a breaking change described entirely in slots 1-3, with no statement
+of what to change.
 
 ### C5 - No codebase knowledge required (cross-slot)
 
-Applies to the whole item, not to one slot.
-Understandable to someone who uses the product and has never seen its source.
+**Judges:** whether every expression in the item is one the reader could have
+met by using the product.
 
-**Allowed - product surface:** settings, commands, features and outputs a user
-encounters by using the tool; version numbers; dates; commands the user actually
-types.
-Settings are referred to in prose ("the output length limit"), not by key.
+**Does not judge:** whether the change itself belongs in the rendering - that is
+A1, and an internal change can be described in faultless language - nor whether
+a named place is concrete enough to act on, which is C4.
 
-**Not allowed - internals:** code-style identifiers; concrete configuration
-values; internal component or stage names; file, class or module references;
-format specifications.
+Applies to the whole item, not to one slot. The reader is a user of the product
+the changelog is about, never the person who built it: what is familiar from
+writing the source does not count as familiar.
 
 **Decision procedure**
 
-1. Could a user who has only ever used the product know what this refers to?
-   If no, fail.
-2. If unsure: could the expression be pasted into a configuration file or source
-   file as written? If yes, fail - **unless** it is a version number, a date, or
-   a command the user is meant to type.
-3. Describing what changed in plain language is not an internal reference.
-   "No output length limit was set" passes.
-   "`max_tokens` was omitted" fails.
+1. Take each expression that is not ordinary language - a name, an identifier,
+   a value, a marker, a format.
+2. Ask how the reader would have met it: typed it themselves, seen it in their
+   own repository, seen it on screen while using the product. If they would
+   have, it passes.
+3. If they would only meet it by reading the source or the developer
+   documentation, it fails.
+4. A setting is a case of rule 2, and its two forms differ: the name a reader
+   types or reads in their own configuration passes, the internal key that
+   names it in the source does not. That a raw key would satisfy C4 does not
+   rescue it here.
+
+**Pass:** `changelog.json` - the tool writes it into the reader's repository
+and they open it.
+
+**Pass:** the name of an environment variable the reader sets themselves to run
+the tool.
+
+**Fail:** `(breaking)`, a marker that exists inside the fact base and never
+reaches a screen.
 
 **Fail (this axis only):** "Generated text could be cut off mid-sentence because
 `llm.maxOutputTokens` defaulted to 1024, so you can now generate a large release
 without checking the output for truncation."
 
 *Correct order, scope handled, real outcome - jargon alone sinks it.*
+
+*Where the changelog is about the tool being evaluated, this axis is applied but
+not cleanly measurable: the product whose surface it judges is the tool whose
+internals the entries name. See the corpus note in the friction log.*
 
 ---
 
