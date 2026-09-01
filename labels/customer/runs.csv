@@ -1,13 +1,16 @@
 run,axis,verdict,rubric_commit,note
 sonnet-5-no-thinking-out,*,,,"Every new feature or change was completely omitted from the customer section, and only fixes were listed. The Lenght of the only two items, sn5-01 and sn5-02, where too long."
+sonnet-5-no-thinking-out,A1,fail,9d61351,"half two, read against missing.md: every feature of the release is absent, only the two fixes are carried."
 sonnet-5-no-thinking-out,B1,pass,ce900ac,"no entry asks anything of the reader - two fixes with nothing to set - so rule 3 passes; that every feature is missing is A1's finding, not an order one."
 sonnet-5-no-thinking-out,B2,fail,ce900ac,
 sonnet-5-no-thinking-out,B3,fail,1f94446,
 sonnet-5-out,*,,,"The Items wherent grouped at all. The length of the items were in general 3-5 sentences, and s5-04, s5-13, s5-15 and s5-21 keep going after their outcome is stated - counted here under B3 rule 1, not on C3. The opening of the document has the ""Preview Changelog"" note and version, anything else was missing."
+sonnet-5-out,A1,fail,9d61351,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry. Rule 7 - several omissions would still be one verdict."
 sonnet-5-out,B1,pass,ce900ac,"read against ce900ac - no entry is marked. The release carries no breaking change and every setting the run names is optional, so rule 3 passes; the absent groups are B2's finding."
 sonnet-5-out,B2,fail,ce900ac,
 sonnet-5-out,B3,fail,1f94446,
 opus-5-out,*,,,"For B3 when it is judged: o5-01, o5-02, o5-03, o5-11, o5-12, o5-15 and o5-22 keep going after their outcome is stated - a length finding here, not on C3."
+opus-5-out,A1,fail,9d61351,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry."
 opus-5-out,B1,pass,ce900ac,"read against ce900ac - no entry is marked. That o5-01 requires `--repo` is how the command is reached, which the axis excludes, and nothing has to be set for anything to keep working, so rule 3 passes."
 opus-5-out,B2,fail,ce900ac,
 opus-5-out,B3,fail,1f94446,
