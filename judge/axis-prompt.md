@@ -9,14 +9,14 @@ Substituted before sending:
 | Placeholder            | Filled with                                                                 |
 |------------------------|-----------------------------------------------------------------------------|
 | `{{AXIS_ID}}`          | `A1`, `B1`, `B2`, `B3`, `C1` … `C5`                                          |
-| `{{AXIS_SECTION}}`     | that axis's section of `rubric-customer.md`, verbatim, headings included     |
-| `{{UNITS_SECTION}}`    | the `## Units` section of `rubric-customer.md`, verbatim, in the system block |
+| `{{AXIS_SECTION}}`     | that axis's section of `rubric/{audience}.md`, verbatim, headings included   |
+| `{{UNITS_SECTION}}`    | the `## Units` section of `rubric/{audience}.md`, verbatim, in the system block |
 | `{{ALLOWED_VERDICTS}}` | `pass`, `fail`, and `n/a` only for the axes whose section defines it          |
 | `{{SUBJECT_LABEL}}`    | `The document` for A1 and B1 to B3, `The entry` for C1 to C5                  |
 | `{{SUBJECT}}`          | the document, or the single entry when judging a C axis                       |
 | `{{FACTS_BLOCK}}`      | the fact base, for A1 only; omitted for every other axis                      |
 
-Nothing from `labels/customer.md` is ever substituted in. The judge does not
+Nothing from `labels/{audience}/` is ever substituted in. The judge does not
 see a human verdict, a reason written by a human, or an example drawn from a
 labelled run - those are what it is being measured against.
 
@@ -92,8 +92,8 @@ The axis, from the rubric:
 
 ## Expected result of the separation run
 
-From `calibration/manifest.json`. Every cell not named below is expected to
-pass.
+From `calibration/{audience}/manifest.json`. Every cell not named below is
+expected to pass.
 
 | Document  | A1   | B1   | B2   | B3   |
 |-----------|------|------|------|------|

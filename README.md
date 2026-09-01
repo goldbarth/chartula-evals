@@ -30,7 +30,7 @@ A first version of that criterion now exists for the customer rendering; it has 
 ## Status
 
 The runs to be judged are in [`test-runs/`](test-runs), six renderings of the same release across four models and two reasoning settings.
-A first criterion for the customer rendering is in [`rubric-customer.md`](rubric-customer.md), derived from one of them.
+A first criterion for the customer rendering is in [`rubric/customer.md`](rubric/customer.md), derived from one of them.
 Labelling the remaining runs against it is the open work, and nothing here is automated until that criterion holds up.
 
 ## Licence

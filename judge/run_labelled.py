@@ -8,6 +8,7 @@ renderings - 53 entries across three runs, plus the document axes.
     python3 judge/run_labelled.py --dry-run
     python3 judge/run_labelled.py --model claude-sonnet-5
     python3 judge/run_labelled.py --axis C3 --run sonnet-5-out   # one column
+    python3 judge/run_labelled.py --audience technical
 
 Agreement alone is not the measure. C2 and C5 pass on almost every entry, so a
 judge that always answers pass scores above ninety percent there and has
@@ -15,15 +16,16 @@ understood nothing. The report gives, per axis, how often the judge finds the
 verdict a person gave *and* what it does with the minority of that column.
 
 The prompt, the rubric sections and the calling code are the ones from
-run_separation.py. Nothing here shows the judge a human verdict or a note.
+run_separation.py. The labels are read from `labels/{audience}/items.csv` and
+`runs.csv`; nothing here shows the judge a human verdict or a note.
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
 import importlib.util
 import json
-import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -32,9 +34,7 @@ from pathlib import Path
 import anthropic
 
 REPO = Path(__file__).resolve().parent.parent
-LABELS = REPO / "labels" / "customer.md"
 RUNS = REPO / "test-runs"
-RESULTS = REPO / "judge" / "results"
 
 _spec = importlib.util.spec_from_file_location("sep", Path(__file__).with_name("run_separation.py"))
 sep = importlib.util.module_from_spec(_spec)
@@ -44,55 +44,64 @@ ITEM_AXES = ["A1", "C1", "C2", "C3", "C4", "C5"]
 DOCUMENT_AXES = ["B1", "B2", "B3"]
 
 
-def table_rows(text: str) -> list[list[str]]:
-    rows = []
-    for line in text.splitlines():
-        if line.startswith("|") and not re.match(r"^\|[\s|:-]+\|$", line):
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            rows.append(cells)
-    return rows
+def _rows(path: Path) -> list[dict]:
+    if not path.exists():
+        sys.exit(f"no labels at {path.relative_to(REPO)}")
+    with path.open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
-def human_labels() -> tuple[dict, dict]:
-    """(item verdicts keyed by (run, item), document verdicts keyed by run)."""
-    text = LABELS.read_text(encoding="utf-8")
+def human_labels(audience: str = sep.DEFAULT_AUDIENCE) -> tuple[dict, dict]:
+    """(item verdicts keyed by (run, item), document verdicts keyed by run).
+
+    One row per (run, item, axis) in `items.csv`, per (run, axis) in `runs.csv`.
+    A row whose axis is `*` carries a note about the item or the run as a whole
+    and holds no verdict, so it contributes the entry and nothing else."""
+    labels = sep.labels_dir(audience)
     items, documents = {}, {}
 
-    item_block = text[text.index("## Item table") : text.index("## Friction log")]
-    for row in table_rows(item_block):
-        if len(row) < 11 or row[1].startswith(("item", "---")):
-            continue
-        run, item = row[0], row[1]
-        items[(run, item)] = {
-            "kind": row[2],
-            "verdicts": dict(zip(ITEM_AXES, [c.lower() for c in row[3:9]])),
-            "shippable": row[9].lower(),
-        }
+    for row in _rows(labels / "items.csv"):
+        entry = items.setdefault(
+            (row["run"], row["item"]),
+            {"kind": row["kind"], "verdicts": {}, "shippable": row["shippable"].strip().lower()},
+        )
+        if row["axis"] in ITEM_AXES:
+            entry["verdicts"][row["axis"]] = row["verdict"].strip().lower()
 
-    run_block = text[text.index("## Run table") : text.index("## Item table")]
-    for row in table_rows(run_block):
-        if len(row) < 5 or row[0].startswith(("run", "---")):
-            continue
-        documents[row[0]] = dict(zip(DOCUMENT_AXES, [c.lower() for c in row[1:4]]))
+    for row in _rows(labels / "runs.csv"):
+        if row["axis"] in DOCUMENT_AXES:
+            documents.setdefault(row["run"], {})[row["axis"]] = row["verdict"].strip().lower()
     return items, documents
 
 
-def customer_section(run: str) -> str:
+def audience_section(run: str, audience: str = sep.DEFAULT_AUDIENCE) -> str:
+    """One rendering out of a run file. The sections are marked `--- Customer ---`,
+    `--- Technical ---`, `--- Product ---`, so the audience names its own."""
+    marker = f"--- {audience.capitalize()} ---"
     text = (RUNS / f"{run}.md").read_text(encoding="utf-8").splitlines()
     out, inside = [], False
     for line in text:
-        if line.startswith("--- Customer ---"):
+        if line.startswith(marker):
             inside = True
             continue
         if inside and line.startswith("--- ") and line.endswith(" ---"):
             break
         if inside:
             out.append(line)
-    return "\n".join(out).strip()
+    found = "\n".join(out).strip()
+    if not found:
+        sys.exit(f"{run}.md has no {marker} section")
+    return found
 
 
-def build_calls(items: dict, documents: dict, want_run: str | None, want_axis: str | None) -> list[dict]:
-    units = sep.rubric_section("Units")
+def build_calls(
+    items: dict,
+    documents: dict,
+    want_run: str | None,
+    want_axis: str | None,
+    audience: str = sep.DEFAULT_AUDIENCE,
+) -> list[dict]:
+    units = sep.rubric_section("Units", audience)
     system, user_template = sep.prompt_parts()
     calls = []
 
@@ -103,7 +112,7 @@ def build_calls(items: dict, documents: dict, want_run: str | None, want_axis: s
     for run, ids in by_run.items():
         if want_run and run != want_run:
             continue
-        document = customer_section(run)
+        document = audience_section(run, audience)
         found = sep.entries(document)
         ids = sorted(ids)
         if len(found) != len(ids):
@@ -118,10 +127,13 @@ def build_calls(items: dict, documents: dict, want_run: str | None, want_axis: s
                 calls.append(
                     {
                         "id": f"{run}::{item}::{axis}",
+                        "audience": audience,
                         "run": run,
                         "item": item,
                         "axis": axis,
-                        "human": items[(run, item)]["verdicts"][axis],
+                        # "?" is the rubric's value for an axis not judged yet;
+                        # report() drops those rather than scoring them.
+                        "human": items[(run, item)]["verdicts"].get(axis, "?"),
                         "subject_label": "The entry",
                         "subject": entry,
                         "facts": "",
@@ -138,10 +150,11 @@ def build_calls(items: dict, documents: dict, want_run: str | None, want_axis: s
             calls.append(
                 {
                     "id": f"{run}::document::{axis}",
+                    "audience": audience,
                     "run": run,
                     "item": "document",
                     "axis": axis,
-                    "human": documents[run][axis],
+                    "human": documents[run].get(axis, "?"),
                     "subject_label": "The document",
                     "subject": document,
                     "facts": "",
@@ -192,6 +205,7 @@ def print_report(summary: dict) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
     parser.add_argument("--model", default="claude-opus-5")
     parser.add_argument("--effort", default="low", choices=["low", "medium", "high"])
     parser.add_argument("--max-tokens", type=int, default=2000)
@@ -207,20 +221,24 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    items, documents = human_labels()
-    calls = build_calls(items, documents, args.run, args.axis)
+    if not sep.rubric_path(args.audience).exists():
+        sys.exit(f"no rubric at {sep.rubric_rel(args.audience)}")
+
+    items, documents = human_labels(args.audience)
+    calls = build_calls(items, documents, args.run, args.axis, args.audience)
     if args.limit:
         calls = calls[: args.limit]
     if not calls:
         sys.exit("nothing to judge with those filters")
     axes = sorted({c["axis"] for c in calls})
-    stale = [a for a in axes if sep.labels_are_older_than(a)]
+    stale = [a for a in axes if sep.labels_are_older_than(a, args.audience)]
     print("axis   last changed   labels older than the axis")
     for axis in axes:
-        print(f"{axis:<7}{sep.axis_last_changed(axis):<15}{'YES' if axis in stale else 'no'}")
+        print(f"{axis:<7}{sep.axis_last_changed(axis, args.audience):<15}{'YES' if axis in stale else 'no'}")
     if stale and not args.allow_stale:
         sys.exit(
-            f"\n{', '.join(stale)} changed after labels/customer.md was last written.\n"
+            f"\n{', '.join(stale)} changed after the rubric_commit those columns carry in\n"
+            f"labels/{args.audience}/.\n"
             "Judging across that line measures the difference between two rubrics and\n"
             "reports it as disagreement between a person and a model. Re-pass those\n"
             "columns by hand first, or pass --allow-stale if you have checked that the\n"
@@ -277,17 +295,19 @@ def main() -> None:
     summary = report(results)
     print_report(summary)
 
-    RESULTS.mkdir(parents=True, exist_ok=True)
+    out_dir = sep.results_dir(args.audience)
+    out_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M")
-    out = RESULTS / f"labelled-{args.model}-{stamp}.json"
+    out = out_dir / f"labelled-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(
             {
                 "model": args.model,
+                "audience": args.audience,
                 "effort": args.effort,
                 "run_at": stamp,
-                "provenance": sep.provenance(),
-                "axes": {a: sep.axis_last_changed(a) for a in axes},
+                "provenance": sep.provenance(args.audience),
+                "axes": {a: sep.axis_last_changed(a, args.audience) for a in axes},
                 "judged_stale": stale if args.allow_stale else [],
                 "calls": len(results),
                 "agreed": sum(r["agree"] for r in results),
