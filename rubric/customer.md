@@ -24,7 +24,8 @@ An item that fails level C is rewritten.
 A document that fails level B is re-assembled from unchanged items.
 
 What each axis owns, and what it leaves to a neighbour, is stated in the axis
-itself - see [`README.md`](README.md) for why that is the first thing written.
+itself - see [`how-a-rubric-is-built.md`](how-a-rubric-is-built.md) for why that
+is the first thing written.
 
 ---
 
@@ -62,10 +63,10 @@ item and is judged as it stands - the axes are applied to the entry, not to
 each change inside it. That an entry bundles two changes is a B2 finding, since
 grouping is a document-level property.
 
-*The collapsed line.* B3 rule 2 asks for minor changes to be gathered into a
-single closing line. That line is an item: it reports changes, a reader reads
-it as content, and its slot 1 covers the group it stands for. C2 to C4 are
-usually `n/a` on it, which is the point of collapsing them.
+*The collapsed line.* Where the format gathers minor changes into a single
+closing line, that line is an item: it reports changes, a reader reads it as
+content, and its slot 1 covers the group it stands for. C2 to C4 are usually
+`n/a` on it, which is the point of collapsing them.
 
 A run that has no group headings at all is still judged: B1 and B2 fail, and
 every entry is still an item.
@@ -547,19 +548,32 @@ Four sentences and a superlative without a number. C3 still passes - the
 outcome is stated and what trails behind it is B3's problem, not C3's - and
 that is exactly what this pair tests.
 
-**A1 - selection.** Not a change to the document but to what is handed with it:
+**A1, the missing half.** Not a change to the document but to what is handed with it:
 the base document plus the fact base for the release, in which one user-visible
 change has no entry. Say, a change that stops the tool failing when a release
 has no pull requests at all. Every entry present is correct; the question is
 only whether the missing one is noticed.
 
 That is the expensive half of A1, and the half a judge is actually needed for.
-The other half - an entry that should not be there - has no minimal pair, and
-the labelled runs say why: an internal change cannot produce an observable
-opening, so it fails C1 along with A1 every time. `o5-10`, `o5-17`, `o5-25` and
-`s5-23` all show the pattern. A pair isolating A1 from C1 would have to be
-written against the grain of both axes, and would test nothing a judge will
-meet.
+
+**A1, the other half - an entry that should not be there.** Add to a new
+**What's Changed** group, below What's New:
+
+> - **Categorisation:** Whether a change counts as a feature, a fix or internal
+>   work is decided the same way for every release, from the title of the change
+>   alone.
+
+Nothing a reader does brings them into contact with this, so A1 fails. It opens
+on a property they could state, so C1 passes; it says what they can rely on, so
+C3 passes; it uses no expression from the source, so C5 passes; there is nothing
+to do, so C4 is n/a. The group is in the order the format defines and no entry
+asks anything of the reader, so B1 and B2 are untouched.
+
+This pair could not be written before. While C1 failed anything that named what
+was built, an internal change failed C1 and A1 together - `o5-10`, `o5-17`,
+`o5-25` and `s5-23` all show that pattern. C1 now asks only whether the opening
+rewrites as something that happened to the reader, and an internal change
+stated as a property of the output passes that while still failing A1.
 
 ### Realistic case
 
@@ -581,13 +595,18 @@ Fixed false breaking-change detection. The categorizer was matching `BREAKING CH
 ntional Commits footer format: uppercase, start of line, colon-terminated.
 ```
 
-Fails C1 (opens with the change), C3 (names no outcome, only the mechanism),
-C5 (identifiers, values, "the categorizer", the format spec).
-C4 is not among them: the first item does say where the ceiling is set, the
-second has nothing to set. That the first says it as a configuration key is
-C5's finding, not C4's.
-Scope is absent in both items without it being clear whether that is
-*not applicable* or *unknown*.
+Fails C1: "Fixed output truncation by setting `max_tokens`" cannot be rewritten
+as what happened to the reader without inventing it - the clause is about the
+work. Fails C3: strike slot 1 and what is left restates the mechanism. Fails
+C5: `max_tokens`, `llm.maxOutputTokens`, 1024, "the categorizer" and the footer
+specification are all expressions a reader meets only in the source.
+
+C4 is not among them. The first item names where the ceiling is set and the
+second requires nothing, so both are answered. That the first names it as a key
+rather than as something the reader would meet is C5's finding.
+
+C2 is absent in both items without it being clear whether the condition does
+not apply or was never looked up - the case rule 4 exists for.
 
 **Labelled shippable** (written by hand, not produced by a run):
 
@@ -616,28 +635,17 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 
 ## Open
 
-- The minimal pairs are written for every axis except the wrongly-included half
-  of A1, which cannot be isolated from C1 - see the note there. C3 has an
-  observed pair from `sonnet-5-out`; the rest are constructed.
-- C2 allows a qualitative condition. Two runs disagreed with each other on
-  "on longer releases" before this was written down, which is what an
-  undecided rule looks like from the outside. Whether a condition should have
-  to be checkable by the reader - a number, a name, a version - is the open
-  half.
-- B2 no longer asks whether the most consequential entry leads its group. Two
-  separation runs showed why: which of two entries is more consequential is not
-  derivable from the text, so the axis could not be applied by a judge, and
-  arguably not by a person either. It returns if a criterion is found that can
-  be read off the entry rather than guessed at.
-- C4 and C3 were sharpened after the first pass over `sonnet-5-out`, and both
-  columns have been re-judged since: C4 fails fell from 23 to 9, C3 fails from
-  20 to 15, and 6 of 26 items are shippable instead of 1. A1, C1 and C2 are
-  still first-pass verdicts; of C5 only `s5-01` was revisited, and it is now a
-  fail on `(thorough)` as a mode value.
-- Whether writing to GitHub (s5-06) and generating text (s5-14) count as
-  actions the item must state, when the credential is set up once and not per
-  release, is the next C4 borderline. Both are currently `fail`.
-- Not yet calibrated against a judge. The first calibration run should test
-  axis separation on the minimal pairs before anything else.
+- The minimal pairs are written for every axis. Whether the wrongly-included
+  half of A1 can now carry one of its own is the open question - see the
+  proposal at the end of the minimal pairs.
+- Whether a scope condition has to be checkable by the reader - a number, a
+  name, a version - or whether naming it qualitatively is enough, as C2 rule 2
+  now allows.
+- Whether an item that opens with an instruction rather than an observation
+  passes C1. Seen once, on `o5-01`, which is too little to write a rule from.
 - Feature and breaking-change items have no labelled reference case yet; the
-  slot table is derived, not observed.
+  slot table is derived from best practice, not observed in a run. v0.1.0
+  carries no breaking change, so that half is not reachable from this release.
+- C5 is applied on a corpus where the product it judges is the tool the entries
+  describe. It is judgeable there and not cleanly measurable; see the corpus
+  note in the friction log.

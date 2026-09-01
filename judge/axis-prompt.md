@@ -14,7 +14,11 @@ Substituted before sending:
 | `{{ALLOWED_VERDICTS}}` | `pass`, `fail`, and `n/a` only for the axes whose section defines it          |
 | `{{SUBJECT_LABEL}}`    | `The document` for A1 and B1 to B3, `The entry` for C1 to C5                  |
 | `{{SUBJECT}}`          | the document, or the single entry when judging a C axis                       |
-| `{{FACTS_BLOCK}}`      | the fact base, for A1 only; omitted for every other axis                      |
+| `{{FACTS_BLOCK}}`      | the fact base, for A1's missing half only; omitted for every other axis        |
+
+An axis that refers to `docs/output-format.md` is sent that part of the format
+with its own section - B2 is the one that does, and without it the judge would
+be asked about groups it cannot read. The runner keeps that mapping.
 
 Nothing from `labels/{audience}/` is ever substituted in. The judge does not
 see a human verdict, a reason written by a human, or an example drawn from a
@@ -95,17 +99,18 @@ The axis, from the rubric:
 From `calibration/{audience}/manifest.json`. Every cell not named below is
 expected to pass.
 
-| Document  | A1   | B1   | B2   | B3   |
-|-----------|------|------|------|------|
-| `base.md` | pass | pass | pass | pass |
-| `a1.md`   | fail | pass | pass | pass |
-| `b1.md`   | pass | fail | pass | pass |
-| `b2.md`   | pass | pass | fail | pass |
-| `b3.md`   | pass | pass | pass | fail |
+| Document         | A1   | B1   | B2   | B3   |
+|------------------|------|------|------|------|
+| `base.md`        | pass | pass | pass | pass |
+| `a1-absent.md`   | fail | pass | pass | pass |
+| `a1-included.md` | fail | pass | pass | pass |
+| `b1.md`          | pass | fail | pass | pass |
+| `b2.md`          | pass | pass | fail | pass |
+| `b3.md`          | pass | pass | pass | fail |
 
 Then C1 to C5 on the four entries of `base.md`: every one expected to pass.
 
-Twenty calls, and twenty more: C1 to C5 on each of the four entries of
+Twenty-four calls, and twenty more: C1 to C5 on each of the four entries of
 `base.md`, which are written to pass every one of them. Those measure how often
 the item axes fail something that is sound, which the four documents above
 cannot show.

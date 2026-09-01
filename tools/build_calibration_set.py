@@ -146,6 +146,14 @@ def case_b2(base: str) -> str:
     return join_groups(groups)
 
 
+def case_a1_included(base: str, insert: str) -> str:
+    """An entry no reader can come into contact with, in a group of its own."""
+    groups = split_groups(base)
+    at = group_index(groups, "What's New") + 1
+    groups.insert(at, ("### What's Changed", "\n" + insert + "\n"))
+    return join_groups(groups)
+
+
 def case_b3(base: str, replacement: str) -> str:
     """The fix entry padded past its outcome and given a superlative."""
     groups = split_groups(base)
@@ -168,9 +176,9 @@ def main() -> None:
     sec = section(rubric.read_text(encoding="utf-8"))
     base = base_document(sec)
     blocks = quoted_blocks(sec)
-    if len(blocks) < 2:
-        sys.exit(f"expected two block quotes in the section, found {len(blocks)}")
-    b1_insert, b3_replacement = blocks[0], blocks[1]
+    if len(blocks) < 3:
+        sys.exit(f"expected three block quotes in the section, found {len(blocks)}")
+    b1_insert, b3_replacement, a1_insert = blocks[0], blocks[1], blocks[2]
 
     out = REPO / args.out / args.audience
     out.mkdir(parents=True, exist_ok=True)
@@ -180,18 +188,23 @@ def main() -> None:
         "b1.md": (case_b1(base, b1_insert), "B1"),
         "b2.md": (case_b2(base), "B2"),
         "b3.md": (case_b3(base, b3_replacement), "B3"),
-        "a1.md": (base + "\n", "A1"),
+        "a1-absent.md": (base + "\n", "A1"),
+        "a1-included.md": (case_a1_included(base, a1_insert), "A1"),
+        # a1-absent carries the facts and no marker; a1-included carries an
+        # entry nothing brings the reader into contact with. One axis, two
+        # halves, and a judge has to answer both from the same rules.
     }
 
     manifest = []
     for name, (content, fails) in cases.items():
         (out / name).write_text(content, encoding="utf-8")
         entry = {"document": name, "fails": fails}
-        if name == "a1.md":
+        if name == "a1-absent.md":
             (out / "a1-facts.md").write_text(A1_FACTS, encoding="utf-8")
             entry["facts"] = "a1-facts.md"
             entry["note"] = (
-                "the document is the base; fact 5 is the user-visible change it "
+                "the missing half: the document is the base, and fact 5 is the "
+                "user-visible change it "
                 "has no entry for. The fixture carries no marker - the judge has "
                 "to find the omission, and a hint in the text would answer it."
             )

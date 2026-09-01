@@ -19,9 +19,9 @@ can keep its house style. This file holds the defaults.
 | Product   | thematic                    | not written                               |
 
 A template fixes the form: headings, groups, entry shape, what may appear at
-all. It does not fix quality. "The most consequential item leads its group" and
-"no marketing adjectives" hold whichever template is chosen, and stay in the
-rubric.
+all. It does not fix quality. Whether an entry opens on what the reader meets,
+whether it says what they can rely on, whether a claim of degree can be checked
+- those hold whichever template is chosen, and stay in the rubric.
 
 ---
 

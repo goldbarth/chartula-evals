@@ -321,7 +321,7 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
 
 # An axis that refers to the output format has to be given that part of the
 # format, or the model is asked about a rule it cannot read. Written down as a
-# rule in rubric/README.md, and enforced here.
+# rule in rubric/how-a-rubric-is-built.md, and enforced here.
 AXIS_NEEDS_FORMAT = {"B2": ["Two serialisations", "Groups"]}
 
 

@@ -1,7 +1,7 @@
 # Labels: customer rendering
 
 Measured with the axes from [`../../rubric/customer.md`](../../rubric/customer.md).
-Process shared with every audience: [`../README.md`](../README.md).
+Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 
 | file | what it holds |
 |------|-----------------|

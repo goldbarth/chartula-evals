@@ -2,8 +2,8 @@
 
 One folder per audience - [`customer/`](customer), plus `technical/` and
 `product/` once those rubrics exist. Each holds `items.csv`, `runs.csv`,
-`run-summary.csv`, `missing.md`, `friction-log.md` and a `README.md` with the
-worked example for that audience. This file is what all of them share.
+`run-summary.csv`, `missing.md`, `friction-log.md` and a `what-is-labelled.md`
+with the worked example for that audience. This file is what all of them share.
 
 Values: `pass`, `fail`, `?` (not judged yet), `n/a` (the axis does not apply
 to this entry).
