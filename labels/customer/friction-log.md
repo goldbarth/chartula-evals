@@ -3,8 +3,9 @@
 Where the rubric did not decide the case on its own. One line per occurrence,
 written during the pass, applied to the rubric afterwards.
 
-The verdicts themselves are in [`customer.md`](customer.md); which version of
-each axis a column was read against is in [`column-state.md`](column-state.md).
+The verdicts themselves are in [`items.csv`](items.csv) and [`runs.csv`](runs.csv);
+which version of each axis a column was read against is the `rubric_commit` of
+its own rows there.
 
 ### Re-passes after a rubric change
 

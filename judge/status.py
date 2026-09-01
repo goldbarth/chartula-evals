@@ -2,13 +2,16 @@
 """Where the evaluation stands, computed from the files rather than remembered.
 
     python3 judge/status.py
+    python3 judge/status.py --audience technical
 
 Prints what is labelled, which axes can be compared with the judge right now,
-which need a hand re-pass first, and what has been spent.
+which need a hand re-pass first, and what has been spent. One audience at a
+time: an axis is stale or not against its own rubric.
 """
 
 from __future__ import annotations
 
+import argparse
 import glob
 import importlib.util
 import json
@@ -28,10 +31,21 @@ AXES = ["A1", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "C5"]
 
 
 def main() -> None:
-    items, documents = lab.human_labels()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
+    args = parser.parse_args()
+    audience = args.audience
+
+    if not sep.rubric_path(audience).exists():
+        raise SystemExit(f"no rubric at {sep.rubric_rel(audience)}")
+
+    items, documents = lab.human_labels(audience)
     runs = Counter(run for run, _ in items)
 
-    print("LABELLED BY HAND")
+    print(f"AUDIENCE: {audience}")
+    print(f"  rubric {sep.rubric_rel(audience)}, labels labels/{audience}/")
+
+    print("\nLABELLED BY HAND")
     for run in sorted(runs):
         print(f"  {run:<26} {runs[run]:>3} entries")
     print(f"  {'documents':<26} {len(documents):>3} run rows")
@@ -41,19 +55,19 @@ def main() -> None:
     print(f"  {'axis':<6}{'section last changed':<22}{'column passed against':<24}{'comparable now'}")
     ready = []
     for axis in AXES:
-        stale = sep.labels_are_older_than(axis)
+        stale = sep.labels_are_older_than(axis, audience)
         if not stale:
             ready.append(axis)
         print(
-            f"  {axis:<6}{sep.axis_last_changed(axis):<22}"
-            f"{sep.column_passed_against(axis) or '-':<24}"
+            f"  {axis:<6}{sep.axis_last_changed(axis, audience):<22}"
+            f"{sep.column_passed_against(axis, audience) or '-':<24}"
             f"{'no - re-pass first' if stale else 'yes'}"
         )
     print(f"\n  ready to judge: {', '.join(ready) if ready else 'none'}")
 
     print("\nJUDGE RUNS")
     spent = 0.0
-    for path in sorted(glob.glob(str(REPO / "judge" / "results" / "*.json"))):
+    for path in sorted(glob.glob(str(sep.results_dir(audience) / "*.json"))):
         data = json.load(open(path, encoding="utf-8"))
         spent += data["cost_usd"]
         kind = "separation" if "separation" in path else "labelled"

@@ -4,6 +4,7 @@ passed against it.
 
     python3 judge/axis_diff.py C1          # diff since the column was passed
     python3 judge/axis_diff.py C1 --full   # the whole current section as well
+    python3 judge/axis_diff.py C1 --audience technical
 
 Read the diff first. Only what changed there can move a verdict, and the
 direction of the change says which side of the column to re-read: a section
@@ -26,21 +27,25 @@ _s.loader.exec_module(sep)
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("axis")
-    parser.add_argument("--since", help="commit to diff from (default: the Column state row)")
+    parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
+    parser.add_argument(
+        "--since",
+        help="commit to diff from (default: the rubric_commit the column carries)",
+    )
     parser.add_argument("--full", action="store_true", help="also print the current section")
     args = parser.parse_args()
 
-    axis = args.axis
-    since = args.since or sep.column_passed_against(axis)
+    axis, audience = args.axis, args.audience
+    since = args.since or sep.column_passed_against(axis, audience)
     heading = axis if axis == "Units" else f"{axis} -"
-    now = sep.rubric_section(axis)
+    now = sep.rubric_section(axis, audience)
 
     if not since:
-        print(f"no Column state row for {axis}; showing the current section only\n")
+        print(f"no rubric_commit on any {axis} row; showing the current section only\n")
         print(now)
         return
 
-    before = sep._section_at(since, heading)
+    before = sep._section_at(since, heading, audience)
     if before == now:
         print(f"{axis}: unchanged since {since}. The column does not need re-reading.")
     else:

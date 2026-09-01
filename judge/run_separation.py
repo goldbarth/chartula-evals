@@ -3,11 +3,12 @@
 
 Forty calls: the four document axes on the five calibration documents, and the
 five item axes on the four entries of the base document. Every expectation is
-in `calibration/manifest.json` and in the rubric; nothing from
-`labels/customer.md` is ever sent.
+in `calibration/{audience}/manifest.json` and in the rubric; nothing from
+`labels/{audience}/` is ever sent.
 
     python3 judge/run_separation.py --dry-run      # counts tokens, spends nothing
     python3 judge/run_separation.py                # runs it
+    python3 judge/run_separation.py --audience technical
 
 `--dry-run` uses the token counting endpoint, which is free, and prints what the
 run would cost before any of it is spent.
@@ -16,6 +17,8 @@ run would cost before any of it is spent.
 from __future__ import annotations
 
 import argparse
+import csv
+import functools
 import json
 import re
 import sys
@@ -25,10 +28,33 @@ from pathlib import Path
 import anthropic
 
 REPO = Path(__file__).resolve().parent.parent
-RUBRIC = REPO / "rubric-customer.md"
 PROMPT = REPO / "judge" / "axis-prompt.md"
-CALIBRATION = REPO / "calibration"
-RESULTS = REPO / "judge" / "results"
+
+# Everything below the prompt is per audience. The prompt is not: one axis, one
+# subject, one verdict is the same call whoever the rendering is for.
+DEFAULT_AUDIENCE = "customer"
+
+
+def rubric_rel(audience: str = DEFAULT_AUDIENCE) -> str:
+    """The rubric as git wants it named: repo-relative, forward slashes."""
+    return f"rubric/{audience}.md"
+
+
+def rubric_path(audience: str = DEFAULT_AUDIENCE) -> Path:
+    return REPO / "rubric" / f"{audience}.md"
+
+
+def labels_dir(audience: str = DEFAULT_AUDIENCE) -> Path:
+    return REPO / "labels" / audience
+
+
+def calibration_dir(audience: str = DEFAULT_AUDIENCE) -> Path:
+    return REPO / "calibration" / audience
+
+
+def results_dir(audience: str = DEFAULT_AUDIENCE) -> Path:
+    return REPO / "judge" / "results" / audience
+
 
 DOCUMENT_AXES = ["A1", "B1", "B2", "B3"]
 ITEM_AXES = ["C1", "C2", "C3", "C4", "C5"]
@@ -57,77 +83,159 @@ def _git(*args: str) -> str:
         return ""
 
 
-def _section_at(commit: str, heading: str) -> str:
+def _is_ancestor(older: str, newer: str) -> bool:
+    import subprocess
+
+    return (
+        subprocess.run(
+            ["git", "merge-base", "--is-ancestor", older, newer],
+            cwd=REPO,
+            capture_output=True,
+        ).returncode
+        == 0
+    )
+
+
+def _oldest(commits: set[str]) -> str:
+    found = ""
+    for commit in sorted(commits):
+        if not found or _is_ancestor(commit, found):
+            found = commit
+    return found
+
+
+def _newest(commits: set[str]) -> str:
+    found = ""
+    for commit in sorted(commits):
+        if not found or _is_ancestor(found, commit):
+            found = commit
+    return found
+
+
+@functools.lru_cache(maxsize=None)
+def rubric_history(audience: str = DEFAULT_AUDIENCE) -> tuple[tuple[str, str], ...]:
+    """(commit, the name the rubric had in it), newest first.
+
+    The file has been renamed - `rubric-customer.md` became `rubric/customer.md` -
+    and `git show commit:path` wants the name of the day, not the name it has
+    now. `--follow` walks across the rename and `--name-only` says, per commit,
+    which name that was, so neither is written down here."""
+    out = _git("log", "--follow", "--format=%h", "--name-only", "--", rubric_rel(audience))
+    history: list[list[str]] = []
+    for line in out.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        # The pathspec admits one file per commit, and it is a markdown file;
+        # the bare hash that opens each block is not.
+        if line.endswith(".md"):
+            if history and history[-1][1] is None:
+                history[-1][1] = line
+        else:
+            history.append([line, None])
+    return tuple((commit, path) for commit, path in history if path)
+
+
+def rubric_names(audience: str = DEFAULT_AUDIENCE) -> list[str]:
+    """Every name this rubric has gone by, newest first."""
+    names = [rubric_rel(audience)]
+    for _, path in rubric_history(audience):
+        if path not in names:
+            names.append(path)
+    return names
+
+
+@functools.lru_cache(maxsize=None)
+def _section_at(commit: str, heading: str, audience: str = DEFAULT_AUDIENCE, path: str = "") -> str:
     import re as _re
 
-    text = _git("show", f"{commit}:rubric-customer.md")
+    text = ""
+    for candidate in [path] if path else rubric_names(audience):
+        text = _git("show", f"{commit}:{candidate}")
+        if text:
+            break
     pattern = rf"^(#{{2,3}} {_re.escape(heading)}[^\n]*\n.*?)(?=^#{{2,3}} |\Z)"
     found = _re.search(pattern, text, _re.DOTALL | _re.MULTILINE)
     return found.group(1) if found else ""
 
 
-def axis_last_changed(axis: str) -> str:
+def axis_last_changed(axis: str, audience: str = DEFAULT_AUDIENCE) -> str:
     """The commit that last changed this axis' own section, not the file."""
     heading = axis if axis == "Units" else f"{axis} -"
-    commits = _git("log", "--format=%h", "--", "rubric-customer.md").split()
-    for newer, older in zip(commits, commits[1:]):
-        if _section_at(newer, heading) != _section_at(older, heading):
+    history = rubric_history(audience)
+    for (newer, newer_path), (older, older_path) in zip(history, history[1:]):
+        if _section_at(newer, heading, audience, newer_path) != _section_at(
+            older, heading, audience, older_path
+        ):
             return newer
-    return commits[-1] if commits else ""
+    return history[-1][0] if history else ""
 
 
-def column_passed_against(axis: str) -> str:
-    """The rubric commit a column was last read against, from
-    labels/column-state.md. Kept by hand on purpose: only the person who
-    re-read the column knows that they did."""
-    import re as _re
+def _rubric_commits(audience: str, axis: str | None = None) -> set[str]:
+    """The `rubric_commit` values in this audience's label rows, for one axis or
+    for all of them. The column lives per row: a note written about one axis
+    says nothing about when any other column was last read."""
+    found = set()
+    for name in ("items.csv", "runs.csv"):
+        path = labels_dir(audience) / name
+        if not path.exists():
+            continue
+        with path.open(encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle):
+                commit = (row.get("rubric_commit") or "").strip()
+                if commit and (axis is None or row.get("axis") == axis):
+                    found.add(commit)
+    return found
 
-    text = (REPO / "labels" / "column-state.md").read_text(encoding="utf-8")
-    for line in text.splitlines():
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) >= 2 and cells[0] == axis:
-            return cells[1]
-    return ""
+
+def column_passed_against(axis: str, audience: str = DEFAULT_AUDIENCE) -> str:
+    """The rubric commit a column was last read against, from the `rubric_commit`
+    of its own rows. Kept by hand on purpose: only the person who re-read the
+    column knows that they did.
+
+    A column read in two sittings carries two commits. It is then only as fresh
+    as its oldest row, so that is the one returned."""
+    return _oldest(_rubric_commits(audience, axis))
 
 
-def labels_are_older_than(axis: str) -> bool:
+def labels_passed_against(audience: str = DEFAULT_AUDIENCE) -> str:
+    """The newest rubric commit any column of this audience was read against -
+    how far the labels as a whole have been brought. Not a substitute for the
+    per-axis answer above, which is the one a verdict is compared against."""
+    return _newest(_rubric_commits(audience))
+
+
+def labels_are_older_than(axis: str, audience: str = DEFAULT_AUDIENCE) -> bool:
     """True when the axis changed after the column was last read by hand. The
-    date of labels/customer.md cannot answer this - a note about one axis would
-    mark every other column as freshly checked."""
-    axis_commit = axis_last_changed(axis)
-    column_commit = column_passed_against(axis)
+    date of a label file cannot answer this - a note about one axis would mark
+    every other column as freshly checked."""
+    axis_commit = axis_last_changed(axis, audience)
+    column_commit = column_passed_against(axis, audience)
     if not axis_commit or not column_commit:
         return True
-    import subprocess
-
-    return (
-        subprocess.run(
-            ["git", "merge-base", "--is-ancestor", column_commit, axis_commit],
-            cwd=REPO,
-            capture_output=True,
-        ).returncode
-        == 0
-        and axis_commit != column_commit
-    )
+    return _is_ancestor(column_commit, axis_commit) and axis_commit != column_commit
 
 
-def provenance() -> dict:
+def provenance(audience: str = DEFAULT_AUDIENCE) -> dict:
     return {
         "commit": _git("rev-parse", "--short", "HEAD"),
         "dirty": bool(_git("status", "--porcelain")),
-        "rubric_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "rubric-customer.md"),
+        "audience": audience,
+        "rubric_last_changed": _git(
+            "log", "-1", "--follow", "--format=%h %ad", "--date=short", "--", rubric_rel(audience)
+        ),
         "prompt_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "judge/axis-prompt.md"),
-        "labels_last_changed": _git("log", "-1", "--format=%h %ad", "--date=short", "--", "labels/customer.md"),
+        "labels_passed_against": labels_passed_against(audience),
     }
 
 
-def rubric_section(heading: str) -> str:
+def rubric_section(heading: str, audience: str = DEFAULT_AUDIENCE) -> str:
     """One `### AXIS - ...` or `## Units` section of the rubric, verbatim."""
-    text = RUBRIC.read_text(encoding="utf-8")
+    text = rubric_path(audience).read_text(encoding="utf-8")
     pattern = rf"^(#{{2,3}} {re.escape(heading)}[^\n]*\n.*?)(?=^#{{2,3}} |\Z)"
     match = re.search(pattern, text, re.DOTALL | re.MULTILINE)
     if not match:
-        sys.exit(f"section {heading!r} not found in the rubric")
+        sys.exit(f"section {heading!r} not found in {rubric_rel(audience)}")
     return match.group(1).rstrip()
 
 
@@ -159,22 +267,24 @@ def entries(document: str) -> list[str]:
     return found
 
 
-def build_calls() -> list[dict]:
-    manifest = json.loads((CALIBRATION / "manifest.json").read_text(encoding="utf-8"))
-    units = rubric_section("Units")
+def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
+    calibration = calibration_dir(audience)
+    manifest = json.loads((calibration / "manifest.json").read_text(encoding="utf-8"))
+    units = rubric_section("Units", audience)
     system, user_template = prompt_parts()
     calls = []
 
     for case in manifest["cases"]:
-        document = (CALIBRATION / case["document"]).read_text(encoding="utf-8")
+        document = (calibration / case["document"]).read_text(encoding="utf-8")
         facts = ""
         if case.get("facts"):
-            fact_text = (CALIBRATION / case["facts"]).read_text(encoding="utf-8")
+            fact_text = (calibration / case["facts"]).read_text(encoding="utf-8")
             facts = "The fact base for the release:\n\n```text\n" + fact_text.rstrip() + "\n```"
         for axis in DOCUMENT_AXES:
             calls.append(
                 {
                     "id": f"{case['document']}::{axis}",
+                    "audience": audience,
                     "axis": axis,
                     "subject_label": "The document",
                     "subject": document.rstrip(),
@@ -186,12 +296,13 @@ def build_calls() -> list[dict]:
                 }
             )
 
-    base = (CALIBRATION / "base.md").read_text(encoding="utf-8")
+    base = (calibration / "base.md").read_text(encoding="utf-8")
     for i, entry in enumerate(entries(base), start=1):
         for axis in ITEM_AXES:
             calls.append(
                 {
                     "id": f"base.md#entry{i}::{axis}",
+                    "audience": audience,
                     "axis": axis,
                     "subject_label": "The entry",
                     "subject": entry,
@@ -214,7 +325,7 @@ def render(call: dict) -> tuple[str, list[dict]]:
         call["user_template"]
         .replace("{{AXIS_ID}}", call["axis"])
         .replace("{{ALLOWED_VERDICTS}}", verdicts)
-        .replace("{{AXIS_SECTION}}", rubric_section(call["axis"]))
+        .replace("{{AXIS_SECTION}}", rubric_section(call["axis"], call["audience"]))
         .replace("{{FACTS_BLOCK}}", call["facts"])
         .replace("{{SUBJECT_LABEL}}", call["subject_label"])
         .replace("{{SUBJECT}}", call["subject"])
@@ -260,6 +371,7 @@ def cost(usage, model: str) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--audience", default=DEFAULT_AUDIENCE)
     parser.add_argument("--model", default="claude-opus-5")
     parser.add_argument("--effort", default="low", choices=["low", "medium", "high"])
     parser.add_argument("--max-tokens", type=int, default=2000)
@@ -267,10 +379,15 @@ def main() -> None:
     parser.add_argument("--limit", type=int, help="run only the first N calls")
     args = parser.parse_args()
 
-    if not (CALIBRATION / "manifest.json").exists():
-        sys.exit("no calibration set - run tools/build_calibration_set.py first")
+    if not rubric_path(args.audience).exists():
+        sys.exit(f"no rubric at {rubric_rel(args.audience)}")
+    if not (calibration_dir(args.audience) / "manifest.json").exists():
+        sys.exit(
+            f"no calibration set for {args.audience} - run "
+            f"tools/build_calibration_set.py --audience {args.audience} first"
+        )
 
-    calls = build_calls()
+    calls = build_calls(args.audience)
     if args.limit:
         calls = calls[: args.limit]
     client = anthropic.Anthropic()
@@ -337,16 +454,18 @@ def main() -> None:
 
     matched = sum(r["match"] for r in results)
     quoted = sum(r["quote_found"] for r in results)
-    RESULTS.mkdir(parents=True, exist_ok=True)
+    out_dir = results_dir(args.audience)
+    out_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M")
-    out = RESULTS / f"separation-{args.model}-{stamp}.json"
+    out = out_dir / f"separation-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(
             {
                 "model": args.model,
+                "audience": args.audience,
                 "effort": args.effort,
                 "run_at": stamp,
-                "provenance": provenance(),
+                "provenance": provenance(args.audience),
                 "calls": len(results),
                 "matched": matched,
                 "quotes_found_in_subject": quoted,
