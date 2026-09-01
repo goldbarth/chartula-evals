@@ -2,7 +2,7 @@
 
 The shape a rendering is built to.
 
-`rubric-customer.md` says how a rendering is judged; this file says what it is
+`rubric/customer.md` says how a rendering is judged; this file says what it is
 supposed to look like. Form rules live here only, and the rubric points at them
 rather than restating them - two documents describing the same form is how the
 C3 split reading happened.

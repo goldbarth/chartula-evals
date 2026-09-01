@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assemble the calibration documents from the minimal pairs in the rubric.
 
-The texts live in `rubric-customer.md`, section "Minimal pairs", and are read
+The texts live in `rubric/{audience}.md`, section "Minimal pairs", and are read
 from there: the base document from its fenced block, the inserted and replaced
 entries from the block quotes that follow. Only the transformations - where a
 group is inserted, which two entries are swapped - are encoded here, because
@@ -9,7 +9,10 @@ they are instructions in prose that no parser can be trusted with.
 
 Nothing is written by hand twice. Edit the rubric; run this again.
 
-    python3 tools/build_calibration_set.py [--out calibration]
+    python3 tools/build_calibration_set.py [--audience customer] [--out calibration]
+
+One set per audience, written to `{out}/{audience}/`, which is where
+`judge/run_separation.py --audience` reads it from.
 
 Writes one document per case plus `manifest.json`, which carries the axis each
 case is expected to fail. That manifest is the ground truth of the separation
@@ -25,7 +28,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-RUBRIC = REPO / "rubric-customer.md"
+DEFAULT_AUDIENCE = "customer"
 
 SECTION_START = "### Minimal pairs"
 SECTION_END = "### Realistic case"
@@ -154,18 +157,23 @@ def case_b3(base: str, replacement: str) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--audience", default=DEFAULT_AUDIENCE)
     parser.add_argument("--out", default="calibration")
     args = parser.parse_args()
 
-    sec = section(RUBRIC.read_text(encoding="utf-8"))
+    rubric = REPO / "rubric" / f"{args.audience}.md"
+    if not rubric.exists():
+        sys.exit(f"no rubric at rubric/{args.audience}.md")
+
+    sec = section(rubric.read_text(encoding="utf-8"))
     base = base_document(sec)
     blocks = quoted_blocks(sec)
     if len(blocks) < 2:
         sys.exit(f"expected two block quotes in the section, found {len(blocks)}")
     b1_insert, b3_replacement = blocks[0], blocks[1]
 
-    out = REPO / args.out
-    out.mkdir(exist_ok=True)
+    out = REPO / args.out / args.audience
+    out.mkdir(parents=True, exist_ok=True)
 
     cases = {
         "base.md": (base + "\n", None),
@@ -192,7 +200,7 @@ def main() -> None:
     (out / "manifest.json").write_text(
         json.dumps(
             {
-                "source": "rubric-customer.md, section Minimal pairs",
+                "source": f"rubric/{args.audience}.md, section Minimal pairs",
                 "generated": "by tools/build_calibration_set.py - do not edit by hand",
                 "cases": manifest,
             },
