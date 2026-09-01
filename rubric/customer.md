@@ -236,9 +236,19 @@ see that they can. Requiring a symptom there is a misreading of this axis.
 2. Does that clause describe something the reader can observe - a thing that
    happens to them, something they can now do, something they ran into? If yes,
    pass.
-3. If it instead names what was built or altered - a component, a setting, an
+3. If it instead names what was built or altered - a component, an
    implementation, "we added", "support was introduced" - fail.
-4. The test: could the clause be rewritten as "you can now …" or "X happened to
+4. Naming a setting does not fail this axis. "Choose how much detail feeds the
+   notes, in the configuration file" opens on what the reader can now do; that
+   it names the setting they do it with is C4's subject if the naming is too
+   vague to act on, and C5's if the name is a key rather than prose. C1 asks
+   one thing: does the opening say what the reader meets, or what was built.
+5. "The product now does X" is an observation when X is something the reader
+   sees or gets, and it does not become "what was built" by having the product
+   as its subject. "Chartula now writes the customer and product texts into the
+   same file" and "the customer and product texts are now written into the same
+   file" are the same statement.
+6. The test: could the clause be rewritten as "you can now …" or "X happened to
    you when …" without inventing anything that is not already in it? If yes, it
    is an observation, whatever its grammatical shape.
 

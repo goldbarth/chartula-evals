@@ -297,8 +297,12 @@ def main() -> None:
 
     out_dir = sep.results_dir(args.audience)
     out_dir.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M")
-    out = out_dir / f"labelled-{args.model}-{stamp}.json"
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M%S")
+    # The axis and the seconds are both in the name: two runs in the same
+    # minute used to overwrite each other silently, and the run that vanished
+    # had already been paid for.
+    which = args.axis or "all"
+    out = out_dir / f"labelled-{which}-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(
             {

@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-01T1350",
+  "provenance": {
+    "commit": "f20c373",
+    "dirty": true,
+    "audience": "customer",
+    "rubric_last_changed": "0732abe 2026-09-01",
+    "prompt_last_changed": "0732abe 2026-09-01",
+    "labels_passed_against": "c57ec89"
+  },
+  "axes": {
+    "B2": "ce900ac"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 2,
+  "quotes_found_in_subject": 1,
+  "cost_usd": 0.0208,
+  "per_axis": {
+    "B2": {
+      "n": 3,
+      "agree": 2,
+      "human_fail": 3,
+      "caught": 2,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B2",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "",
+      "reason": "The document has no group headings at all (no 'what needs action', 'new', 'changed', 'fixed' labels), so there is no grouping structure to verify against the defined order, making B2 fail.",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "opus-5-out::document::B2",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "### Features",
+      "reason": "Rule 3 requires groups to come only from the defined set (what needs action, new, changed, fixed), but 'Features' is not one of these labels",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B2",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "Only one group (Fix) appears, in a valid position with no empty groups printed and nothing outside the defined set, satisfying rule 1-3 by absence of violation",
+      "agree": false,
+      "quote_found": false
+    }
+  ]
+}

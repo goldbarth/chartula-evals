@@ -456,7 +456,7 @@ def main() -> None:
     quoted = sum(r["quote_found"] for r in results)
     out_dir = results_dir(args.audience)
     out_dir.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M")
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M%S")
     out = out_dir / f"separation-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(

@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-01T1348",
+  "provenance": {
+    "commit": "f20c373",
+    "dirty": true,
+    "audience": "customer",
+    "rubric_last_changed": "0732abe 2026-09-01",
+    "prompt_last_changed": "0732abe 2026-09-01",
+    "labels_passed_against": "c57ec89"
+  },
+  "axes": {
+    "B1": "ce900ac"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 3,
+  "quotes_found_in_subject": 0,
+  "cost_usd": 0.0208,
+  "per_axis": {
+    "B1": {
+      "n": 3,
+      "agree": 3,
+      "human_fail": 0,
+      "caught": 0,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B1",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No entry describes a migration, required rename, or mandatory setting that the reader must act on (per rule 3, no marked entries means pass), so ordering is irrelevant.",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "opus-5-out::document::B1",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No entry asks something of the reader in the sense defined (migration, rename to follow, required setting); all entries describe features or fixes without imposing an obligation, so per rule 3 the axis passes with no marked entries.",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B1",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No entry asks something of the reader (no migration, rename, or required setting), so per rule 3 the axis passes vacuously",
+      "agree": true,
+      "quote_found": false
+    }
+  ]
+}
