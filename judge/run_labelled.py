@@ -39,7 +39,11 @@ sep = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(sep)
 
 ITEM_AXES = ["A1", "C1", "C2", "C3", "C4", "C5"]
-DOCUMENT_AXES = ["B1", "B2", "B3"]
+# A1 is here as well as above: an entry that should not be there is judged
+# against the entry, a change carried by no entry at all against the whole
+# rendering and the fact base. `runs.csv` holds that second verdict and nothing
+# was asking for it.
+DOCUMENT_AXES = ["A1", "B1", "B2", "B3"]
 
 
 def _rows(path: Path) -> list[dict]:
@@ -137,6 +141,8 @@ def build_calls(
                         "human": items[(run, item)]["verdicts"].get(axis, "?"),
                         "subject_label": "The entry",
                         "subject": entry,
+                        # The item half asks about the entry in hand; the facts
+                        # belong to the document call below.
                         "facts": "",
                         "system": system,
                         "user_template": user_template,
@@ -158,7 +164,7 @@ def build_calls(
                     "human": documents[run].get(axis, "?"),
                     "subject_label": "The document",
                     "subject": document,
-                    "facts": "",
+                    "facts": sep.fact_base(audience) if axis in sep.AXIS_NEEDS_FACTS else "",
                     "system": system,
                     "user_template": user_template,
                     "units": units,

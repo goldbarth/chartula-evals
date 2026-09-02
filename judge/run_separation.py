@@ -337,6 +337,24 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
     return calls
 
 
+# A1's missing half asks what has no entry, which is not in the document at any
+# depth: the axis is answerable only against the changes the release was cut
+# from. Every other axis reads the subject alone, and sending facts there would
+# invite a verdict on grounding, which the rubric leaves to the faithfulness
+# check.
+AXIS_NEEDS_FACTS = {"A1"}
+
+
+def fact_base(audience: str = DEFAULT_AUDIENCE) -> str:
+    """The release's changes as the prompt takes them, or "" when none is
+    written down. One release for now, so the path is fixed; a second one turns
+    this into a lookup and nothing else."""
+    path = REPO / "test-runs" / "v0.1.0-facts.md"
+    if not path.exists():
+        return ""
+    return "The changes the release was cut from:\n\n```text\n" + path.read_text(encoding="utf-8").rstrip() + "\n```"
+
+
 # An axis that refers to the output format has to be given that part of the
 # format, or the model is asked about a rule it cannot read. Written down as a
 # rule in rubric/how-a-rubric-is-built.md, and enforced here.
