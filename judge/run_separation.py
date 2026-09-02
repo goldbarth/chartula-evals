@@ -169,6 +169,26 @@ def axis_last_changed(axis: str, audience: str = DEFAULT_AUDIENCE) -> str:
     return history[-1][0] if history else ""
 
 
+def prompt_last_changed(axis: str, audience: str = DEFAULT_AUDIENCE) -> str:
+    """The newest commit that changed anything this axis is judged against.
+
+    An axis is not the whole of what the judge reads: `Units` goes into every
+    prompt beside it, and a column read before Units changed was read against a
+    different question, however untouched its own section is. Comparing against
+    the axis alone left that hole - one edit to Units and no column anywhere
+    would have been reported stale."""
+    return _newest({axis_last_changed(axis, audience), axis_last_changed("Units", audience)} - {""})
+
+
+def rubric_uncommitted(audience: str = DEFAULT_AUDIENCE) -> bool:
+    """True when the rubric in the working tree differs from the last commit.
+
+    The prompt is built from the working tree and staleness is computed from
+    git history, so an uncommitted edit is judged and reported as though it
+    were the committed text."""
+    return bool(_git("status", "--porcelain", "--", rubric_rel(audience)))
+
+
 def _rubric_commits(audience: str, axis: str | None = None) -> set[str]:
     """The `rubric_commit` values in this audience's label rows, for one axis or
     for all of them. The column lives per row: a note written about one axis
@@ -204,10 +224,10 @@ def labels_passed_against(audience: str = DEFAULT_AUDIENCE) -> str:
 
 
 def labels_are_older_than(axis: str, audience: str = DEFAULT_AUDIENCE) -> bool:
-    """True when the axis changed after the column was last read by hand. The
-    date of a label file cannot answer this - a note about one axis would mark
-    every other column as freshly checked."""
-    axis_commit = axis_last_changed(axis, audience)
+    """True when what the axis is judged against changed after the column was
+    last read by hand. The date of a label file cannot answer this - a note
+    about one axis would mark every other column as freshly checked."""
+    axis_commit = prompt_last_changed(axis, audience)
     column_commit = column_passed_against(axis, audience)
     if not axis_commit or not column_commit:
         return True

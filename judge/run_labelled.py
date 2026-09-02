@@ -229,8 +229,9 @@ def main() -> None:
     parser.add_argument(
         "--allow-stale",
         action="store_true",
-        help="judge an axis that changed after the labels were written. The "
-        "result is then a comparison of two rubrics, not of two judgements.",
+        help="judge an axis that changed after the labels were written, or a rubric "
+        "that is not committed. The result is then a comparison of two rubrics, not "
+        "of two judgements.",
     )
     args = parser.parse_args()
 
@@ -243,11 +244,20 @@ def main() -> None:
         calls = calls[: args.limit]
     if not calls:
         sys.exit("nothing to judge with those filters")
+    if sep.rubric_uncommitted(args.audience) and not args.allow_stale:
+        sys.exit(
+            f"{sep.rubric_rel(args.audience)} has uncommitted changes.\n"
+            "The prompt is built from the working tree and staleness is computed from git, so a\n"
+            "run now would be judged against text no commit records and would report itself as\n"
+            "current. Commit the rubric first, or pass --allow-stale and say so in the friction\n"
+            "log."
+        )
+
     axes = sorted({c["axis"] for c in calls})
     stale = [a for a in axes if sep.labels_are_older_than(a, args.audience)]
     print("axis   last changed   labels older than the axis")
     for axis in axes:
-        print(f"{axis:<7}{sep.axis_last_changed(axis, args.audience):<15}{'YES' if axis in stale else 'no'}")
+        print(f"{axis:<7}{sep.prompt_last_changed(axis, args.audience):<15}{'YES' if axis in stale else 'no'}")
     if stale and not args.allow_stale:
         sys.exit(
             f"\n{', '.join(stale)} changed after the rubric_commit those columns carry in\n"
@@ -324,7 +334,7 @@ def main() -> None:
                 "effort": args.effort,
                 "run_at": stamp,
                 "provenance": sep.provenance(args.audience),
-                "axes": {a: sep.axis_last_changed(a, args.audience) for a in axes},
+                "axes": {a: sep.prompt_last_changed(a, args.audience) for a in axes},
                 "judged_stale": stale if args.allow_stale else [],
                 "calls": len(results),
                 "agreed": sum(r["agree"] for r in results),

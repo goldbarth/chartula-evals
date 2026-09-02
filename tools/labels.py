@@ -340,7 +340,7 @@ def check(labels: Labels, report: Report) -> None:
     for axis in sorted(set(ITEM_AXES) | set(RUN_AXES)):
         if not sep.labels_are_older_than(axis, labels.audience):
             continue
-        changed = sep.axis_last_changed(axis, labels.audience)
+        changed = sep.prompt_last_changed(axis, labels.audience)
         halves = [("item", "items.csv"), ("run", "runs.csv")]
         behind = []
         for level, name in halves:
@@ -527,7 +527,7 @@ def worksheet_blocks(labels: Labels, axis: str, want_run: str | None, level: str
 
 
 def write_worksheet(labels: Labels, axis: str, want_run: str | None, level: str, path: Path) -> None:
-    commit = sep.axis_last_changed(axis, labels.audience)
+    commit = sep.prompt_last_changed(axis, labels.audience)
     verdicts = ", ".join(sorted(VERDICTS if axis in sep.NA_AXES else VERDICTS - {"n/a"}))
     rows = labels.run_rows if level == "run" else labels.item_rows
 
@@ -616,7 +616,7 @@ def apply_worksheet(labels: Labels, axis: str, want_run: str | None, level: str,
             + f"\nAllowed: {', '.join(sorted(allowed))}. Nothing was written."
         )
 
-    commit = sep.axis_last_changed(axis, labels.audience)
+    commit = sep.prompt_last_changed(axis, labels.audience)
     if not commit:
         sys.exit("cannot tell which commit last changed this axis - is this a git checkout?")
 

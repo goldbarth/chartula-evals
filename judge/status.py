@@ -52,14 +52,14 @@ def main() -> None:
     print(f"  {'total entries':<26} {sum(runs.values()):>3}")
 
     print("\nAXES")
-    print(f"  {'axis':<6}{'section last changed':<22}{'column passed against':<24}{'comparable now'}")
+    print(f"  {'axis':<6}{'axis or units changed':<23}{'column passed against':<24}{'comparable now'}")
     ready = []
     for axis in AXES:
         stale = sep.labels_are_older_than(axis, audience)
         if not stale:
             ready.append(axis)
         print(
-            f"  {axis:<6}{sep.axis_last_changed(axis, audience):<22}"
+            f"  {axis:<6}{sep.prompt_last_changed(axis, audience):<23}"
             f"{sep.column_passed_against(axis, audience) or '-':<24}"
             f"{'no - re-pass first' if stale else 'yes'}"
         )
