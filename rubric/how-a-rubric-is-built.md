@@ -53,6 +53,16 @@ replaced by one.
 The same holds for examples: they show the procedure being applied. An example
 that can only be recognised by matching its words is not doing any work.
 
+An example taken from a real entry stands for that entry whole. Read the entry
+to its end before it is used: if the procedure decides it the other way once
+the last sentence is in, the example teaches the wrong verdict, and it will be
+recognised by its subject long before anyone reaches the procedure. C4's n/a
+example names a summary printed at the end of every run, and the entry it came
+from closes by handing the reader a decision, so the axis prints n/a beside a
+case its own procedure fails. It is still there: repairing it edits an axis and
+costs that column a re-pass, so it waits in `../docs/parked.md` for a cycle
+where the rubric is open.
+
 ## 3. Every axis states what makes it fail, not only what makes it pass
 
 A procedure that only says when something passes cannot fail anything, and the
@@ -85,9 +95,14 @@ the format in its prompt, or the model is asked about a rule it cannot read.
    asks the same question. A rule added at the bottom does not override the
    five sentences above it - that is how C3 came to have two readings, one in
    its title and one in its last step.
-5. Check the neighbours named in **Does not judge**: does any of them now say
+5. Put every example of the section back through the changed procedure. An
+   example that survives a rewrite untouched is where the old reading goes on
+   living: C4's first rule was rewritten and the justification under its n/a
+   example reworded in the same commit, while the case itself was never
+   re-decided, and it goes on deciding by the rule the axis no longer has.
+6. Check the neighbours named in **Does not judge**: does any of them now say
    something about this axis' question?
-6. Then, and only then, the columns judged against the old text are stale. Re-
+7. Then, and only then, the columns judged against the old text are stale. Re-
    read them, record what moved, and measure.
 
 ## What this does not decide

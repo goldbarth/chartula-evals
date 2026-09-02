@@ -135,6 +135,14 @@ One reason per axis, written into the `note` column of that axis's own row in
 Text that belongs to no single axis (an observation about the whole item, or
 about the run as a whole) goes into a row with `axis` set to `*`.
 
+A reason argues from the entry, and points at the axis rather than repeating
+it. Neither a note nor the worked example in `what-is-labelled.md` restates a
+rule or an example out of the rubric: the copy is what nobody re-reads when the
+rubric changes. C4's n/a example was carried into the worked example word for
+word, so one reading exists in three places and was checked in none: the rubric
+was rewritten around it and both copies go on stating the rule the axis no
+longer has. Recorded in `../docs/parked.md`, because repairing it edits an axis.
+
 ## What the tool does not do
 
 It does not decide a verdict, and it does not read the rubric for you. It does
