@@ -1,16 +1,16 @@
 run,axis,verdict,rubric_commit,note
 sonnet-5-no-thinking-out,*,,,"Every new feature or change was completely omitted from the customer section, and only fixes were listed. The Lenght of the only two items, sn5-01 and sn5-02, where too long."
-sonnet-5-no-thinking-out,A1,fail,9d61351,"half two, read against missing.md: every feature of the release is absent, only the two fixes are carried."
-sonnet-5-no-thinking-out,B1,pass,ce900ac,"no entry asks anything of the reader - two fixes with nothing to set - so rule 3 passes; that every feature is missing is A1's finding, not an order one."
-sonnet-5-no-thinking-out,B2,fail,ce900ac,
-sonnet-5-no-thinking-out,B3,fail,1f94446,
+sonnet-5-no-thinking-out,A1,fail,57f2900,"half two, read against missing.md: every feature of the release is absent, only the two fixes are carried."
+sonnet-5-no-thinking-out,B1,pass,57f2900,"no entry asks anything of the reader - two fixes with nothing to set - so rule 3 passes; that every feature is missing is A1's finding, not an order one."
+sonnet-5-no-thinking-out,B2,fail,57f2900,"no group heading at all - the text begins with ""Fix: two release-blocking bugs found while testing v0.1.0 against this repository."", then two bullet points, then body text (""Verified against a real run..."", ""A related issue remains open...""). Nothing that could be matched to a group set the format defines, which is rule 4."
+sonnet-5-no-thinking-out,B3,fail,57f2900,
 sonnet-5-out,*,,,"The Items wherent grouped at all. The length of the items were in general 3-5 sentences, and s5-04, s5-13, s5-15 and s5-21 keep going after their outcome is stated - counted here under B3 rule 1, not on C3. The opening of the document has the ""Preview Changelog"" note and version, anything else was missing."
-sonnet-5-out,A1,fail,9d61351,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry. Rule 7 - several omissions would still be one verdict."
-sonnet-5-out,B1,pass,ce900ac,"read against ce900ac - no entry is marked. The release carries no breaking change and every setting the run names is optional, so rule 3 passes; the absent groups are B2's finding."
-sonnet-5-out,B2,fail,ce900ac,
-sonnet-5-out,B3,fail,1f94446,
+sonnet-5-out,A1,fail,57f2900,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry. Rule 7 - several omissions would still be one verdict."
+sonnet-5-out,B1,pass,57f2900,"no entry is marked. The release carries no breaking change and every setting the run names is optional, so rule 3 passes; the absent groups are B2's finding."
+sonnet-5-out,B2,fail,57f2900,"lines 285-312 are nothing but `- **Title**: ...` lines, without a single group heading - the axis's own fail example, ""a rendering that is one flat list of bullets with no headings"". Rule 4 decides it: ""A document with no group headings at all fails: it cannot satisfy rule 1."""
+sonnet-5-out,B3,fail,57f2900,
 opus-5-out,*,,,"For B3 when it is judged: o5-01, o5-02, o5-03, o5-11, o5-12, o5-15 and o5-22 keep going after their outcome is stated - a length finding here, not on C3."
-opus-5-out,A1,fail,9d61351,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry."
-opus-5-out,B1,pass,ce900ac,"read against ce900ac - no entry is marked. That o5-01 requires `--repo` is how the command is reached, which the axis excludes, and nothing has to be set for anything to keep working, so rule 3 passes."
-opus-5-out,B2,fail,ce900ac,
-opus-5-out,B3,fail,1f94446,
+opus-5-out,A1,fail,57f2900,"half two, read against missing.md: the documentation pass (#69) is observable and carried by no entry."
+opus-5-out,B1,pass,57f2900,"no entry is marked. That o5-01 requires `--repo` is how the command is reached, which the axis excludes, and nothing has to be set for anything to keep working, so rule 3 passes."
+opus-5-out,B2,fail,57f2900,"the only one of the three renderings with group headings: ### Features, followed by ### Fixes. The document begins directly on ### Features - there is nothing before the first group heading, so the opening the format requires is missing. Rule 3: ""Compare the document's opening with what the format requires of it for the serialisation at hand. A missing or incomplete opening is a fail."" Rule 2 fails it as well and on its own: neither Features nor Fixes is in the set the format defines."
+opus-5-out,B3,fail,57f2900,
