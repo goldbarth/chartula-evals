@@ -138,14 +138,18 @@ never by the dependency.*
 every entry that does not.
 
 **Does not judge:** whether an entry says clearly enough what to do - that is
-C4 - nor which group an entry sits in, which is B2. Both axes use the same test
-for what counts as asking something; B1 asks where it stands, C4 asks whether
-it is stated.
+C4 - nor which group an entry sits in, which is B2. C4's gate is the wider one:
+an optional setting opens C4 and is never marked here. B1 asks where a marked
+entry stands; C4 asks whether what an entry offers the reader is reachably
+named.
 
-An entry asks something when not doing it costs the reader: their setup stops
-working, their output changes under them, they have to move or rename
-something. An optional setting, or where a new feature can be reached, costs
-them nothing if ignored.
+An entry asks something when the entry itself says that ignoring it costs the
+reader: their setup stops working, their output changes under them, they have
+to move or rename something. Read the entry, not the release: an entry that
+contrasts with an earlier arrangement states that the arrangement existed, and
+whether it really did is the faithfulness check's question, not this axis'. An
+optional setting, or where a new feature can be reached, costs the reader
+nothing if ignored, and is C4's business rather than this axis'.
 
 **Decision procedure**
 
@@ -386,18 +390,22 @@ restates the negative event of slot 1. C1, C2, C4 and C5 all pass on that item.
 
 ### C4 - Action explicit
 
-**Judges:** whether an entry that requires something of the reader says what,
-concretely enough to act on.
+**Judges:** whether an entry that puts something to the reader - a step, a
+setting, a decision - says what, concretely enough to act on.
 
 **Does not judge:** where that entry stands in the document - B1 - nor whether
-the name it uses is prose or a raw key, which is C5. B1 and C4 use the same
-test for what counts as requiring something; B1 asks where it stands, C4 asks
-whether it is stated.
+the name it uses is prose or a raw key, which is C5. B1 marks only what costs
+the reader if ignored; C4 opens on anything the entry offers them, optional
+settings included, so this gate is the wider of the two.
 
 **Decision procedure**
 
-1. Does this change require anything of the reader - is there something they
-   pay for not doing, or a step without which the change does not reach them?
+1. Does the entry state something the reader has to do or could do - a step
+   without which the change does not reach them, a setting they can change, a
+   decision that is now theirs? Read the entry: a requirement the change
+   carries and the entry never mentions is not reachable from the text, and is
+   in the Open list. This gate is wider than B1's - an optional setting a
+   reader may ignore opens C4 and is never marked by B1.
 2. If not, C4 is **n/a**. Not a pass, not a fail: there is no action to
    withhold, and a line saying so is allowed but never demanded.
 3. If yes, the entry names it, and a reader could act on the naming without
@@ -646,6 +654,14 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 - Feature and breaking-change items have no labelled reference case yet; the
   slot table is derived from best practice, not observed in a run. v0.1.0
   carries no breaking change, so that half is not reachable from this release.
+- A requirement the change carries and the entry never states - a credential,
+  an account, a one-time setup - is reachable from neither axis. B1 and C4 both
+  read the entry, and the call carries the document alone. `s5-06` and `s5-14`
+  are the observed cases: the release notes reach GitHub and the text reaches
+  the model only if a credential exists, and neither entry says so. Widening C4
+  to cover it would ask the judge for something the prompt does not contain,
+  which rule 4 of `how-a-rubric-is-built.md` forbids. The fix is the fact base
+  that A1's second half needs anyway, and it belongs to that phase.
 - C5 is applied on a corpus where the product it judges is the tool the entries
   describe. It is judgeable there and not cleanly measurable; see the corpus
   note in the friction log.
