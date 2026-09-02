@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-02T120659",
+  "provenance": {
+    "commit": "f8443fb",
+    "dirty": false,
+    "audience": "customer",
+    "rubric_last_changed": "a5a1c68 2026-09-01",
+    "prompt_last_changed": "a5a1c68 2026-09-01",
+    "labels_passed_against": "57f2900"
+  },
+  "axes": {
+    "B1": "57f2900"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 2,
+  "quotes_found_in_subject": 1,
+  "cost_usd": 0.0285,
+  "per_axis": {
+    "B1": {
+      "n": 3,
+      "agree": 2,
+      "human_fail": 0,
+      "caught": 0,
+      "false_fail": 1
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B1",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "fail",
+      "quote": "**All audience texts saved in `changelog.json`**: The customer-facing and product-manager texts are now stored alongside the technical version inside `changelog.json`, instead of being written as separate files in your repository.",
+      "reason": "This entry describes a breaking change (removal of separately written files that existing setups may depend on) yet it is placed below four entries that ask nothing of the reader, violating rule 4/5 of the decision procedure.",
+      "agree": false,
+      "quote_found": true
+    },
+    {
+      "id": "opus-5-out::document::B1",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No entry describes a breaking change, required migration, or renamed/moved setup that costs the reader if ignored, so no entries are marked and rule 3 applies: pass.",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B1",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "Neither entry asks the reader to do anything that costs them if ignored (both describe fixed bugs, no migration/config action required), so no entries are marked and B1 passes per rule 3",
+      "agree": true,
+      "quote_found": false
+    }
+  ]
+}
