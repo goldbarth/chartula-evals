@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-02T144337",
+  "provenance": {
+    "commit": "573f374",
+    "dirty": true,
+    "audience": "customer",
+    "rubric_last_changed": "47b5f34 2026-09-02",
+    "prompt_last_changed": "a5a1c68 2026-09-01",
+    "labels_passed_against": "7213389"
+  },
+  "axes": {
+    "B2": "a5a1c68"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 3,
+  "quotes_found_in_subject": 2,
+  "cost_usd": 0.0235,
+  "per_axis": {
+    "B2": {
+      "n": 3,
+      "agree": 3,
+      "human_fail": 3,
+      "caught": 3,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B2",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "",
+      "reason": "The document is a flat list of bullets with no group headings at all, violating rule 4",
+      "agree": true,
+      "quote_found": false
+    },
+    {
+      "id": "opus-5-out::document::B2",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "### Features",
+      "reason": "Rule 1/2: the document uses group headings 'Features' and 'Fixes' which are not the names the format defines (What's New, Bug Fixes, etc.), so the groups do not match the defined set.",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B2",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B2",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "Fix: two release-blocking bugs found while testing v0.1.0 against this repository.",
+      "reason": "The document has no group headings at all (rule 4), only a connective lead-in line, so it cannot satisfy rule 1's ordering requirement.",
+      "agree": true,
+      "quote_found": true
+    }
+  ]
+}

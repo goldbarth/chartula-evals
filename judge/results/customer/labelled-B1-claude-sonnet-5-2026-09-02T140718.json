@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-02T140718",
+  "provenance": {
+    "commit": "c294947",
+    "dirty": false,
+    "audience": "customer",
+    "rubric_last_changed": "47b5f34 2026-09-02",
+    "prompt_last_changed": "a5a1c68 2026-09-01",
+    "labels_passed_against": "7213389"
+  },
+  "axes": {
+    "B1": "47b5f34"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 2,
+  "quotes_found_in_subject": 1,
+  "cost_usd": 0.0306,
+  "per_axis": {
+    "B1": {
+      "n": 3,
+      "agree": 2,
+      "human_fail": 2,
+      "caught": 1,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B1",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "All audience texts saved in `changelog.json`**: The customer-facing and product-manager texts are now stored alongside the technical version inside `changelog.json`, instead of being written as separate files in your repository.",
+      "reason": "This entry states that previously separate files were produced and are no longer, meaning a reader relying on those files loses them \u2014 a cost of ignoring the change \u2014 yet it sits well below several unmarked entries, violating rule 4 of the decision procedure.",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "opus-5-out::document::B1",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "fail",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "No entry states that ignoring it costs the reader (broken setup, changed output, required rename/move), so per rule 3 there are no marked entries and the axis passes.",
+      "agree": false,
+      "quote_found": false
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B1",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B1",
+      "human": "pass",
+      "verdict": "pass",
+      "quote": "",
+      "reason": "Neither entry requires the reader to act or lose something by ignoring it (rule 2), so no entries are marked and rule 3 applies: pass.",
+      "agree": true,
+      "quote_found": false
+    }
+  ]
+}

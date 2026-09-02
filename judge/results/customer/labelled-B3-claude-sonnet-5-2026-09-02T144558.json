@@ -1,0 +1,69 @@
+{
+  "model": "claude-sonnet-5",
+  "audience": "customer",
+  "effort": "low",
+  "run_at": "2026-09-02T144558",
+  "provenance": {
+    "commit": "573f374",
+    "dirty": true,
+    "audience": "customer",
+    "rubric_last_changed": "47b5f34 2026-09-02",
+    "prompt_last_changed": "a5a1c68 2026-09-01",
+    "labels_passed_against": "7213389"
+  },
+  "axes": {
+    "B3": "a5a1c68"
+  },
+  "judged_stale": [],
+  "calls": 3,
+  "agreed": 3,
+  "quotes_found_in_subject": 3,
+  "cost_usd": 0.03,
+  "per_axis": {
+    "B3": {
+      "n": 3,
+      "agree": 3,
+      "human_fail": 3,
+      "caught": 3,
+      "false_fail": 0
+    }
+  },
+  "results": [
+    {
+      "id": "sonnet-5-out::document::B3",
+      "run": "sonnet-5-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "Chartula now reads settings from a `chartula.yaml` file (or `.yml`), letting you customize behavior without touching code. The tool still works with no configuration file at all, using sensible defaults. A minimal example file is included; full documentation covers every option. Configuration mistakes now show a clear error message instead of crashing.",
+      "reason": "This entry contains four or more sentences, which rule 1 marks as a fail regardless of content quality.",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "opus-5-out::document::B3",
+      "run": "opus-5-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "Run `chartula preview` or `chartula generate` with `--tag` and `--repo <owner/name>`. `generate` writes `changelog.json`, `CHANGELOG.md` and the GitHub release notes; `preview` runs the identical flow, including generation, so you see the real result, but writes and publishes nothing. Both print a usage screen, a readable per-audience summary, and clear messages for unknown commands, a missing `--tag` or an invalid `--repo` instead of crashing. `--repo` must be given explicitly for now, and review mode uses the auto-approve reviewer until the interactive console reviewer is built.",
+      "reason": "This entry runs four sentences, which rule 1 of the decision procedure marks a fail regardless of content quality.",
+      "agree": true,
+      "quote_found": true
+    },
+    {
+      "id": "sonnet-5-no-thinking-out::document::B3",
+      "run": "sonnet-5-no-thinking-out",
+      "item": "document",
+      "axis": "B3",
+      "human": "fail",
+      "verdict": "fail",
+      "quote": "Generated text could be cut off mid-sentence. Requests to the language model didn't set an output length limit, so the provider silently applied its own default and truncated all three audience texts. This failed quietly \u2014 the run reported success, and the thorough check spent tens of thousands of tokens flagging the cut-off text as an unsupported claim, when the real problem was truncation. The output limit is now always set explicitly, configurable via `llm.maxOutputTokens`, defaulting to 16000.",
+      "reason": "This entry has four sentences, which rule 1 marks as a fail regardless of content quality.",
+      "agree": true,
+      "quote_found": true
+    }
+  ]
+}
