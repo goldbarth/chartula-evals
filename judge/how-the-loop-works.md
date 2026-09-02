@@ -39,6 +39,11 @@ as freshly checked the moment a note was written about one of them.
 
     python3 judge/status.py
 
+The runners in this folder call the API and want the interpreter the SDK is
+installed on - `.venv/bin/python3 judge/run_labelled.py ...`, or the virtualenv
+activated. Everything that only reads the files, `status.py` and
+`tools/labels.py`, runs on a plain `python3`.
+
 That prints, per axis, when its section last changed and whether the labels are
 older than it. `run_labelled.py` refuses to judge an axis whose labels are
 older, unless `--allow-stale` is passed and the reason is recorded.

@@ -393,7 +393,17 @@ def cost(usage, model: str) -> float:
 
 
 def main() -> None:
-    import anthropic
+    try:
+        import anthropic
+    except ModuleNotFoundError:
+        sys.exit(
+            "the anthropic SDK is not on this interpreter, and run_separation.py needs it to make "
+            "a call.\n"
+            "    .venv/bin/python3 judge/run_separation.py ...\n"
+            "or install it here: python3 -m pip install -r judge/requirements.txt\n"
+            "Everything that only reads the files - status.py, tools/labels.py - runs "
+            "without it."
+        )
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=DEFAULT_AUDIENCE)

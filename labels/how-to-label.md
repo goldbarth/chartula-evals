@@ -22,7 +22,8 @@ Read, in this order:
    scored on every axis with the reason spelled out.
 
 `python3` and a git checkout are all `tools/labels.py` needs. No API key, and
-no virtualenv - those are for the judge in `judge/`, not for labelling.
+no virtualenv - those are for the judge in `judge/`, whose runners want
+`.venv/bin/python3`, not for labelling.
 
 ## A pass, start to finish
 
