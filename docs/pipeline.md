@@ -19,7 +19,7 @@ work. It had no exit.
 | The four moves and the staleness invariant | [`../judge/how-the-loop-works.md`](../judge/how-the-loop-works.md) |
 | What an axis may be | [`../rubric/how-a-rubric-is-built.md`](../rubric/how-a-rubric-is-built.md) |
 | How one pass is carried out | [`../labels/how-to-label.md`](../labels/how-to-label.md) |
-| Where this project currently stands in the stages | [`../PLAN.md`](../PLAN.md) |
+| Where this project currently stands in the stages | `PLAN.md`, kept out of the repository |
 
 This file says when a stage is over. It does not restate how the work inside a
 stage is done.
