@@ -1,322 +1,322 @@
 run,item,kind,axis,verdict,rubric_commit,note
 sonnet-5-out,s5-01,feature,*,,,"Reasons for every axis are in the worked example above, not repeated here."
-sonnet-5-out,s5-01,feature,A1,pass,57f2900,reader runs `preview` or `generate` and sees the metrics report printed at the end of the run.
-sonnet-5-out,s5-01,feature,C1,pass,57f2900,
-sonnet-5-out,s5-01,feature,C2,pass,57f2900,
-sonnet-5-out,s5-01,feature,C3,pass,57f2900,
-sonnet-5-out,s5-01,feature,C4,n/a,57f2900,
-sonnet-5-out,s5-01,feature,C5,fail,57f2900,
-sonnet-5-out,s5-02,feature,A1,pass,57f2900,"reader edits the `categories` section in `chartula.yaml` and sees category order, display names, or breaking prominence change in the rendered output."
-sonnet-5-out,s5-02,feature,C1,fail,57f2900,"opens with ""Added a categories section to chartula.yaml"" (mechanism, not observation). ""you can now add a categories section"" makes no sense."
-sonnet-5-out,s5-02,feature,C2,pass,57f2900,
-sonnet-5-out,s5-02,feature,C3,fail,57f2900,no outcome beyond enumerating settings.
-sonnet-5-out,s5-02,feature,C4,pass,57f2900,"names the section and the file, concrete enough to act on."
-sonnet-5-out,s5-02,feature,C5,fail,57f2900,"""categories"" named as a raw key, not framed in prose."
-sonnet-5-out,s5-03,feature,A1,pass,57f2900,"reader adds a `chartula.yaml` file and sees the tool's behaviour change, or sees the new `Configuration error:` message on a mistake."
-sonnet-5-out,s5-03,feature,C1,pass,57f2900,
-sonnet-5-out,s5-03,feature,C2,pass,57f2900,
-sonnet-5-out,s5-03,feature,C3,fail,57f2900,"""letting you customize behavior without touching code"" is slot 1 rephrased, not a step out; strip slot 1 and only ""clear error message instead of crashing"" is left. The rubric's observed C3 minimal pair."
-sonnet-5-out,s5-03,feature,C4,pass,57f2900,
-sonnet-5-out,s5-03,feature,C5,pass,57f2900,
-sonnet-5-out,s5-04,feature,A1,pass,57f2900,reader runs `chartula preview` or `chartula generate` directly - the commands themselves are what they meet.
-sonnet-5-out,s5-04,feature,C1,pass,57f2900,
-sonnet-5-out,s5-04,feature,C2,pass,57f2900,
-sonnet-5-out,s5-04,feature,C3,pass,57f2900,"""so you can see the result first"" is a consequence one step out - pass on substance; the trailing feedback sentence is counted under B3."
-sonnet-5-out,s5-04,feature,C4,pass,57f2900,both commands are named.
-sonnet-5-out,s5-04,feature,C5,pass,57f2900,
-sonnet-5-out,s5-05,feature,A1,pass,57f2900,"reader opens `changelog.json` and finds the customer and PM texts inside it, where separate files used to be."
-sonnet-5-out,s5-05,feature,C1,pass,57f2900,
-sonnet-5-out,s5-05,feature,C2,pass,57f2900,
-sonnet-5-out,s5-05,feature,C3,fail,57f2900,"fails on substance, not on position (""instead of being written as separate files..."") restates the location contrast, no ""so you can..."" payoff."
-sonnet-5-out,s5-05,feature,C4,pass,57f2900,the file the texts now live in is named.
-sonnet-5-out,s5-05,feature,C5,pass,57f2900,
-sonnet-5-out,s5-06,feature,A1,pass,57f2900,reader opens the GitHub release page and sees the generated notes written or updated there.
-sonnet-5-out,s5-06,feature,C1,pass,57f2900,
-sonnet-5-out,s5-06,feature,C2,pass,57f2900,
-sonnet-5-out,s5-06,feature,C3,pass,57f2900,
-sonnet-5-out,s5-06,feature,C4,n/a,57f2900,the entry states no requirement of the reader; nothing here is announced as needing setup.
-sonnet-5-out,s5-06,feature,C5,pass,57f2900,
-sonnet-5-out,s5-07,feature,A1,pass,57f2900,reader opens `CHANGELOG.md` and sees a new section appended at the top on each release.
-sonnet-5-out,s5-07,feature,C1,pass,57f2900,
-sonnet-5-out,s5-07,feature,C2,pass,57f2900,
-sonnet-5-out,s5-07,feature,C3,pass,57f2900,
-sonnet-5-out,s5-07,feature,C4,n/a,57f2900,"n/a - happens with each release, nothing to enable; the file is named."
-sonnet-5-out,s5-07,feature,C5,pass,57f2900,
-sonnet-5-out,s5-08,feature,A1,pass,57f2900,"reader enables the review step and is shown generated text, with flagged passages, for approval before it publishes."
-sonnet-5-out,s5-08,feature,C1,pass,57f2900,
-sonnet-5-out,s5-08,feature,C2,pass,57f2900,
-sonnet-5-out,s5-08,feature,C3,pass,57f2900,
-sonnet-5-out,s5-08,feature,C4,fail,57f2900,"""You can now enable a review step"" plus ""off by default"" announces the option and never says where it is turned on."
-sonnet-5-out,s5-08,feature,C5,pass,57f2900,
-sonnet-5-out,s5-09,feature,A1,pass,57f2900,reader encounters a flagged meaning-level mistake (a fix reworded as something more severe) that the plain check alone would have missed.
-sonnet-5-out,s5-09,feature,C1,fail,57f2900,"opens with ""Added an optional second-pass check"" - names the mechanism, not what the user observes."
-sonnet-5-out,s5-09,feature,C2,pass,57f2900,
-sonnet-5-out,s5-09,feature,C3,pass,57f2900,
-sonnet-5-out,s5-09,feature,C4,fail,57f2900,"""can be turned off"" without saying where."
-sonnet-5-out,s5-09,feature,C5,pass,57f2900,
-sonnet-5-out,s5-10,feature,A1,pass,57f2900,"reader sees a flagged made-up number, invented name, or unbacked breaking claim in the generated text."
-sonnet-5-out,s5-10,feature,C1,fail,57f2900,"opens with ""Added a lightweight check"" (mechanism)."
-sonnet-5-out,s5-10,feature,C2,pass,57f2900,
-sonnet-5-out,s5-10,feature,C3,fail,57f2900,"closing (""doesn't use the AI model at all"") restates mechanism."
-sonnet-5-out,s5-10,feature,C4,n/a,57f2900,"n/a - always on, nothing to switch."
-sonnet-5-out,s5-10,feature,C5,pass,57f2900,
-sonnet-5-out,s5-11,feature,A1,pass,57f2900,"reader sees consistent bullet style, spacing, and voice across entries in the rendered changelog, regardless of how the source PRs were written."
-sonnet-5-out,s5-11,feature,C1,pass,57f2900,
-sonnet-5-out,s5-11,feature,C2,pass,57f2900,
-sonnet-5-out,s5-11,feature,C3,fail,57f2900,"no forward outcome - ends describing robustness, not what this lets you skip."
-sonnet-5-out,s5-11,feature,C4,n/a,57f2900,n/a - automatic.
-sonnet-5-out,s5-11,feature,C5,pass,57f2900,
-sonnet-5-out,s5-12,feature,A1,pass,57f2900,"reader receives three renderings (technical, customer, PM) of the same release that never contradict each other."
-sonnet-5-out,s5-12,feature,C1,pass,57f2900,
-sonnet-5-out,s5-12,feature,C2,pass,57f2900,
-sonnet-5-out,s5-12,feature,C3,pass,57f2900,
-sonnet-5-out,s5-12,feature,C4,n/a,57f2900,"n/a - all three versions are always generated, nothing to enable."
-sonnet-5-out,s5-12,feature,C5,pass,57f2900,
-sonnet-5-out,s5-13,feature,A1,pass,57f2900,reader sees generated text stay brief on a thin fact instead of being padded with invented detail.
-sonnet-5-out,s5-13,feature,C1,fail,57f2900,"opens with ""Reworked how instructions are sent to the AI model"" (mechanism)."
-sonnet-5-out,s5-13,feature,C2,pass,57f2900,
-sonnet-5-out,s5-13,feature,C3,pass,57f2900,"""only rephrases the given facts and never invents details"" is what can be trusted - pass on substance; the trailing brevity sentence is B3."
-sonnet-5-out,s5-13,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-13,feature,C5,pass,57f2900,
-sonnet-5-out,s5-14,feature,A1,pass,57f2900,"reader runs the tool and receives actual generated changelog text as output, instead of a stub or a crash."
-sonnet-5-out,s5-14,feature,C1,pass,57f2900,
-sonnet-5-out,s5-14,feature,C2,pass,57f2900,
-sonnet-5-out,s5-14,feature,C3,fail,57f2900,"fails on substance, not on position (""handled gracefully instead of crashing"") restates the negative event."
-sonnet-5-out,s5-14,feature,C4,n/a,57f2900,the entry states no requirement; no key or setup is mentioned here (contrast s5-25).
-sonnet-5-out,s5-14,feature,C5,pass,57f2900,
-sonnet-5-out,s5-15,feature,A1,pass,57f2900,reader opens `changelog.json` and finds the release's facts recorded there.
-sonnet-5-out,s5-15,feature,C1,pass,57f2900,
-sonnet-5-out,s5-15,feature,C2,pass,57f2900,
-sonnet-5-out,s5-15,feature,C3,pass,57f2900,"""durable, machine-readable record that can also feed future outputs"" is a real outcome - pass; the format-and-versioning footnote behind it is B3."
-sonnet-5-out,s5-15,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-15,feature,C5,pass,57f2900,
-sonnet-5-out,s5-16,feature,A1,pass,57f2900,"reader sets the detail-level option and sees more or less source detail (description, linked issues) reflected in generated entries."
-sonnet-5-out,s5-16,feature,C1,pass,57f2900,
-sonnet-5-out,s5-16,feature,C2,pass,57f2900,
-sonnet-5-out,s5-16,feature,C3,fail,57f2900,"closing (""default is title plus description"") states a setting value, not a consequence."
-sonnet-5-out,s5-16,feature,C4,fail,57f2900,"""You can now configure how much information..."" without saying where it is configured."
-sonnet-5-out,s5-16,feature,C5,pass,57f2900,
-sonnet-5-out,s5-17,feature,A1,pass,57f2900,"reader sees the resulting changelog draw on PR data, categorisation, and any label overrides together - a complete release, not a partial one."
-sonnet-5-out,s5-17,feature,C1,pass,57f2900,
-sonnet-5-out,s5-17,feature,C2,pass,57f2900,
-sonnet-5-out,s5-17,feature,C3,fail,57f2900,"""ready to feed into generation"" restates internal process purpose, not a user-facing consequence."
-sonnet-5-out,s5-17,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-17,feature,C5,pass,57f2900,
-sonnet-5-out,s5-18,feature,A1,pass,57f2900,"reader sees generated entries stick to the real title, category, breaking flag, and linked issues - nothing invented in the text they read."
-sonnet-5-out,s5-18,feature,C1,pass,57f2900,
-sonnet-5-out,s5-18,feature,C2,pass,57f2900,
-sonnet-5-out,s5-18,feature,C3,pass,57f2900,"""ensuring nothing in the generated text is made up"" is what can be trusted - pass on substance; that it duplicates s5-13's promise is a document-level finding, not C3."
-sonnet-5-out,s5-18,feature,C4,n/a,57f2900,
-sonnet-5-out,s5-18,feature,C5,pass,57f2900,
-sonnet-5-out,s5-19,feature,A1,pass,57f2900,reader notices internal and maintenance-only changes missing from the changelog by default.
-sonnet-5-out,s5-19,feature,C1,fail,57f2900,"opens with the internal categorization (""Internal and maintenance-only changes"")."
-sonnet-5-out,s5-19,feature,C2,pass,57f2900,
-sonnet-5-out,s5-19,feature,C3,fail,57f2900,"no outcome anywhere, closes on an edge-case caveat - fails on substance, not on position."
-sonnet-5-out,s5-19,feature,C4,fail,57f2900,"""This can be customized"" without saying where."
-sonnet-5-out,s5-19,feature,C5,pass,57f2900,
-sonnet-5-out,s5-20,feature,A1,pass,57f2900,"reader applies a GitHub label and sees the corresponding PR excluded, recategorised, or the changelog restricted to labelled PRs."
-sonnet-5-out,s5-20,feature,C1,pass,57f2900,
-sonnet-5-out,s5-20,feature,C2,pass,57f2900,
-sonnet-5-out,s5-20,feature,C3,fail,57f2900,"closes on a no-op clarification (""no effect if you don't use labels""), no outcome stated."
-sonnet-5-out,s5-20,feature,C4,fail,57f2900,"""all configurable"" without naming the setting or the labels."
-sonnet-5-out,s5-20,feature,C5,pass,57f2900,
-sonnet-5-out,s5-21,feature,A1,pass,57f2900,"reader sees each entry categorised (feature, fix, performance, etc.) in the rendered changelog."
-sonnet-5-out,s5-21,feature,C1,pass,57f2900,
-sonnet-5-out,s5-21,feature,C2,pass,57f2900,
-sonnet-5-out,s5-21,feature,C3,pass,57f2900,"""so the kind of change is never guessed by the model"" is an outcome - pass; the breaking-change detail behind it is B3."
-sonnet-5-out,s5-21,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-21,feature,C5,pass,57f2900,
-sonnet-5-out,s5-22,feature,A1,pass,57f2900,"reader still gets a changelog produced, instead of a failed run, when PR titles are missing or unhelpful."
-sonnet-5-out,s5-22,feature,C1,pass,57f2900,"rewrites cleanly: ""you can now get output even when PR titles are missing, since it falls back to commit messages rather than failing."""
-sonnet-5-out,s5-22,feature,C2,pass,57f2900,
-sonnet-5-out,s5-22,feature,C3,fail,57f2900,"fails on substance, not on position with negation (""rather than failing"")."
-sonnet-5-out,s5-22,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-22,feature,C5,pass,57f2900,
-sonnet-5-out,s5-23,feature,A1,fail,57f2900,describes an internal data-source change (PR API vs. raw commits) with no user-observable output difference - belongs in the technical rendering.
-sonnet-5-out,s5-23,feature,C1,pass,57f2900,
-sonnet-5-out,s5-23,feature,C2,pass,57f2900,
-sonnet-5-out,s5-23,feature,C3,fail,57f2900,"closes on a source contrast, not an outcome."
-sonnet-5-out,s5-23,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-23,feature,C5,pass,57f2900,
-sonnet-5-out,s5-24,feature,A1,pass,57f2900,"reader running their very first release notices it succeeds and shows the right commits, without needing a previous tag."
-sonnet-5-out,s5-24,feature,C1,pass,57f2900,
-sonnet-5-out,s5-24,feature,C2,pass,57f2900,
-sonnet-5-out,s5-24,feature,C3,fail,57f2900,no consequence stated (e.g. the changelog never omits or double-counts changes) - ends on the first-release edge case.
-sonnet-5-out,s5-24,feature,C4,n/a,57f2900,n/a.
-sonnet-5-out,s5-24,feature,C5,pass,57f2900,
-sonnet-5-out,s5-25,feature,A1,fail,57f2900,"internal scaffolding (""added the underlying support...""), not observable behaviour distinct from s5-14."
-sonnet-5-out,s5-25,feature,C1,fail,57f2900,opens naming the internal work.
-sonnet-5-out,s5-25,feature,C2,pass,57f2900,
-sonnet-5-out,s5-25,feature,C3,fail,57f2900,closes on an env-var detail.
-sonnet-5-out,s5-25,feature,C4,fail,57f2900,setup exists (provider key) and neither variable nor reference is named.
-sonnet-5-out,s5-25,feature,C5,pass,57f2900,
+sonnet-5-out,s5-01,feature,A1,pass,a5a1c68,reader runs `preview` or `generate` and sees the metrics report printed at the end of the run.
+sonnet-5-out,s5-01,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-01,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-01,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-01,feature,C4,n/a,7213389,
+sonnet-5-out,s5-01,feature,C5,fail,a5a1c68,
+sonnet-5-out,s5-02,feature,A1,pass,a5a1c68,"reader edits the `categories` section in `chartula.yaml` and sees category order, display names, or breaking prominence change in the rendered output."
+sonnet-5-out,s5-02,feature,C1,fail,a5a1c68,"opens with ""Added a categories section to chartula.yaml"" (mechanism, not observation). ""you can now add a categories section"" makes no sense."
+sonnet-5-out,s5-02,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-02,feature,C3,fail,a5a1c68,no outcome beyond enumerating settings.
+sonnet-5-out,s5-02,feature,C4,pass,7213389,"names the section and the file, concrete enough to act on."
+sonnet-5-out,s5-02,feature,C5,fail,a5a1c68,"""categories"" named as a raw key, not framed in prose."
+sonnet-5-out,s5-03,feature,A1,pass,a5a1c68,"reader adds a `chartula.yaml` file and sees the tool's behaviour change, or sees the new `Configuration error:` message on a mistake."
+sonnet-5-out,s5-03,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-03,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-03,feature,C3,fail,a5a1c68,"""letting you customize behavior without touching code"" is slot 1 rephrased, not a step out; strip slot 1 and only ""clear error message instead of crashing"" is left. The rubric's observed C3 minimal pair."
+sonnet-5-out,s5-03,feature,C4,pass,7213389,
+sonnet-5-out,s5-03,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-04,feature,A1,pass,a5a1c68,reader runs `chartula preview` or `chartula generate` directly - the commands themselves are what they meet.
+sonnet-5-out,s5-04,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-04,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-04,feature,C3,pass,a5a1c68,"""so you can see the result first"" is a consequence one step out - pass on substance; the trailing feedback sentence is counted under B3."
+sonnet-5-out,s5-04,feature,C4,pass,7213389,both commands are named.
+sonnet-5-out,s5-04,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-05,feature,A1,pass,a5a1c68,"reader opens `changelog.json` and finds the customer and PM texts inside it, where separate files used to be."
+sonnet-5-out,s5-05,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-05,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-05,feature,C3,fail,a5a1c68,"fails on substance, not on position (""instead of being written as separate files..."") restates the location contrast, no ""so you can..."" payoff."
+sonnet-5-out,s5-05,feature,C4,n/a,7213389,"A pure description of behavior without any suggested course of action; no step, adjustment, or decision mentioned in the text; identical to o5-12."
+sonnet-5-out,s5-05,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-06,feature,A1,pass,a5a1c68,reader opens the GitHub release page and sees the generated notes written or updated there.
+sonnet-5-out,s5-06,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-06,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-06,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-06,feature,C4,n/a,7213389,the entry states no requirement of the reader; nothing here is announced as needing setup.
+sonnet-5-out,s5-06,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-07,feature,A1,pass,a5a1c68,reader opens `CHANGELOG.md` and sees a new section appended at the top on each release.
+sonnet-5-out,s5-07,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-07,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-07,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-07,feature,C4,n/a,7213389,"n/a - happens with each release, nothing to enable; the file is named."
+sonnet-5-out,s5-07,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-08,feature,A1,pass,a5a1c68,"reader enables the review step and is shown generated text, with flagged passages, for approval before it publishes."
+sonnet-5-out,s5-08,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-08,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-08,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-08,feature,C4,fail,7213389,"""You can now enable a review step"" plus ""off by default"" announces the option and never says where it is turned on."
+sonnet-5-out,s5-08,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-09,feature,A1,pass,a5a1c68,reader encounters a flagged meaning-level mistake (a fix reworded as something more severe) that the plain check alone would have missed.
+sonnet-5-out,s5-09,feature,C1,fail,a5a1c68,"opens with ""Added an optional second-pass check"" - names the mechanism, not what the user observes."
+sonnet-5-out,s5-09,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-09,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-09,feature,C4,fail,7213389,"""can be turned off"" without saying where."
+sonnet-5-out,s5-09,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-10,feature,A1,pass,a5a1c68,"reader sees a flagged made-up number, invented name, or unbacked breaking claim in the generated text."
+sonnet-5-out,s5-10,feature,C1,fail,a5a1c68,"opens with ""Added a lightweight check"" (mechanism)."
+sonnet-5-out,s5-10,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-10,feature,C3,fail,a5a1c68,"closing (""doesn't use the AI model at all"") restates mechanism."
+sonnet-5-out,s5-10,feature,C4,n/a,7213389,"n/a - always on, nothing to switch."
+sonnet-5-out,s5-10,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-11,feature,A1,pass,a5a1c68,"reader sees consistent bullet style, spacing, and voice across entries in the rendered changelog, regardless of how the source PRs were written."
+sonnet-5-out,s5-11,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-11,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-11,feature,C3,fail,a5a1c68,"no forward outcome - ends describing robustness, not what this lets you skip."
+sonnet-5-out,s5-11,feature,C4,n/a,7213389,n/a - automatic.
+sonnet-5-out,s5-11,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-12,feature,A1,pass,a5a1c68,"reader receives three renderings (technical, customer, PM) of the same release that never contradict each other."
+sonnet-5-out,s5-12,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-12,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-12,feature,C3,pass,a5a1c68,
+sonnet-5-out,s5-12,feature,C4,n/a,7213389,"n/a - all three versions are always generated, nothing to enable."
+sonnet-5-out,s5-12,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-13,feature,A1,pass,a5a1c68,reader sees generated text stay brief on a thin fact instead of being padded with invented detail.
+sonnet-5-out,s5-13,feature,C1,fail,a5a1c68,"opens with ""Reworked how instructions are sent to the AI model"" (mechanism)."
+sonnet-5-out,s5-13,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-13,feature,C3,pass,a5a1c68,"""only rephrases the given facts and never invents details"" is what can be trusted - pass on substance; the trailing brevity sentence is B3."
+sonnet-5-out,s5-13,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-13,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-14,feature,A1,pass,a5a1c68,"reader runs the tool and receives actual generated changelog text as output, instead of a stub or a crash."
+sonnet-5-out,s5-14,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-14,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-14,feature,C3,fail,a5a1c68,"fails on substance, not on position (""handled gracefully instead of crashing"") restates the negative event."
+sonnet-5-out,s5-14,feature,C4,n/a,7213389,the entry states no requirement; no key or setup is mentioned here (contrast s5-25).
+sonnet-5-out,s5-14,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-15,feature,A1,pass,a5a1c68,reader opens `changelog.json` and finds the release's facts recorded there.
+sonnet-5-out,s5-15,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-15,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-15,feature,C3,pass,a5a1c68,"""durable, machine-readable record that can also feed future outputs"" is a real outcome - pass; the format-and-versioning footnote behind it is B3."
+sonnet-5-out,s5-15,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-15,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-16,feature,A1,pass,a5a1c68,"reader sets the detail-level option and sees more or less source detail (description, linked issues) reflected in generated entries."
+sonnet-5-out,s5-16,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-16,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-16,feature,C3,fail,a5a1c68,"closing (""default is title plus description"") states a setting value, not a consequence."
+sonnet-5-out,s5-16,feature,C4,fail,7213389,"""You can now configure how much information..."" without saying where it is configured."
+sonnet-5-out,s5-16,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-17,feature,A1,pass,a5a1c68,"reader sees the resulting changelog draw on PR data, categorisation, and any label overrides together - a complete release, not a partial one."
+sonnet-5-out,s5-17,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-17,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-17,feature,C3,fail,a5a1c68,"""ready to feed into generation"" restates internal process purpose, not a user-facing consequence."
+sonnet-5-out,s5-17,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-17,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-18,feature,A1,pass,a5a1c68,"reader sees generated entries stick to the real title, category, breaking flag, and linked issues - nothing invented in the text they read."
+sonnet-5-out,s5-18,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-18,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-18,feature,C3,pass,a5a1c68,"""ensuring nothing in the generated text is made up"" is what can be trusted - pass on substance; that it duplicates s5-13's promise is a document-level finding, not C3."
+sonnet-5-out,s5-18,feature,C4,n/a,7213389,
+sonnet-5-out,s5-18,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-19,feature,A1,pass,a5a1c68,reader notices internal and maintenance-only changes missing from the changelog by default.
+sonnet-5-out,s5-19,feature,C1,fail,a5a1c68,"opens with the internal categorization (""Internal and maintenance-only changes"")."
+sonnet-5-out,s5-19,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-19,feature,C3,fail,a5a1c68,"no outcome anywhere, closes on an edge-case caveat - fails on substance, not on position."
+sonnet-5-out,s5-19,feature,C4,fail,7213389,"""This can be customized"" without saying where."
+sonnet-5-out,s5-19,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-20,feature,A1,pass,a5a1c68,"reader applies a GitHub label and sees the corresponding PR excluded, recategorised, or the changelog restricted to labelled PRs."
+sonnet-5-out,s5-20,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-20,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-20,feature,C3,fail,a5a1c68,"closes on a no-op clarification (""no effect if you don't use labels""), no outcome stated."
+sonnet-5-out,s5-20,feature,C4,fail,7213389,"""all configurable"" without naming the setting or the labels."
+sonnet-5-out,s5-20,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-21,feature,A1,pass,a5a1c68,"reader sees each entry categorised (feature, fix, performance, etc.) in the rendered changelog."
+sonnet-5-out,s5-21,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-21,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-21,feature,C3,pass,a5a1c68,"""so the kind of change is never guessed by the model"" is an outcome - pass; the breaking-change detail behind it is B3."
+sonnet-5-out,s5-21,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-21,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-22,feature,A1,pass,a5a1c68,"reader still gets a changelog produced, instead of a failed run, when PR titles are missing or unhelpful."
+sonnet-5-out,s5-22,feature,C1,pass,a5a1c68,"rewrites cleanly: ""you can now get output even when PR titles are missing, since it falls back to commit messages rather than failing."""
+sonnet-5-out,s5-22,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-22,feature,C3,fail,a5a1c68,"fails on substance, not on position with negation (""rather than failing"")."
+sonnet-5-out,s5-22,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-22,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-23,feature,A1,fail,a5a1c68,describes an internal data-source change (PR API vs. raw commits) with no user-observable output difference - belongs in the technical rendering.
+sonnet-5-out,s5-23,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-23,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-23,feature,C3,fail,a5a1c68,"closes on a source contrast, not an outcome."
+sonnet-5-out,s5-23,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-23,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-24,feature,A1,pass,a5a1c68,"reader running their very first release notices it succeeds and shows the right commits, without needing a previous tag."
+sonnet-5-out,s5-24,feature,C1,pass,a5a1c68,
+sonnet-5-out,s5-24,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-24,feature,C3,fail,a5a1c68,no consequence stated (e.g. the changelog never omits or double-counts changes) - ends on the first-release edge case.
+sonnet-5-out,s5-24,feature,C4,n/a,7213389,n/a.
+sonnet-5-out,s5-24,feature,C5,pass,a5a1c68,
+sonnet-5-out,s5-25,feature,A1,fail,a5a1c68,"internal scaffolding (""added the underlying support...""), not observable behaviour distinct from s5-14."
+sonnet-5-out,s5-25,feature,C1,fail,a5a1c68,opens naming the internal work.
+sonnet-5-out,s5-25,feature,C2,pass,a5a1c68,
+sonnet-5-out,s5-25,feature,C3,fail,a5a1c68,closes on an env-var detail.
+sonnet-5-out,s5-25,feature,C4,fail,7213389,setup exists (provider key) and neither variable nor reference is named.
+sonnet-5-out,s5-25,feature,C5,pass,a5a1c68,
 sonnet-5-out,s5-26,fix,*,,,"The rubric's own worked example (fix section, v0.1.0)."
-sonnet-5-out,s5-26,fix,A1,pass,57f2900,"reader sees generated text end in complete sentences instead of being cut off, and sees breaking changes labelled only when they actually are breaking."
-sonnet-5-out,s5-26,fix,C1,pass,57f2900,
-sonnet-5-out,s5-26,fix,C2,fail,57f2900,"""in some runs"" - the hedge the rubric names as the C2 fail pattern."
-sonnet-5-out,s5-26,fix,C3,fail,57f2900,"""so text completes properly"" restates the negation; the breaking-change fix states no outcome either."
-sonnet-5-out,s5-26,fix,C4,fail,57f2900,"""a configurable ceiling"" without saying where it is set."
-sonnet-5-out,s5-26,fix,C5,pass,57f2900,
-opus-5-out,o5-01,feature,A1,pass,57f2900,"reader runs `chartula preview`/`generate` and sees the usage screen, the per-audience summary, or a clear error message."
-opus-5-out,o5-01,feature,C1,pass,57f2900,"""Run `chartula preview` or `chartula generate` with `--tag` and `--repo <owner/name>`"" - an imperative naming what the reader does; ""you can now run ..."" invents nothing."
-opus-5-out,o5-01,feature,C2,pass,57f2900,
-opus-5-out,o5-01,feature,C3,pass,57f2900,"`""so you see the real result, but writes and publishes nothing""` is a consequence one step out - pass on substance; the `--repo` limitation behind it is B3."
-opus-5-out,o5-01,feature,C4,pass,57f2900,
-opus-5-out,o5-01,feature,C5,pass,57f2900,
-opus-5-out,o5-02,feature,A1,pass,57f2900,"reader edits `chartula.yaml` or sets an environment variable and sees the resulting behaviour change, or a clear `Configuration error:` message on a mistake."
-opus-5-out,o5-02,feature,C1,pass,57f2900,"""Chartula now reads chartula.yaml... and works with no configuration at all"" - The subject is Chartula, but the state (optional configuration, defaults) is directly the reader's state."
-opus-5-out,o5-02,feature,C2,pass,57f2900,
-opus-5-out,o5-02,feature,C3,pass,57f2900,"`""works with no configuration at all - every option falls back to its default""` is what can be relied on; the docs pointer and the error sentence behind it are B3."
-opus-5-out,o5-02,feature,C4,pass,57f2900,
-opus-5-out,o5-02,feature,C5,fail,57f2900,`docs/configuration.md` is a file reference.
-opus-5-out,o5-03,feature,A1,pass,57f2900,"reader sets `order`, `names`, or `breakingProminent` and sees category presentation change, or gets a clear error naming the valid categories."
-opus-5-out,o5-03,feature,C1,pass,57f2900,"""Control how categories are presented with order, names and breakingProminent"" - Imperative, directly as ""you can now control..."" readable."
-opus-5-out,o5-03,feature,C2,pass,57f2900,
-opus-5-out,o5-03,feature,C3,pass,57f2900,"`""Sections stay independently editable - untouched sections keep their defaults""` is a reliance statement; the docs pointer behind it is B3."
-opus-5-out,o5-03,feature,C4,pass,57f2900,
-opus-5-out,o5-03,feature,C5,fail,57f2900,"categories, order, names, breakingProminent — raw config keys, not framed in prose; docs/configuration.md file reference."
-opus-5-out,o5-04,feature,A1,pass,57f2900,"reader sets the fact-base depth and sees more or less source detail reflected in entries, or a startup error for an unrecognised value."
-opus-5-out,o5-04,feature,C1,pass,57f2900,"""Choose how much source material feeds the fact base via Chartula:FactBase:Depth"" - Direct ability; no invention required."
-opus-5-out,o5-04,feature,C2,pass,57f2900,
-opus-5-out,o5-04,feature,C3,pass,57f2900,"(""an unknown value fails at startup with a clear error."") is not a negation from slot 1."
-opus-5-out,o5-04,feature,C4,pass,57f2900,
-opus-5-out,o5-04,feature,C5,fail,57f2900,"`Chartula:FactBase:Depth` raw key, plus quoted alias values."
-opus-5-out,o5-05,feature,A1,pass,57f2900,"reader applies a GitHub label and sees the corresponding pull request excluded, recategorised, or the changelog restricted to labelled PRs."
-opus-5-out,o5-05,feature,C1,pass,57f2900,"opens naming the mechanism (""Steer curation with GitHub labels under `Chartula:Labels`""), not observation."
-opus-5-out,o5-05,feature,C2,pass,57f2900,
-opus-5-out,o5-05,feature,C3,pass,57f2900,"`""without touching code""` is the detour that disappears."
-opus-5-out,o5-05,feature,C4,pass,57f2900,
-opus-5-out,o5-05,feature,C5,fail,57f2900,`Chartula:Labels` raw key.
-opus-5-out,o5-06,feature,A1,pass,57f2900,"reader notices internal changes missing from the changelog by default, and breaking changes still present even when their category is excluded."
-opus-5-out,o5-06,feature,C1,fail,57f2900,"""Filtering is based on category and labels rather than guesswork"" states the method, and in contrast to guesswork rather than to anything the reader meets; the rewrite would have to invent the reader's side (""you can now count on ...."")."
-opus-5-out,o5-06,feature,C2,pass,57f2900,
-opus-5-out,o5-06,feature,C3,pass,57f2900,"`""A breaking change is never dropped for being in an excluded category""` is what can be relied on."
-opus-5-out,o5-06,feature,C4,pass,57f2900,
-opus-5-out,o5-06,feature,C5,fail,57f2900,`Chartula:Filter:ExcludeCategories` raw key.
-opus-5-out,o5-07,feature,A1,pass,57f2900,"reader sees each entry's category assigned consistently from commit conventions, and a breaking change flagged separately without losing its original category."
-opus-5-out,o5-07,feature,C1,pass,57f2900,"""Categories are decided in code from Conventional Commit titles - feature, fix, ... - with Other as the default"" Specifies the specific rule (title prefix → category, fallback: Other), which is directly observable by the reader; no imagination required."
-opus-5-out,o5-07,feature,C2,pass,57f2900,
-opus-5-out,o5-07,feature,C3,pass,57f2900,"`""so a breaking feature stays a feature while still being flagged""` is a consequence one step out."
-opus-5-out,o5-07,feature,C4,n/a,57f2900,
-opus-5-out,o5-07,feature,C5,pass,57f2900,
-opus-5-out,o5-08,feature,A1,pass,57f2900,"reader runs the tool against a public repository without setting `GITHUB_TOKEN` and it works, or sees a clear error on an API or network failure."
-opus-5-out,o5-08,feature,C1,pass,57f2900,"""Given a tag, Chartula determines the commits since the previous tag, or all history when there is no previous tag, with clear errors for unknown or blank tags"" - already in the ""this happened to you when..."" format."
-opus-5-out,o5-08,feature,C2,pass,57f2900,
-opus-5-out,o5-08,feature,C3,pass,57f2900,"`""public repositories work unauthenticated""` states what the reader can rely on without setup."
-opus-5-out,o5-08,feature,C4,n/a,57f2900,
-opus-5-out,o5-08,feature,C5,pass,57f2900,"""`GITHUB_TOKEN` is optional; public repositories work unauthenticated, subject to rate limits."" - the axis's own pass is ""the name of an environment variable the reader sets themselves to run the tool"", which is what this is: a name the reader types, not a colon-separated internal path like `Chartula:FactBase:Depth`. The earlier reading, that a raw key fails, does not reach it."
-opus-5-out,o5-09,feature,A1,pass,57f2900,"reader still gets a changelog entry for an untitled PR or a commit-only release, instead of a failed run."
-opus-5-out,o5-09,feature,C1,pass,57f2900,"""With no associated pull requests, Chartula falls back to commit data"" - direct conditional form, fits exactly to ""this happened to you when...""."
-opus-5-out,o5-09,feature,C2,pass,57f2900,
-opus-5-out,o5-09,feature,C3,pass,57f2900,"`""so a run never hard-fails purely because pull request hygiene was imperfect""` is a consequence one step out."
-opus-5-out,o5-09,feature,C4,n/a,57f2900,
-opus-5-out,o5-09,feature,C5,pass,57f2900,
-opus-5-out,o5-10,feature,A1,fail,57f2900,describes the internal fact-base record structure — no observable behavior distinct from the `changelog.json` items (o5-11/o5-12) that already cover the user-visible artifact.
-opus-5-out,o5-10,feature,C1,pass,57f2900,"""Each included change becomes one structured record holding its title, pull request number and link, category, ..."" specifies the specific structure that the (technical) reader will find in changelog.json—unlike ""Foundation for AI-generated text"" (which only says ""Added... support"" without describing the result)."
-opus-5-out,o5-10,feature,C2,pass,57f2900,
-opus-5-out,o5-10,feature,C3,pass,57f2900,"`""Nothing in the record is produced by an LLM""` is what can be trusted - pass on substance, though the item fails A1 regardless."
-opus-5-out,o5-10,feature,C4,pass,57f2900,
-opus-5-out,o5-10,feature,C5,pass,57f2900,
-opus-5-out,o5-11,feature,A1,pass,57f2900,reader opens `changelog.json` in their own repository and finds the release's facts recorded there.
-opus-5-out,o5-11,feature,C1,pass,57f2900,"""The fact base is written to changelog.json in a stable, documented, parseable format, with schemaVersion as the contract"" — a directly observable file state."
-opus-5-out,o5-11,feature,C2,pass,57f2900,
-opus-5-out,o5-11,feature,C3,pass,57f2900,"`""schemaVersion as the contract consumers can check""` plus `""Fields are always present""` is what can be relied on; the docs pointer behind it is B3."
-opus-5-out,o5-11,feature,C4,n/a,57f2900,
-opus-5-out,o5-11,feature,C5,fail,57f2900,`schemaVersion` raw field name; `docs/changelog-json.md` file reference.
-opus-5-out,o5-12,feature,A1,pass,57f2900,"reader opens `changelog.json` and finds the customer and PM texts inside it, with no separate marketing files created."
-opus-5-out,o5-12,feature,C1,pass,57f2900,"""The customer and product manager texts are now stored in a renderings object organized by audience... within a single file""—almost identical to the passport example in this section."
-opus-5-out,o5-12,feature,C2,pass,57f2900,
-opus-5-out,o5-12,feature,C3,pass,57f2900,"`""so no separate marketing files are written into your repository""` is the consequence; the schemaVersion footnote behind it is B3."
-opus-5-out,o5-12,feature,C4,n/a,57f2900,
-opus-5-out,o5-12,feature,C5,fail,57f2900,"`renderings`, `schemaVersion` — raw internal field names."
-opus-5-out,o5-13,feature,A1,pass,57f2900,"reader opens `CHANGELOG.md` and sees a new section at the top, older sections kept, and a rerun of the same tag replacing its own section in place."
-opus-5-out,o5-13,feature,C1,pass,57f2900,"""Each release is added as a new section at the top of the file, and existing sections are kept verbatim"" - concrete, observable file behavior."
-opus-5-out,o5-13,feature,C2,pass,57f2900,
-opus-5-out,o5-13,feature,C3,pass,57f2900,"`""running the same release twice produces a byte-identical file""` is what can be relied on."
-opus-5-out,o5-13,feature,C4,n/a,57f2900,
-opus-5-out,o5-13,feature,C5,pass,57f2900,
-opus-5-out,o5-14,feature,A1,pass,57f2900,"reader opens the GitHub release page and finds the generated notes there, updated in place when the tool runs again for the same tag."
-opus-5-out,o5-14,feature,C1,pass,57f2900,"""Chartula looks up the release by tag and updates it in place if it exists, or creates it otherwise, and returns the release URL"" - the specific rule is explicitly stated."
-opus-5-out,o5-14,feature,C2,pass,57f2900,
-opus-5-out,o5-14,feature,C3,pass,57f2900,"first outcome (""updates the existing release notes instead of creating a duplicate""). second outcome (""API and network failures surface as clear errors"")."
-opus-5-out,o5-14,feature,C4,n/a,57f2900,
-opus-5-out,o5-14,feature,C5,pass,57f2900,
-opus-5-out,o5-15,feature,A1,pass,57f2900,"reader compares the three renderings and finds the customer version skips internal-only changes and their links, the technical version keeps them, and the PM version groups by theme."
-opus-5-out,o5-15,feature,C1,pass,57f2900,"feature, stated as a property (""rendered from the same set of established facts"")."
-opus-5-out,o5-15,feature,C2,pass,57f2900,
-opus-5-out,o5-15,feature,C3,pass,57f2900,"`""so they cannot contradict each other""` is the consequence; the failure-isolation sentence behind it is B3."
-opus-5-out,o5-15,feature,C4,n/a,57f2900,
-opus-5-out,o5-15,feature,C5,pass,57f2900,
-opus-5-out,o5-16,feature,A1,pass,57f2900,reader sees generated text stick to the given facts and stay brief rather than padded when a change has little detail.
-opus-5-out,o5-16,feature,C1,fail,57f2900,"""The model is instructed to introduce no fact, number, or name that is not in the supplied list"" refers to the prompt given to the model (the mechanism), not to what the reader actually sees - similar to the related entry ""More reliable, fact-grounded text generation,"" which has already been rated as a failure."
-opus-5-out,o5-16,feature,C2,pass,57f2900,
-opus-5-out,o5-16,feature,C3,fail,57f2900,"closes on internal prompt-construction detail (""handed to the model as text, not decided by it""), not a user outcome."
-opus-5-out,o5-16,feature,C4,n/a,57f2900,
-opus-5-out,o5-16,feature,C5,pass,57f2900,
-opus-5-out,o5-17,feature,A1,fail,57f2900,"""one model call per release"", ""sits behind a single interface"" — internal architecture, not a behavior noticeable through product use."
-opus-5-out,o5-17,feature,C1,pass,57f2900,"""Changelog generation makes exactly one model call per release, and no calls at all for an empty fact base"" - a concrete, quantified statement provided directly; no speculation required."
-opus-5-out,o5-17,feature,C2,pass,57f2900,
-opus-5-out,o5-17,feature,C3,pass,57f2900,"`""Swapping providers is a configuration and wiring change only""` is a consequence for whoever swaps - pass on substance, though the item fails A1 regardless."
-opus-5-out,o5-17,feature,C4,fail,57f2900,"""model and provider are selectable via configuration"" announces a setting without naming where — matches the axis's own fail example."
-opus-5-out,o5-17,feature,C5,pass,57f2900,
-opus-5-out,o5-18,feature,A1,pass,57f2900,"reader sees consistent bullet style and one voice across the rendering, regardless of how individual PR authors wrote their descriptions."
-opus-5-out,o5-18,feature,C1,pass,57f2900,"""Model output is normalized using conservative, structure-preserving rules - consistent line endings, a single bullet marker, trimmed trailing whitespace, and collapsed runs of blank lines"" - a specific list of observable results."
-opus-5-out,o5-18,feature,C2,pass,57f2900,
-opus-5-out,o5-18,feature,C3,pass,57f2900,"`""so an individual author's tone or phrasing is not carried over""` is the consequence."
-opus-5-out,o5-18,feature,C4,n/a,57f2900,
-opus-5-out,o5-18,feature,C5,fail,57f2900,"""a single `-` bullet marker"" is a format specification."
-opus-5-out,o5-19,feature,A1,pass,57f2900,"reader sees a passage flagged for review when it carries a number, name, or breaking claim not backed by the facts."
-opus-5-out,o5-19,feature,C1,pass,57f2900,"""passages are flagged when a number does not appear in the facts, a quoted or backticked name is not present..., or a breaking change is claimed when no fact is marked breaking"" - conditional outcome form, directly observable."
-opus-5-out,o5-19,feature,C2,pass,57f2900,
-opus-5-out,o5-19,feature,C3,pass,57f2900,"`""The check makes no model call and costs zero tokens""` is what can be relied on."
-opus-5-out,o5-19,feature,C4,n/a,57f2900,
-opus-5-out,o5-19,feature,C5,pass,57f2900,
-opus-5-out,o5-20,feature,A1,pass,57f2900,reader sees a meaning-level distortion flagged (a fix reworded as something more severe) that the rule-based check alone would miss.
-opus-5-out,o5-20,feature,C1,pass,57f2900,"""A second LLM pass compares the text semantically against the fact base and flags unsupported claims"" - a specific result was mentioned directly."
-opus-5-out,o5-20,feature,C2,pass,57f2900,
-opus-5-out,o5-20,feature,C3,pass,57f2900,"`""catching distortions the rule-based check cannot see""` is the consequence."
-opus-5-out,o5-20,feature,C4,pass,57f2900,
-opus-5-out,o5-20,feature,C5,fail,57f2900,`Chartula:Faithfulness:Thorough` raw key.
-opus-5-out,o5-21,feature,A1,pass,57f2900,"reader switches on review and is shown each rendering, with flagged passages highlighted, for approval or editing before it is written."
-opus-5-out,o5-21,feature,C1,pass,57f2900,"""Review is off by default and text passes straight through"" - current status as is."
-opus-5-out,o5-21,feature,C2,pass,57f2900,
-opus-5-out,o5-21,feature,C3,fail,57f2900,"describing review-step mechanics (approve/edit), not a benefit beyond slot 1."
-opus-5-out,o5-21,feature,C4,pass,57f2900,
-opus-5-out,o5-21,feature,C5,fail,57f2900,`Chartula:Review` raw key.
-opus-5-out,o5-22,feature,A1,pass,57f2900,reader runs `preview` or `generate` and sees the cost-and-check summary printed at the end of the run.
-opus-5-out,o5-22,feature,C1,pass,57f2900,"""Every preview and generate run now ends with a summary of what it did and what it cost"" - exactly what the reader sees on every run."
-opus-5-out,o5-22,feature,C2,pass,57f2900,
-opus-5-out,o5-22,feature,C3,pass,57f2900,"`""so across a few releases you can tell whether those tokens are buying anything""` is the consequence; the side-channel and docs sentences behind it are B3."
-opus-5-out,o5-22,feature,C4,n/a,57f2900,
-opus-5-out,o5-22,feature,C5,fail,57f2900,`docs/run-metrics.md` file reference.
-opus-5-out,o5-23,fix,A1,pass,57f2900,reader sees generated text end in complete sentences instead of being cut off mid-word.
-opus-5-out,o5-23,fix,C1,pass,57f2900,
-opus-5-out,o5-23,fix,C2,pass,57f2900,
-opus-5-out,o5-23,fix,C3,fail,57f2900,"closes on token counts (""3,072 tokens to 11,271"") and ""texts end in complete sentences,"" which restates slot 1's negation rather than a further consequence."
-opus-5-out,o5-23,fix,C4,pass,57f2900,
-opus-5-out,o5-23,fix,C5,fail,57f2900,`llm.maxOutputTokens` raw key.
-opus-5-out,o5-24,fix,A1,pass,57f2900,reader no longer sees a change that merely discusses breaking changes incorrectly flagged as breaking itself.
-opus-5-out,o5-24,fix,C1,pass,57f2900,
-opus-5-out,o5-24,fix,C2,pass,57f2900,
-opus-5-out,o5-24,fix,C3,fail,57f2900,"closes on a raw count (""went from six reported breaking changes to zero""), restating the fix numerically rather than stating what the reader can now rely on."
-opus-5-out,o5-24,fix,C4,n/a,57f2900,
-opus-5-out,o5-24,fix,C5,pass,57f2900,
-opus-5-out,o5-25,fix,A1,fail,57f2900,"nothing was fixed — no user-observable change exists to report; this is an internal issue-tracking note, not a changelog item."
-opus-5-out,o5-25,fix,C1,pass,57f2900,"""The rule-based check still matches the word ""breaking"" anywhere in the output and flags a breaking-change claim whenever it appears"" - A concise entry that clearly states what the reader will encounter (false positive flags)."
-opus-5-out,o5-25,fix,C2,pass,57f2900,
-opus-5-out,o5-25,fix,C3,pass,57f2900,"`""These flags are advisory and do not fail a run""` is what can be relied on - pass on substance, though the item fails A1 regardless."
-opus-5-out,o5-25,fix,C4,n/a,57f2900,
-opus-5-out,o5-25,fix,C5,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-01,fix,A1,pass,57f2900,reader sees generated text end in complete sentences instead of being cut off mid-sentence.
-sonnet-5-no-thinking-out,sn5-01,fix,C1,pass,57f2900,"""Requests to the language model did not specify an output length limit, so the provider silently applied its own default and truncated all three audience texts"" - Fix case, conditional ""what went wrong"" form, identical to the first ""Pass"" example in this section."
-sonnet-5-no-thinking-out,sn5-01,fix,C2,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-01,fix,C3,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-01,fix,C4,n/a,57f2900,
-sonnet-5-no-thinking-out,sn5-01,fix,C5,pass,57f2900,
+sonnet-5-out,s5-26,fix,A1,pass,a5a1c68,"reader sees generated text end in complete sentences instead of being cut off, and sees breaking changes labelled only when they actually are breaking."
+sonnet-5-out,s5-26,fix,C1,pass,a5a1c68,
+sonnet-5-out,s5-26,fix,C2,fail,a5a1c68,"""in some runs"" - the hedge the rubric names as the C2 fail pattern."
+sonnet-5-out,s5-26,fix,C3,fail,a5a1c68,"""so text completes properly"" restates the negation; the breaking-change fix states no outcome either."
+sonnet-5-out,s5-26,fix,C4,fail,7213389,"""a configurable ceiling"" without saying where it is set."
+sonnet-5-out,s5-26,fix,C5,pass,a5a1c68,
+opus-5-out,o5-01,feature,A1,pass,a5a1c68,"reader runs `chartula preview`/`generate` and sees the usage screen, the per-audience summary, or a clear error message."
+opus-5-out,o5-01,feature,C1,pass,a5a1c68,"""Run `chartula preview` or `chartula generate` with `--tag` and `--repo <owner/name>`"" - an imperative naming what the reader does; ""you can now run ..."" invents nothing."
+opus-5-out,o5-01,feature,C2,pass,a5a1c68,
+opus-5-out,o5-01,feature,C3,pass,a5a1c68,"`""so you see the real result, but writes and publishes nothing""` is a consequence one step out - pass on substance; the `--repo` limitation behind it is B3."
+opus-5-out,o5-01,feature,C4,pass,7213389,
+opus-5-out,o5-01,feature,C5,pass,a5a1c68,
+opus-5-out,o5-02,feature,A1,pass,a5a1c68,"reader edits `chartula.yaml` or sets an environment variable and sees the resulting behaviour change, or a clear `Configuration error:` message on a mistake."
+opus-5-out,o5-02,feature,C1,pass,a5a1c68,"""Chartula now reads chartula.yaml... and works with no configuration at all"" - The subject is Chartula, but the state (optional configuration, defaults) is directly the reader's state."
+opus-5-out,o5-02,feature,C2,pass,a5a1c68,
+opus-5-out,o5-02,feature,C3,pass,a5a1c68,"`""works with no configuration at all - every option falls back to its default""` is what can be relied on; the docs pointer and the error sentence behind it are B3."
+opus-5-out,o5-02,feature,C4,pass,7213389,
+opus-5-out,o5-02,feature,C5,fail,a5a1c68,`docs/configuration.md` is a file reference.
+opus-5-out,o5-03,feature,A1,pass,a5a1c68,"reader sets `order`, `names`, or `breakingProminent` and sees category presentation change, or gets a clear error naming the valid categories."
+opus-5-out,o5-03,feature,C1,pass,a5a1c68,"""Control how categories are presented with order, names and breakingProminent"" - Imperative, directly as ""you can now control..."" readable."
+opus-5-out,o5-03,feature,C2,pass,a5a1c68,
+opus-5-out,o5-03,feature,C3,pass,a5a1c68,"`""Sections stay independently editable - untouched sections keep their defaults""` is a reliance statement; the docs pointer behind it is B3."
+opus-5-out,o5-03,feature,C4,pass,7213389,
+opus-5-out,o5-03,feature,C5,fail,a5a1c68,"categories, order, names, breakingProminent — raw config keys, not framed in prose; docs/configuration.md file reference."
+opus-5-out,o5-04,feature,A1,pass,a5a1c68,"reader sets the fact-base depth and sees more or less source detail reflected in entries, or a startup error for an unrecognised value."
+opus-5-out,o5-04,feature,C1,pass,a5a1c68,"""Choose how much source material feeds the fact base via Chartula:FactBase:Depth"" - Direct ability; no invention required."
+opus-5-out,o5-04,feature,C2,pass,a5a1c68,
+opus-5-out,o5-04,feature,C3,pass,a5a1c68,"(""an unknown value fails at startup with a clear error."") is not a negation from slot 1."
+opus-5-out,o5-04,feature,C4,pass,7213389,
+opus-5-out,o5-04,feature,C5,fail,a5a1c68,"`Chartula:FactBase:Depth` raw key, plus quoted alias values."
+opus-5-out,o5-05,feature,A1,pass,a5a1c68,"reader applies a GitHub label and sees the corresponding pull request excluded, recategorised, or the changelog restricted to labelled PRs."
+opus-5-out,o5-05,feature,C1,pass,a5a1c68,"opens naming the mechanism (""Steer curation with GitHub labels under `Chartula:Labels`""), not observation."
+opus-5-out,o5-05,feature,C2,pass,a5a1c68,
+opus-5-out,o5-05,feature,C3,pass,a5a1c68,"`""without touching code""` is the detour that disappears."
+opus-5-out,o5-05,feature,C4,pass,7213389,
+opus-5-out,o5-05,feature,C5,fail,a5a1c68,`Chartula:Labels` raw key.
+opus-5-out,o5-06,feature,A1,pass,a5a1c68,"reader notices internal changes missing from the changelog by default, and breaking changes still present even when their category is excluded."
+opus-5-out,o5-06,feature,C1,fail,a5a1c68,"""Filtering is based on category and labels rather than guesswork"" states the method, and in contrast to guesswork rather than to anything the reader meets; the rewrite would have to invent the reader's side (""you can now count on ...."")."
+opus-5-out,o5-06,feature,C2,pass,a5a1c68,
+opus-5-out,o5-06,feature,C3,pass,a5a1c68,"`""A breaking change is never dropped for being in an excluded category""` is what can be relied on."
+opus-5-out,o5-06,feature,C4,pass,7213389,
+opus-5-out,o5-06,feature,C5,fail,a5a1c68,`Chartula:Filter:ExcludeCategories` raw key.
+opus-5-out,o5-07,feature,A1,pass,a5a1c68,"reader sees each entry's category assigned consistently from commit conventions, and a breaking change flagged separately without losing its original category."
+opus-5-out,o5-07,feature,C1,pass,a5a1c68,"""Categories are decided in code from Conventional Commit titles - feature, fix, ... - with Other as the default"" Specifies the specific rule (title prefix → category, fallback: Other), which is directly observable by the reader; no imagination required."
+opus-5-out,o5-07,feature,C2,pass,a5a1c68,
+opus-5-out,o5-07,feature,C3,pass,a5a1c68,"`""so a breaking feature stays a feature while still being flagged""` is a consequence one step out."
+opus-5-out,o5-07,feature,C4,n/a,7213389,
+opus-5-out,o5-07,feature,C5,pass,a5a1c68,
+opus-5-out,o5-08,feature,A1,pass,a5a1c68,"reader runs the tool against a public repository without setting `GITHUB_TOKEN` and it works, or sees a clear error on an API or network failure."
+opus-5-out,o5-08,feature,C1,pass,a5a1c68,"""Given a tag, Chartula determines the commits since the previous tag, or all history when there is no previous tag, with clear errors for unknown or blank tags"" - already in the ""this happened to you when..."" format."
+opus-5-out,o5-08,feature,C2,pass,a5a1c68,
+opus-5-out,o5-08,feature,C3,pass,a5a1c68,"`""public repositories work unauthenticated""` states what the reader can rely on without setup."
+opus-5-out,o5-08,feature,C4,pass,7213389,"GITHUB_TOKEN is named and optional; a concrete, actionable lever over Chartula's own behavior (rate limits), unlike the unnamed provider key in s5-25."
+opus-5-out,o5-08,feature,C5,pass,a5a1c68,"""`GITHUB_TOKEN` is optional; public repositories work unauthenticated, subject to rate limits."" - the axis's own pass is ""the name of an environment variable the reader sets themselves to run the tool"", which is what this is: a name the reader types, not a colon-separated internal path like `Chartula:FactBase:Depth`. The earlier reading, that a raw key fails, does not reach it."
+opus-5-out,o5-09,feature,A1,pass,a5a1c68,"reader still gets a changelog entry for an untitled PR or a commit-only release, instead of a failed run."
+opus-5-out,o5-09,feature,C1,pass,a5a1c68,"""With no associated pull requests, Chartula falls back to commit data"" - direct conditional form, fits exactly to ""this happened to you when...""."
+opus-5-out,o5-09,feature,C2,pass,a5a1c68,
+opus-5-out,o5-09,feature,C3,pass,a5a1c68,"`""so a run never hard-fails purely because pull request hygiene was imperfect""` is a consequence one step out."
+opus-5-out,o5-09,feature,C4,n/a,7213389,
+opus-5-out,o5-09,feature,C5,pass,a5a1c68,
+opus-5-out,o5-10,feature,A1,fail,a5a1c68,describes the internal fact-base record structure — no observable behavior distinct from the `changelog.json` items (o5-11/o5-12) that already cover the user-visible artifact.
+opus-5-out,o5-10,feature,C1,pass,a5a1c68,"""Each included change becomes one structured record holding its title, pull request number and link, category, ..."" specifies the specific structure that the (technical) reader will find in changelog.json—unlike ""Foundation for AI-generated text"" (which only says ""Added... support"" without describing the result)."
+opus-5-out,o5-10,feature,C2,pass,a5a1c68,
+opus-5-out,o5-10,feature,C3,pass,a5a1c68,"`""Nothing in the record is produced by an LLM""` is what can be trusted - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-10,feature,C4,n/a,7213389,"closing keywords are a pre-existing GitHub convention Chartula parses passively, not a lever over Chartula's own behavior; matches o5-07 and o5-24."
+opus-5-out,o5-10,feature,C5,pass,a5a1c68,
+opus-5-out,o5-11,feature,A1,pass,a5a1c68,reader opens `changelog.json` in their own repository and finds the release's facts recorded there.
+opus-5-out,o5-11,feature,C1,pass,a5a1c68,"""The fact base is written to changelog.json in a stable, documented, parseable format, with schemaVersion as the contract"" — a directly observable file state."
+opus-5-out,o5-11,feature,C2,pass,a5a1c68,
+opus-5-out,o5-11,feature,C3,pass,a5a1c68,"`""schemaVersion as the contract consumers can check""` plus `""Fields are always present""` is what can be relied on; the docs pointer behind it is B3."
+opus-5-out,o5-11,feature,C4,n/a,7213389,
+opus-5-out,o5-11,feature,C5,fail,a5a1c68,`schemaVersion` raw field name; `docs/changelog-json.md` file reference.
+opus-5-out,o5-12,feature,A1,pass,a5a1c68,"reader opens `changelog.json` and finds the customer and PM texts inside it, with no separate marketing files created."
+opus-5-out,o5-12,feature,C1,pass,a5a1c68,"""The customer and product manager texts are now stored in a renderings object organized by audience... within a single file""—almost identical to the passport example in this section."
+opus-5-out,o5-12,feature,C2,pass,a5a1c68,
+opus-5-out,o5-12,feature,C3,pass,a5a1c68,"`""so no separate marketing files are written into your repository""` is the consequence; the schemaVersion footnote behind it is B3."
+opus-5-out,o5-12,feature,C4,n/a,7213389,
+opus-5-out,o5-12,feature,C5,fail,a5a1c68,"`renderings`, `schemaVersion` — raw internal field names."
+opus-5-out,o5-13,feature,A1,pass,a5a1c68,"reader opens `CHANGELOG.md` and sees a new section at the top, older sections kept, and a rerun of the same tag replacing its own section in place."
+opus-5-out,o5-13,feature,C1,pass,a5a1c68,"""Each release is added as a new section at the top of the file, and existing sections are kept verbatim"" - concrete, observable file behavior."
+opus-5-out,o5-13,feature,C2,pass,a5a1c68,
+opus-5-out,o5-13,feature,C3,pass,a5a1c68,"`""running the same release twice produces a byte-identical file""` is what can be relied on."
+opus-5-out,o5-13,feature,C4,n/a,7213389,
+opus-5-out,o5-13,feature,C5,pass,a5a1c68,
+opus-5-out,o5-14,feature,A1,pass,a5a1c68,"reader opens the GitHub release page and finds the generated notes there, updated in place when the tool runs again for the same tag."
+opus-5-out,o5-14,feature,C1,pass,a5a1c68,"""Chartula looks up the release by tag and updates it in place if it exists, or creates it otherwise, and returns the release URL"" - the specific rule is explicitly stated."
+opus-5-out,o5-14,feature,C2,pass,a5a1c68,
+opus-5-out,o5-14,feature,C3,pass,a5a1c68,"first outcome (""updates the existing release notes instead of creating a duplicate""). second outcome (""API and network failures surface as clear errors"")."
+opus-5-out,o5-14,feature,C4,n/a,7213389,
+opus-5-out,o5-14,feature,C5,pass,a5a1c68,
+opus-5-out,o5-15,feature,A1,pass,a5a1c68,"reader compares the three renderings and finds the customer version skips internal-only changes and their links, the technical version keeps them, and the PM version groups by theme."
+opus-5-out,o5-15,feature,C1,pass,a5a1c68,"feature, stated as a property (""rendered from the same set of established facts"")."
+opus-5-out,o5-15,feature,C2,pass,a5a1c68,
+opus-5-out,o5-15,feature,C3,pass,a5a1c68,"`""so they cannot contradict each other""` is the consequence; the failure-isolation sentence behind it is B3."
+opus-5-out,o5-15,feature,C4,n/a,7213389,
+opus-5-out,o5-15,feature,C5,pass,a5a1c68,
+opus-5-out,o5-16,feature,A1,pass,a5a1c68,reader sees generated text stick to the given facts and stay brief rather than padded when a change has little detail.
+opus-5-out,o5-16,feature,C1,fail,a5a1c68,"""The model is instructed to introduce no fact, number, or name that is not in the supplied list"" refers to the prompt given to the model (the mechanism), not to what the reader actually sees - similar to the related entry ""More reliable, fact-grounded text generation,"" which has already been rated as a failure."
+opus-5-out,o5-16,feature,C2,pass,a5a1c68,
+opus-5-out,o5-16,feature,C3,fail,a5a1c68,"closes on internal prompt-construction detail (""handed to the model as text, not decided by it""), not a user outcome."
+opus-5-out,o5-16,feature,C4,n/a,7213389,
+opus-5-out,o5-16,feature,C5,pass,a5a1c68,
+opus-5-out,o5-17,feature,A1,fail,a5a1c68,"""one model call per release"", ""sits behind a single interface"" — internal architecture, not a behavior noticeable through product use."
+opus-5-out,o5-17,feature,C1,pass,a5a1c68,"""Changelog generation makes exactly one model call per release, and no calls at all for an empty fact base"" - a concrete, quantified statement provided directly; no speculation required."
+opus-5-out,o5-17,feature,C2,pass,a5a1c68,
+opus-5-out,o5-17,feature,C3,pass,a5a1c68,"`""Swapping providers is a configuration and wiring change only""` is a consequence for whoever swaps - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-17,feature,C4,fail,7213389,"""model and provider are selectable via configuration"" announces a setting without naming where — matches the axis's own fail example."
+opus-5-out,o5-17,feature,C5,pass,a5a1c68,
+opus-5-out,o5-18,feature,A1,pass,a5a1c68,"reader sees consistent bullet style and one voice across the rendering, regardless of how individual PR authors wrote their descriptions."
+opus-5-out,o5-18,feature,C1,pass,a5a1c68,"""Model output is normalized using conservative, structure-preserving rules - consistent line endings, a single bullet marker, trimmed trailing whitespace, and collapsed runs of blank lines"" - a specific list of observable results."
+opus-5-out,o5-18,feature,C2,pass,a5a1c68,
+opus-5-out,o5-18,feature,C3,pass,a5a1c68,"`""so an individual author's tone or phrasing is not carried over""` is the consequence."
+opus-5-out,o5-18,feature,C4,n/a,7213389,
+opus-5-out,o5-18,feature,C5,fail,a5a1c68,"""a single `-` bullet marker"" is a format specification."
+opus-5-out,o5-19,feature,A1,pass,a5a1c68,"reader sees a passage flagged for review when it carries a number, name, or breaking claim not backed by the facts."
+opus-5-out,o5-19,feature,C1,pass,a5a1c68,"""passages are flagged when a number does not appear in the facts, a quoted or backticked name is not present..., or a breaking change is claimed when no fact is marked breaking"" - conditional outcome form, directly observable."
+opus-5-out,o5-19,feature,C2,pass,a5a1c68,
+opus-5-out,o5-19,feature,C3,pass,a5a1c68,"`""The check makes no model call and costs zero tokens""` is what can be relied on."
+opus-5-out,o5-19,feature,C4,n/a,7213389,
+opus-5-out,o5-19,feature,C5,pass,a5a1c68,
+opus-5-out,o5-20,feature,A1,pass,a5a1c68,reader sees a meaning-level distortion flagged (a fix reworded as something more severe) that the rule-based check alone would miss.
+opus-5-out,o5-20,feature,C1,pass,a5a1c68,"""A second LLM pass compares the text semantically against the fact base and flags unsupported claims"" - a specific result was mentioned directly."
+opus-5-out,o5-20,feature,C2,pass,a5a1c68,
+opus-5-out,o5-20,feature,C3,pass,a5a1c68,"`""catching distortions the rule-based check cannot see""` is the consequence."
+opus-5-out,o5-20,feature,C4,pass,7213389,
+opus-5-out,o5-20,feature,C5,fail,a5a1c68,`Chartula:Faithfulness:Thorough` raw key.
+opus-5-out,o5-21,feature,A1,pass,a5a1c68,"reader switches on review and is shown each rendering, with flagged passages highlighted, for approval or editing before it is written."
+opus-5-out,o5-21,feature,C1,pass,a5a1c68,"""Review is off by default and text passes straight through"" - current status as is."
+opus-5-out,o5-21,feature,C2,pass,a5a1c68,
+opus-5-out,o5-21,feature,C3,fail,a5a1c68,"describing review-step mechanics (approve/edit), not a benefit beyond slot 1."
+opus-5-out,o5-21,feature,C4,pass,7213389,
+opus-5-out,o5-21,feature,C5,fail,a5a1c68,`Chartula:Review` raw key.
+opus-5-out,o5-22,feature,A1,pass,a5a1c68,reader runs `preview` or `generate` and sees the cost-and-check summary printed at the end of the run.
+opus-5-out,o5-22,feature,C1,pass,a5a1c68,"""Every preview and generate run now ends with a summary of what it did and what it cost"" - exactly what the reader sees on every run."
+opus-5-out,o5-22,feature,C2,pass,a5a1c68,
+opus-5-out,o5-22,feature,C3,pass,a5a1c68,"`""so across a few releases you can tell whether those tokens are buying anything""` is the consequence; the side-channel and docs sentences behind it are B3."
+opus-5-out,o5-22,feature,C4,n/a,7213389,
+opus-5-out,o5-22,feature,C5,fail,a5a1c68,`docs/run-metrics.md` file reference.
+opus-5-out,o5-23,fix,A1,pass,a5a1c68,reader sees generated text end in complete sentences instead of being cut off mid-word.
+opus-5-out,o5-23,fix,C1,pass,a5a1c68,
+opus-5-out,o5-23,fix,C2,pass,a5a1c68,
+opus-5-out,o5-23,fix,C3,fail,a5a1c68,"closes on token counts (""3,072 tokens to 11,271"") and ""texts end in complete sentences,"" which restates slot 1's negation rather than a further consequence."
+opus-5-out,o5-23,fix,C4,pass,7213389,
+opus-5-out,o5-23,fix,C5,fail,a5a1c68,`llm.maxOutputTokens` raw key.
+opus-5-out,o5-24,fix,A1,pass,a5a1c68,reader no longer sees a change that merely discusses breaking changes incorrectly flagged as breaking itself.
+opus-5-out,o5-24,fix,C1,pass,a5a1c68,
+opus-5-out,o5-24,fix,C2,pass,a5a1c68,
+opus-5-out,o5-24,fix,C3,fail,a5a1c68,"closes on a raw count (""went from six reported breaking changes to zero""), restating the fix numerically rather than stating what the reader can now rely on."
+opus-5-out,o5-24,fix,C4,n/a,7213389,
+opus-5-out,o5-24,fix,C5,pass,a5a1c68,
+opus-5-out,o5-25,fix,A1,fail,a5a1c68,"nothing was fixed — no user-observable change exists to report; this is an internal issue-tracking note, not a changelog item."
+opus-5-out,o5-25,fix,C1,pass,a5a1c68,"""The rule-based check still matches the word ""breaking"" anywhere in the output and flags a breaking-change claim whenever it appears"" - A concise entry that clearly states what the reader will encounter (false positive flags)."
+opus-5-out,o5-25,fix,C2,pass,a5a1c68,
+opus-5-out,o5-25,fix,C3,pass,a5a1c68,"`""These flags are advisory and do not fail a run""` is what can be relied on - pass on substance, though the item fails A1 regardless."
+opus-5-out,o5-25,fix,C4,n/a,7213389,
+opus-5-out,o5-25,fix,C5,pass,a5a1c68,
+sonnet-5-no-thinking-out,sn5-01,fix,A1,pass,a5a1c68,reader sees generated text end in complete sentences instead of being cut off mid-sentence.
+sonnet-5-no-thinking-out,sn5-01,fix,C1,pass,a5a1c68,"""Requests to the language model did not specify an output length limit, so the provider silently applied its own default and truncated all three audience texts"" - Fix case, conditional ""what went wrong"" form, identical to the first ""Pass"" example in this section."
+sonnet-5-no-thinking-out,sn5-01,fix,C2,pass,a5a1c68,
+sonnet-5-no-thinking-out,sn5-01,fix,C3,pass,a5a1c68,
+sonnet-5-no-thinking-out,sn5-01,fix,C4,pass,7213389,"llm.maxOutputTokens is named explicitly, matching o5-23's treatment of the same fact."
+sonnet-5-no-thinking-out,sn5-01,fix,C5,pass,a5a1c68,
 sonnet-5-no-thinking-out,sn5-02,fix,*,,,An internal reference was cited instead of translating it into plain language.
-sonnet-5-no-thinking-out,sn5-02,fix,A1,pass,57f2900,reader no longer sees a change that merely discusses breaking changes mislabelled as breaking itself.
-sonnet-5-no-thinking-out,sn5-02,fix,C1,pass,57f2900,"""The check for breaking changes matched the phrase 'BREAKING CHANGE' anywhere in a pull request's text, so simply discussing breaking changes caused a change to be mislabeled as one"" - conditional fix form, directly addressing what the reader encountered (in v0.1.0)."
-sonnet-5-no-thinking-out,sn5-02,fix,C2,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-02,fix,C3,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-02,fix,C4,pass,57f2900,
-sonnet-5-no-thinking-out,sn5-02,fix,C5,fail,57f2900,
+sonnet-5-no-thinking-out,sn5-02,fix,A1,pass,a5a1c68,reader no longer sees a change that merely discusses breaking changes mislabelled as breaking itself.
+sonnet-5-no-thinking-out,sn5-02,fix,C1,pass,a5a1c68,"""The check for breaking changes matched the phrase 'BREAKING CHANGE' anywhere in a pull request's text, so simply discussing breaking changes caused a change to be mislabeled as one"" - conditional fix form, directly addressing what the reader encountered (in v0.1.0)."
+sonnet-5-no-thinking-out,sn5-02,fix,C2,pass,a5a1c68,
+sonnet-5-no-thinking-out,sn5-02,fix,C3,pass,a5a1c68,
+sonnet-5-no-thinking-out,sn5-02,fix,C4,n/a,7213389,"the breaking-change footer format is a pre-existing Conventional Commits convention, not a new Chartula-specific lever; matches o5-24."
+sonnet-5-no-thinking-out,sn5-02,fix,C5,fail,a5a1c68,
