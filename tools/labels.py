@@ -161,6 +161,11 @@ class Labels:
                 return row["note"].strip()
         return ""
 
+    def commits(self, axis: str, level: str) -> set[str]:
+        """The rubric commits one axis carries in one of the two tables."""
+        rows = self.item_rows if level == "item" else self.run_rows
+        return {row["rubric_commit"].strip() for row in rows if row["axis"] == axis and row["rubric_commit"].strip()}
+
     def item_shippable(self, run: str, item: str) -> str:
         """`no` as soon as one C axis fails, `?` while one is unjudged, else
         `yes`. The rule is how-to-label.md's, and this is the only place it is
@@ -329,13 +334,30 @@ def check(labels: Labels, report: Report) -> None:
             if run not in text:
                 report.warn(report.at(missing_md), f"{run}: labelled, but absent from the missing table")
 
+    # A1 is scored in both tables, and a column is only as fresh as its oldest
+    # row - so half of it re-read leaves the axis stale, and saying which half
+    # is the difference between a hint and a puzzle.
     for axis in sorted(set(ITEM_AXES) | set(RUN_AXES)):
-        if sep.labels_are_older_than(axis, labels.audience):
-            report.warn(
-                report.at(labels.dir),
-                f"{axis}: changed in {sep.axis_last_changed(axis, labels.audience)}, "
-                f"the column was read against {sep.column_passed_against(axis, labels.audience) or 'nothing'} - re-pass it",
-            )
+        if not sep.labels_are_older_than(axis, labels.audience):
+            continue
+        changed = sep.axis_last_changed(axis, labels.audience)
+        halves = [("item", "items.csv"), ("run", "runs.csv")]
+        behind = []
+        for level, name in halves:
+            if axis not in (ITEM_AXES if level == "item" else RUN_AXES):
+                continue
+            oldest = sep._oldest(labels.commits(axis, level))
+            if oldest != changed:
+                flag = "" if level == "item" or axis not in ITEM_AXES else " --level run"
+                behind.append(f"{name} reads against {oldest or 'nothing'} (`column --axis {axis}{flag}`)")
+        current = [name for level, name in halves
+                   if axis in (ITEM_AXES if level == "item" else RUN_AXES)
+                   and sep._oldest(labels.commits(axis, level)) == changed]
+        report.warn(
+            report.at(labels.dir),
+            f"{axis}: changed in {changed} - " + "; ".join(behind)
+            + (f"; {', '.join(current)} is current" if current else ""),
+        )
 
     for path, current, wanted in derived(labels):
         if current != wanted:
