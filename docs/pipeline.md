@@ -132,13 +132,32 @@ meeting any threshold, and all three are results:
 
 ## Gate - freeze
 
-The rubric gets a version number. From here no axis is edited. Disagreements
-are recorded and not resolved.
+The criterion gets a version number and a git tag. From here no axis is edited.
+Disagreements are recorded and not resolved.
 
 Everything after this gate runs against a criterion that does not move. That is
 the whole point of the gate: a figure from before it and a figure from after it
 are not comparable, and a criterion that keeps moving can never say a product
 got better.
+
+**The tag** names the audience and the version: `customer-criterion-v1.0.0`.
+The criterion is the rubric together with `output-format.md`, because the axes
+judge conformance to that document rather than restating it, so freezing one
+without the other freezes nothing.
+
+**What the digits mean.** Not features and fixes. The question a version answers
+here is whether two measurements can be compared, so the digits are cut along
+what a change costs:
+
+| | What changed | What it costs |
+|---|---|---|
+| **Major** | an axis changed so that a verdict can move | a re-pass of that column, and figures from either side of it are not comparable |
+| **Minor** | an axis was added or removed, or text changed in a way that cannot move a verdict | nothing; older figures still hold for the axes that stayed |
+| **Patch** | a typo, an example, a clarification that moves nothing | nothing |
+
+Read that way the version number alone answers the question the staleness
+invariant exists for: whether a figure from an earlier run still means anything.
+A major bump says it does not.
 
 ## Stage 5 - the production loop, without a person in it
 
