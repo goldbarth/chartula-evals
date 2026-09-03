@@ -35,6 +35,31 @@ whether a closing clause is an outcome. That test is in `rubric/customer.md`
 under C3 - strike the opening and read what is left, and ask whether it still
 tells the reader something they did not already have.
 
+## The customer rendering has no opening
+
+Not filed.
+
+`ChangelogMarkdownComposer` contributes the `## {tag}` heading and joins the
+sections; the customer text in `changelog.json` is the model's output and
+nothing else. The published serialisation in
+[`output-format.md`](output-format.md) opens with YAML front matter - `title`,
+`description`, `publishedAt`, `tags` - and nothing produces it.
+
+Measured rather than assumed. B2 failed the rendering of 2026-09-03 on the
+missing opening; the same document with front matter prepended by hand passes
+the axis, and nothing else about it changed. So the opening is the whole of what
+that axis fails on.
+
+Two things are missing, not one:
+
+- **The scaffolding.** Front matter is the composer's output, not the model's.
+  `title` and `publishedAt` are derivable from the tag and its date. `tags` is
+  correctly absent while the fact base carries no labels, which is #98.
+- **A source for `description`.** One sentence on what the release is about.
+  There is no field for it in the fact base and no rule for who writes it. The
+  sentence used in the test above was written by hand, which is why that half of
+  the finding is not answered by adding a composer step.
+
 ## The fact base has no place for a setting
 
 **goldbarth/chartula#98** - labels are missing from the fact base, so tags

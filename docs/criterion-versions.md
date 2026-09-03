@@ -43,8 +43,15 @@ other axis is shown the format at all, so the figures for the other eight stand
 on their own; the digest covers the criterion as one text, so it moves for all
 of them regardless. Re-judging B2 for one run is one call.
 
+**What it changed, measured.** B2 was re-judged on the same document under this
+version and passes: "opening header contains title/description/publishedAt as
+required (missing tags is separately fine since no tags)". Run
+`labelled-B2-claude-sonnet-5-2026-09-03T120649.json`. The axis now reaches the
+question it is for, and the answer it gives about that document is a finding
+about Chartula rather than about the harness.
+
 **Before it can be tagged**, the gate asks for a separation run since the last
-edit. That is $0.14 at the default model.
+edit.
 
 ## customer-criterion-v1.0.0
 
