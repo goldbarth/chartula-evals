@@ -274,6 +274,36 @@ def criterion_version() -> str:
 SCHEMA = "chartula-evals/eval-log/1"
 
 
+def read_log(path: Path) -> dict:
+    """One shape for both generations of result file.
+
+    Files written before the eval-log schema are flat: model, effort and the
+    figures at the top level, provenance beside them. Nothing rewrites them -
+    a result file is never edited - so every reader has to accept both."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("schema"):
+        cfg, ex = data["evaluation_config"], data["execution_results"]
+        return {
+            "digest": cfg["criterion"].get("digest"),
+            "version": cfg["criterion"].get("version"),
+            "commit": data["metadata"].get("commit", "-"),
+            "score": ex.get("matched", ex.get("agreed")),
+            "calls": ex.get("calls", 0),
+            "cost": ex.get("cost_usd", 0.0),
+            "let_through": (ex.get("passed") or {}).get("let_through"),
+        }
+    prov = data.get("provenance") or {}
+    return {
+        "digest": prov.get("criterion_digest"),
+        "version": prov.get("criterion_version"),
+        "commit": prov.get("commit", "-"),
+        "score": data.get("matched", data.get("agreed")),
+        "calls": data.get("calls", 0),
+        "cost": data.get("cost_usd", 0.0),
+        "let_through": None,
+    }
+
+
 def eval_id() -> str:
     """A name for this run that does not depend on the file it is written to.
 

@@ -193,12 +193,22 @@ A major bump says it does not.
 
 ```
 change Chartula's prompt
-  -> re-render the release
-  -> the judge counts fails per axis
-  -> compare with the previous count
+  -> re-render the release into test-runs/
+  -> python3 tools/labels.py init --run <name> --prefix <p>   # rows, every verdict "?"
+  -> .venv/bin/python3 judge/run_labelled.py --run <name>     # judges them anyway
+  -> python3 judge/count.py <before.json> <after.json>        # what moved
 ```
 
 No labelling, no re-pass, no rubric discussion. Minutes and cents per turn.
+
+`init` lays out one row per (item, axis) with every verdict `?`, taken from the
+rendering itself, and the runner builds a call for each regardless of whether a
+person ever filled one in. Its own report compares against human verdicts and
+so prints nothing here; `count.py` reports the judge's side and the difference
+from the previous turn. It refuses to compare two runs whose criterion digests
+differ, and refuses just as firmly when either run does not record one - two
+files that name only a commit look alike whether or not the rubric moved
+between them.
 
 This is where the work lives from the freeze onward, and it is the loop the
 whole instrument was built to make possible.

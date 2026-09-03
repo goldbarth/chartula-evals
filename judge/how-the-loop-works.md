@@ -77,6 +77,12 @@ are rewritten every turn, so that reference stops meaning anything the moment
 one is. The same defect as naming a criterion by a commit that can be amended
 away.
 
+`passed` reports the judge side alone when nothing in the run carries a human
+verdict, with `human_ships`, `let_through` and `blocked` set to null rather than
+to zero. Counting `?` as "not a fail" would have said *every item ships, nothing
+slips through* about a run where nothing was compared, which is the most
+misleading answer the figure could give.
+
 **`passed` is the product figure.** An item ships when no C axis fails, the
 rule `tools/labels.py sync` applies to the labels, applied here to the judge's
 verdicts. `let_through` - entries the judge ships that a person would have sent

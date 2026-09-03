@@ -195,6 +195,7 @@ def report(results: list[dict]) -> dict:
 
 
 SHIP_AXES = ["C1", "C2", "C3", "C4", "C5"]
+VERDICTS = {"pass", "fail", "n/a"}
 
 
 def ship_decision(results: list[dict]) -> dict:
@@ -221,22 +222,29 @@ def ship_decision(results: list[dict]) -> dict:
             by_item[(r["run"], r["item"])][r["axis"]] = (r["human"], r["verdict"])
 
     ships = lambda pairs, side: not any(v[side] == "fail" for v in pairs.values())
-    human_ships = judge_ships = let_through = blocked = 0
-    for pairs in by_item.values():
-        h, j = ships(pairs, 0), ships(pairs, 1)
-        human_ships += h
-        judge_ships += j
-        let_through += (not h) and j
-        blocked += h and not j
-    return {
+    # An item nobody has labelled has no human side. Counting "?" as "not a
+    # fail" would report human_ships as every item and let_through as zero,
+    # which reads as "nothing slips through" on a run where nothing was
+    # compared - the most misleading answer this figure could give.
+    labelled = {k: v for k, v in by_item.items() if any(h in VERDICTS for h, _ in v.values())}
+    judge_ships = sum(ships(pairs, 1) for pairs in by_item.values())
+    out = {
         "axes": judged,
         "complete": judged == SHIP_AXES,
         "items": len(by_item),
-        "human_ships": human_ships,
         "judge_ships": judge_ships,
-        "let_through": let_through,
-        "blocked": blocked,
+        "compared_against_labels": len(labelled),
     }
+    if not labelled:
+        return {**out, "human_ships": None, "let_through": None, "blocked": None,
+                "note": "no human verdict in this run; the judge side stands alone"}
+    human_ships = let_through = blocked = 0
+    for pairs in labelled.values():
+        h, j = ships(pairs, 0), ships(pairs, 1)
+        human_ships += h
+        let_through += (not h) and j
+        blocked += h and not j
+    return {**out, "human_ships": human_ships, "let_through": let_through, "blocked": blocked}
 
 
 def print_report(summary: dict) -> None:
