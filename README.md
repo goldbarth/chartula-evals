@@ -51,6 +51,7 @@ It exists because building the instrument and measuring with it ran at the same 
 Its one rule is that the two loops are never open at once, with a freeze between them, and every stage has a budget fixed before it is entered and a condition that ends it.
 
 [`docs/targets.md`](docs/targets.md) holds the figures those stages are measured against, and what each one stood at when it was last measured.
+[`docs/commands.md`](docs/commands.md) lists every script, what it is for and what it needs.
 [`judge/how-the-loop-works.md`](judge/how-the-loop-works.md) holds the day-to-day loop and the staleness invariant:
 a human label and a judge verdict are comparable only if both were made against the same version of that axis.
 
