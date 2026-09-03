@@ -14,3 +14,7 @@ opus-5-out,A1,fail,a5a1c68,"half two, read against missing.md: the documentation
 opus-5-out,B1,fail,7213389,"the entry stating separate marketing files stop being written is placed below eleven entries that ask nothing, matching the axis's own fail pattern."
 opus-5-out,B2,fail,a5a1c68,"the only one of the three renderings with group headings: ### Features, followed by ### Fixes. The document begins directly on ### Features - there is nothing before the first group heading, so the opening the format requires is missing. Rule 3: ""Compare the document's opening with what the format requires of it for the serialisation at hand. A missing or incomplete opening is a fail."" Rule 2 fails it as well and on its own: neither Features nor Fixes is in the set the format defines."
 opus-5-out,B3,fail,a5a1c68,
+sonnet-5-format-out,A1,?,,
+sonnet-5-format-out,B1,?,,
+sonnet-5-format-out,B2,?,,
+sonnet-5-format-out,B3,?,,
