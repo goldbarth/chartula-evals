@@ -24,7 +24,13 @@ Nothing from `labels/{audience}/` is ever substituted in. The judge does not
 see a human verdict, a reason written by a human, or an example drawn from a
 labelled run - those are what it is being measured against.
 
-Run at temperature 0.
+The sampling parameters are not settable. On the model family this runs
+against, `temperature`, `top_p` and `top_k` are rejected outright, so no run
+here has ever been deterministic - this document asked for temperature 0 from
+its first version and no runner ever sent one, because sending one would have
+failed the call. What is pinned instead is the effort level, recorded in every
+result file, and the shape of the call: one axis, one subject, nothing from
+`labels/` in it.
 
 ---
 

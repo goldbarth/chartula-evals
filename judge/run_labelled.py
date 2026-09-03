@@ -194,6 +194,51 @@ def report(results: list[dict]) -> dict:
     return dict(per_axis)
 
 
+SHIP_AXES = ["C1", "C2", "C3", "C4", "C5"]
+
+
+def ship_decision(results: list[dict]) -> dict:
+    """The product figure: how often the judge would send an entry out, and how
+    often that disagrees with the person.
+
+    An item ships when no C axis fails - the same rule `tools/labels.py sync`
+    applies to the labels, applied here to the judge's verdicts so the figure
+    lives in the file rather than in a script someone writes twice.
+
+    `let_through` is the number that decides whether a person still has to read
+    the output: entries the judge ships that the person would have sent back.
+    `blocked` is the opposite error and costs a turn rather than a release, so
+    the two are reported apart and never averaged. Computed over whichever C
+    axes this run judged, which `axes` names; `complete` says whether that was
+    all of them."""
+    judged = [a for a in SHIP_AXES if any(r["axis"] == a for r in results)]
+    if not judged:
+        return {"axes": [], "complete": False, "note": "no item axis in this run"}
+
+    by_item: dict[tuple[str, str], dict] = defaultdict(dict)
+    for r in results:
+        if r["axis"] in judged and r.get("item"):
+            by_item[(r["run"], r["item"])][r["axis"]] = (r["human"], r["verdict"])
+
+    ships = lambda pairs, side: not any(v[side] == "fail" for v in pairs.values())
+    human_ships = judge_ships = let_through = blocked = 0
+    for pairs in by_item.values():
+        h, j = ships(pairs, 0), ships(pairs, 1)
+        human_ships += h
+        judge_ships += j
+        let_through += (not h) and j
+        blocked += h and not j
+    return {
+        "axes": judged,
+        "complete": judged == SHIP_AXES,
+        "items": len(by_item),
+        "human_ships": human_ships,
+        "judge_ships": judge_ships,
+        "let_through": let_through,
+        "blocked": blocked,
+    }
+
+
 def print_report(summary: dict) -> None:
     print(f"\n{'axis':<6}{'n':>5}{'agree':>8}{'fails':>7}{'caught':>8}{'false':>7}")
     for axis in sorted(summary):
@@ -312,10 +357,15 @@ def main() -> None:
                 "run": call["run"],
                 "item": call["item"],
                 "axis": call["axis"],
+                "test_payload": {
+                    "subject_label": call["subject_label"],
+                    "subject": call["subject"],
+                },
                 "human": call["human"],
                 **answer,
                 "agree": agree,
                 "quote_found": bool(quote) and sep._collapse(quote) in sep._collapse(call["subject"]),
+                "usage": sep.usage_of(response),
             }
         )
         mark = "ok " if agree else "DIFF"
@@ -334,21 +384,23 @@ def main() -> None:
     out = out_dir / f"labelled-{which}-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(
-            {
-                "model": args.model,
-                "audience": args.audience,
-                "effort": args.effort,
-                "run_at": stamp,
-                "provenance": sep.provenance(args.audience),
-                "axes": {a: sep.prompt_last_changed(a, args.audience) for a in axes},
-                "judged_stale": stale if args.allow_stale else [],
-                "calls": len(results),
-                "agreed": sum(r["agree"] for r in results),
-                "quotes_found_in_subject": sum(r["quote_found"] for r in results),
-                "cost_usd": round(spent, 4),
-                "per_axis": summary,
-                "results": results,
-            },
+            sep.eval_log(
+                "labelled",
+                args,
+                criterion={
+                    "axes": {a: sep.prompt_last_changed(a, args.audience) for a in axes},
+                    "judged_stale": stale if args.allow_stale else [],
+                },
+                execution={
+                    "calls": len(results),
+                    "agreed": sum(r["agree"] for r in results),
+                    "quotes_found_in_subject": sum(r["quote_found"] for r in results),
+                    "cost_usd": round(spent, 4),
+                    "per_axis": summary,
+                    "passed": ship_decision(results),
+                    "results": results,
+                },
+            ),
             indent=2,
         )
         + "\n",

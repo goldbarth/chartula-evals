@@ -21,6 +21,8 @@ import csv
 import functools
 import hashlib
 import json
+import os
+import uuid
 import re
 import sys
 from datetime import datetime, timezone
@@ -267,6 +269,86 @@ def criterion_version() -> str:
     such as `v1.0.0-3-gea0788c` means three commits have landed since, and
     whether they touched the criterion is what the digest above settles."""
     return _git("describe", "--tags", "--always", "--dirty") or "untagged"
+
+
+SCHEMA = "chartula-evals/eval-log/1"
+
+
+def eval_id() -> str:
+    """A name for this run that does not depend on the file it is written to.
+
+    The filename carried the identity before, which meant a rename lost it and
+    a result quoted in prose could not be traced back."""
+    return "evl_" + uuid.uuid4().hex[:12]
+
+
+def environment() -> str:
+    """Where the run happened. A figure from a laptop mid-edit and a figure
+    from a pipeline are not the same evidence."""
+    return "ci" if os.environ.get("CI") else "local"
+
+
+def parameters(args) -> dict:
+    """What was sent to the model, beside the prompt.
+
+    `sampling` is a sentence rather than a number on purpose. The rubric prompt
+    said "run at temperature 0" from the beginning and no runner ever sent a
+    temperature: on this model family the sampling parameters are rejected
+    outright, so the claim was not merely unimplemented but unimplementable,
+    and no run was ever deterministic. What is pinned is the effort level and
+    the one-axis-one-subject shape of the call, not the sampling."""
+    return {
+        "max_tokens": args.max_tokens,
+        "effort": args.effort,
+        "thinking": "adaptive",
+        "sampling": "not settable: temperature, top_p and top_k are rejected by this model family",
+    }
+
+
+def usage_of(response) -> dict:
+    return {
+        "input": response.usage.input_tokens,
+        "output": response.usage.output_tokens,
+        "cache_read": getattr(response.usage, "cache_read_input_tokens", 0) or 0,
+    }
+
+
+def eval_log(kind: str, args, criterion: dict, execution: dict) -> dict:
+    """The four blocks every result file is written in.
+
+    metadata says which run this was and where; evaluation_config says what it
+    was judged against and with; execution_results holds the figures and, per
+    result, the subject it was given. The subject is in the file rather than
+    referenced, because the renderings are rewritten every turn of the
+    production loop and a reference into `test-runs/` stops meaning anything
+    the moment one is."""
+    prov = provenance(args.audience)
+    return {
+        "schema": SCHEMA,
+        "metadata": {
+            "eval_id": eval_id(),
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "environment": environment(),
+            "commit": prov["commit"],
+            "dirty": prov["dirty"],
+        },
+        "evaluation_config": {
+            "kind": kind,
+            "audience": args.audience,
+            "criterion": {
+                "name": args.audience,
+                "version": prov["criterion_version"],
+                "digest": prov["criterion_digest"],
+                "rubric_last_changed": prov["rubric_last_changed"],
+                "prompt_last_changed": prov["prompt_last_changed"],
+                "labels_passed_against": prov["labels_passed_against"],
+                **criterion,
+            },
+            "llm_judge": args.model,
+            "parameters": parameters(args),
+        },
+        "execution_results": execution,
+    }
 
 
 def provenance(audience: str = DEFAULT_AUDIENCE) -> dict:
@@ -545,14 +627,14 @@ def main() -> None:
             "id": call["id"],
             "axis": call["axis"],
             "expected": call["expected"],
+            "test_payload": {
+                "subject_label": call["subject_label"],
+                "subject": call["subject"],
+            },
             **answer,
             "quote_found": bool(quote)
             and _collapse(quote) in _collapse(call["subject"]),
-            "usage": {
-                "input": response.usage.input_tokens,
-                "output": response.usage.output_tokens,
-                "cache_read": getattr(response.usage, "cache_read_input_tokens", 0) or 0,
-            },
+            "usage": usage_of(response),
         }
         # n/a counts as "not a fail": on the base every item axis should decline
         # to fail, and C4 declines by answering n/a.
@@ -570,18 +652,18 @@ def main() -> None:
     out = out_dir / f"separation-{args.model}-{stamp}.json"
     out.write_text(
         json.dumps(
-            {
-                "model": args.model,
-                "audience": args.audience,
-                "effort": args.effort,
-                "run_at": stamp,
-                "provenance": provenance(args.audience),
-                "calls": len(results),
-                "matched": matched,
-                "quotes_found_in_subject": quoted,
-                "cost_usd": round(spent, 4),
-                "results": results,
-            },
+            eval_log(
+                "separation",
+                args,
+                criterion={},
+                execution={
+                    "calls": len(results),
+                    "matched": matched,
+                    "quotes_found_in_subject": quoted,
+                    "cost_usd": round(spent, 4),
+                    "results": results,
+                },
+            ),
             indent=2,
         )
         + "\n",

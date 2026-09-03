@@ -57,6 +57,43 @@ sections and both halves of the prompt - rather than the commit, because a
 commit can be amended away and two of this repository's have been. What each
 frozen version changed is in `docs/criterion-versions.md`.
 
+## What a result file holds
+
+Four blocks, the shape an evaluation log is usually written in, so that a
+result can be read by someone who has never seen this repository.
+
+| Block | What is in it |
+|-------|----------------|
+| `metadata` | `eval_id`, the timestamp, whether it ran locally or in a pipeline, the commit and whether the tree was dirty |
+| `evaluation_config` | the criterion - name, version, digest, which axes, whether any was judged stale - the judge model, and the parameters it was called with |
+| `execution_results` | the figures, `per_axis`, `passed`, and one record per call |
+| each record | the id, the axis, the **subject it was given**, the human verdict where there is one, the judge's verdict, its quote and reason, and the token usage |
+
+Three of those are worth a sentence each.
+
+**The subject is in the file, not referenced.** A record used to name an item
+id and leave the text in `test-runs/`. In the production loop the renderings
+are rewritten every turn, so that reference stops meaning anything the moment
+one is. The same defect as naming a criterion by a commit that can be amended
+away.
+
+**`passed` is the product figure.** An item ships when no C axis fails, the
+rule `tools/labels.py sync` applies to the labels, applied here to the judge's
+verdicts. `let_through` - entries the judge ships that a person would have sent
+back - is the number that decides whether a person still has to read the
+output. `blocked` is the opposite error; it costs a turn rather than a release,
+so the two are reported apart and never averaged.
+
+**`parameters.sampling` is a sentence, not a number.** This document asked for
+temperature 0 from its first version and no runner ever sent one, because on
+this model family `temperature`, `top_p` and `top_k` are rejected outright. No
+run here has ever been deterministic. What is pinned is the effort level and
+the shape of the call.
+
+Files written before this schema are flat and are never rewritten - a result
+file is not edited. Every reader accepts both shapes; `status.py` does it in
+one function.
+
 ## The four moves
 
 Everything done here is one of these, and each has a defined effect on the

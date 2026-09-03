@@ -32,6 +32,36 @@ _l.loader.exec_module(lab)
 AXES = ["A1", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "C5"]
 
 
+def read_log(path: Path) -> dict:
+    """One shape for both generations of result file.
+
+    Files written before the eval-log schema are flat: model, effort and the
+    figures at the top level, provenance beside them. Nothing rewrites them -
+    a result file is never edited - so every reader has to accept both."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("schema"):
+        cfg, ex = data["evaluation_config"], data["execution_results"]
+        return {
+            "digest": cfg["criterion"].get("digest"),
+            "version": cfg["criterion"].get("version"),
+            "commit": data["metadata"].get("commit", "-"),
+            "score": ex.get("matched", ex.get("agreed")),
+            "calls": ex.get("calls", 0),
+            "cost": ex.get("cost_usd", 0.0),
+            "let_through": (ex.get("passed") or {}).get("let_through"),
+        }
+    prov = data.get("provenance") or {}
+    return {
+        "digest": prov.get("criterion_digest"),
+        "version": prov.get("criterion_version"),
+        "commit": prov.get("commit", "-"),
+        "score": data.get("matched", data.get("agreed")),
+        "calls": data.get("calls", 0),
+        "cost": data.get("cost_usd", 0.0),
+        "let_through": None,
+    }
+
+
 def verify(paths: list[Path], audience: str) -> int:
     """Say which result files were produced against the criterion in the tree.
 
@@ -45,8 +75,7 @@ def verify(paths: list[Path], audience: str) -> int:
     print(f"CRITERION {sep.criterion_version()}  {here}\n")
     unknown = mismatched = 0
     for path in sorted(paths):
-        prov = json.loads(path.read_text(encoding="utf-8")).get("provenance") or {}
-        theirs = prov.get("criterion_digest")
+        theirs = read_log(path)["digest"]
         if not theirs:
             verdict, unknown = "unknown  - written before the digest existed", unknown + 1
         elif theirs == here:
@@ -116,12 +145,14 @@ def main() -> None:
     print("\nJUDGE RUNS")
     spent = 0.0
     for path in sorted(glob.glob(str(sep.results_dir(audience) / "*.json"))):
-        data = json.load(open(path, encoding="utf-8"))
-        spent += data["cost_usd"]
+        log = read_log(Path(path))
+        spent += log["cost"]
         kind = "separation" if "separation" in path else "labelled"
-        score = data.get("matched", data.get("agreed"))
-        prov = data.get("provenance", {}).get("commit", "-")
-        print(f"  {Path(path).name:<52} {kind:<11} {score}/{data['calls']:<4} ${data['cost_usd']:<7.4f} at {prov}")
+        through = "" if log["let_through"] is None else f"  {log['let_through']} let through"
+        print(
+            f"  {Path(path).name:<52} {kind:<11} {log['score']}/{log['calls']:<4} "
+            f"${log['cost']:<7.4f} at {log['commit']}{through}"
+        )
     print(f"  spent in total: ${spent:.2f}")
 
 
