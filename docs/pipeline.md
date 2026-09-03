@@ -21,6 +21,7 @@ work. It had no exit.
 | How one pass is carried out | [`../labels/how-to-label.md`](../labels/how-to-label.md) |
 | The figures every stage is measured against | [`targets.md`](targets.md) |
 | Findings that belong in Chartula, not here | [`for-chartula.md`](for-chartula.md) |
+| What each frozen version changed | [`criterion-versions.md`](criterion-versions.md) |
 
 This file says when a stage is over. It does not restate how the work inside a
 stage is done.
@@ -144,6 +145,35 @@ got better.
 The criterion is the rubric together with `output-format.md`, because the axes
 judge conformance to that document rather than restating it, so freezing one
 without the other freezes nothing.
+
+The tag is the copy. `git show customer-criterion-v1.0.0:rubric/customer.md`
+returns the frozen text, so no second copy is kept anywhere - a `frozen/`
+directory would be a second source of truth, which is the defect rule 4 of
+`how-a-rubric-is-built.md` names for the format document.
+
+**What has to be true before a version is tagged**
+
+1. The separation run passes. It is the regression test on the criterion
+   itself: whether the axes can still be told apart is exactly what a rubric
+   change can break, and it costs cents. A version is not tagged on a criterion
+   that has not been through it since its last edit.
+2. The working tree is clean. The prompt is built from the tree, so an
+   uncommitted edit is judged as though it were committed. `run_labelled.py`
+   already refuses to start on an uncommitted rubric.
+3. The version has an entry in [`criterion-versions.md`](criterion-versions.md)
+   saying what moved, what it invalidated, and which figures stopped being
+   comparable.
+
+**What every result carries afterwards.** `provenance` in each result file
+holds `criterion_version` from the nearest tag and `criterion_digest`, a hash
+of the text the judge was actually shown. The digest is the durable half: a
+commit can be amended away and a tag can be moved, and both have happened here,
+while the digest answers *were these two figures produced against the same
+criterion* without consulting git at all.
+
+    python3 judge/status.py --verify
+
+reports which existing results were produced against the criterion in the tree.
 
 **What the digits mean.** Not features and fixes. The question a version answers
 here is whether two measurements can be compared, so the digits are cut along

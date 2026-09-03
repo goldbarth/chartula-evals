@@ -48,6 +48,15 @@ That prints, per axis, when its section last changed and whether the labels are
 older than it. `run_labelled.py` refuses to judge an axis whose labels are
 older, unless `--allow-stale` is passed and the reason is recorded.
 
+    python3 judge/status.py --verify
+
+answers the same question across result files: which of them were produced
+against the criterion now in the tree. It compares the `criterion_digest` each
+result carries - a hash of the axis sections, `Units`, the inlined format
+sections and both halves of the prompt - rather than the commit, because a
+commit can be amended away and two of this repository's have been. What each
+frozen version changed is in `docs/criterion-versions.md`.
+
 ## The four moves
 
 Everything done here is one of these, and each has a defined effect on the

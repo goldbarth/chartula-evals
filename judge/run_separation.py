@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import csv
 import functools
+import hashlib
 import json
 import re
 import sys
@@ -234,11 +235,47 @@ def labels_are_older_than(axis: str, audience: str = DEFAULT_AUDIENCE) -> bool:
     return _is_ancestor(column_commit, axis_commit) and axis_commit != column_commit
 
 
+CRITERION_AXES = ["Units", "A1", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "C5"]
+
+
+def criterion_digest(audience: str = DEFAULT_AUDIENCE) -> str:
+    """A hash of the exact text the judge is shown, read from the working tree.
+
+    A commit is not a durable name for that text. Two of this repository's own
+    rubric commits were replaced by `git commit --amend` and survive only as
+    unreachable objects; the `rubric_commit` stamps naming them still resolve
+    today and will not once git prunes them. A content hash answers the one
+    question provenance exists for - were these two figures produced against
+    the same criterion - and it answers it without git.
+
+    Covers every axis section, `Units`, the format sections that are inlined
+    beside an axis, and both halves of the prompt. Anything the judge reads is
+    in here; anything it does not read is not, so a note written elsewhere in
+    the rubric leaves the digest alone."""
+    parts = [rubric_section(h if h == "Units" else f"{h} -", audience) for h in CRITERION_AXES]
+    for axis in sorted(AXIS_NEEDS_FORMAT):
+        parts.append(format_sections(AXIS_NEEDS_FORMAT[axis]))
+    parts.extend(prompt_parts())
+    joined = "\x00".join(part.strip() for part in parts)
+    return "sha256:" + hashlib.sha256(joined.encode("utf-8")).hexdigest()[:16]
+
+
+def criterion_version() -> str:
+    """The frozen version this tree is at, from the nearest tag.
+
+    `v1.0.0` alone means the tree is exactly the tagged criterion. A suffix
+    such as `v1.0.0-3-gea0788c` means three commits have landed since, and
+    whether they touched the criterion is what the digest above settles."""
+    return _git("describe", "--tags", "--always", "--dirty") or "untagged"
+
+
 def provenance(audience: str = DEFAULT_AUDIENCE) -> dict:
     return {
         "commit": _git("rev-parse", "--short", "HEAD"),
         "dirty": bool(_git("status", "--porcelain")),
         "audience": audience,
+        "criterion_version": criterion_version(),
+        "criterion_digest": criterion_digest(audience),
         "rubric_last_changed": _git(
             "log", "-1", "--follow", "--format=%h %ad", "--date=short", "--", rubric_rel(audience)
         ),
