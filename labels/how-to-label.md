@@ -90,8 +90,10 @@ as above. Entries are read as `- ` bullets; a run that writes its items as
 headings and paragraphs has none by that reading, which is a finding at level B
 and means the ids have to be laid out by hand.
 
-Before labelling one of the held-out runs, read phase 6 of `PLAN.md`. They are
-unlabelled on purpose.
+`haiku-4-5-out`, `opus-4-8-out` and `opus-5-no-thinking-out` are **not** to be
+labelled by hand. They are the held-out set: once a judge is trusted it labels
+them, and a sample of that is checked against a person. Labelling them earlier
+spends the only unseen data there is, and it cannot be got back.
 
 ## Values
 

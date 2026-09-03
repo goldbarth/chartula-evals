@@ -19,7 +19,8 @@ work. It had no exit.
 | The four moves and the staleness invariant | [`../judge/how-the-loop-works.md`](../judge/how-the-loop-works.md) |
 | What an axis may be | [`../rubric/how-a-rubric-is-built.md`](../rubric/how-a-rubric-is-built.md) |
 | How one pass is carried out | [`../labels/how-to-label.md`](../labels/how-to-label.md) |
-| Where this project currently stands in the stages | `PLAN.md`, kept out of the repository |
+| The figures every stage is measured against | [`targets.md`](targets.md) |
+| Findings that belong in Chartula, not here | [`for-chartula.md`](for-chartula.md) |
 
 This file says when a stage is over. It does not restate how the work inside a
 stage is done.
@@ -45,7 +46,8 @@ to produce it.
 
 ## Stage 0 - the target, as a number, before anything is built
 
-One sentence and one figure, in `PLAN.md`, written before the first axis:
+One sentence and one figure, in [`targets.md`](targets.md), written before the
+first axis:
 
 > Shippable means: the judge lets through at most **N of 100** entries a person
 > would have sent back. A release ships when no entry of it fails.
@@ -152,6 +154,13 @@ No labelling, no re-pass, no rubric discussion. Minutes and cents per turn.
 This is where the work lives from the freeze onward, and it is the loop the
 whole instrument was built to make possible.
 
+**Every axis is counted here, including the ones stage 4 put out of the gate.**
+Out of the gate means the axis cannot be trusted to reproduce a person's
+verdict. A turn of this loop compares a judge count with the previous judge
+count, so a bias the axis carries sits in both and cancels. What it does not
+cancel is noise: read a large movement, 19 fails to 3, and ignore a small one,
+19 to 17. An axis that is out of the gate is a direction here, never a figure.
+
 **Ends when:** the product figure from stage 0 is met.
 
 ## Stage 6 - a spot check, on a calendar
@@ -209,13 +218,14 @@ Against the three days that produced it:
 ## Filling in the numbers
 
 The figures below belong to the project, not to this file. They are decided
-once, in `PLAN.md`, and this file only says that they have to exist.
+once, in [`targets.md`](targets.md), and this file only says that they have to
+exist.
 
 | Figure | Where it is decided | Currently |
 |--------|---------------------|-----------|
-| The product target - renderings that ship unedited | `PLAN.md`, stage 0 | four of five; today 0 of 3 |
-| The instrument target - entries let through per 100 | `PLAN.md`, stage 0 | at most 2; today 7.5 |
-| The stage 4 threshold per axis | `PLAN.md`, stage 0 | catches three quarters, at most two false per fifty |
+| The product target - renderings that ship unedited | [`targets.md`](targets.md) | four of five; today 0 of 3 |
+| The instrument target - entries let through per 100 | [`targets.md`](targets.md) | at most 2; today 7.5 |
+| The stage 4 threshold per axis | [`targets.md`](targets.md) | catches three quarters, at most two false per fifty |
 | The judge-run budget per axis | here, stage 4 | two |
 | The stage 2 sample size | here, stage 2 | 12 to 15 |
-| The spot-check interval | `PLAN.md`, stage 0 | every five turns of stage 5 |
+| The spot-check interval | [`targets.md`](targets.md) | every five turns of stage 5 |
