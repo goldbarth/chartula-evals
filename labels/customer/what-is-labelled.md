@@ -21,6 +21,7 @@ Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 | opus-5-out               | 25    | not shippable |
 | sonnet-5-no-thinking-out | 2     | not shippable |
 | sonnet-5-format-out      | 20    | ?             |
+| sonnet-5-format-fm-out   | 20    | ?             |
 
 <!-- labels.py sync: end -->
 

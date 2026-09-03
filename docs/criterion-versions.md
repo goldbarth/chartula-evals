@@ -22,6 +22,30 @@ says which existing results were produced against the criterion in the tree.
 
 ---
 
+## customer-criterion-v2.0.0
+
+Not tagged yet. Digest `sha256:8c213cdc9828d107`.
+
+**What moved.** B2 judges the document's opening, and the front matter is part
+of it. The rule that a missing `tags` field is *correct* when the fact base
+carries no labels lives in the format document's `Tags` section, and that
+section was not among the ones handed to B2 - it saw `Two serialisations` and
+`Groups` only. So the judge failed a document for omitting a field whose
+omission rule it had never been shown. `Tags` is now in the set.
+
+**Why a major bump for a defect fix.** The rule in the freeze gate is
+mechanical: a change that can move a verdict is major. This one can, and did -
+run `labelled-B2-claude-opus-5-2026-09-03T120021.json` is the verdict it
+produced, and it is not comparable with anything judged after this change.
+
+**What is not affected.** Only B2's input changed. No axis text moved and no
+other axis is shown the format at all, so the figures for the other eight stand
+on their own; the digest covers the criterion as one text, so it moves for all
+of them regardless. Re-judging B2 for one run is one call.
+
+**Before it can be tagged**, the gate asks for a separation run since the last
+edit. That is $0.14 at the default model.
+
 ## customer-criterion-v1.0.0
 
 Tagged 2026-09-03 on `ea0788c`. Digest `sha256:2fc4dcea96c3afad`.

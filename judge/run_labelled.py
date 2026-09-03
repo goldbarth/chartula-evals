@@ -278,7 +278,17 @@ def main() -> None:
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
-    parser.add_argument("--model", default="claude-opus-5")
+    parser.add_argument(
+        "--model",
+        # Every figure this repository holds was produced with this model, and it
+        # costs a third of what the larger one does per call - $0.0035 against
+        # $0.0102, measured over 1,424 calls. A default that silently contradicts
+        # the recorded figures and triples the bill is the wrong default.
+        default="claude-sonnet-5",
+        help="the judge model (default: claude-sonnet-5, about a third the price "
+             "per call of claude-opus-5; a run judged by one is not comparable "
+             "with a run judged by the other)",
+    )
     parser.add_argument("--effort", default="low", choices=["low", "medium", "high"])
     parser.add_argument("--max-tokens", type=int, default=2000)
     parser.add_argument("--dry-run", action="store_true")

@@ -65,9 +65,13 @@ first. Both runners refuse to start on an uncommitted rubric.
 | `.venv/bin/python3 judge/run_labelled.py --axis C4 --run sonnet-5-out` | one axis, one run |
 | `.venv/bin/python3 judge/run_labelled.py --axis C4 --limit 5` | the first few calls, to see the shape before paying for all of them |
 
-Shared options on both runners: `--model` (default `claude-opus-5`; every
-figure recorded so far used `claude-sonnet-5`), `--effort` (`low`, `medium`,
-`high`; default `low`), `--max-tokens` (2000), `--limit`, `--dry-run`.
+Shared options on both runners: `--model` (default `claude-sonnet-5`),
+`--effort` (`low`, `medium`, `high`; default `low`), `--max-tokens` (2000),
+`--limit`, `--dry-run`.
+
+**Judge only the axes the question is about.** All nine over 20 entries is
+$0.43; the one axis that is open is $0.07, and a document axis is under a cent.
+`docs/pipeline.md` has the full table under *What things cost*.
 
 Run one of these on a plain `python3` and it does not fail obscurely - it says
 the SDK is not on this interpreter and prints the line to use instead.

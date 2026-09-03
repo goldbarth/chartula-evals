@@ -1,0 +1,68 @@
+{
+  "schema": "chartula-evals/eval-log/1",
+  "metadata": {
+    "eval_id": "evl_42bd9dfc9684",
+    "timestamp": "2026-09-03T12:00:21Z",
+    "environment": "local",
+    "commit": "ad3518a",
+    "dirty": true
+  },
+  "evaluation_config": {
+    "kind": "labelled",
+    "audience": "customer",
+    "criterion": {
+      "name": "customer",
+      "version": "customer-criterion-v1.0.0-5-gad3518a-dirty",
+      "digest": "sha256:2fc4dcea96c3afad",
+      "rubric_last_changed": "47b5f34 2026-09-02",
+      "prompt_last_changed": "f4545d3 2026-09-03",
+      "labels_passed_against": "7213389",
+      "axes": {
+        "B2": "a5a1c68"
+      },
+      "judged_stale": []
+    },
+    "llm_judge": "claude-opus-5",
+    "parameters": {
+      "max_tokens": 2000,
+      "effort": "low",
+      "thinking": "adaptive",
+      "sampling": "not settable: temperature, top_p and top_k are rejected by this model family"
+    }
+  },
+  "execution_results": {
+    "calls": 1,
+    "agreed": 0,
+    "quotes_found_in_subject": 1,
+    "cost_usd": 0.0272,
+    "per_axis": {},
+    "passed": {
+      "axes": [],
+      "complete": false,
+      "note": "no item axis in this run"
+    },
+    "results": [
+      {
+        "id": "sonnet-5-format-fm-out::document::B2",
+        "run": "sonnet-5-format-fm-out",
+        "item": "document",
+        "axis": "B2",
+        "test_payload": {
+          "subject_label": "The document",
+          "subject": "---\ntitle: Release 0.1.0\ndescription: The first release that generates changelogs end to end, from pull requests to published text.\npublishedAt: 2026-07-17\n---\n\n### What's New\n\n- **Run metrics:** Every preview and generate run now ends with a summary of how many checks ran, how many findings they caught, and how many tokens were used. Reading this across a few releases tells you whether the thorough check is worth what it spends.\n- **Category settings:** A new categories section in chartula.yaml lets you set the order categories appear in, their display names, and whether breaking changes are shown prominently. Leave it out and the existing defaults apply.\n- **Configuration file:** You can now add a chartula.yaml file to a repository to customize Chartula's behavior; without one, the tool runs with sensible defaults. An example file with every option commented out is provided to copy and adjust, and an invalid setting now produces a clear configuration error message instead of a crash.\n- **CLI commands:** Running chartula preview shows the changelog, release notes, and files that would be produced for a tag without writing or publishing anything, while chartula generate produces and writes them. Both take --tag and --repo options, print a per-audience summary, and report clear errors instead of crashing on an unknown command or a missing option.\n- **Changelog JSON renderings:** changelog.json now stores the customer and product-manager text alongside the technical version, in a renderings section, keeping all generated texts in one file instead of separate files in the repository.\n- **GitHub release notes:** The generated release text is now written to the GitHub release's own notes. Running the same tag again updates those notes in place rather than creating a second release.\n- **CHANGELOG.md:** Each release is now added as a new section at the top of a CHANGELOG.md file, with all earlier sections kept intact below it. Running the same release again replaces its section in place instead of duplicating it.\n- **Review mode:** An optional review mode lets you check generated text before it's published: it's shown alongside any flagged passages, and you can approve it as-is or edit it. Turn it on in the review section of chartula.yaml; it stays off by default.\n- **Thorough faithfulness check:** A second check now compares the generated text against the source facts to catch subtler mistakes, such as a fix being rewritten as something more serious than it was. It runs by default and can be turned off in the faithfulness section of chartula.yaml.\n- **Rule-based faithfulness check:** A free check now flags any number, quoted name, or breaking-change claim in the generated text that doesn't appear in the source facts, surfacing it for review. It always runs and needs no configuration.\n- **Consistent formatting:** Generated changelog text now reads in one consistent voice and formatting style throughout, regardless of how the original pull requests were written.\n- **Audience-specific renderings:** A release now produces three versions from the same facts: a technical version with links and the full set of changes, a customer-facing version focused on user-visible benefits, and a product-manager version grouped by theme. Because all three come from the same facts, they can't disagree with each other.\n- **Fact-grounded generation:** Generated text is built only from the established facts of a release: it never adds a number, name, or detail that isn't already known, and it stays brief rather than padding out a change with little to say.\n- **changelog.json fact record:** A changelog.json file is now written for every release, recording the release's facts in a stable, versioned format that isn't generated by AI.\n- **Fact-base depth:** You can control how much detail feeds a release's changelog: title only, title and description (the default), or title, description, and linked issues. Set this in the factBase section of chartula.yaml.\n- **Change filtering:** Internal and chore-type changes are now left out of the changelog by default, while breaking changes are always kept even if their category would otherwise be excluded. Adjust which categories are excluded in the filter section of chartula.yaml.\n- **Label rules:** GitHub labels can now steer what appears in the changelog: a label can exclude a pull request, force it into a specific category, or restrict the changelog to only labeled pull requests. This is entirely optional and configured in the labels section of chartula.yaml.\n- **Graceful fallback:** When a merge has no associated pull request, or the pull request has a blank or uninformative title, the changelog now falls back to the commit message or the pull request's description rather than leaving the change out or failing the run.\n\n### Bug Fixes\n\n- **Truncated text:** Generated text could previously be cut off mid-word because no maximum response length was set, letting the provider apply its own low default. Full text is now always generated, and the limit can be adjusted in the llm section of chartula.yaml if needed.\n- **False breaking-change labels:** A pull request that merely discussed a breaking change in its description could previously be mislabeled as a breaking change itself. Only the standard Conventional Commits marker for a breaking change is now recognized, so labeling reflects the actual change."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "---\ntitle: Release 0.1.0\ndescription: The first release that generates changelogs end to end, from pull requests to published text.\npublishedAt: 2026-07-17\n---",
+        "reason": "Rule 3: the published serialisation's opening front matter is incomplete, missing the required tags field, even though the group headings and their order are correct.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 2721,
+          "output": 209,
+          "cache_read": 0
+        }
+      }
+    ]
+  }
+}

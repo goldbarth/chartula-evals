@@ -238,7 +238,8 @@ Each one exists because its absence produced the spiral.
 
 **1. A budget is fixed before the stage is entered.** Runs, hours or dollars,
 written down. When it is spent, a decision is made. Not "let us look a bit
-further" - that is the same decision deferred, at full price.
+further" - that is the same decision deferred, at full price. *What things
+cost* below is what to fix it against.
 
 **2. "Does not measure" is a valid ending.** An axis that cannot separate
 anything on this corpus is finished the moment that is written down. Without
@@ -258,6 +259,34 @@ not how much is left, and it never gets shorter.
 filed as issues there and appear here as a reference only. Work for another
 project accumulating in this project's list is what makes the work look
 endless when it is not.
+
+---
+
+## What things cost
+
+Measured over 1,424 judge calls, not estimated. The question a budget answers is
+never "what does a run cost" but "how many runs", so the figures are per turn of
+a loop rather than per command.
+
+| | |
+|---|---|
+| One judge call | $0.0035 with `claude-sonnet-5`, $0.0102 with `claude-opus-5` |
+| Re-rendering a release in Chartula | about $0.62 |
+| Judging one document axis, one run | $0.004 |
+| Judging one item axis, 20 entries | $0.07 |
+| Judging all nine axes, 20 entries | $0.43 |
+| The separation run, 40 calls | $0.14 |
+
+**A turn of stage 5 is the render plus the judging**, so a targeted turn is
+about $0.70 and the render is nine tenths of it. Judging all nine axes when one
+question is open triples the judging and answers nothing extra.
+
+**The judge model is the largest single lever and the easiest to get wrong.**
+It is three times the price between the two models, it is a flag nobody thinks
+about, and a run judged by one model cannot be compared with a run judged by the
+other - so the cheap mistake costs twice, once in money and once in a figure
+that has to be produced again. Both runners default to `claude-sonnet-5`, which
+is what every figure here was produced with.
 
 ---
 

@@ -507,7 +507,11 @@ def fact_base(audience: str = DEFAULT_AUDIENCE) -> str:
 # An axis that refers to the output format has to be given that part of the
 # format, or the model is asked about a rule it cannot read. Written down as a
 # rule in rubric/how-a-rubric-is-built.md, and enforced here.
-AXIS_NEEDS_FORMAT = {"B2": ["Two serialisations", "Groups"]}
+# `Tags` is here because B2 rule 3 judges the opening, the front matter is part
+# of it, and the rule that a missing `tags` field is correct when the fact base
+# carries no labels lives in that section alone. Without it the judge failed a
+# document for omitting a field it was never shown the omission rule for.
+AXIS_NEEDS_FORMAT = {"B2": ["Two serialisations", "Groups", "Tags"]}
 
 
 def format_sections(names: list[str]) -> str:
@@ -594,7 +598,17 @@ def main() -> None:
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=DEFAULT_AUDIENCE)
-    parser.add_argument("--model", default="claude-opus-5")
+    parser.add_argument(
+        "--model",
+        # Every figure this repository holds was produced with this model, and it
+        # costs a third of what the larger one does per call - $0.0035 against
+        # $0.0102, measured over 1,424 calls. A default that silently contradicts
+        # the recorded figures and triples the bill is the wrong default.
+        default="claude-sonnet-5",
+        help="the judge model (default: claude-sonnet-5, about a third the price "
+             "per call of claude-opus-5; a run judged by one is not comparable "
+             "with a run judged by the other)",
+    )
     parser.add_argument("--effort", default="low", choices=["low", "medium", "high"])
     parser.add_argument("--max-tokens", type=int, default=2000)
     parser.add_argument("--dry-run", action="store_true")
