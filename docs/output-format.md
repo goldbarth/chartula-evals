@@ -146,6 +146,39 @@ that does not apply and one nobody looked up.
 The allowlist is not optional. Without it `good first issue` and `needs-review`
 end up in front of customers.
 
+### Description
+
+The description is one sentence on what the release is about, written from the
+facts of that release and from nothing else.
+
+It is the field that had no source. `title` and `publishedAt` follow from the
+tag and its date, `tags` has the section above, and this one said what it
+contained without ever saying where it came from - so nothing produced it and
+the opening could not be assembled. Naming the source is what makes the field
+buildable rather than aspirational.
+
+*Written by the model, in the same pass as the audience texts.* It is a
+rephrasing of facts already in front of it, which is the one thing the
+generation step is for, and the faithfulness check covers it exactly as it
+covers everything else the model writes. That check is why the source has to be
+stated: a sentence built from anything outside the release's facts is
+unsupported by construction, and the check would be right to flag it.
+
+*Not from configuration, and not by hand.* Either means someone has to remember
+it at every release, and a field nobody remembers is a field that goes stale or
+stays empty. The whole point of generating a changelog is that the release does
+not depend on anyone recalling a step.
+
+*Not the first entry reworded.* The description says what the release is about;
+the first entry says what one change is. A release whose description is its
+largest feature tells the reader nothing they will not read one line further
+down, and it silently makes the ordering of the entries decide the summary.
+
+**When it cannot be written from the facts, the field is omitted**, on the same
+rule as tags: omitted, not emitted empty, and never filled with a placeholder.
+A release with nothing to summarise is a release whose customer section has no
+entries either, and that document is not published at all.
+
 ### Template options
 
 Settings a project chooses once. They change the form, never whether an entry

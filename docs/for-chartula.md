@@ -56,9 +56,13 @@ Two things are missing, not one:
   `title` and `publishedAt` are derivable from the tag and its date. `tags` is
   correctly absent while the fact base carries no labels, which is #98.
 - **A source for `description`.** One sentence on what the release is about.
-  There is no field for it in the fact base and no rule for who writes it. The
-  sentence used in the test above was written by hand, which is why that half of
-  the finding is not answered by adding a composer step.
+  The sentence used in the test above was written by hand, which is why that
+  half of the finding is not answered by adding a composer step. The
+  specification now says where it comes from - see *Description* in
+  [`output-format.md`](output-format.md): written by the model in the same pass
+  as the audience texts, from the facts of that release and nothing else, and
+  omitted rather than emitted empty when it cannot be written from them. What is
+  missing is that nothing implements it.
 
 ## The fact base has no place for a setting
 
