@@ -90,3 +90,50 @@ and C2 calls its not-applicable case a pass in as many words. So rule 8 permits
 an omission the axis it points at never allows. Repairing it edits the
 criterion, which is frozen, so it waits for a cycle where the instrument loop is
 open. The row is in [`parked.md`](parked.md).
+
+## 2026-09-04 - the turn that produced nothing to measure
+
+**What was changed.** goldbarth/chartula#106, the entry above: the outcome slot
+became a part an entry may not drop. Two other changes were in a rendering for
+the first time, both merged after the run this file's first entry measured:
+#102, which pins the model, and #104, which writes the customer rendering as a
+page of its own.
+
+**What came out.** Nothing that can be judged. The run of 12:52, from `ce2c6ea`:
+
+```
+technical  26320 characters
+customer       0 characters
+product     4327 characters
+```
+
+No `release-v0.1.0.md`, and a clean exit with no error. The turn produced no
+figure at all, which is the result being recorded here.
+
+**What carried it.** `ReleaseDescription.SplitOff`, added by #104. It takes the
+labelled first line as the description and everything after it as the body, so
+an answer that is a single `Description:` line leaves an empty body and the
+whole rendering becomes a field of the page. Every step after that behaved as
+designed: an empty customer body means a release with nothing to say to that
+audience, so no page is written and nothing is flagged.
+
+Four candidates were ruled out before that one, all by reading rather than by
+running: the no-statements path in `ReleaseChangelogGenerator` makes no call at
+all and the run metrics report three rephrasing calls; `ChangelogFormatter` only
+normalises line endings and bullet markers; `ReviewCoordinator` passes the text
+through while review is off, and it is off; the customer prompt is intact and
+all 386 tests of that commit pass. #104's own test suite pinned the behaviour:
+`A_description_on_its_own_leaves_an_empty_body`.
+
+**What was changed after.** goldbarth/chartula#108 and #109. A description with
+nothing under it is no longer lifted out; the text stays the body.
+
+**What is kept, and why.** `test-runs/sonnet-5-outcome-empty.changelog.json` is
+the run's own record, and no `.md` was made from it because there is no customer
+section to cut out. It is committed anyway: a turn that produced no rendering is
+still a turn, and the file is the evidence for what the customer field held.
+
+**What this cost the measurement.** The C3 change of #106 is still unmeasured.
+When it is rendered again, the turn will carry #102, #104, #106 and #109 at
+once, and the difference from the first entry above cannot be attributed to any
+one of them.
