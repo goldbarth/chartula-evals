@@ -13,3 +13,6 @@ calibration/
 
 # Worksheets: one axis cut out for a pass, read back with `labels.py column --write`.
 labels/*/pass-*.md
+
+# Worksheets: a stage 6 spot check, cut and read back with `tools/spot_check.py`.
+labels/*/spot-check-*.md

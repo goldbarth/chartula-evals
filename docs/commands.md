@@ -43,6 +43,23 @@ you have not read.
 
 The worksheets `labels/*/pass-*.md` are scratch and are not committed.
 
+## The spot check - stage 6
+
+Every five turns of stage 5, one person reads ten entries against the judge's
+verdicts on them. Neither half needs an API key.
+
+| | |
+|---|---|
+| `python3 tools/spot_check.py --run sonnet-5-rules-out` | cuts `labels/customer/spot-check-<date>.md`: ten entries, the judge's verdict on each axis, and an empty line for yours |
+| `python3 tools/spot_check.py --run <run> --passed 7 --failed 3` | a different mix. Seven let through and three failed by default, weighted that way because a judge that passes a bad entry costs the release |
+| `python3 tools/spot_check.py --read labels/customer/spot-check-<date>.md` | reads it back: agreements, and the entries the judge let through that you failed. That figure is the instrument target |
+
+The worksheet is scratch and is not committed. Nothing it holds goes into
+`items.csv` and no `rubric_commit` is stamped: labelling asks what the verdict
+is, this asks whether the judge still reaches it. The outcome goes into
+`docs/measurements.md` as a spot-check section, which is also the mark stage 6
+counts turns from.
+
 ## What changed in an axis
 
 | | |

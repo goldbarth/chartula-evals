@@ -237,6 +237,12 @@ verdicts on them. Not continuously, and not because a figure looked odd.
 A judge that stays put means stage 5 continues. A judge that has drifted is the
 **only** trigger that reopens loop A.
 
+    python3 tools/spot_check.py --run <run>      # cut it
+    python3 tools/spot_check.py --read <file>    # read it back
+
+Neither half costs an API call. The worksheet is scratch; the outcome goes into
+[`measurements.md`](measurements.md) as a spot-check section.
+
 **How to know it is due.** [`measurements.md`](measurements.md) holds one section
 per turn, so the count is the number of sections since the last spot check, and
 a turn that produced no figure still counts as a turn. Nothing announces this;

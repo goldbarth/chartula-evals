@@ -146,6 +146,15 @@ was rewritten around it and both copies go on stating the rule the axis no
 longer has. Recorded under the version it holds against in
 `../docs/criterion-versions.md`, because repairing it edits an axis.
 
+## What a spot check is not
+
+A stage 6 spot check reads ten entries across all axes, which is the shape this
+document forbids for labelling, and on purpose: it is not labelling. It asks
+whether the judge still reaches the verdict a person reaches, so nothing it
+produces enters `items.csv` and no `rubric_commit` is stamped. It is cut and
+read back with `python3 tools/spot_check.py`, and its outcome goes into
+`../../docs/measurements.md`.
+
 ## What the tool does not do
 
 It does not decide a verdict, and it does not read the rubric for you. It does
