@@ -100,6 +100,10 @@ twice in this repository about movements of one.
 > verdicts. A judge that has drifted is the only thing that reopens the
 > instrument loop.
 
+**Overdue.** [`measurements.md`](measurements.md) records four turns and no spot
+check has been done. The count is read off that file, per stage 6 of
+[`pipeline.md`](pipeline.md), and it was missed because nobody counted.
+
 ---
 
 ## The limitation of the case set

@@ -231,11 +231,18 @@ guess wearing the word.
 
 ## Stage 6 - a spot check, on a calendar
 
-Every few turns of stage 5, one person reads ten entries against the judge's
+Every five turns of stage 5, one person reads ten entries against the judge's
 verdicts on them. Not continuously, and not because a figure looked odd.
 
 A judge that stays put means stage 5 continues. A judge that has drifted is the
 **only** trigger that reopens loop A.
+
+**How to know it is due.** [`measurements.md`](measurements.md) holds one section
+per turn, so the count is the number of sections since the last spot check, and
+a turn that produced no figure still counts as a turn. Nothing announces this;
+it is read off that file, and the first time it was needed it had been missed by
+three turns because nobody counted. Count it at the top of every turn, before
+deciding what the turn changes.
 
 ---
 
