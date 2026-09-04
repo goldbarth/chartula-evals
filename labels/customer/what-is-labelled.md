@@ -23,6 +23,7 @@ Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 | sonnet-5-format-out      | 20    | ?             |
 | sonnet-5-format-fm-out   | 20    | ?             |
 | sonnet-5-outcome-out     | 19    | ?             |
+| sonnet-5-rules-out       | 24    | ?             |
 
 <!-- labels.py sync: end -->
 
