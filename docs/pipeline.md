@@ -22,6 +22,7 @@ work. It had no exit.
 | The figures every stage is measured against | [`targets.md`](targets.md) |
 | Findings that belong in Chartula, not here | [`for-chartula.md`](for-chartula.md) |
 | What each frozen version changed | [`criterion-versions.md`](criterion-versions.md) |
+| What each turn of stage 5 measured, and what caused the figure | [`measurements.md`](measurements.md) |
 
 This file says when a stage is over. It does not restate how the work inside a
 stage is done.
