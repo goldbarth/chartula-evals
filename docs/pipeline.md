@@ -221,6 +221,12 @@ count, so a bias the axis carries sits in both and cancels. What it does not
 cancel is noise: read a large movement, 19 fails to 3, and ignore a small one,
 19 to 17. An axis that is out of the gate is a direction here, never a figure.
 
+**Where the line between large and small is.** In the figure named in
+[`targets.md`](targets.md) under *The noise floor*, and nowhere else. No run
+here has ever been deterministic, so a turn that changes nothing still moves the
+count; until that movement has been measured, calling a small change noise is a
+guess wearing the word.
+
 **Ends when:** the product figure from stage 0 is met.
 
 ## Stage 6 - a spot check, on a calendar

@@ -78,6 +78,22 @@ Applied to the figures of 2026-09-02:
 gate does not mean out of the trend, though: see stage 5 of
 [`pipeline.md`](pipeline.md).
 
+## The noise floor
+
+> Not yet measured. Until it is, no movement of any size can be called noise.
+
+Stage 5 of [`pipeline.md`](pipeline.md) says to read a large movement and ignore
+a small one. Which is which has never been established here. No run is
+deterministic - `judge/how-the-loop-works.md` says so in as many words - so a
+turn that changes nothing at all still moves the counts, and by an unknown
+amount.
+
+It is measured by rendering the same release twice from the same commit with
+nothing changed, judging both, and comparing them. Whatever moves is the floor.
+It costs one render and it makes every figure after it readable; without it,
+"that is within noise" is a guess wearing the word, and it has already been said
+twice in this repository about movements of one.
+
 ## The spot check
 
 > Every five turns of stage 5, one person reads ten entries against the judge's
