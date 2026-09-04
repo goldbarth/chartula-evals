@@ -341,3 +341,47 @@ back.
 The four fails a person confirmed are three on C3 and one on C4, which are the
 two axes the plan is about to work on. Those verdicts being right is what makes
 the next turns worth running.
+
+## 2026-09-04 - the noise floor: three axes move when nothing changes
+
+Not a turn. The same release rendered twice from the same Chartula commit
+`38b8be8`, nothing changed in between, both judged against the same criterion by
+the same model. Whatever moves is what a turn has to beat to mean anything.
+
+**How.** `test-runs/sonnet-5-rules-repeat-out.md`, 25 entries against the 24 of
+`sonnet-5-rules-out`, judged by
+`judge/results/customer/labelled-all-claude-sonnet-5-2026-09-04T162030.json`.
+
+| axis | first | second | |
+|------|-------|--------|---|
+| A1 | 0 | 0 | |
+| B1 | 0 | 0 | |
+| B2 | 0 | 0 | |
+| B3 | 1 | 0 | moved |
+| C1 | 2 | 2 | |
+| C2 | 0 | 0 | |
+| C3 | 10 | 11 | moved |
+| C4 | 1 | 0 | moved |
+| C5 | 0 | 0 | |
+
+Entries that ship: 13 of 24, then 13 of 25.
+
+**The floor is one. Three of the nine axes moved by one with nothing changed.**
+A movement of one is not a result on any axis, in either direction, and this
+document has called such a movement noise twice before on nothing but
+conviction. Now it has a figure behind it.
+
+**It also changed the plan before a change was made.** B3 went from 1 to 0 on
+its own. Step 1 of the plan was a rewording of the claim-of-degree rule, aimed at
+exactly that one entry, and had it been made, the next count would have shown
+1 to 0 and the change would have been credited with it. The rendering does not
+carry a claim of degree every time; the entry it failed on last time is not in
+this rendering at all.
+
+**What moves and what does not.** The document axes and C2 and C5 sat still.
+C3 moved by one at a count of ten, which is a tenth of itself, and C1 sat still
+at two. The rendering itself is not stable either: 24 entries and 7,343
+characters, then 25 entries and 8,223.
+
+**What it costs to know this.** One render and one judge run, and it has already
+paid for itself by removing a turn from the plan.

@@ -80,19 +80,22 @@ gate does not mean out of the trend, though: see stage 5 of
 
 ## The noise floor
 
-> Not yet measured. Until it is, no movement of any size can be called noise.
+> **A movement of one is not a result.** Measured 2026-09-04: the same release
+> rendered twice from the same commit with nothing changed moved three of the
+> nine axes by one - B3 from 1 to 0, C3 from 10 to 11, C4 from 1 to 0.
 
 Stage 5 of [`pipeline.md`](pipeline.md) says to read a large movement and ignore
-a small one. Which is which has never been established here. No run is
-deterministic - `judge/how-the-loop-works.md` says so in as many words - so a
-turn that changes nothing at all still moves the counts, and by an unknown
-amount.
+a small one, and until this was measured neither word had a size. No run is
+deterministic - `judge/how-the-loop-works.md` says so in as many words - and the
+rendering is not stable either: 24 entries and 7,343 characters, then 25 and
+8,223, from the same commit.
 
-It is measured by rendering the same release twice from the same commit with
-nothing changed, judging both, and comparing them. Whatever moves is the floor.
-It costs one render and it makes every figure after it readable; without it,
-"that is within noise" is a guess wearing the word, and it has already been said
-twice in this repository about movements of one.
+The document axes, C2 and C5 sat still. What moved, moved by one. So a turn that
+moves an axis by one has shown nothing, whichever direction it went, and a turn
+aimed at an axis carrying a count of one or two cannot be read at all.
+
+The measurement is in [`measurements.md`](measurements.md), and it removed a
+turn from the work the first time it was looked at.
 
 ## The spot check
 
