@@ -106,6 +106,35 @@ check has been done. The count is read off that file, per stage 6 of
 
 ---
 
+## What these figures do not account for
+
+Three things that were not true when the figures above were produced, or were
+never true and are not written down anywhere else.
+
+**The judge and the writer are now the same model.** `chartula.yaml` pins
+`claude-sonnet-5` and both runners here default to it. A model scoring its own
+output is a documented source of inflated agreement, and the figures in this
+file were produced when that was not the case: the labelled renderings came from
+`claude-opus-4-8` and Opus 5. Nothing here corrects for it, and the correction
+is not free - a second judge model cannot be compared with these figures either.
+
+**The prompt is tuned on the only case that is measured.** Every change to
+Chartula's customer prompt since the freeze was derived from failures on v0.1.0
+of this repository and measured on v0.1.0 of this repository. That is
+overfitting by construction, and the usual symptom is a rising overall figure
+with a category quietly getting worse underneath it. The three held-out
+renderings do not cover it: they are old renderings from other models, not a
+second case a prompt change can be tested against. A second release from another
+repository is what would, and it is the same fix the case-set limitation below
+asks for.
+
+**The judge was validated once, in another epoch.** The agreement figures in
+this file are from 2026-09-02, against criterion v1.0.0 and against renderings
+written by Opus. The criterion has moved to v2.0.0 and the writer has moved to
+`claude-sonnet-5`. Six of the nine axes were out of the gate then and nothing
+has re-checked them since. That is what the spot check above is for, and it is
+overdue.
+
 ## The limitation of the case set
 
 Every run describes the same release of Chartula itself. For most axes that is
