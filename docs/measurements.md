@@ -307,3 +307,37 @@ direction only.
 stage 5 says to ignore.
 
 **The rendering still does not ship whole**, and one sentence decides it: B3.
+
+## 2026-09-04 - spot check: the judge stands
+
+Stage 6 of [`pipeline.md`](pipeline.md), the first one, and overdue by three
+turns. It is not a turn of stage 5 and moves no product figure; it is the mark
+the turn count starts again from.
+
+**What was read.** Ten entries of `sonnet-5-rules-out` against
+`judge/results/customer/labelled-all-claude-sonnet-5-2026-09-04T142930.json`, on
+the five item axes: 50 cells, cut by `tools/spot_check.py` and read back by it.
+`s5r-01`, `-02`, `-03`, `-05`, `-07`, `-11`, `-13`, `-14`, `-19`, `-20` - seven
+the judge let through and three it failed, chosen from the verdicts before any
+of the text was read.
+
+**The result: 50 of 50 agreed. No disagreement in either direction.**
+
+- **Let through: 0.** Nothing the judge passed was one a person would send back.
+  That is the instrument target of [`targets.md`](targets.md), at most 2 in 100,
+  and it is met with room.
+- **Too strict: 0.** Nothing the judge failed was one a person would have passed.
+
+**The judge stands, so stage 5 continues.** The instrument loop stays closed.
+
+**What this does not establish.** The 50 cells are 42 passes, 4 `n/a` and 4
+fails, and three of the five axes carry no failure at all in the sample: C1, C2
+and C5 are ten passes each. Agreement on a column with one class in it measures
+the class, which is the argument `targets.md` already makes about agreement
+figures generally. What the check does establish is the direction that costs a
+release: of the seven entries the judge let through, none should have been sent
+back.
+
+The four fails a person confirmed are three on C3 and one on C4, which are the
+two axes the plan is about to work on. Those verdicts being right is what makes
+the next turns worth running.
