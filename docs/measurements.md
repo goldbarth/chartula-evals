@@ -7,10 +7,9 @@ turned out to be caused by.
 **This is a record, not a list of work.** Nothing leaves this file. A finding
 that has since been fixed stays where it is, because the point of the entry is
 that the failure happened and what it cost, and a fixed row removed is a fixed
-row that cannot be looked up the next time the same shape appears. The lists
-that do empty themselves are [`parked.md`](parked.md), whose rows leave when
-they are done or written off, and [`for-chartula.md`](for-chartula.md), whose
-rows leave when the issue closes.
+row that cannot be looked up the next time the same shape appears. The one list
+that does empty itself is [`for-chartula.md`](for-chartula.md), whose rows leave
+when the issue closes.
 
 Figures from before this file existed are in [`targets.md`](targets.md), and
 what each version of the criterion changed is in
@@ -89,7 +88,8 @@ came from. C3 has no not-applicable case at all: `n/a` is defined by C4 alone,
 and C2 calls its not-applicable case a pass in as many words. So rule 8 permits
 an omission the axis it points at never allows. Repairing it edits the
 criterion, which is frozen, so it waits for a cycle where the instrument loop is
-open. The row is in [`parked.md`](parked.md).
+open. It is written down under that version in
+[`criterion-versions.md`](criterion-versions.md).
 
 ## 2026-09-04 - the turn that produced nothing to measure
 
@@ -137,3 +137,117 @@ still a turn, and the file is the evidence for what the customer field held.
 When it is rendered again, the turn will carry #102, #104, #106 and #109 at
 once, and the difference from the first entry above cannot be attributed to any
 one of them.
+
+## 2026-09-04 - the outcome rule reached the model and the figure fell
+
+**What was measured.** `test-runs/sonnet-5-outcome-out.md`, rendered from
+`55fccc1`. The first rendering to carry the outcome rule, and the first whose
+customer section is the published page rather than the `renderings.customer`
+field: `tools/from_chartula_run.py` gained a `--page` option for it, so B2 is
+shown the opening #104 produces instead of a document Chartula never writes.
+
+Five changes are in it at once, four of them for the first time: #102 pins the
+model, #104 writes the page, #106 makes the outcome slot compulsory, #109 keeps
+the rendering when the description is all the model wrote, #110 warns about a
+missing token.
+
+**How.** `judge/results/customer/labelled-all-claude-sonnet-5-2026-09-04T130521.json`,
+118 calls, judge `claude-sonnet-5` at effort `low`. Criterion v2.0.0, digest
+`sha256:8c213cdc9828d107`, the same the entry above was produced against, so the
+two compare. The tree was dirty at `9d5aaef` - the `--page` option was written
+and not yet committed - which the result file records.
+
+| axis | before | after | |
+|------|--------|-------|---|
+| A1 | 0 | 1 | worse |
+| B1 | 0 | 1 | worse |
+| B2 | 0 | 0 | |
+| B3 | 0 | 1 | worse |
+| C1 | 1 | 1 | |
+| C2 | 0 | 0 | |
+| C3 | 7 | 10 | worse |
+| C4 | 0 | 0 | |
+| C5 | 0 | 0 | |
+
+**The figure: 8 of 19 entries ship, against 13 of 20 before.**
+
+**C3 got worse on the axis the change was for.** Ten of nineteen entries fail
+it, and `s5o-02` names no outcome anywhere - the case the rule was written to
+forbid. The rule reached the model: the prompt carries it, and
+`ChangelogPromptBuilderTests` asserts that it does.
+
+**Three document axes fail that did not before**, and each one alone makes the
+rendering unshippable:
+
+- **A1**: the fallback to commits when a release has no pull requests, from #44,
+  has no entry at all.
+- **B1**: `s5o-06` says separate marketing files are no longer written, which
+  costs a reader who relies on them, and it sits below unmarked entries.
+- **B3**: "defaults to a much higher value" is a claim of degree with no number.
+
+**What this turn cannot say.** The rendering is 5,285 characters over 19 entries,
+against 25,457 over 20 before. It is a fifth of the length. Five changes and a
+rendering of a different shape moved together, so no part of the movement can be
+attributed to any one of them. That is the cost of letting four changes queue up
+behind a turn that produced nothing, and it is the reason a turn of stage 5
+changes one thing.
+
+### What the diff says about that fall
+
+Only two things changed in what the model is told, between the rendering that
+shipped 13 of 20 and the one that shipped 8 of 19:
+
+```
+- Leave out any of the last three that does not apply.
++ Leave out the second or the fourth when it does not apply;
++ what they can now rely on is always written.
+
+- Say what the reader can now rely on instead, or leave it out.
++ Say what the reader can now rely on instead. Striking the clause is not the way out.
+
++ CustomerDescription, appended to the customer prompt: one "Description:" line
++ before the entries, then a blank line, then the entries.
+```
+
+The first two are #106, the third is #104. Nothing else in the prompts moved.
+
+**Two of the three new document failures are on rules the prompt has never
+carried.** They did not get worse; they were never covered, and a rendering of a
+different shape exercised them for the first time.
+
+| Rule | Where it is written | In the prompt |
+|------|---------------------|---------------|
+| Every entry that asks something of the reader stands above every entry that does not | B1, `output-format.md` rule 10 | absent - "order" appears twice, both times about group order and slot order |
+| A claim of degree needs something in the entry to check it against | B3 rule 3 | absent - the prompt forbids superlatives and marketing, and "much higher value" is neither |
+| Minor changes are gathered into one closing `Also:` line of their group | B3 rule 2, `output-format.md` rule 11 | absent - "Also:" appears nowhere |
+| Nothing after the last group | `output-format.md` rule 5 | absent |
+
+A1 is not one of these: the coverage rule is in the prompt in full, and the
+model dropped a change anyway.
+
+**Where the prompt now diverges from the documents.** #106 requires an outcome
+on every entry. `output-format.md` rule 8 says outcome is omitted when it does
+not apply, and rule 11 says the collapsed `Also:` line usually has no outcome at
+all. The prompt is now stricter than the document it implements. The divergence
+is on the document's side - C3 defines no not-applicable case - and it waits
+for a cycle where the instrument loop is open. It is written down under that
+version in [`criterion-versions.md`](criterion-versions.md) rather than left to
+be rediscovered.
+
+**The model changed too, and that is not in the diff.** At `cda2ddf`, the commit
+the first rendering was made from, there was no `chartula.yaml` in the tree and
+`LlmProviderDefaults` named `claude-opus-4-8` for Anthropic. #102 pinned
+`claude-sonnet-5` afterwards, for cost: the previous model could not be paid for
+without ending the testing. So the two renderings were written by two different
+models, and `changelog.json` records no model, so no artefact can settle it after
+the fact.
+
+**What that costs.** The two figures are not comparable, and the drop cannot be
+read as the effect of the prompt. Everything from `sonnet-5-outcome-out` onward
+is on one model, so this entry is the new baseline and the one above it is
+history.
+
+**What it teaches about the loop.** A turn of stage 5 changes one thing. This
+turn carried five, plus a model, plus a rendering a fifth of the length, and the
+result is a number that names no cause. `pipeline.md` says this in its stage 5
+section; this is what ignoring it produces.
