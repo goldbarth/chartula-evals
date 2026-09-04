@@ -53,6 +53,38 @@ about Chartula rather than about the harness.
 **Before it can be tagged**, the gate asks for a separation run since the last
 edit.
 
+**Known and not repaired.** What this version is wrong about, kept here because
+a reader comparing two figures has to know it. None of it blocks a measurement,
+and each repair edits the criterion, which is frozen.
+
+- **`output-format.md` rule 8 permits an omission C3 never allows.** The rule
+  reads "Scope, outcome and action are omitted when they do not apply, per C2 to
+  C4", and C3 has no not-applicable case at all: `n/a` is defined by C4 alone,
+  and C2 calls its not-applicable case a pass in as many words. The permission
+  reached Chartula's customer prompt word for word and cost seven of twenty
+  entries on 2026-09-04; the prompt is fixed there, the sentence here is not.
+- **C4's `n/a` example names a case its own procedure fails.** The example is "a
+  metrics summary printed at the end of every run", which is `s5-01` of
+  `sonnet-5-out`, and that entry closes by handing the reader a decision with
+  nowhere to act on it. The `s5-01` label and the worked example in
+  `labels/customer/what-is-labelled.md` carry the same reading, so one reading
+  sits in three places and was checked in none. Repairing it makes C4 stale and
+  costs a re-pass of its 31 `n/a` rows; C4 is the strongest axis of the set,
+  caught all eight of the person's fails, so the repair buys accuracy in the rule
+  and nothing in the figure. Found by
+  `judge/results/customer/labelled-C4-claude-sonnet-5-2026-09-02T141038.json`,
+  and `labels/customer/friction-log.md` carries the row.
+- **A judgement statement lives in the format document.** `output-format.md`
+  rule 11 says of the collapsed line that "scope, outcome and action are usually
+  `n/a` on it", and the `Units` section of `rubric/customer.md` says the same.
+  Rule 4 of `rubric/how-a-rubric-is-built.md` gives judgement to the rubric
+  alone, so one of the two has to give it up.
+- **The `rubric_commit` on B1 and C4 rows names an unreachable commit.**
+  `labels/customer/items.csv` carries `7213389`, the pre-amend version of
+  `47b5f34`; `git diff 7213389 47b5f34` is empty, so the two name the same text.
+  `status.py` resolves the object and reports both columns comparable. It becomes
+  a real problem only if the object is garbage-collected.
+
 ## customer-criterion-v1.0.0
 
 Tagged 2026-09-03 on `ea0788c`. Digest `sha256:2fc4dcea96c3afad`.
@@ -71,11 +103,9 @@ judge runs, figures in [`targets.md`](targets.md):
 | Product | 0 of 3 renderings ship whole |
 | Instrument | 7.5 of 100 entries let through that a person would send back |
 
-**Known and not repaired.** Three findings sit in [`parked.md`](parked.md)
-rather than in this version, the largest being C4's `n/a` example, which names
-an entry its own procedure fails. Repairing it edits an axis, which is a major
-bump by the rule in the gate, and C4 is the strongest axis of the set as it
-stands. It waits for a cycle where the instrument loop is open.
+**Known and not repaired.** What this version was wrong about is listed under
+v2.0.0 above, which carries the same defects: none of them was repaired by that
+version, and the list is kept once rather than twice.
 
 **Results produced before this version** carry no digest and are reported as
 unknown by `--verify`. They were made against commits, two of which have since

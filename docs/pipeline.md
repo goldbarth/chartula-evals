@@ -247,14 +247,18 @@ anything on this corpus is finished the moment that is written down. Without
 this, every axis returns to the queue forever, because a figure can always be
 improved.
 
-**3. The parking list is separate from the open list.**
-[`parked.md`](parked.md) holds incidental findings - a stamp pointing at a
-commit that no longer exists, one sentence living in two documents. They are
-read **once per freeze cycle** and never in between.
+**3. An incidental finding is written down where it holds, not on a list.**
+A stamp pointing at a commit that no longer exists, one sentence living in two
+documents: these belong to the thing they are about. A finding about the
+criterion goes under its version in
+[`criterion-versions.md`](criterion-versions.md), a finding about a turn goes
+under that turn in [`measurements.md`](measurements.md), and a finding about
+Chartula leaves the repository entirely, per mechanism 4.
 
-An incidental finding on the open list makes the list grow with every change,
-whatever the change was. The list then measures how much has been looked at,
-not how much is left, and it never gets shorter.
+There is no list of them, and there was one: a file of parked rows collected
+what nobody was going to read again, because a row on it belonged to no piece of
+work. Written under the version or the turn it holds against, the same finding
+is read by whoever is comparing two figures, which is exactly who needs it.
 
 **4. Findings about Chartula leave this repository immediately.** They are
 filed as issues there and appear here as a reference only. Work for another

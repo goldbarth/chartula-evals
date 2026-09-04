@@ -60,8 +60,8 @@ recognised by its subject long before anyone reaches the procedure. C4's n/a
 example names a summary printed at the end of every run, and the entry it came
 from closes by handing the reader a decision, so the axis prints n/a beside a
 case its own procedure fails. It is still there: repairing it edits an axis and
-costs that column a re-pass, so it waits in `../docs/parked.md` for a cycle
-where the rubric is open.
+costs that column a re-pass, so it is recorded under its version in
+`../docs/criterion-versions.md` and waits for a cycle where the rubric is open.
 
 ## 3. Every axis states what makes it fail, not only what makes it pass
 

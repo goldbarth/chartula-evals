@@ -143,7 +143,8 @@ rule or an example out of the rubric: the copy is what nobody re-reads when the
 rubric changes. C4's n/a example was carried into the worked example word for
 word, so one reading exists in three places and was checked in none: the rubric
 was rewritten around it and both copies go on stating the rule the axis no
-longer has. Recorded in `../docs/parked.md`, because repairing it edits an axis.
+longer has. Recorded under the version it holds against in
+`../docs/criterion-versions.md`, because repairing it edits an axis.
 
 ## What the tool does not do
 
