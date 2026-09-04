@@ -251,3 +251,59 @@ history.
 turn carried five, plus a model, plus a rendering a fifth of the length, and the
 result is a number that names no cause. `pipeline.md` says this in its stage 5
 section; this is what ignoring it produces.
+
+## 2026-09-04 - the four missing rules, and which of them bit
+
+**What was changed.** goldbarth/chartula#112 alone, in what the model is told:
+the four rules of `output-format.md` the customer prompt had never carried.
+Order of entries, claims of degree, the collapsed `Also:` line, and nothing
+after the last group.
+
+#114 is in the rendering too and changes no content. It raised the output
+ceiling from 16,000 to 32,000 tokens, which only takes effect when the ceiling
+is reached; the run this is compared against did not reach it. Same model as
+that run, same criterion, same digest.
+
+**How.** `judge/results/customer/labelled-all-claude-sonnet-5-2026-09-04T142930.json`,
+against `labelled-all-claude-sonnet-5-2026-09-04T130521.json`. Rendering
+`test-runs/sonnet-5-rules-out.md` from Chartula `38b8be8`, 24 entries.
+
+| axis | before | after | |
+|------|--------|-------|---|
+| A1 | 1 | 0 | better |
+| B1 | 1 | 0 | better |
+| B2 | 0 | 0 | |
+| B3 | 1 | 1 | |
+| C1 | 1 | 2 | worse |
+| C2 | 0 | 0 | |
+| C3 | 10 | 10 | |
+| C4 | 0 | 1 | worse |
+| C5 | 0 | 0 | |
+
+**The figure: 13 of 24 entries ship, against 8 of 19. 54 in a hundred against
+42.**
+
+**Two of the four rules did what they were written for.** B1 goes to zero, and
+the judge's reason is the rule read back: the only entry whose ignoring costs
+the reader, a missing API key, is the first entry of the document. A1 goes to
+zero as well. The `Also:` line appears, at line 122 of the rendering, and the
+four groups stand in the order the format defines.
+
+**One rule reached the model and did not bite.** B3 fails on the same shape as
+before: "The token limit sent to the model now defaults to a much larger value",
+where the previous rendering said "a much higher value". The prompt has carried
+the claim-of-degree rule since #112 and the model wrote one anyway. That is a
+finding about how the rule is worded, not about it being absent, and it is the
+same kind of finding as C3.
+
+B3 is one of the three axes stage 4 put **in** the gate, so this verdict can be
+read as a figure rather than as a direction.
+
+**C3 stands at 10 over more entries**, so better as a share and unchanged as a
+count. It remains the largest single item, and it is out of the gate, so it is a
+direction only.
+
+**C1 and C4 gain one each.** Five more entries and a movement of one is what
+stage 5 says to ignore.
+
+**The rendering still does not ship whole**, and one sentence decides it: B3.
