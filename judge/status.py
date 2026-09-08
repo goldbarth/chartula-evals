@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import glob
+import subprocess
 import importlib.util
 import json
 from collections import Counter
@@ -58,6 +59,107 @@ def verify(paths: list[Path], audience: str) -> int:
     return 1 if mismatched else 0
 
 
+
+# --- What the documents decide, read from them rather than restated here. ---
+#
+# Three facts decided the work wrongly on 2026-09-08, and all three were written
+# down: that C3 gates nothing, that a movement of one is not a result, and that a
+# spot check was overdue. A document nobody re-reads mid-decision is a document
+# that does not hold. These read the owning file and quote it, so there is no
+# second copy to drift.
+
+DOCS = sep.REPO / "docs"
+
+
+def _section(path: Path, heading: str) -> list[str]:
+    """The lines under a `## heading`, up to the next one. Empty if absent."""
+    if not path.exists():
+        return []
+    out, inside = [], False
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            if inside:
+                break
+            inside = line[3:].strip().lower().startswith(heading.lower())
+            continue
+        if inside:
+            out.append(line)
+    return out
+
+
+def gate_status() -> dict[str, str]:
+    """Which axes are in the stage 4 gate, from the table in targets.md.
+
+    An axis that is out gates nothing - `targets.md` says so in as many words -
+    and the point of printing it beside the counts is that a count from an axis
+    that gates nothing is a direction and not a figure."""
+    status: dict[str, str] = {}
+    for line in _section(DOCS / "targets.md", "The stage 4 threshold"):
+        cells = [c.strip() for c in line.split("|")[1:-1]]
+        if len(cells) == 4 and cells[0] in AXES:
+            status[cells[0]] = "in" if cells[3].startswith("in") else "out"
+    return status
+
+
+def noise_floor() -> str:
+    """The first line of the noise floor figure, quoted from targets.md."""
+    for line in _section(DOCS / "targets.md", "The noise floor"):
+        if line.startswith(">"):
+            # The first sentence only, and without the markdown: this is a
+            # reminder in a terminal, not a quotation of the document.
+            text = line.lstrip("> ").replace("**", "").strip()
+            return text.split(". ")[0].rstrip(".") + "."
+    return "not measured"
+
+
+def turns_since_spot_check() -> tuple[int, str]:
+    """Sections of measurements.md since the last spot check, and that one's date.
+
+    Stage 6 of `pipeline.md` counts turns this way, and the first spot check was
+    missed by three because the count lived in nobody's head."""
+    path = DOCS / "measurements.md"
+    if not path.exists():
+        return (0, "never")
+    headings = [l[3:].strip() for l in path.read_text(encoding="utf-8").splitlines()
+                if l.startswith("## ")]
+    last = max((i for i, h in enumerate(headings) if "spot check" in h.lower()), default=None)
+    if last is None:
+        return (len(headings), "never")
+    return (len(headings) - last - 1, headings[last].split(" - ")[0])
+
+
+def documented_version() -> tuple[str, bool]:
+    """The newest version in criterion-versions.md, and whether a tag carries it."""
+    path = DOCS / "criterion-versions.md"
+    if not path.exists():
+        return ("unknown", False)
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## customer-criterion-v"):
+            name = line[3:].strip()
+            tags = subprocess.run(["git", "tag", "-l", name], cwd=sep.REPO,
+                                  capture_output=True, text=True).stdout.split()
+            return (name, name in tags)
+    return ("unknown", False)
+
+
+def before_you_decide() -> None:
+    """The four facts that have to be true before a count means anything."""
+    version, tagged = documented_version()
+    since, last = turns_since_spot_check()
+    gates = gate_status()
+    out = [a for a in AXES if gates.get(a) == "out"]
+
+    print("BEFORE YOU DECIDE")
+    print(f"  criterion    {version}  {'tagged' if tagged else 'NOT TAGGED'}"
+          f"   docs/criterion-versions.md")
+    print(f"  noise floor  {noise_floor()}   docs/targets.md")
+    print(f"  spot check   {since} turn(s) since {last}, due at 5"
+          f"   docs/pipeline.md stage 6"
+          f"{'   OVERDUE' if since >= 5 else ''}")
+    print(f"  gates nothing: {', '.join(out) if out else 'none'}"
+          f"   docs/targets.md - a count from these is a direction, not a figure")
+    print()
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audience", default=sep.DEFAULT_AUDIENCE)
@@ -89,6 +191,8 @@ def main() -> None:
     items, documents = lab.human_labels(audience)
     runs = Counter(run for run, _ in items)
 
+    before_you_decide()
+
     print(f"AUDIENCE: {audience}")
     print(f"  rubric {sep.rubric_rel(audience)}, labels labels/{audience}/")
 
@@ -99,16 +203,20 @@ def main() -> None:
     print(f"  {'total entries':<26} {sum(runs.values()):>3}")
 
     print("\nAXES")
-    print(f"  {'axis':<6}{'axis or units changed':<23}{'column passed against':<24}{'comparable now'}")
+    print(f"  {'axis':<6}{'axis or units changed':<23}{'column passed against':<24}"
+          f"{'comparable now':<20}{'gate'}")
+    gates = gate_status()
     ready = []
     for axis in AXES:
         stale = sep.labels_are_older_than(axis, audience)
         if not stale:
             ready.append(axis)
+        gate = gates.get(axis, "?")
         print(
             f"  {axis:<6}{sep.prompt_last_changed(axis, audience):<23}"
             f"{sep.column_passed_against(axis, audience) or '-':<24}"
-            f"{'no - re-pass first' if stale else 'yes'}"
+            f"{'no - re-pass first' if stale else 'yes':<20}"
+            f"{'in' if gate == 'in' else 'out - gates nothing' if gate == 'out' else '?'}"
         )
     print(f"\n  ready to judge: {', '.join(ready) if ready else 'none'}")
 
