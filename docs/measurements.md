@@ -549,3 +549,50 @@ covering a variation it had never seen.
 
 Every figure in this file that rests on a single rendering carries that, and the
 turns before this one are not exempt: #112's four rules were read the same way.
+
+## 2026-09-08 - spot check: the judge stands, and C3's failures are real
+
+Stage 6 of [`pipeline.md`](pipeline.md), the second one, and overdue by five
+turns. Not a turn of stage 5 and it moves no product figure.
+
+**What was read.** Ten entries of `sonnet-5-labels-out` against
+`judge/results/customer/labelled-all-claude-sonnet-5-2026-09-08T130715.json` on
+the five item axes: 50 cells, 49 filled in. Cut with `--passed 5 --failed 5`
+rather than the usual seven and three, because the open question was not only
+what the judge lets through but whether its ten C3 failures are real.
+
+**The result: 46 of 49 agreed.**
+
+**C3's failures are real, and that is the answer this was cut for.** Five of the
+ten C3 cells were failures, and four of the five are confirmed:
+
+| entry | judge | person |
+|-------|-------|--------|
+| `s5l-01` | fail | fail |
+| `s5l-04` | fail | fail |
+| `s5l-08` | fail | fail |
+| `s5l-17` | fail | fail |
+| `s5l-21` | fail | pass |
+
+So the 42 per cent is not an artefact of an axis that stage 4 put out of the
+gate. The entries are weak, and the work aimed at them is aimed at something.
+
+**Let through: 2, which is 4.1 per 100 cells read.** The instrument target in
+[`targets.md`](targets.md) is at most 2 in 100, and the first spot check found
+none. Two cases:
+
+- `s5l-09` on C3: "and it stays off by default so nothing is held up unless you
+  turn it on" - passed by the judge, failed by the person.
+- `s5l-01` on C4: "Provide an API key for that provider through an environment
+  variable before running either command" - the same.
+
+Two cases in 49 cells is a thin basis for a rate, and it is over the target
+rather than under it, which is the direction that costs a release rather than a
+turn. It is recorded and not acted on: one spot check at 0 and one at 4.1 is not
+a trend.
+
+**Too strict: 1.** `s5l-21` on C3, failed by the judge and passed by the person.
+That direction costs a turn, not a release, and `targets.md` does not count it
+against the target.
+
+**The judge stands, so stage 5 continues** and the instrument loop stays closed.
