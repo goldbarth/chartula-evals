@@ -26,6 +26,7 @@ Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 | sonnet-5-rules-out         | 24    | ?             |
 | sonnet-5-rules-repeat-out  | 25    | ?             |
 | sonnet-5-customer-only-out | 25    | ?             |
+| sonnet-5-place-out         | 19    | ?             |
 
 <!-- labels.py sync: end -->
 
