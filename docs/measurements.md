@@ -385,3 +385,36 @@ characters, then 25 entries and 8,223.
 
 **What it costs to know this.** One render and one judge run, and it has already
 paid for itself by removing a turn from the plan.
+
+## 2026-09-08 - a third draw, and the floor under C3 itself
+
+Not a turn. `sonnet-5-customer-only-out`, rendered from the branch of
+goldbarth/chartula#116 with `--audience customer`, before the prompt change of
+#118 existed. So it carries no change in what the model is told, and it was
+judged on C3 alone:
+`judge/results/customer/labelled-C3-claude-sonnet-5-2026-09-08T090934.json`,
+25 entries, 9 failures, same digest as the two before it.
+
+**Three renderings of the same prompt, and C3 gives three answers:**
+
+| Rendering | entries | C3 |
+|-----------|---------|----|
+| `sonnet-5-rules-out` | 24 | 10 |
+| `sonnet-5-rules-repeat-out` | 25 | 11 |
+| `sonnet-5-customer-only-out` | 25 | 9 |
+
+The general floor measured on 2026-09-04 was one, over all nine axes at once.
+This is the same figure taken three times on the axis the work is actually
+about, and it says the same thing more precisely: **C3 varies by one either way
+around ten with nothing changed.** A turn that takes it to nine or eleven has
+shown nothing. Seven or below is the first count that means the prompt moved.
+
+**It also answers a question nobody had paid to ask.** #116 renders one audience
+instead of three, and the customer rendering it produces sits inside the range
+of the two full renders. Rendering one audience does not change what that
+audience gets, which is what the tests said and is now also what a rendering
+says.
+
+**On the result file's `-dirty`.** The label tables were being written when the
+run started, so the tree was not clean. The digest is the criterion's own and is
+unchanged, so the comparison holds; nothing about the criterion moved.
