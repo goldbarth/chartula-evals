@@ -151,3 +151,16 @@ C5 can be applied here and the labels are consistent, but its figure measures
 the case as much as the axis. A second release from a repository other than
 this one is what would fix it, and widening the case set is out of scope for
 issue #1 deliberately. This is the first concrete reason to reopen that.
+
+**A1 has the same defect, found 2026-09-08.** The axis asks whether a reader
+could come into contact with a change, and on this case set that question has no
+answer for a whole class of them: `feat(output): store all audience texts in
+changelog.json` is product surface to whoever consumes that file and an internal
+detail to whoever only reads the changelog. A1 failed three entries of
+`sonnet-5-place-out` on exactly that, where it had failed none before.
+
+It is the second concrete reason to widen the case set, and it costs more than
+C5's version did: C5's overlap only muddies a figure, while A1's decides what
+reaches the customer prompt at all. goldbarth/chartula#119 will have to make
+that call per change, and nothing here can say whether it was made rightly - see
+[`for-chartula.md`](for-chartula.md).
