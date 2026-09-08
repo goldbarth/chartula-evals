@@ -418,3 +418,61 @@ says.
 **On the result file's `-dirty`.** The label tables were being written when the
 run started, so the tree was not clean. The digest is the criterion's own and is
 unchanged, so the comparison holds; nothing about the criterion moved.
+
+## 2026-09-08 - the place moved behind the outcome, and coverage paid for it
+
+**What was changed.** goldbarth/chartula#118 alone, one sentence: the place a
+setting is reached is the fourth part of an entry, so it comes after what the
+reader can now rely on and never instead of it.
+
+**How.** `test-runs/sonnet-5-place-out.md`, rendered from Chartula `ddbe859`
+with `--audience customer`, 19 entries. Judged over every axis by
+`judge/results/customer/labelled-all-claude-sonnet-5-2026-09-08T110558.json`,
+against `labelled-all-claude-sonnet-5-2026-09-04T142930.json`.
+
+| axis | before | after | |
+|------|--------|-------|---|
+| A1 | 0 | 3 | **worse** |
+| B1 | 0 | 0 | |
+| B2 | 0 | 0 | |
+| B3 | 1 | 0 | inside the floor |
+| C1 | 2 | 1 | inside the floor |
+| C2 | 0 | 0 | |
+| C3 | 10 | 3 | **better** |
+| C4 | 1 | 0 | inside the floor |
+| C5 | 0 | 1 | inside the floor |
+
+**C3 falls by seven, and it is the seven the change was aimed at.** Not one of
+the five entries that closed on where a setting lives is left: `s5r-01`,
+`s5r-10`, `s5r-14`, `s5r-15` and `s5r-16` have no counterpart in this rendering.
+The three that remain are the other shape, entries about a fix that close on the
+negation of their own opening, which is what the next step of the work is for.
+
+Seven is far outside the floor. Three renderings of the unchanged prompt put C3
+at 10, 11 and 9.
+
+**A1 rises by three, and nothing aimed at it. That is the finding.** It is also
+outside the floor, and A1 is a document axis: one of those failing makes the
+whole rendering unshippable however good its entries are. So the 15 of 19 above
+is not the product figure, and this rendering does not ship.
+
+- `s5p-12` describes the changelog's own formatting - normalised bullet markers
+  and line endings - which is not something a reader meets by using the product.
+- `s5p-19` describes where the audience texts are stored, likewise.
+- On the document row: the run-metrics summary printed at the end of every
+  `preview` and `generate` is in the fact base and in no entry at all.
+
+**The rendering is 19 entries against 24 and 25 before it.** Six fewer, two of
+the survivors describing internals, and one observable change carried by no
+entry. Whether the sentence about the fourth part caused that, or whether the
+same prompt simply renders shorter some days, this turn cannot say: the entry
+count of an unchanged prompt was 24, 25 and 25, so 19 is outside that range too.
+
+**What this turn cost that it did not have to.** C3 was judged on its own first,
+in `labelled-C3-claude-sonnet-5-2026-09-08T104515.json`, and then judged again
+inside the full run. Stage 5 of `pipeline.md` says every axis is counted here,
+and the plan's own collision rule says to read every axis in the output. Judging
+one was advice from the cost section of `pipeline.md`, which is a note about not
+asking the same question nine times, not a procedure. Had the full run been made
+first, A1 would have been visible immediately and the C3-only run would not have
+been paid for.

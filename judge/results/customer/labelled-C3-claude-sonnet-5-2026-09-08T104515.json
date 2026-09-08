@@ -1,0 +1,454 @@
+{
+  "schema": "chartula-evals/eval-log/1",
+  "metadata": {
+    "eval_id": "evl_a2ffe3a0636a",
+    "timestamp": "2026-09-08T10:45:15Z",
+    "environment": "local",
+    "commit": "3ff5327",
+    "dirty": true
+  },
+  "evaluation_config": {
+    "kind": "labelled",
+    "audience": "customer",
+    "criterion": {
+      "name": "customer",
+      "version": "customer-criterion-v1.0.0-25-g3ff5327-dirty",
+      "digest": "sha256:8c213cdc9828d107",
+      "rubric_last_changed": "47b5f34 2026-09-02",
+      "prompt_last_changed": "f4545d3 2026-09-03",
+      "labels_passed_against": "7213389",
+      "axes": {
+        "C3": "a5a1c68"
+      },
+      "judged_stale": []
+    },
+    "llm_judge": "claude-sonnet-5",
+    "parameters": {
+      "max_tokens": 2000,
+      "effort": "low",
+      "thinking": "adaptive",
+      "sampling": "not settable: temperature, top_p and top_k are rejected by this model family"
+    }
+  },
+  "execution_results": {
+    "calls": 19,
+    "agreed": 15,
+    "quotes_found_in_subject": 19,
+    "cost_usd": 0.0793,
+    "per_axis": {},
+    "passed": {
+      "axes": [
+        "C3"
+      ],
+      "complete": false,
+      "items": 19,
+      "judge_ships": 15,
+      "compared_against_labels": 0,
+      "human_ships": null,
+      "let_through": null,
+      "blocked": null,
+      "note": "no human verdict in this run; the judge side stands alone"
+    },
+    "results": [
+      {
+        "id": "sonnet-5-place-out::s5p-01::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-01",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **LLM provider key:** Generating or previewing a changelog calls a language-model provider, so you can only run `generate` or `preview` once you supply that provider's API key. Set it as an environment variable or in the `llm` section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so you can only run `generate` or `preview` once you supply that provider's API key",
+        "reason": "This clause restates the requirement/condition of slot 1 (needing an API key) rather than naming a new outcome the reader gains, so per rule 2 it fails.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1085,
+          "output": 220,
+          "cache_read": 0
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-02::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-02",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **`preview` and `generate` commands:** Running `chartula preview --tag <tag> --repo <owner/name>` shows what a release's changelog would look like without writing or publishing anything, while `chartula generate --tag <tag> --repo <owner/name>` produces and writes it. Both commands print a usage screen and a clear error message for missing options or an unknown command instead of crashing."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "Both commands print a usage screen and a clear error message for missing options or an unknown command instead of crashing.",
+        "reason": "The only candidate outcome restates slot 1 (the crash it no longer does) rather than naming something new the reader can rely on, matching the s5-03 precedent, so per step 2 it fails.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1130,
+          "output": 376,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-03::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-03",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Release scope:** Each run covers only the commits made since the previous tag, or your entire history when it's the first tagged release, so the changelog only ever reflects what's actually new."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so the changelog only ever reflects what's actually new",
+        "reason": "The item states a benefit beyond slot 1's mechanism description (what commits are covered), telling the reader what they can rely on, satisfying rule 2's test.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1061,
+          "output": 169,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-04::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-04",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Pull request details:** Changes are matched to the merged pull requests they came from, so each entry can carry that pull request's title, description, labels, and link instead of just a raw commit message. Set a `GITHUB_TOKEN` environment variable if you need authenticated access to a private repository or to avoid GitHub's rate limits."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so each entry can carry that pull request's title, description, labels, and link instead of just a raw commit message",
+        "reason": "The item names a concrete outcome (richer entry content) beyond restating slot 1's matching mechanism, satisfying step 2 of the procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1111,
+          "output": 174,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-05::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-05",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Imperfect PR data:** When a commit isn't linked to a merged pull request, or a pull request has a blank or uninformative title such as \"WIP\" or \"update\", the change still shows up in the changelog, drawn instead from the commit message, the pull request's description, or a generic label. You can rely on every change appearing even when pull request discipline isn't perfect."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on every change appearing even when pull request discipline isn't perfect.",
+        "reason": "The item states an explicit outcome (reliability of complete coverage) beyond restating slot 1's mechanism, satisfying step 2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1120,
+          "output": 113,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-06::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-06",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Automatic categorization:** Each change is assigned a category such as Feature, Fix, Performance, Documentation, Refactor, or Internal based on its title, with unrecognized titles falling back to a general \"Other\" category. Whether a change is breaking is tracked separately, so a breaking feature is still shown as a feature."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Whether a change is breaking is tracked separately, so a breaking feature is still shown as a feature.",
+        "reason": "The item names an outcome beyond slot 1 - that breaking status doesn't override categorization, so a breaking feature still reads as a feature - satisfying rule 1/2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1109,
+          "output": 178,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-07::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-07",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label-based curation:** GitHub labels can exclude a pull request from the changelog, force it into a specific category, or, with an only-labeled mode turned on, require a label before it's included at all, and the tool works the same if you don't use labels at all. Set these rules in the `labels` section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "and the tool works the same if you don't use labels at all",
+        "reason": "The item names an outcome beyond slot 1 - reassurance that non-users of labels are unaffected - satisfying step 2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1105,
+          "output": 185,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-08::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-08",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes:** Internal and chore-type changes are left out of the changelog by default, though a change marked breaking is never left out. Adjust which categories are excluded in the `filter` section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "though a change marked breaking is never left out",
+        "reason": "This clause adds information beyond slot 1 (that breaking changes are guaranteed to surface despite the filtering), telling the reader something they can rely on, satisfying step 2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1077,
+          "output": 212,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-09::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-09",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth:** You can choose how much of each pull request feeds the changelog - title only, title and description, or title, description, and linked issues - so you can match it to your team's pull request style. Title and description is the default; set your choice in the `factBase` section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you can match it to your team's pull request style",
+        "reason": "The outcome is stated as matching configuration to the team's PR style, giving the reader something beyond a restatement of slot 1 (per rule 2), so C3 passes.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1095,
+          "output": 104,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-10::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-10",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **changelog.json facts:** changelog.json records the underlying facts for a release - title, pull request number, link, category, user-visible and breaking flags, and linked issues - giving you a durable, machine-readable record you can build other tools on."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "giving you a durable, machine-readable record you can build other tools on",
+        "reason": "The item names an outcome beyond slot 1 (what becomes possible: building other tools on the record), satisfying rule 1/2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1080,
+          "output": 99,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-11::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-11",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Three audience versions:** Every release produces technical, customer, and product-manager versions from the same set of facts, so the three can never contradict each other. The customer version leaves out internal changes and their links, the technical version keeps links and the full set of changes, and the product version covers the full set grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so the three can never contradict each other",
+        "reason": "The item names an outcome (consistency across versions) beyond restating slot 1's event of producing three versions, satisfying step 2 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1099,
+          "output": 94,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-12::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-12",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Consistent formatting and voice:** Each version of the changelog uses normalized bullet markers, line endings, and spacing, and is written in one consistent voice, so it reads as one coherent document regardless of how individual pull requests were worded."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so it reads as one coherent document regardless of how individual pull requests were worded",
+        "reason": "The item names an outcome beyond slot 1 restatement - readability as one coherent document regardless of source wording - satisfying step 1/2 of the C3 procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1082,
+          "output": 165,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-13::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-13",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Text stays grounded in the facts:** Generated text only rephrases the facts it's given and treats each change's category and breaking marker as fixed, so you can trust it not to invent numbers, names, or claims. When there's little to say about a release, the output stays brief rather than padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you can trust it not to invent numbers, names, or claims",
+        "reason": "The item names an outcome beyond restating slot 1 - trust that output won't fabricate content - satisfying step 2 of the procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1095,
+          "output": 144,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-14::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-14",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based accuracy check:** Every generated text is checked, at no extra token cost, for numbers, quoted or backticked names, and breaking-change claims not backed by the underlying facts. This check always runs, so obvious mismatches are caught automatically."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so obvious mismatches are caught automatically",
+        "reason": "This restates slot 1 (the check runs/catches mismatches) rather than naming a distinct outcome for the reader, so per rule 2 it fails.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1089,
+          "output": 100,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-15::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-15",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough accuracy check:** A second check also looks for subtler mismatches between the generated text and the facts, such as a change's meaning being altered in rephrasing, and it runs automatically by default so issues the free check misses still get caught. Turn it off in the `faithfulness` section of chartula.yaml if you don't want the extra tokens it spends."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so issues the free check misses still get caught",
+        "reason": "The item names an outcome beyond restating slot 1 - that subtler mismatches missed by the free check are now caught - satisfying rule 1 and 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1119,
+          "output": 130,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-16::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-16",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode:** You can turn on a review step that shows the generated text together with any flagged passages, so a maintainer can approve it as-is or edit it before anything is written rather than publishing it unreviewed. It's off by default; enable it in the `review` section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so a maintainer can approve it as-is or edit it before anything is written rather than publishing it unreviewed",
+        "reason": "The item names an outcome beyond restating slot 1 - the ability to approve or edit before publishing - satisfying step 2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1095,
+          "output": 181,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-17::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-17",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history:** Each release is written as a new section at the top of CHANGELOG.md, with existing sections kept intact below it, so your history is preserved and never reordered. Running the same release again replaces just that section in place instead of duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running the same release again replaces just that section in place instead of duplicating it.",
+        "reason": "Rule 2: this adds information beyond slot 1 - that re-running leaves the section replaced rather than duplicated - so the item names a real outcome.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1089,
+          "output": 109,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-18::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-18",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes:** The generated changelog text is written to the release's notes on GitHub, and running the same tag again updates that release's notes rather than creating a second one, so the notes always stay in sync with your latest run."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so the notes always stay in sync with your latest run",
+        "reason": "The item names an outcome beyond restating slot 1 (updates rather than duplicates), and additionally states what the reader can rely on, satisfying rule 1/2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1075,
+          "output": 104,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-place-out::s5p-19::C3",
+        "run": "sonnet-5-place-out",
+        "item": "s5p-19",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **All audience texts in changelog.json:** The customer, technical, and product-manager texts for a release are stored together in changelog.json's renderings, so they're backed up in one file inst"
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so they're backed up in one file inst",
+        "reason": "Applying step 2: the clause only restates slot 1's fact (texts stored together) as a rephrased consequence, not a new outcome the reader can rely on, and the item is truncated with no further outcome stated.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1062,
+          "output": 101,
+          "cache_read": 1346
+        }
+      }
+    ]
+  }
+}
