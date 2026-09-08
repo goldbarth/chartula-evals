@@ -10,12 +10,13 @@ A finding leaves this file when its issue is closed.
 
 **goldbarth/chartula#96** - the output format is left to the model.
 
-`ChangelogPromptBuilder.Prompts.cs` gives the customer audience one sentence:
-"Audience: Customer. Focus on what changed for the user in plain language."
-Five general rules accompany it - rephrase only, stay sparse, no preamble, one
-voice, categories as given - and none of them describes the shape of an entry.
+When it was filed, `ChangelogPromptBuilder.Prompts.cs` gave the customer audience
+one sentence: "Audience: Customer. Focus on what changed for the user in plain
+language." Five general rules accompanied it - rephrase only, stay sparse, no
+preamble, one voice, categories as given - and none of them described the shape
+of an entry.
 
-[`output-format.md`](output-format.md) is the specification that issue is
+[`output-format.md`](output-format.md) is the specification that issue was
 missing. What the labels measured on 2026-09-02, over 53 entries of three runs:
 
 | What the entries do | Count | The rule that forbids it |
@@ -31,10 +32,22 @@ Every one of those rules existed in writing and none reached the model.
 added the four rules it still left out - the order entries stand in, claims of
 degree, the collapsed `Also:` line, nothing after the last group - and #118 said
 that the place a setting is reached comes after the outcome rather than instead
-of it. Measured on the rendering of 2026-09-08, the first row of that table is
-down from 19 of 53 to 3 of 19, and the axes for the other three sit at one, zero
-and zero. The issue is still open; what is left of it is the outcome of a fix,
-which closes on the negation of its own opening.
+of it.
+
+**What is left of it is the first row of that table, and it is the largest thing
+left in this project.** On `sonnet-5-labels-out`, the newest rendering, 10 of 24
+entries still state no outcome the reader can use, and nine of the thirteen
+entries held back from shipping fail on that and nothing else. The other three
+rows of the table are down to one, zero and zero.
+
+The shape that remains is narrow: an entry about a fix that closes on the
+negation of its own opening - "no longer gets cut off", "never skipped for that
+reason". A person read five of those failures back in the spot check of
+2026-09-08 and agreed with four, so they are real rather than an artefact of an
+axis that gates nothing.
+
+This is not a background item waiting behind the others. It is the next turn of
+the production loop, and `docs/plan.md` carries it as such.
 
 The outcome rule is the one exception that needs more than the format
 document: `output-format.md` names the four slots but not the test that decides
