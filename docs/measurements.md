@@ -476,3 +476,76 @@ one was advice from the cost section of `pipeline.md`, which is a note about not
 asking the same question nine times, not a procedure. Had the full run been made
 first, A1 would have been visible immediately and the C3-only run would not have
 been paid for.
+
+## 2026-09-08 - the label decides visibility, and C3's fall turns out to be the rendering
+
+**What was changed.** goldbarth/chartula#120 carries a change's labels into the
+fact base, and #121 decides `IsUserVisible` from a label rather than from the
+conventional-commit category, with the category as the fallback and the names
+configured in `chartula.yaml`. Both were needed together: #120 alone changes no
+output.
+
+Three pull requests of v0.1.0 were labelled `visibility:internal` on GitHub, so
+23 of the 28 changes now reach the customer prompt where 26 did.
+
+**How.** `test-runs/sonnet-5-labels-out.md`, 24 entries, judged over every axis
+by `judge/results/customer/labelled-all-claude-sonnet-5-2026-09-08T130715.json`
+against `labelled-all-claude-sonnet-5-2026-09-08T110558.json`.
+
+| axis | before | after | |
+|------|--------|-------|---|
+| A1 | 3 | 0 | **better** |
+| B1 | 0 | 0 | |
+| B2 | 0 | 0 | not comparable, see below |
+| B3 | 0 | 0 | |
+| C1 | 1 | 2 | inside the floor |
+| C2 | 0 | 0 | |
+| C3 | 3 | 10 | **worse** |
+| C4 | 0 | 0 | |
+| C5 | 1 | 2 | inside the floor |
+
+**A1 goes to zero and that is the change working.** No entry describes the
+tool's internals any more, and no observable change is left without one. The
+three failures of the previous turn are gone, which is what labelling the three
+pull requests was for.
+
+**B2 sat this turn out.** `release-v0.1.0.md` was deleted before the case was
+built, and the release description exists nowhere else, so the customer section
+was cut from `renderings.customer` and carries no front matter. B2 judges the
+opening, so its pass here says nothing. Rebuilding the front matter by hand
+would have judged a document Chartula never wrote.
+
+## What C3 says about the method
+
+C3 is back where it was before #118, and the sentence #118 added is still in the
+prompt. As a share of the entries judged, every run since the freeze:
+
+| Rendering | C3 | share |
+|-----------|----|-------|
+| `sonnet-5-format-out` | 7 of 20 | 35% |
+| `sonnet-5-outcome-out` | 10 of 19 | 53% |
+| `sonnet-5-rules-out` | 10 of 24 | 42% |
+| `sonnet-5-rules-repeat-out` | 11 of 25 | 44% |
+| `sonnet-5-customer-only-out` | 9 of 25 | 36% |
+| `sonnet-5-place-out` | 4 of 19 | 21% |
+| `sonnet-5-place-out`, judged again | 3 of 19 | 16% |
+| `sonnet-5-labels-out` | 10 of 24 | 42% |
+
+**The one rendering that changed the figure is the one that came out short.**
+`sonnet-5-place-out` has 19 entries where every other rendering has 24 or 25,
+and both judge runs over it agree, so it is the document and not the judging. A
+rendering with a fifth fewer entries has a fifth fewer chances to fail an item
+axis.
+
+**So the fall from 10 to 3 was not the effect of #118.** It was measured on one
+rendering, and the next rendering of the same prompt is back at 42 per cent. The
+sentence may still be right - it is the reasoning that was wrong.
+
+**What this says about the loop.** One rendering per turn cannot separate a
+prompt change from the variation between renderings. The noise floor of
+2026-09-04 compared axis counts over two renderings of 24 and 25 entries; that
+a third would come out at 19 was not in it, and the floor of one was read as
+covering a variation it had never seen.
+
+Every figure in this file that rests on a single rendering carries that, and the
+turns before this one are not exempt: #112's four rules were read the same way.
