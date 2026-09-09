@@ -30,7 +30,6 @@ _l = importlib.util.spec_from_file_location("lab", Path(__file__).with_name("run
 lab = importlib.util.module_from_spec(_l)
 _l.loader.exec_module(lab)
 
-AXES = ["A1", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "C5"]
 
 
 def verify(paths: list[Path], audience: str) -> int:
@@ -87,7 +86,7 @@ def _section(path: Path, heading: str) -> list[str]:
     return out
 
 
-def gate_status() -> dict[str, str]:
+def gate_status(audience: str = sep.DEFAULT_AUDIENCE) -> dict[str, str]:
     """Which axes are in the stage 4 gate, from the table in targets.md.
 
     An axis that is out gates nothing - `targets.md` says so in as many words -
@@ -96,7 +95,7 @@ def gate_status() -> dict[str, str]:
     status: dict[str, str] = {}
     for line in _section(DOCS / "targets.md", "The stage 4 threshold"):
         cells = [c.strip() for c in line.split("|")[1:-1]]
-        if len(cells) == 4 and cells[0] in AXES:
+        if len(cells) == 4 and cells[0] in sep.axes(audience):
             status[cells[0]] = "in" if cells[3].startswith("in") else "out"
     return status
 
@@ -142,12 +141,12 @@ def documented_version() -> tuple[str, bool]:
     return ("unknown", False)
 
 
-def before_you_decide() -> None:
+def before_you_decide(audience: str = sep.DEFAULT_AUDIENCE) -> None:
     """The four facts that have to be true before a count means anything."""
     version, tagged = documented_version()
     since, last = turns_since_spot_check()
-    gates = gate_status()
-    out = [a for a in AXES if gates.get(a) == "out"]
+    gates = gate_status(audience)
+    out = [a for a in sep.axes(audience) if gates.get(a) == "out"]
 
     print("BEFORE YOU DECIDE")
     print(f"  criterion    {version}  {'tagged' if tagged else 'NOT TAGGED'}"
@@ -191,7 +190,7 @@ def main() -> None:
     items, documents = lab.human_labels(audience)
     runs = Counter(run for run, _ in items)
 
-    before_you_decide()
+    before_you_decide(audience)
 
     print(f"AUDIENCE: {audience}")
     print(f"  rubric {sep.rubric_rel(audience)}, labels labels/{audience}/")
@@ -205,9 +204,9 @@ def main() -> None:
     print("\nAXES")
     print(f"  {'axis':<6}{'axis or units changed':<23}{'column passed against':<24}"
           f"{'comparable now':<20}{'gate'}")
-    gates = gate_status()
+    gates = gate_status(audience)
     ready = []
-    for axis in AXES:
+    for axis in sep.axes(audience):
         stale = sep.labels_are_older_than(axis, audience)
         if not stale:
             ready.append(axis)

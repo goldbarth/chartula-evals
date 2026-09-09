@@ -57,13 +57,48 @@ def results_dir(audience: str = DEFAULT_AUDIENCE) -> Path:
     return REPO / "judge" / "results" / audience
 
 
-DOCUMENT_AXES = ["A1", "B1", "B2", "B3"]
-ITEM_AXES = ["C1", "C2", "C3", "C4", "C5"]
+# Which axes exist is the rubric's own business, and it is readable from the
+# rubric: every axis is a `### A1 - ...` heading, and the letter is its level.
+# The levels table at the top of each rubric says what the letters mean - A is
+# asked of an entry and of the whole document, B only of the document, C only
+# of an entry - so the three lists below are derived rather than repeated. A
+# second audience with a different set of axes then needs no edit here.
+@functools.lru_cache(maxsize=None)
+def axes(audience: str = DEFAULT_AUDIENCE) -> tuple[str, ...]:
+    """Every axis of this rubric, in the order the rubric defines them."""
+    text = rubric_path(audience).read_text(encoding="utf-8")
+    found = tuple(re.findall(r"^### ([A-Z]\d+) - ", text, flags=re.MULTILINE))
+    if not found:
+        sys.exit(f"no axes found in {rubric_rel(audience)}")
+    return found
 
-# Only C4 defines n/a as a verdict of its own. C2 calls the not-applicable case a
-# pass in as many words, so offering n/a there would invent a third answer the
-# rubric does not have.
-NA_AXES = {"C4"}
+
+def document_axes(audience: str = DEFAULT_AUDIENCE) -> list[str]:
+    """The axes a whole document is judged on."""
+    return [a for a in axes(audience) if a[0] in "AB"]
+
+
+def entry_axes(audience: str = DEFAULT_AUDIENCE) -> list[str]:
+    """The axes one entry is judged on."""
+    return [a for a in axes(audience) if a[0] in "AC"]
+
+
+def ship_axes(audience: str = DEFAULT_AUDIENCE) -> list[str]:
+    """The axes an entry ships on. Selection is not among them: an entry that
+    should not be there is removed rather than rewritten."""
+    return [a for a in axes(audience) if a[0] == "C"]
+
+
+# Which axes offer n/a cannot be read off a heading, so it is declared, per
+# audience. Only C4 of the customer rubric defines n/a as a verdict of its own;
+# C2 calls the not-applicable case a pass in as many words, so offering n/a
+# there would invent a third answer the rubric does not have. The technical
+# rubric defines none: every axis it carries answers pass or fail.
+NA_AXES_BY_AUDIENCE = {"customer": {"C4"}, "technical": set()}
+
+
+def na_axes(audience: str = DEFAULT_AUDIENCE) -> set[str]:
+    return set(NA_AXES_BY_AUDIENCE.get(audience, set()))
 
 # $ per million tokens: input, output, cache write, cache read.
 PRICES = {
@@ -237,7 +272,9 @@ def labels_are_older_than(axis: str, audience: str = DEFAULT_AUDIENCE) -> bool:
     return _is_ancestor(column_commit, axis_commit) and axis_commit != column_commit
 
 
-CRITERION_AXES = ["Units", "A1", "B1", "B2", "B3", "C1", "C2", "C3", "C4", "C5"]
+def criterion_axes(audience: str = DEFAULT_AUDIENCE) -> list[str]:
+    """`Units` plus every axis: the sections of the rubric a judge is shown."""
+    return ["Units", *axes(audience)]
 
 
 def criterion_digest(audience: str = DEFAULT_AUDIENCE) -> str:
@@ -254,9 +291,10 @@ def criterion_digest(audience: str = DEFAULT_AUDIENCE) -> str:
     beside an axis, and both halves of the prompt. Anything the judge reads is
     in here; anything it does not read is not, so a note written elsewhere in
     the rubric leaves the digest alone."""
-    parts = [rubric_section(h if h == "Units" else f"{h} -", audience) for h in CRITERION_AXES]
-    for axis in sorted(AXIS_NEEDS_FORMAT):
-        parts.append(format_sections(AXIS_NEEDS_FORMAT[axis]))
+    parts = [rubric_section(h if h == "Units" else f"{h} -", audience) for h in criterion_axes(audience)]
+    needs_format = axis_needs_format(audience)
+    for axis in sorted(needs_format):
+        parts.append(format_sections(needs_format[axis], audience))
     parts.extend(prompt_parts())
     joined = "\x00".join(part.strip() for part in parts)
     return "sha256:" + hashlib.sha256(joined.encode("utf-8")).hexdigest()[:16]
@@ -406,6 +444,20 @@ def rubric_section(heading: str, audience: str = DEFAULT_AUDIENCE) -> str:
     return match.group(1).rstrip()
 
 
+def axis_question(axis: str, audience: str = DEFAULT_AUDIENCE) -> str:
+    """The one question an axis answers, taken from its own **Judges:** line.
+
+    Anything that wants a short label for an axis reads it from here. A second
+    wording of the same question inside a script is a copy, and it goes stale
+    the first time the axis is rewritten - which is the defect rule 4 of
+    `rubric/how-a-rubric-is-built.md` names for the format document."""
+    section = rubric_section(f"{axis} -", audience)
+    match = re.search(r"\*\*Judges:\*\*(.*?)(?=\n\n)", section, re.DOTALL)
+    if not match:
+        return ""
+    return " ".join(match.group(1).split()).rstrip(".")
+
+
 def prompt_parts() -> tuple[str, str]:
     """The system and user templates, read from judge/axis-prompt.md."""
     text = PROMPT.read_text(encoding="utf-8")
@@ -447,7 +499,7 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
         if case.get("facts"):
             fact_text = (calibration / case["facts"]).read_text(encoding="utf-8")
             facts = "The fact base for the release:\n\n```text\n" + fact_text.rstrip() + "\n```"
-        for axis in DOCUMENT_AXES:
+        for axis in document_axes(audience):
             calls.append(
                 {
                     "id": f"{case['document']}::{axis}",
@@ -455,7 +507,36 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
                     "axis": axis,
                     "subject_label": "The document",
                     "subject": document.rstrip(),
-                    "facts": facts if axis == "A1" else "",
+                    "facts": facts if axis in axis_needs_facts(audience) else "",
+                    "expected": "fail" if case["fails"] == axis else "pass",
+                    "system": system,
+                    "user_template": user_template,
+                    "units": units,
+                }
+            )
+
+    # A case built to fail an item axis is answered on the entry it broke, which
+    # the manifest names. The document axes still read the whole document, and
+    # every other item axis still has to pass on that entry: one broken entry
+    # that fails five axes separates nothing.
+    for case in manifest["cases"]:
+        if not case.get("entry_fails"):
+            continue
+        document = (calibration / case["document"]).read_text(encoding="utf-8")
+        broken = entries(document)[case["entry_fails"] - 1]
+        for axis in ship_axes(audience):
+            calls.append(
+                {
+                    "id": f"{case['document']}#entry{case['entry_fails']}::{axis}",
+                    "audience": audience,
+                    "axis": axis,
+                    "subject_label": "The entry",
+                    "subject": broken,
+                    "facts": (
+                        (calibration / case["facts"]).read_text(encoding="utf-8")
+                        if case.get("facts") and axis in axis_needs_facts(audience)
+                        else ""
+                    ),
                     "expected": "fail" if case["fails"] == axis else "pass",
                     "system": system,
                     "user_template": user_template,
@@ -465,7 +546,7 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
 
     base = (calibration / "base.md").read_text(encoding="utf-8")
     for i, entry in enumerate(entries(base), start=1):
-        for axis in ITEM_AXES:
+        for axis in ship_axes(audience):
             calls.append(
                 {
                     "id": f"base.md#entry{i}::{axis}",
@@ -491,7 +572,17 @@ def build_calls(audience: str = DEFAULT_AUDIENCE) -> list[dict]:
 # from. Every other axis reads the subject alone, and sending facts there would
 # invite a verdict on grounding, which the rubric leaves to the faithfulness
 # check.
-AXIS_NEEDS_FACTS = {"A1"}
+AXIS_NEEDS_FACTS_BY_AUDIENCE = {
+    "customer": {"A1"},
+    # C3 of the technical rubric asks whether a description was carried over
+    # word for word from the pull request that brought the change, and the
+    # titles it would be compared against are in the facts and nowhere else.
+    "technical": {"A1", "C3"},
+}
+
+
+def axis_needs_facts(audience: str = DEFAULT_AUDIENCE) -> set[str]:
+    return set(AXIS_NEEDS_FACTS_BY_AUDIENCE.get(audience, set()))
 
 
 def fact_base(audience: str = DEFAULT_AUDIENCE) -> str:
@@ -511,21 +602,48 @@ def fact_base(audience: str = DEFAULT_AUDIENCE) -> str:
 # of it, and the rule that a missing `tags` field is correct when the fact base
 # carries no labels lives in that section alone. Without it the judge failed a
 # document for omitting a field it was never shown the omission rule for.
-AXIS_NEEDS_FORMAT = {"B2": ["Two serialisations", "Groups", "Tags"]}
+AXIS_NEEDS_FORMAT_BY_AUDIENCE = {
+    "customer": {"B2": ["Two serialisations", "Groups", "Tags"]},
+    "technical": {
+        "B1": ["Release", "Groups", "Entry"],
+        "B2": ["Release", "Never appears"],
+        "C1": ["Entry"],
+        "C2": ["Entry"],
+        "C3": ["Entry", "Never appears"],
+    },
+}
 
 
-def format_sections(names: list[str]) -> str:
+def axis_needs_format(audience: str = DEFAULT_AUDIENCE) -> dict[str, list[str]]:
+    return AXIS_NEEDS_FORMAT_BY_AUDIENCE.get(audience, {})
+
+
+def format_block(audience: str = DEFAULT_AUDIENCE) -> str:
+    """The part of the format document one audience's template occupies.
+
+    Section names repeat across templates - `Groups`, `Entry` and `Never
+    appears` are in both - so a name alone does not name a section, and taking
+    the first match would hand the technical judge the customer's rules."""
     text = (REPO / "docs" / "output-format.md").read_text(encoding="utf-8")
+    pattern = rf"^## {re.escape(audience.capitalize())}\b.*?(?=^## |\Z)"
+    match = re.search(pattern, text, re.DOTALL | re.MULTILINE)
+    if not match:
+        sys.exit(f"no {audience} template in docs/output-format.md")
+    return match.group(0)
+
+
+def format_sections(names: list[str], audience: str = DEFAULT_AUDIENCE) -> str:
+    text = format_block(audience)
     out = []
     for name in names:
         start = text.index(f"### {name}")
-        end = text.index("\n### ", start + 1)
-        out.append(text[start:end].rstrip())
+        end = text.find("\n### ", start + 1)
+        out.append(text[start : end if end != -1 else len(text)].rstrip())
     return "\n\n".join(out)
 
 
 def render(call: dict) -> tuple[str, list[dict]]:
-    verdicts = "`pass`, `fail`" + (", `n/a`" if call["axis"] in NA_AXES else "")
+    verdicts = "`pass`, `fail`" + (", `n/a`" if call["axis"] in na_axes(call["audience"]) else "")
     body = (
         call["user_template"]
         .replace("{{AXIS_ID}}", call["axis"])
@@ -535,8 +653,8 @@ def render(call: dict) -> tuple[str, list[dict]]:
             rubric_section(call["axis"], call["audience"])
             + (
                 "\n\nThe part of the output format this axis refers to:\n\n"
-                + format_sections(AXIS_NEEDS_FORMAT[call["axis"]])
-                if call["axis"] in AXIS_NEEDS_FORMAT
+                + format_sections(axis_needs_format(call["audience"])[call["axis"]], call["audience"])
+                if call["axis"] in axis_needs_format(call["audience"])
                 else ""
             ),
         )

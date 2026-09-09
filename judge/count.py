@@ -58,10 +58,7 @@ def counts(rows: list[dict]) -> dict[str, dict]:
     return dict(per_axis)
 
 
-SHIP_AXES = {"C1", "C2", "C3", "C4", "C5"}
-
-
-def ships(rows: list[dict]) -> tuple[int, int]:
+def ships(rows: list[dict], audience: str = sep.DEFAULT_AUDIENCE) -> tuple[int, int]:
     """Items the judge would send out, and items it saw at all.
 
     The rule is the one the labels use: an item ships when no C axis fails.
@@ -76,7 +73,7 @@ def ships(rows: list[dict]) -> tuple[int, int]:
     by_item: dict[tuple[str, str], list[str]] = defaultdict(list)
     for row in rows:
         item = row.get("item")
-        if item and item != "document" and row["axis"] in SHIP_AXES:
+        if item and item != "document" and row["axis"] in sep.ship_axes(audience):
             by_item[(row.get("run", ""), row["item"])].append(row.get("verdict"))
     if not by_item:
         return 0, 0
@@ -88,10 +85,10 @@ def criterion_of(path: Path) -> tuple[str, str]:
     return log["version"] or "untagged", log["digest"] or "none recorded"
 
 
-def show(path: Path) -> dict:
+def show(path: Path, audience: str = sep.DEFAULT_AUDIENCE) -> dict:
     rows = records(path)
     per_axis = counts(rows)
-    shipped, items = ships(rows)
+    shipped, items = ships(rows, audience)
     version, digest = criterion_of(path)
 
     print(f"{path.name}")
@@ -188,7 +185,7 @@ def main() -> None:
     for i, path in enumerate(paths):
         if i:
             print()
-        summaries.append(show(path))
+        summaries.append(show(path, args.audience))
     raise SystemExit(compare(*summaries) if len(summaries) == 2 else 0)
 
 

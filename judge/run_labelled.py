@@ -38,12 +38,11 @@ _spec = importlib.util.spec_from_file_location("sep", Path(__file__).with_name("
 sep = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(sep)
 
-ITEM_AXES = ["A1", "C1", "C2", "C3", "C4", "C5"]
-# A1 is here as well as above: an entry that should not be there is judged
-# against the entry, a change carried by no entry at all against the whole
-# rendering and the fact base. `runs.csv` holds that second verdict and nothing
-# was asking for it.
-DOCUMENT_AXES = ["A1", "B1", "B2", "B3"]
+# Which axes an entry answers and which the document answers is derived from
+# the rubric by `sep.entry_axes` and `sep.document_axes`. A selection axis is in
+# both: an entry that should not be there is judged against the entry, a change
+# carried by no entry at all against the whole rendering and the fact base.
+# `runs.csv` holds that second verdict.
 
 
 def _rows(path: Path) -> list[dict]:
@@ -70,11 +69,11 @@ def human_labels(audience: str = sep.DEFAULT_AUDIENCE) -> tuple[dict, dict]:
             (row["run"], row["item"]),
             {"kind": row["kind"], "verdicts": {}},
         )
-        if row["axis"] in ITEM_AXES:
+        if row["axis"] in sep.entry_axes(audience):
             entry["verdicts"][row["axis"]] = row["verdict"].strip().lower()
 
     for row in _rows(labels / "runs.csv"):
-        if row["axis"] in DOCUMENT_AXES:
+        if row["axis"] in sep.document_axes(audience):
             documents.setdefault(row["run"], {})[row["axis"]] = row["verdict"].strip().lower()
     return items, documents
 
@@ -126,7 +125,7 @@ def build_calls(
                 "The tables and the run have drifted apart; fix that before judging."
             )
         for item, entry in zip(ids, found):
-            for axis in ITEM_AXES:
+            for axis in sep.entry_axes(audience):
                 if want_axis and axis != want_axis:
                     continue
                 calls.append(
@@ -149,7 +148,7 @@ def build_calls(
                         "units": units,
                     }
                 )
-        for axis in DOCUMENT_AXES:
+        for axis in sep.document_axes(audience):
             if want_axis and axis != want_axis:
                 continue
             if run not in documents:
@@ -164,7 +163,7 @@ def build_calls(
                     "human": documents[run].get(axis, "?"),
                     "subject_label": "The document",
                     "subject": document,
-                    "facts": sep.fact_base(audience) if axis in sep.AXIS_NEEDS_FACTS else "",
+                    "facts": sep.fact_base(audience) if axis in sep.axis_needs_facts(audience) else "",
                     "system": system,
                     "user_template": user_template,
                     "units": units,
@@ -194,11 +193,10 @@ def report(results: list[dict]) -> dict:
     return dict(per_axis)
 
 
-SHIP_AXES = ["C1", "C2", "C3", "C4", "C5"]
 VERDICTS = {"pass", "fail", "n/a"}
 
 
-def ship_decision(results: list[dict]) -> dict:
+def ship_decision(results: list[dict], audience: str = sep.DEFAULT_AUDIENCE) -> dict:
     """The product figure: how often the judge would send an entry out, and how
     often that disagrees with the person.
 
@@ -212,7 +210,8 @@ def ship_decision(results: list[dict]) -> dict:
     the two are reported apart and never averaged. Computed over whichever C
     axes this run judged, which `axes` names; `complete` says whether that was
     all of them."""
-    judged = [a for a in SHIP_AXES if any(r["axis"] == a for r in results)]
+    ship = sep.ship_axes(audience)
+    judged = [a for a in ship if any(r["axis"] == a for r in results)]
     if not judged:
         return {"axes": [], "complete": False, "note": "no item axis in this run"}
 
@@ -230,7 +229,7 @@ def ship_decision(results: list[dict]) -> dict:
     judge_ships = sum(ships(pairs, 1) for pairs in by_item.values())
     out = {
         "axes": judged,
-        "complete": judged == SHIP_AXES,
+        "complete": judged == ship,
         "items": len(by_item),
         "judge_ships": judge_ships,
         "compared_against_labels": len(labelled),
@@ -415,7 +414,7 @@ def main() -> None:
                     "quotes_found_in_subject": sum(r["quote_found"] for r in results),
                     "cost_usd": round(spent, 4),
                     "per_axis": summary,
-                    "passed": ship_decision(results),
+                    "passed": ship_decision(results, args.audience),
                     "results": results,
                 },
             ),

@@ -42,8 +42,6 @@ _spec = importlib.util.spec_from_file_location("rl", REPO / "judge" / "run_label
 rl = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(rl)
 
-ITEM_AXES = ["C1", "C2", "C3", "C4", "C5"]
-
 WIDTH = 78
 
 
@@ -69,15 +67,6 @@ def wrap(text: str, indent: str = "") -> list[str]:
         ) or [indent + stripped]
     return lines
 
-ASKS = {
-    "C1": "does the entry open on what the reader observes, not on the work done",
-    "C2": "is the scope named where it is not everyone",
-    "C3": "does the entry say what the reader can now rely on or do",
-    "C4": "is what the entry asks of the reader reachably named",
-    "C5": "is every expression one the reader could have met",
-}
-
-
 def results_dir(audience: str) -> Path:
     return REPO / "judge" / "results" / audience
 
@@ -95,14 +84,14 @@ def newest_result(run: str, audience: str) -> Path:
     return hits[-1]
 
 
-def verdicts(result: Path, run: str) -> dict[str, dict[str, tuple[str, str, str]]]:
+def verdicts(result: Path, run: str, audience: str) -> dict[str, dict[str, tuple[str, str, str]]]:
     """Per item, per axis: the judge's verdict, its reason and the passage it quoted."""
     data = json.loads(result.read_text(encoding="utf-8"))
     out: dict[str, dict[str, tuple[str, str, str]]] = {}
     for row in (data.get("execution_results") or {}).get("results") or []:
         # A1 is judged per item as well as per run, and it carries a row the C axes
         # have no counterpart for. This reads the item level only.
-        if row.get("run") != run or not row.get("item") or row.get("axis") not in ITEM_AXES:
+        if row.get("run") != run or not row.get("item") or row.get("axis") not in rl.sep.ship_axes(audience):
             continue
         out.setdefault(row["item"], {})[row["axis"]] = (
             row.get("verdict", "-"),
@@ -112,9 +101,9 @@ def verdicts(result: Path, run: str) -> dict[str, dict[str, tuple[str, str, str]
     return out
 
 
-def ships(axes: dict[str, tuple[str, str, str]]) -> bool:
+def ships(axes: dict[str, tuple[str, str, str]], audience: str) -> bool:
     """An entry ships when no C axis fails - the same rule `count.py` applies."""
-    return all(axes.get(a, ("-",))[0] != "fail" for a in ITEM_AXES)
+    return all(axes.get(a, ("-",))[0] != "fail" for a in rl.sep.ship_axes(audience))
 
 
 def spread(items: list[str], want: int) -> list[str]:
@@ -125,15 +114,15 @@ def spread(items: list[str], want: int) -> list[str]:
     return [items[int(i * step)] for i in range(want)]
 
 
-def choose(judged: dict, passed: int, failed: int) -> list[str]:
+def choose(judged: dict, passed: int, failed: int, audience: str) -> list[str]:
     order = sorted(judged)
-    shipped = [i for i in order if ships(judged[i])]
-    blocked = [i for i in order if not ships(judged[i])]
+    shipped = [i for i in order if ships(judged[i], audience)]
+    blocked = [i for i in order if not ships(judged[i], audience)]
     return spread(shipped, passed) + spread(blocked, failed)
 
 
 def worksheet(run: str, result: Path, picked: list[str], judged: dict,
-              text: dict[str, str], passed: int, failed: int) -> str:
+              text: dict[str, str], passed: int, failed: int, audience: str) -> str:
     data = json.loads(result.read_text(encoding="utf-8"))
     criterion = (data.get("evaluation_config") or {}).get("criterion") or {}
     model = (data.get("evaluation_config") or {}).get("llm_judge", "unknown")
@@ -157,10 +146,10 @@ def worksheet(run: str, result: Path, picked: list[str], judged: dict,
         "that blocks a good entry costs a turn, one that passes a bad one costs the",
         "release.",
         "",
-        "**The axes**, in full in `../../rubric/customer.md`:",
+        f"**The axes**, in full in `../../{rl.sep.rubric_rel(audience)}`:",
         "",
     ]
-    out += [f"- **{a}** - {ASKS[a]}" for a in ITEM_AXES]
+    out += [f"- **{a}** - {rl.sep.axis_question(a, audience)}" for a in rl.sep.ship_axes(audience)]
     out += [
         "",
         "**How to fill this in.** Read the entry, apply the axis, write your verdict on",
@@ -177,9 +166,9 @@ def worksheet(run: str, result: Path, picked: list[str], judged: dict,
 
     for item in picked:
         out += [f"## {item}", "", "```"] + wrap(text[item]) + ["```", ""]
-        for axis in ITEM_AXES:
+        for axis in rl.sep.ship_axes(audience):
             verdict, reason, quote = judged[item].get(axis, ("-", "", ""))
-            out += [f"### {axis} - {ASKS[axis]}", f"judge: {verdict}"]
+            out += [f"### {axis} - {rl.sep.axis_question(axis, audience)}", f"judge: {verdict}"]
             if verdict == "fail":
                 if quote:
                     out += wrap(f"on: {quote}", indent="  ")
@@ -201,7 +190,7 @@ def worksheet(run: str, result: Path, picked: list[str], judged: dict,
 
 def cut(args: argparse.Namespace) -> None:
     result = Path(args.result) if args.result else newest_result(args.run, args.audience)
-    judged = verdicts(result, args.run)
+    judged = verdicts(result, args.run, args.audience)
     if not judged:
         sys.exit(f"{result.name} holds no item verdicts for {args.run!r}")
 
@@ -215,15 +204,16 @@ def cut(args: argparse.Namespace) -> None:
         )
     text = dict(zip(ids, entries))
 
-    picked = choose(judged, args.passed, args.failed)
+    picked = choose(judged, args.passed, args.failed, args.audience)
     path = REPO / "labels" / args.audience / f"spot-check-{dt.date.today().isoformat()}.md"
     if path.exists() and not args.force:
         sys.exit(f"{path.relative_to(REPO)} exists. Pass --force to cut it again.")
     path.write_text(
-        worksheet(args.run, result, picked, judged, text, args.passed, args.failed),
+        worksheet(args.run, result, picked, judged, text, args.passed, args.failed, args.audience),
         encoding="utf-8",
     )
-    print(f"  wrote {path.relative_to(REPO)}  ({len(picked)} entries, {len(picked) * len(ITEM_AXES)} cells)")
+    cells = len(picked) * len(rl.sep.ship_axes(args.audience))
+    print(f"  wrote {path.relative_to(REPO)}  ({len(picked)} entries, {cells} cells)")
     print(f"  judged by {result.name}")
     print("  fill in the `you:` lines, then --read it back")
 

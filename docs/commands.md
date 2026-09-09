@@ -9,8 +9,9 @@ list you reach for when you know what you want and not what it is called.
 installed on: `.venv/bin/python3`, or the virtualenv activated. Everything that
 only reads files runs on a plain `python3`. The table says which.
 
-**Every script takes `--audience`**, defaulting to `customer` - the only
-audience with a rubric. It is left out of the examples below.
+**Every script takes `--audience`**, defaulting to `customer`. There are two
+rubrics, `customer` and `technical`; only customer has labels, so only customer
+has an agreement figure. The flag is left out of the examples below.
 
 ---
 
@@ -113,7 +114,7 @@ as firmly when either file records no criterion digest at all.
 
 | | |
 |---|---|
-| `python3 tools/build_calibration_set.py` | rebuilds `calibration/customer/` from the *Minimal pairs* section of the rubric |
+| `python3 tools/build_calibration_set.py` | rebuilds `calibration/<audience>/` from the *Minimal pairs* section of that rubric |
 
 Run it after editing that section. `calibration/` is generated, gitignored, and
 never edited by hand.

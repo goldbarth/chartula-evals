@@ -37,13 +37,12 @@ _l = importlib.util.spec_from_file_location("lab", REPO / "judge" / "run_labelle
 lab = importlib.util.module_from_spec(_l)
 _l.loader.exec_module(lab)
 
-# Which table an axis is scored in. A1 is in both: an entry that should not be
-# there is an item verdict, and a change carried by no entry at all is a
-# document one, recorded in missing.md and summed up in the run row.
-ITEM_AXES = ["A1", "C1", "C2", "C3", "C4", "C5"]
-RUN_AXES = ["A1", "B1", "B2", "B3"]
-# The axes an item's shippability is decided by - level C only, per how-to-label.md.
-C_AXES = ["C1", "C2", "C3", "C4", "C5"]
+# Which table an axis is scored in comes from the rubric, through
+# `sep.entry_axes` and `sep.document_axes`. A selection axis is in both: an
+# entry that should not be there is an item verdict, and a change carried by no
+# entry at all is a document one, recorded in missing.md and summed up in the
+# run row. `sep.ship_axes` is level C only, the axes an item's shippability is
+# decided by, per how-to-label.md.
 
 VERDICTS = {"pass", "fail", "?", "n/a"}
 ITEM_FIELDS = ["run", "item", "kind", "axis", "verdict", "rubric_commit", "note"]
@@ -170,7 +169,7 @@ class Labels:
         """`no` as soon as one C axis fails, `?` while one is unjudged, else
         `yes`. The rule is how-to-label.md's, and this is the only place it is
         applied - it used to be a column repeated on all six rows of an item."""
-        verdicts = [self.verdict(run, item, axis) for axis in C_AXES]
+        verdicts = [self.verdict(run, item, axis) for axis in sep.ship_axes(self.audience)]
         if "fail" in verdicts:
             return "no"
         if any(v in ("", "?") for v in verdicts):
@@ -179,7 +178,7 @@ class Labels:
 
     def run_shippable(self, run: str) -> str:
         """A run ships only if no B axis fails and no item is unshippable."""
-        document = [self.run_verdict(run, axis) for axis in RUN_AXES]
+        document = [self.run_verdict(run, axis) for axis in sep.document_axes(self.audience)]
         items = [self.item_shippable(run, item) for item in self.items(run)]
         if "fail" in document or "no" in items:
             return "not shippable"
@@ -250,7 +249,7 @@ def check(labels: Labels, report: Report) -> None:
         run, item, axis = row["run"], row["item"], row["axis"]
         verdict = row["verdict"].strip().lower()
 
-        if axis != WHOLE and axis not in ITEM_AXES:
+        if axis != WHOLE and axis not in sep.entry_axes(labels.audience):
             report.problem(where, f"{item}: `{axis}` is not an item axis")
             continue
         key = (run, item, axis)
@@ -264,8 +263,11 @@ def check(labels: Labels, report: Report) -> None:
             continue
         if verdict not in VERDICTS:
             report.problem(where, f"{item} {axis}: `{row['verdict']}` is not a verdict")
-        if verdict == "n/a" and axis not in sep.NA_AXES:
-            report.problem(where, f"{item} {axis}: n/a, but only {', '.join(sorted(sep.NA_AXES))} defines one")
+        na = sep.na_axes(labels.audience)
+        if verdict == "n/a" and axis not in na:
+            report.problem(where, f"{item} {axis}: n/a, but "
+                           + (f"only {', '.join(sorted(na))} defines one" if na
+                              else "no axis of this rubric defines one"))
         if verdict in ("pass", "fail", "n/a") and not row["rubric_commit"].strip():
             report.problem(where, f"{item} {axis}: scored against no rubric_commit")
         elif row["rubric_commit"].strip() and not known_commit(row["rubric_commit"].strip()):
@@ -278,7 +280,7 @@ def check(labels: Labels, report: Report) -> None:
     for row in labels.run_rows:
         where = report.at(runs_csv, row["_line"])
         axis, verdict = row["axis"], row["verdict"].strip().lower()
-        if axis != WHOLE and axis not in RUN_AXES:
+        if axis != WHOLE and axis not in sep.document_axes(labels.audience):
             report.problem(where, f"{row['run']}: `{axis}` is not a document axis")
             continue
         if axis == WHOLE:
@@ -319,11 +321,11 @@ def check(labels: Labels, report: Report) -> None:
                 report.problem(report.at(items_csv), f"{run}: {item} is {' and '.join(sorted(kinds))} on different rows")
             elif kinds == {""}:
                 report.warn(report.at(items_csv), f"{run}: {item} has no kind set")
-            missing = [axis for axis in ITEM_AXES if not labels.verdict(run, item, axis)]
+            missing = [axis for axis in sep.entry_axes(labels.audience) if not labels.verdict(run, item, axis)]
             if missing:
                 report.problem(report.at(items_csv), f"{run}: {item} has no row for {', '.join(missing)}")
 
-        missing = [axis for axis in RUN_AXES if not labels.run_verdict(run, axis)]
+        missing = [axis for axis in sep.document_axes(labels.audience) if not labels.run_verdict(run, axis)]
         if missing:
             report.problem(report.at(runs_csv), f"{run}: no document row for {', '.join(missing)}")
 
@@ -337,21 +339,22 @@ def check(labels: Labels, report: Report) -> None:
     # A1 is scored in both tables, and a column is only as fresh as its oldest
     # row - so half of it re-read leaves the axis stale, and saying which half
     # is the difference between a hint and a puzzle.
-    for axis in sorted(set(ITEM_AXES) | set(RUN_AXES)):
+    item_axes, run_axes = sep.entry_axes(labels.audience), sep.document_axes(labels.audience)
+    for axis in sorted(set(item_axes) | set(run_axes)):
         if not sep.labels_are_older_than(axis, labels.audience):
             continue
         changed = sep.prompt_last_changed(axis, labels.audience)
         halves = [("item", "items.csv"), ("run", "runs.csv")]
         behind = []
         for level, name in halves:
-            if axis not in (ITEM_AXES if level == "item" else RUN_AXES):
+            if axis not in (item_axes if level == "item" else run_axes):
                 continue
             oldest = sep._oldest(labels.commits(axis, level))
             if oldest != changed:
-                flag = "" if level == "item" or axis not in ITEM_AXES else " --level run"
+                flag = "" if level == "item" or axis not in item_axes else " --level run"
                 behind.append(f"{name} reads against {oldest or 'nothing'} (`column --axis {axis}{flag}`)")
         current = [name for level, name in halves
-                   if axis in (ITEM_AXES if level == "item" else RUN_AXES)
+                   if axis in (item_axes if level == "item" else run_axes)
                    and sep._oldest(labels.commits(axis, level)) == changed]
         report.warn(
             report.at(labels.dir),
@@ -450,7 +453,8 @@ def show(labels: Labels, want_run: str | None, full: bool, width: int) -> None:
             continue
         found = rendering(run, labels.audience)
         items = labels.items(run)
-        document = "  ".join(f"{axis} {labels.run_verdict(run, axis) or '?'}" for axis in RUN_AXES)
+        document = "  ".join(f"{axis} {labels.run_verdict(run, axis) or '?'}"
+                             for axis in sep.document_axes(labels.audience))
         print(f"\n{run} - {len(found)} entries, {labels.run_shippable(run)}")
         print(f"  document: {document}")
         for row in labels.run_rows:
@@ -471,10 +475,11 @@ def show(labels: Labels, want_run: str | None, full: bool, width: int) -> None:
                     print(textwrap.fill(note, width, initial_indent=head, subsequent_indent=" " * len(head)) if note else head.rstrip())
             continue
 
-        axes = " ".join(f"{axis:>2}" for axis in ITEM_AXES)
+        item_axes = sep.entry_axes(labels.audience)
+        axes = " ".join(f"{axis:>2}" for axis in item_axes)
         print(f"\n  {'id':<8}{'kind':<9}{axes}  {'ship':<5} entry")
         for position, item in enumerate(items, start=1):
-            marks = " ".join(f"{MARKS.get(labels.verdict(run, item, axis), '?'):>2}" for axis in ITEM_AXES)
+            marks = " ".join(f"{MARKS.get(labels.verdict(run, item, axis), '?'):>2}" for axis in item_axes)
             ship = labels.item_shippable(run, item)
             entry = found[position - 1] if position <= len(found) else "(no entry at this position)"
             used = 8 + 9 + len(marks) + 2 + 5 + 3
@@ -528,7 +533,7 @@ def worksheet_blocks(labels: Labels, axis: str, want_run: str | None, level: str
 
 def write_worksheet(labels: Labels, axis: str, want_run: str | None, level: str, path: Path) -> None:
     commit = sep.prompt_last_changed(axis, labels.audience)
-    verdicts = ", ".join(sorted(VERDICTS if axis in sep.NA_AXES else VERDICTS - {"n/a"}))
+    verdicts = ", ".join(sorted(VERDICTS if axis in sep.na_axes(labels.audience) else VERDICTS - {"n/a"}))
     rows = labels.run_rows if level == "run" else labels.item_rows
 
     out = [f"# {axis} - {labels.audience}" + (f", {want_run}" if want_run else "") + "\n"]
@@ -607,7 +612,7 @@ def apply_worksheet(labels: Labels, axis: str, want_run: str | None, level: str,
             f"{', '.join(absent[:6])}{' ...' if len(absent) > 6 else ''}\n"
             "Nothing was written. A column is passed whole or not at all."
         )
-    allowed = VERDICTS if axis in sep.NA_AXES else VERDICTS - {"n/a"}
+    allowed = VERDICTS if axis in sep.na_axes(labels.audience) else VERDICTS - {"n/a"}
     wrong = {ident: v for ident, (v, _) in filled.items() if v not in allowed}
     if wrong:
         sys.exit(
@@ -669,25 +674,26 @@ def init(labels: Labels, run: str, prefix: str) -> None:
 
     rows = list(labels.item_rows)
     for position in range(1, len(found) + 1):
-        for axis in ITEM_AXES:
+        for axis in sep.entry_axes(labels.audience):
             rows.append({"run": run, "item": f"{prefix}-{position:02d}", "kind": "", "axis": axis, "verdict": "?"})
     write_rows(labels.dir / "items.csv", ITEM_FIELDS, rows)
 
-    run_rows = list(labels.run_rows) + [{"run": run, "axis": axis, "verdict": "?"} for axis in RUN_AXES]
+    run_axes = sep.document_axes(labels.audience)
+    run_rows = list(labels.run_rows) + [{"run": run, "axis": axis, "verdict": "?"} for axis in run_axes]
     write_rows(labels.dir / "runs.csv", RUN_FIELDS, run_rows)
-    print(f"{len(found)} items ({prefix}-01 to {prefix}-{len(found):02d}) and {len(RUN_AXES)} document rows added")
+    print(f"{len(found)} items ({prefix}-01 to {prefix}-{len(found):02d}) and {len(run_axes)} document rows added")
     print("Set `kind` per item, then work one axis at a time with `labels.py column`.")
 
 
 # ------------------------------------------------------------------------ main
 
 
-def resolve_level(axis: str, level: str) -> str:
+def resolve_level(axis: str, level: str, audience: str) -> str:
     if level != "auto":
         return level
-    if axis in ITEM_AXES:
+    if axis in sep.entry_axes(audience):
         return "item"
-    if axis in RUN_AXES:
+    if axis in sep.document_axes(audience):
         return "run"
     sys.exit(f"{axis} is not an axis of either table")
 
@@ -747,7 +753,7 @@ def main() -> None:
         return
 
     axis = args.axis.upper()
-    level = resolve_level(axis, args.level)
+    level = resolve_level(axis, args.level, args.audience)
     if args.run and args.run not in labels.runs:
         sys.exit(f"{args.run} has no labels yet - run `labels.py init --run {args.run} --prefix ...` first")
     path = Path(args.out) if args.out else worksheet_path(args.audience, axis, args.run, level)
