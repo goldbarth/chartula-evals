@@ -640,28 +640,3 @@ correct answer, and fills the gap. *Unknown* omits the slot and flags the item.
 *Not applicable* omits the slot silently.
 
 ---
-
-## Open
-
-- The minimal pairs are written for every axis. Whether the wrongly-included
-  half of A1 can now carry one of its own is the open question - see the
-  proposal at the end of the minimal pairs.
-- Whether a scope condition has to be checkable by the reader - a number, a
-  name, a version - or whether naming it qualitatively is enough, as C2 rule 2
-  now allows.
-- Whether an item that opens with an instruction rather than an observation
-  passes C1. Seen once, on `o5-01`, which is too little to write a rule from.
-- Feature and breaking-change items have no labelled reference case yet; the
-  slot table is derived from best practice, not observed in a run. v0.1.0
-  carries no breaking change, so that half is not reachable from this release.
-- A requirement the change carries and the entry never states - a credential,
-  an account, a one-time setup - is reachable from neither axis. B1 and C4 both
-  read the entry, and the call carries the document alone. `s5-06` and `s5-14`
-  are the observed cases: the release notes reach GitHub and the text reaches
-  the model only if a credential exists, and neither entry says so. Widening C4
-  to cover it would ask the judge for something the prompt does not contain,
-  which rule 4 of `how-a-rubric-is-built.md` forbids. The fix is the fact base
-  that A1's second half needs anyway, and it belongs to that phase.
-- C5 is applied on a corpus where the product it judges is the tool the entries
-  describe. It is judgeable there and not cleanly measurable; see the corpus
-  note in the friction log.

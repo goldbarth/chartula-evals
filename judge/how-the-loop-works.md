@@ -110,7 +110,7 @@ invariant.
 | **Judge an axis** - `run_labelled.py --axis X` | money | Produces a number. Requires the axis to be non-stale. |
 | **Change an axis** - edit its section in the rubric | nothing | Makes that axis stale. Its column has to be re-passed before it can be judged again. |
 | **Re-pass a column** - re-read the entries against the current axis text | time | Clears staleness for that axis. Only that column is touched. |
-| **Record a decision** - a line in the friction log or the Open list | nothing | Changes no verdict and makes nothing stale. |
+| **Record a decision** - a line in the friction log, or an issue | nothing | Changes no verdict and makes nothing stale. |
 
 Two rules that follow from the table and are worth stating on their own:
 
@@ -135,7 +135,7 @@ change costs a re-pass of that column.
 | Which axis version a column was read against | the `rubric_commit` of that column's rows |
 | Why a verdict was hard, or an axis unclear | `labels/{audience}/friction-log.md` |
 | What is shared by every audience | `labels/how-to-label.md` |
-| A decision not yet taken | the Open list at the end of the rubric |
+| A decision not yet taken | an issue in this repository |
 | A judge's verdicts | `judge/results/{audience}/*.json`, written by the runner, never edited |
 | A disagreement between judge and label | `labels/{audience}/friction-log.md`, naming the result file it came from |
 
@@ -176,8 +176,8 @@ credential the entry never names. The re-pass argued from the entry instead,
 which announces no requirement. Both C4 rows of the friction log say so - the
 one in the re-pass table and the one under *From judge runs* - and until it is
 decided, the verdicts rest on a rule nobody has written. That is the correct
-price of an undecided rule, not a defect, and it is the Open list that the
-decision belongs in once it is taken.
+price of an undecided rule, not a defect. The undecided rule is issue #10,
+and the decision goes into the axis text once it is taken.
 
 ## The order of the work from here
 
@@ -199,7 +199,7 @@ decision belongs in once it is taken.
 - Every axis non-stale, with an agreement figure and a caught figure from a run
   whose provenance is recorded.
 - Every remaining disagreement traceable to a decision written in the friction
-  log or the Open list.
+  log, or to an open issue.
 - One cheap-model run against the same set, comparable with the calibration
   model's.
 - The held-out runs judged by the model, spot-checked by hand.

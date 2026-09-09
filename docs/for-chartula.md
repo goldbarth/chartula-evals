@@ -107,6 +107,22 @@ reclassify, which holds only for this one. Why this case set cannot say whether
 a given change should have reached the prompt is *The limitation of the case
 set* in [`targets.md`](targets.md), which owns that and is not repeated here.
 
+## The technical prompt carries none of the output format either
+
+Not filed.
+
+The same defect as #96, on the other audience. Every rendering in `test-runs/`
+fails B1 of [`../rubric/technical.md`](../rubric/technical.md) outright: not one
+carries a release heading, and none uses the group set
+[`output-format.md`](output-format.md) defines. `## Features`, `### Feature: …`
+and `## Fixes` stand where `## VERSION - DATE` with **Changed**, **Added**,
+**Removed** and **Fixed** belong. The required reference is missing as well: of
+the 28 technical entries of `opus-4-8-out`, none carries one.
+
+Recorded rather than filed, because the technical rendering is not what the
+production loop is working on. It is here so that B1 having no observed pass is
+read as a fact about the renderings and not about the axis.
+
 ## The fact base has no place for a setting
 
 **goldbarth/chartula#98** - labels are missing from the fact base, so tags

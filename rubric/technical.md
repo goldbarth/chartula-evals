@@ -619,20 +619,3 @@ axis that answers from a document it cannot see the answer in is worse than an
 axis that says it cannot.
 
 ---
-
-## Open
-
-- No entry of this rubric has been labelled yet, so every fail example above is
-  read from a rendering rather than from a verdict a person recorded.
-- All three technical renderings in `test-runs/` fail B1 outright: none carries
-  a release heading and none uses the group set the format defines. That is a
-  finding about the renderings rather than the axis - the prompt behind them
-  carries no format at all, which `docs/for-chartula.md` already records for
-  the customer prompt - but until one rendering passes B1, the axis has no
-  observed pass.
-- Whether a restructuring that changes what a caller gets is one change or two
-  when it also renames the caller. A1 rule 1 and C1 rule 1 answer it
-  differently on a rename that is visible outside the repository.
-- Whether C5 should read past the first word. "Now sends `MaxOutputTokens` on
-  every call" opens on an adverb and reaches an imperative-shaped verb in the
-  second word, and the procedure as written fails it.
