@@ -502,7 +502,7 @@ describing it - see labels/how-to-label.md.
 
 Write it back with:
 
-    python3 tools/labels.py column --axis {axis}{run_flag} --write
+    python3 tools/labels.py column{audience_flag} --axis {axis}{run_flag}{level_flag} --write
 
 which is also what stamps rubric_commit {commit} onto the rows it touches.
 """
@@ -542,6 +542,13 @@ def write_worksheet(labels: Labels, axis: str, want_run: str | None, level: str,
             verdicts=verdicts,
             axis=axis,
             run_flag=f" --run {want_run}" if want_run else "",
+            # The flags the path was cut with have to come back, or the command
+            # printed here reads a different file than the one it is printed in:
+            # without --audience it goes to customer, and without --level run an
+            # axis that is scored in both tables writes the item column.
+            audience_flag=("" if labels.audience == sep.DEFAULT_AUDIENCE
+                           else f" --audience {labels.audience}"),
+            level_flag=" --level run" if level == "run" else "",
             commit=commit or "(unknown)",
         )
     )

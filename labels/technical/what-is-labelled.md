@@ -19,8 +19,9 @@ defines `n/a`, so every cell of `items.csv` is `pass`, `fail` or `?`.
 
 <!-- labels.py sync: runs labelled -->
 
-| run | items | shippable |
-|-----|-------|-----------|
+| run        | items | shippable     |
+|------------|-------|---------------|
+| opus-5-out | 30    | not shippable |
 
 <!-- labels.py sync: end -->
 
