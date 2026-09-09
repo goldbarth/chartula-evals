@@ -292,13 +292,10 @@ and it is the right trade. The render is nine tenths of the price of a turn and
 the whole project has cost ten dollars, so money was never the constraint here.
 Attention was, and two weeks of it went to figures that turned out to be draws.
 
-**What ends the phase.** The third turn ends stage 5 wherever the figure stands.
-One spot check is read at that point regardless of what the count in
-[`measurements.md`](measurements.md) says, because a budget of three turns never
-reaches the interval in stage 6, and the phase would otherwise close without a
-check on the instrument it was measured with. Then the tracked figure goes into
-[`targets.md`](targets.md) as the state at release, and what is there is
-released.
+**What ends the phase.** The third turn ends stage 5 wherever the figure stands,
+and stage 6 is entered on the budget's end rather than on its interval. Then the
+tracked figure goes into [`targets.md`](targets.md) as the state at release, and
+what is there is released.
 
 **One question has to be answered before the first turn, and it costs no turn.**
 Whether the outcome those entries fail to state is in the fact base at all.
@@ -306,14 +303,20 @@ Chartula establishes facts deterministically and only then rephrases them, so an
 outcome that is not in a `ChangeFact` cannot be written without being invented,
 and the model is leaving it out instead. If it is not there, all three turns are
 aimed at a prompt with no material to write from and the budget is spent before
-it is entered. It is observation 2 of
-[`outside-reading.md`](outside-reading.md), and it is answered by reading, not
-by rendering.
+it is entered. It is answered by reading, not by rendering.
 
 ## Stage 6 - a spot check, on a calendar
 
-Every five turns of stage 5, one person reads ten entries against the judge's
-verdicts on them. Not continuously, and not because a figure looked odd.
+Every five turns of stage 5, and once more at the end of a turn budget whatever
+the count stands at, one person reads ten entries against the judge's verdicts
+on them. Not continuously, and not because a figure looked odd.
+
+**The second trigger exists because the first one can be outlived.** A budget of
+three turns never reaches an interval of five, so a phase would close on figures
+produced by an instrument nothing had checked since before it began. The
+interval watches a loop that is running; the budget's end is the last moment at
+which a drifted judge can still be caught before its figures are written down as
+the state at release.
 
 A judge that stays put means stage 5 continues. A judge that has drifted is the
 **only** trigger that reopens loop A.
@@ -329,7 +332,8 @@ per turn, so the count is the number of sections since the last spot check, and
 a turn that produced no figure still counts as a turn. Nothing announces this;
 it is read off that file, and the first time it was needed it had been missed by
 three turns because nobody counted. Count it at the top of every turn, before
-deciding what the turn changes.
+deciding what the turn changes. The other trigger needs no counting: the turn
+that spends the last of the budget is followed by a spot check.
 
 ---
 
@@ -429,4 +433,4 @@ exist.
 | The judge-run budget per axis | here, stage 4 | two |
 | The stage 5 turn budget | here, stage 5 | three, each over three renderings |
 | The stage 2 sample size | here, stage 2 | 12 to 15 |
-| The spot-check interval | [`targets.md`](targets.md) | every five turns of stage 5 |
+| The spot-check interval | [`targets.md`](targets.md) | every five turns of stage 5, and at the end of a turn budget |

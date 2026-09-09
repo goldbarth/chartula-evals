@@ -137,13 +137,24 @@ turn from the work the first time it was looked at.
 
 ## The spot check
 
-> Every five turns of stage 5, one person reads ten entries against the judge's
+> Every five turns of stage 5, and once more at the end of a turn budget
+> whatever the count stands at, one person reads ten entries against the judge's
 > verdicts. A judge that has drifted is the only thing that reopens the
 > instrument loop.
 
-**Overdue.** [`measurements.md`](measurements.md) records four turns and no spot
-check has been done. The count is read off that file, per stage 6 of
-[`pipeline.md`](pipeline.md), and it was missed because nobody counted.
+The count is read off [`measurements.md`](measurements.md), per stage 6 of
+[`pipeline.md`](pipeline.md). Twice it has been read late, by three turns and by
+five, both times because nobody counted.
+
+**The end of a budget is the second trigger and it is not an interval.** Stage 5
+runs to a fixed count of turns, three at present, which never reaches an
+interval of five. Without it a phase closes on figures from an instrument
+nothing has checked since before the phase began, and those figures are the ones
+written into this file as the state at release.
+
+Where it stood on 2026-09-08: two checks read, 50 of 50 and 46 of 49 in
+agreement, the second on `sonnet-5-labels-out`. No turn has been taken since, so
+none is owed on the interval.
 
 ---
 
