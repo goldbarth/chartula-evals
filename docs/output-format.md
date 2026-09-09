@@ -15,13 +15,17 @@ can keep its house style. This file holds the defaults.
 | Audience  | Default template            | Status                                    |
 |-----------|-----------------------------|-------------------------------------------|
 | Customer  | `customer/plain` (below)    | strawman, not agreed                      |
-| Technical | Common Changelog            | not written; see the note at the bottom   |
+| Technical | `technical/common-changelog` (below) | adopted, not written here             |
 | Product   | thematic                    | not written                               |
 
 A template fixes the form: headings, groups, entry shape, what may appear at
 all. It does not fix quality. Whether an entry opens on what the reader meets,
 whether it says what they can rely on, whether a claim of degree can be checked
 - those hold whichever template is chosen, and stay in the rubric.
+
+The release heading carries only the version number, never a name. Naming
+releases is a marketing pattern for platforms with their own release cadence,
+not for a tool a project runs against its own tags.
 
 ---
 
@@ -57,8 +61,11 @@ tags:
 metadata becomes a heading: `## 0.2.0 - 2026-06-14`, newest release first, and
 `description` becomes the sentence under it.
 
-Front matter fields: `title`, `description`, `publishedAt`, `tags`. See
-**Tags** below for where the tags come from.
+Front matter fields: `title`, `description`, `publishedAt`, `tags`. `title` and
+`publishedAt` follow from the git tag: the version number, and the tag's own
+date - not the date the notes happen to go out, which drifts with a delayed
+publish or a retried run and gives one release two dates for the same fact. See
+**Tags** and **Description** below for the other two.
 
 ### Groups
 
@@ -177,7 +184,23 @@ down, and it silently makes the ordering of the entries decide the summary.
 **When it cannot be written from the facts, the field is omitted**, on the same
 rule as tags: omitted, not emitted empty, and never filled with a placeholder.
 A release with nothing to summarise is a release whose customer section has no
-entries either, and that document is not published at all.
+entries either, and that is the empty release below rather than a document with
+an invented sentence at the top.
+
+### An empty release
+
+A release where every change was filtered out still produces a document, and
+that document says so. Slack's maintenance releases are the model: the reader
+who came looking gets an answer, not a missing page.
+
+The line is fixed and configured by the project, not generated - it is the
+`emptyReleaseNotice` option below, a single string under `customer` in
+`chartula.yaml` alongside `voice` and `boldLabel`. It does not rotate. A fixed
+notice is what the other template options already commit to, and a rotating one
+would put a sentence in front of the reader that no release fact produced.
+
+The document has no groups and no entries, so `description` and `tags` are
+omitted with them.
 
 ### Template options
 
@@ -189,6 +212,7 @@ is any good, so no rubric axis reads them.
 | `voice`       | `impersonal`, `first-person-plural`     | `impersonal` |
 | `boldLabel`   | `on`, `off`                             | `on`         |
 | `tags`        | `on`, `off`                             | `on`         |
+| `emptyReleaseNotice` | any string                       | `No customer-facing changes in this release.` |
 
 `voice` decides between "Release notes are now written to the GitHub release"
 and "We now write release notes to the GitHub release". Both are defensible and
@@ -243,26 +267,144 @@ tags:
   warning about breaks that are not there.
 ```
 
-### Open decisions
+---
 
-- Whether `publishedAt` is the tag date or the date the notes were published.
-- Whether the release heading carries a name as well as a number.
-- Whether an empty release - every change filtered out - produces a document
-  saying so, or no document at all. It produces one, and the text is written by
-  hand: a filler line configured by the project, not generated. Slack's
-  maintenance releases are the model. What is still open is where it is
-  configured and whether more than one can be held and rotated.
+## Technical: `technical/common-changelog`
+
+Adopted, not written. [Common Changelog](https://common-changelog.org) is a
+strict subset of Keep a Changelog: it requires a reference per entry instead of
+merely allowing one, it fixes the order of the groups instead of listing them,
+and it forbids copying commit or pull request titles verbatim. Every rule below
+is its rule, cited so that a later reader can tell what was adopted from what
+was decided here.
+
+The reader is a developer reading a repository, which is the audience those
+formats were written for, so the reasoning that made the customer template
+necessary does not apply here. Where this file says something Common Changelog
+does not, it is marked as such.
+
+### Serialisation
+
+One shape, not two. The technical rendering is what `CHANGELOG.md` is written
+from and what the GitHub release notes carry, and both are the same document:
+many releases in one file, newest first, no front matter.
+
+### Release
+
+15. A release opens on a second-level heading, `## VERSION - DATE`. The version
+    is semver with no `v` prefix and matches the git tag; the date is ISO 8601,
+    `YYYY-MM-DD`.
+16. A release may carry one notice and no more: a single-sentence paragraph
+    directly under the heading, for context that belongs to the release rather
+    than to any one entry - a yanked release, or why a release has no entries.
+
+A release with no entries is published with such a notice, not skipped. An
+empty heading with nothing under it is not a valid release per Common
+Changelog, and dropping the release would contradict how the customer template
+resolves the same question one section above.
+
+### Groups
+
+17. Groups are third-level headings, in this fixed order, and only those that
+    have entries:
+
+    | Group       | What belongs in it              |
+    |-------------|---------------------------------|
+    | **Changed** | changes in existing functionality |
+    | **Added**   | new functionality               |
+    | **Removed** | removed functionality           |
+    | **Fixed**   | bug fixes                       |
+
+    The order is Common Changelog's and is not alphabetical or chronological:
+    what a reader already depends on comes before what is new to them.
+18. There are no other groups. A release with nothing but new functionality has
+    one heading, not four.
+19. Mapping from the categorised change: `feat` to **Added**, `fix` to
+    **Fixed**, `perf` and behaviour-affecting `refactor` to **Changed**, a
+    removal to **Removed** whatever its type.
+
+Which changes reach this rendering at all is the customer template's
+categorical default, unchanged: `docs`, `chore`, `ci`, `build`, `test` and
+`style` do not appear. The one case Common Changelog treats differently - a
+production dependency bump, or a newly-written doc for a feature that had none
+- is not solved by the type filter, and it does not get a mechanism of its own:
+it goes through the same label allowlist the tags already use.
+
+### Entry
+
+20. One line per entry, one entry per change. Not a paragraph, and nothing
+    nested under it.
+21. The line is a change description, then one or more references in
+    parentheses, then zero or more authors in parentheses. The reference is
+    required, and it is the rule that separates this format from Keep a
+    Changelog.
+22. Authors are omitted only on a release where every entry is by the same
+    single contributor. As soon as a second author appears, every entry in that
+    release carries its author - not a setting a project turns off, because the
+    reader cannot tell an omitted author from a sole one. A bot-authored change
+    is attributed to whoever merged the pull request.
+23. A breaking change is prefixed in bold with `**Breaking:**` and stands
+    before the other entries of its group. The same marker as the customer
+    template, for the same reason: readers already know it from here.
+
+### Never appears
+
+24. A commit or pull request title carried over verbatim. Common Changelog
+    forbids it, and it is the failure the technical section of
+    `sonnet-5-no-thinking-out` produced.
+25. The verification block of a pull request: build status, test counts, what
+    was covered. It describes the work rather than the change, and
+    `sonnet-5-out` carried one into 28 of its entries.
+26. A heading of its own per change. The groups above are the only headings
+    inside a release.
+
+Class, method, file and configuration names do appear here, and links are kept.
+That is the difference from the customer template, where rules 13 and 14 forbid
+them: this reader meets the source.
+
+Rule 12 is the sharper difference. Two of the things it withholds from the
+customer are not merely allowed here, they are required: a reference on every
+entry (rule 21), and an author on every entry of a release with more than one
+contributor (rule 22). Commit hashes, issue references and compare links are
+allowed and not required. The same fact is kept from one reader and owed to the
+other, which is what one template per audience is for.
+
+### What is not form, and is not decided here
+
+Two of Common Changelog's rules judge an entry rather than shape it, and they
+belong to a technical rubric when one is written: **imperative mood**, so a
+description opens on a present-tense verb - `Add`, `Fix`, `Bump`, `Document` -
+and **self-describing**, so an entry reads correctly as if its group heading
+were not there. They are named here so that whoever writes `rubric/technical.md`
+does not have to rediscover them, and they are not numbered as form rules.
+
+### Worked shape
+
+```markdown
+## 0.1.0 - 2026-06-14
+
+### Added
+
+- Report what a run does and what it costs at the end of every `preview` and
+  `generate` run ([#66](https://github.com/goldbarth/chartula/pull/66))
+- Read `chartula.yaml`, layered before environment variables, with every option
+  falling back to its default when no file is present
+  ([#64](https://github.com/goldbarth/chartula/pull/64))
+- Add a `categories` section controlling category order, display names and
+  breaking-change prominence ([#65](https://github.com/goldbarth/chartula/pull/65))
+
+### Fixed
+
+- Send `MaxOutputTokens` on every model call, so generated text is no longer
+  truncated at the provider default of 1024
+  ([#70](https://github.com/goldbarth/chartula/pull/70))
+- Match the Conventional Commits footer when detecting a breaking change, so
+  prose that discusses one no longer declares one
+  ([#70](https://github.com/goldbarth/chartula/pull/70))
+```
 
 ---
 
-## Technical and product
+## Product
 
-Not written. The technical rendering should start from Common Changelog rather
-than from a template of our own: it is a strict subset of Keep a Changelog,
-it requires a reference per entry instead of merely allowing one, and it
-forbids copying commit or pull request titles verbatim - which is exactly the
-failure `sonnet-5-no-thinking-out` produced in its technical section.
-
-Two of its rules are quality, not form, and belong in a technical rubric when
-one exists: entries in the imperative mood, and every entry self-describing as
-if no category heading were there.
+Not written.
