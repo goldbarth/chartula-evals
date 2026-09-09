@@ -83,7 +83,7 @@ to zero. Counting `?` as "not a fail" would have said *every item ships, nothing
 slips through* about a run where nothing was compared, which is the most
 misleading answer the figure could give.
 
-**`passed` is the product figure.** An item ships when no C axis fails, the
+**`passed` is the tracked product figure**, the one that blocks nothing. An item ships when no C axis fails, the
 rule `tools/labels.py sync` applies to the labels, applied here to the judge's
 verdicts. `let_through` - entries the judge ships that a person would have sent
 back - is the number that decides whether a person still has to read the

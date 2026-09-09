@@ -55,6 +55,35 @@ whether a closing clause is an outcome. That test is in `rubric/customer.md`
 under C3 - strike the opening and read what is left, and ask whether it still
 tells the reader something they did not already have.
 
+**The material for that sentence is in the fact base, so this is the prompt and
+not the curation.** Checked on 2026-09-09, free, against
+`test-runs/v0.1.0-facts.md`: for each of the nine entries of
+`sonnet-5-labels-out` that fail on C3 and nothing else, does the outcome the
+entry is missing stand in the facts at all?
+
+| Entry | Subject | PR | The outcome in the facts |
+|-------|---------|----|--------------------------|
+| `s5l-01` | API key required | #41 | "API keys are read from environment/config, never hardcoded"; "model + provider selectable via config" |
+| `s5l-04` | Configuration file | #64 | "A present config refines behavior; it is never required"; env overrides YAML |
+| `s5l-06` | Fact base depth | #50 | "Lets a maintainer choose how much source material feeds the fact base, to fit their team's PR style" |
+| `s5l-08` | Label rules | #46 | "steer curation with GitHub labels ... without touching code"; an unknown category fails at startup with a clear error |
+| `s5l-17` | Linked issues | #48, #49, #50 | **not there.** The facts say closing keywords are parsed and that the deepest depth feeds them in. What the reader gets is nowhere |
+| `s5l-18` | Fallback for missing PR data | #44 | "never hard-fails solely because PR discipline is imperfect"; "uses the best available source" |
+| `s5l-19` | Grouped by pull request | #43 | thin: de-duplication by number and a link per pull request are more than slot 1; the rest of that section is slot 1 |
+| `s5l-21` | Empty release | #44, #52 | "Empty release -> empty set, never an exception"; "an empty fact base makes no call at all" |
+| `s5l-22` | Configuration errors | #64, #46, #50 | the run stops at startup rather than partway, and the message names the valid values |
+
+Eight of nine. The sentence the entries do not write can be written from the
+material they were given, usually from the pull request's own "What" line or its
+acceptance criteria, so a further prompt turn is aimed at something reachable.
+
+Two things that keep the count from carrying more than it can. C3 gates nothing,
+so eight of nine is a direction and not a figure. And one of the nine,
+`s5l-21`, is already recorded in [`measurements.md`](measurements.md) as a
+verdict the judge got too strict and a person passed, so the real number of
+blocked entries behind this is eight, not nine. `s5l-17` is the only candidate
+for curation rather than phrasing, and it is a single case.
+
 ## A change is user-visible because of its type, not because a reader meets it
 
 **goldbarth/chartula#119** - `FactBaseBuilder.IsUserVisible` decides from the

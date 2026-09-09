@@ -3,10 +3,11 @@
 The figures the stages of [`pipeline.md`](pipeline.md) are measured against.
 Decided here and nowhere else, so that a stage can end.
 
-Two of them are not the same thing and are never traded against each other:
+Three figures, in two kinds, and they are never traded against each other:
 
-- **The product figure.** How much of a rendering goes out without a person
-  editing it. This is what the work is for.
+- **The product figures.** What has to be true of a rendering before it goes
+  out, and how good it is otherwise. There are two, and only the first blocks a
+  release. This is what the work is for.
 - **The instrument figure.** How often the judge reaches the verdict a person
   reached. It is a tool for understanding *why* an entry does not ship. It is
   never the target, and no stage waits on it improving.
@@ -20,12 +21,49 @@ agreement per axis has no ceiling. That is what produced the three days of
 
 ## The product target
 
+Two figures. One of them blocks a release and the other does not.
+
+> **Blocking, and it is zero: no entry states something the fact base does not
+> support.** Checked by the faithfulness check inside Chartula, not by an axis
+> of this rubric.
+>
+> **Tracked, and it blocks nothing: the share of entries that go out without a
+> person editing them.** Read as a direction across releases. Its current value
+> is in [`measurements.md`](measurements.md), which owns where things stand.
+
+**Why the blocking figure is not in this rubric.** An entry that states
+something the facts do not support is a different kind of failure from an entry
+that is merely thin. The first is a false sentence in a released document; the
+second is a weak sentence a reader rewrites. Only the first is worth stopping a
+release for, and Chartula already has the check that finds it. The rubric judges
+the second kind, which is why it feeds the tracked figure and blocks nothing.
+
+### What this replaced, and why
+
+Until 2026-09-09 there was one product figure:
+
 > A rendering ships when no entry of it fails. **At least four of five
 > renderings ship without a person editing them.**
 
-Measured on renderings, not on entries, because a release goes out whole.
+Each half is reasonable alone. Together, at the length these renderings have,
+they are not reachable. A rendering carries about 25 entries, so four of five
+renderings shipping whole asks for `p^25 >= 0.8`, which is **99.1 per cent of
+entries**. The best rendering measured ships 46 per cent. That is not a distance
+a prompt closes, and it sits below the resolution of the instrument: *The noise
+floor* below says a movement of one is not a result, while a gate of this shape
+turns a whole rendering on a single entry.
 
-Where it stood on 2026-09-02, over the three labelled runs, judged on C1 to C4:
+It also had an effect nobody chose. A shorter rendering fails fewer entries on
+every axis at once, and the same prompt has produced 19, 24 and 25 entries, so
+an all-or-nothing gate over a document of variable length rewards brevity as
+much as it rewards quality.
+
+**This changes no axis**, so it makes no column stale and no result
+incomparable. It changes what the figures are for, not what a verdict means.
+
+### Where the old figure stood when it was replaced
+
+On 2026-09-02, over the three labelled runs, judged on C1 to C4:
 
 | Run | Entries | Ship by the labels | Ship by the judge |
 |-----|---------|--------------------|-------------------|

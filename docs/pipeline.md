@@ -38,7 +38,7 @@ stage is done.
 | What changes     | the rubric, the format document, the labels | Chartula's prompt and fact base |
 | Who does the work| a person, by hand                  | the machine                       |
 | How often        | once, then frozen                  | as often as wanted                |
-| What ends it     | a threshold, fixed before entering | the product figure from stage 0   |
+| What ends it     | a threshold, fixed before entering | the blocking figure from stage 0, or three turns, whichever comes first |
 
 While loop A is open, the product is not touched. While loop B runs, the
 instrument is frozen. Both open at once is the spiral, and it is the only way
@@ -48,25 +48,37 @@ to produce it.
 
 ## Stage 0 - the target, as a number, before anything is built
 
-One sentence and one figure, in [`targets.md`](targets.md), written before the
+One sentence and its figures, in [`targets.md`](targets.md), written before the
 first axis:
 
-> Shippable means: the judge lets through at most **N of 100** entries a person
-> would have sent back. A release ships when no entry of it fails.
+> Shippable means: **no entry states something the facts do not support**, and
+> that figure is zero. How many entries go out unedited is tracked and blocks
+> nothing. The judge lets through at most **N of 100** entries a person would
+> have sent back.
 
-Two figures, and they are not the same thing:
+Three figures, in two kinds, and they are not the same thing:
 
-- **The product figure.** How many entries of a rendering ship. This is what
-  the work is for.
+- **The blocking product figure.** What has to hold before a rendering is
+  released. It is zero faithfulness failures, and it is checked inside Chartula
+  rather than by the rubric.
+- **The tracked product figure.** How many entries of a rendering ship. This is
+  what the work is for, and it ends no stage.
 - **The instrument figure.** How often the judge reaches the verdict a person
   reached. This is a tool for understanding *why* an entry does not ship. It is
   never the target, and a stage never waits on it improving.
+
+**A blocking figure has to be one a release can be held against.** It is zero or
+it is not, it is decidable without reading the document as a whole, and it does
+not move with the document's length. A threshold over every entry of a
+rendering of variable length is none of those; *What this replaced, and why* in
+[`targets.md`](targets.md) is the case that produced this rule.
 
 Without stage 0 there is no "good enough", and without "good enough" no later
 stage can end. Agreement per axis fills the vacuum, and agreement per axis has
 no ceiling.
 
-**Ends when:** both figures are written down with a number in them.
+**Ends when:** all three figures are written down with a number in them, and
+the blocking one is named as blocking.
 
 ## Stage 1 - the criterion
 
@@ -227,7 +239,76 @@ here has ever been deterministic, so a turn that changes nothing still moves the
 count; until that movement has been measured, calling a small change noise is a
 guess wearing the word.
 
-**Ends when:** the product figure from stage 0 is met.
+**Ends when:** the blocking figure from stage 0 holds, or the third turn is
+finished, whichever comes first. The tracked figure ends no stage by
+construction - it is a direction across releases, not a threshold.
+
+### Three turns, and what a turn has to be
+
+**The count is three**, fixed here before the run is entered, the way a stage's
+cost is fixed before it is entered. It is a decision and not a derivation: no
+figure in this repository implies a three. What the record does imply is that
+turns are not worth the same. Six were taken between the freeze and 2026-09-08,
+and one of them produced a movement that could be attributed to the change that
+caused it. The others carried five changes at once, or a model change nobody had
+noticed was in the diff, or a rendering whose length moved more than the prompt
+did.
+
+Three is what is left to spend on the one thing still open on this audience. C3
+fails entries that close on the negation of their own opening; the spot check of
+2026-09-08 confirmed four of those five failures by hand, so the target is real
+and it is single. One hypothesis is one turn to test and one to confirm, and the
+third is the spare. A fourth turn would be the figure being waited on rather
+than tested, and that is the point that recedes.
+
+**A turn is one change to Chartula, three renderings of the release from the
+same commit, and every axis judged on all three.** What is read is the share of
+entries failing, pooled over the three.
+
+*Three renderings, because one cannot carry a result.*
+[`measurements.md`](measurements.md) says so at the end of its second
+2026-09-08 entry. C3 stood at 42, 36, 44 and 42 per cent across renderings of an
+unchanged prompt, and at 21 per cent once, because that rendering came out at 19
+entries where the others were 24 and 25. A single render draws one of those. Three
+pool to about seventy entries, and a share over seventy is a figure rather than a
+draw.
+
+*Every axis, not only the one the turn is aimed at.* The turn of
+goldbarth/chartula#118 judged C3 alone first, read a fall of seven as the change
+working, and did not see A1 rise by three until the full run was made anyway.
+The note in *What things cost* below about not judging nine axes when one
+question is open is about not asking the same question nine times. It is not a
+licence to leave the other eight unread.
+
+**A turn is credited only if the pooled share moves outside the spread an
+unchanged prompt produced.** For C3 that number is already written down: nine to
+eleven out of about twenty-four is where the prompt sits with nothing changed,
+so seven or below is the first count that means the prompt moved.
+
+**What the three cost.** Three renders and three full judge runs is about $3.15
+a turn, against the $0.70 of a targeted turn over a single rendering, so about
+$9.50 for the budget. That is roughly what this repository has spent in total,
+and it is the right trade. The render is nine tenths of the price of a turn and
+the whole project has cost ten dollars, so money was never the constraint here.
+Attention was, and two weeks of it went to figures that turned out to be draws.
+
+**What ends the phase.** The third turn ends stage 5 wherever the figure stands.
+One spot check is read at that point regardless of what the count in
+[`measurements.md`](measurements.md) says, because a budget of three turns never
+reaches the interval in stage 6, and the phase would otherwise close without a
+check on the instrument it was measured with. Then the tracked figure goes into
+[`targets.md`](targets.md) as the state at release, and what is there is
+released.
+
+**One question has to be answered before the first turn, and it costs no turn.**
+Whether the outcome those entries fail to state is in the fact base at all.
+Chartula establishes facts deterministically and only then rephrases them, so an
+outcome that is not in a `ChangeFact` cannot be written without being invented,
+and the model is leaving it out instead. If it is not there, all three turns are
+aimed at a prompt with no material to write from and the budget is spent before
+it is entered. It is observation 2 of
+[`outside-reading.md`](outside-reading.md), and it is answered by reading, not
+by rendering.
 
 ## Stage 6 - a spot check, on a calendar
 
@@ -301,9 +382,15 @@ a loop rather than per command.
 | Judging all nine axes, 20 entries | $0.43 |
 | The separation run, 40 calls | $0.14 |
 
-**A turn of stage 5 is the render plus the judging**, so a targeted turn is
-about $0.70 and the render is nine tenths of it. Judging all nine axes when one
-question is open triples the judging and answers nothing extra.
+**A turn of stage 5 is the render plus the judging**, so a turn over a single
+rendering, judged on the axis its question is about, is about $0.70 and the
+render is nine tenths of it. Judging all nine axes to answer one question
+triples the judging and answers nothing extra about that question.
+
+That is the price of a turn and not the price of a result. Stage 5 buys a result
+with three renderings judged on every axis, which is about $3.15, for the reason
+given there: one rendering of this release does not hold still enough to be read
+against another.
 
 **The judge model is the largest single lever and the easiest to get wrong.**
 It is three times the price between the two models, it is a flag nobody thinks
@@ -335,9 +422,11 @@ exist.
 
 | Figure | Where it is decided | Currently |
 |--------|---------------------|-----------|
-| The product target - renderings that ship unedited | [`targets.md`](targets.md) | four of five; today 0 of 3 |
+| The blocking product figure - entries stating what the facts do not support | [`targets.md`](targets.md) | zero, checked inside Chartula |
+| The tracked product figure - entries that ship unedited | [`targets.md`](targets.md) | a direction, blocks nothing; today in `measurements.md` |
 | The instrument target - entries let through per 100 | [`targets.md`](targets.md) | at most 2; today 7.5 |
 | The stage 4 threshold per axis | [`targets.md`](targets.md) | catches three quarters, at most two false per fifty |
 | The judge-run budget per axis | here, stage 4 | two |
+| The stage 5 turn budget | here, stage 5 | three, each over three renderings |
 | The stage 2 sample size | here, stage 2 | 12 to 15 |
 | The spot-check interval | [`targets.md`](targets.md) | every five turns of stage 5 |
