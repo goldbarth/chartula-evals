@@ -672,6 +672,11 @@ def init(labels: Labels, run: str, prefix: str) -> None:
             "none by that reading, which is itself a finding at level B - lay the ids out by hand."
         )
 
+    # The first run of an audience has no folder yet: `init` is what creates it,
+    # and everything else here reads the two tables and would rather say they
+    # are missing than write them.
+    labels.dir.mkdir(parents=True, exist_ok=True)
+
     rows = list(labels.item_rows)
     for position in range(1, len(found) + 1):
         for axis in sep.entry_axes(labels.audience):
