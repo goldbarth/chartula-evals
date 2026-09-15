@@ -199,6 +199,32 @@ Changes in release 0.1.0, with the title of the pull request that carried each:
    pull request #70.
 """
 
+# The product base document has three entries, one per fact this lists first;
+# the fourth is the one the base document has no entry for, and the fifth is
+# the decoy A1 is for - real, and not product-relevant. Written as facts about
+# the release rather than as titles, the same reason the technical fixtures
+# above are: a fixture that reads like a list of titles would fail C3 of that
+# rubric everywhere, and nothing here should fail an axis this fixture is not
+# built to test.
+PRODUCT_A1_FACTS = """\
+Changes in release 0.1.0, as the fact base holds them:
+
+1. chartula.yaml now layers over environment variables instead of requiring
+   one or the other. Product-relevant: changes what a team can set, and
+   where.
+2. A release can be previewed before anything is written or published, from
+   the same facts the real run would use. Product-relevant: changes what the
+   team can check before committing to a release.
+3. Technical, customer and product notes are now rendered from one shared set
+   of facts. Product-relevant: removes the risk of the three disagreeing.
+4. Model calls for a release now cost roughly a third less, measured across
+   three renders. Product-relevant: changes what the team can now claim about
+   running cost.
+5. The categoriser that decides feature, fix or internal moved into its own
+   component, with identical output. Not product-relevant: no capability,
+   cost, or reliability claim changed.
+"""
+
 
 def replace_entry(base: str, group: str, index: int, replacement: str) -> str:
     """One entry of one group swapped for another, everything else untouched."""
@@ -318,7 +344,46 @@ def cases_technical(base: str, blocks: list[str]) -> dict:
     }
 
 
-BUILDERS = {"customer": cases_customer, "technical": cases_technical}
+def cases_product(base: str, blocks: list[str]) -> dict:
+    if len(blocks) < 3:
+        sys.exit(f"expected three block quotes in the section, found {len(blocks)}")
+    b2_para, b3_replacement, a1_insert = blocks[0], blocks[1], blocks[2]
+    return {
+        "base.md": {"document": base + "\n", "fails": None},
+        "b1.md": {
+            "document": swap_groups(base, "Release generation", "Configuration"),
+            "fails": "B1",
+        },
+        "b2.md": {
+            "document": insert_paragraph(base, "Release generation", b2_para),
+            "fails": "B2",
+        },
+        "b3.md": {
+            "document": replace_entry(base, "Configuration", 0, b3_replacement),
+            "fails": "B3",
+        },
+        "a1-absent.md": {
+            "document": base + "\n",
+            "fails": "A1",
+            "facts": ("a1-facts.md", PRODUCT_A1_FACTS),
+            "note": "the missing half: the document is the base, and fact 4 is "
+                    "the product-relevant change it has no entry for. The "
+                    "fixture carries no marker - the judge has to find the "
+                    "omission, and a hint in the text would answer it.",
+        },
+        "a1-included.md": {"document": append_entry(base, "Other", a1_insert), "fails": "A1"},
+        # a1-absent carries the facts and no marker; a1-included carries an
+        # entry that changes no capability, cost or reliability claim. One
+        # axis, two halves, and a judge has to answer both from the same
+        # rules - see cases_customer above for the same split.
+    }
+
+
+BUILDERS = {
+    "customer": cases_customer,
+    "technical": cases_technical,
+    "product": cases_product,
+}
 
 
 def main() -> None:

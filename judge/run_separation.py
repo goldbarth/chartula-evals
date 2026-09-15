@@ -93,8 +93,10 @@ def ship_axes(audience: str = DEFAULT_AUDIENCE) -> list[str]:
 # audience. Only C4 of the customer rubric defines n/a as a verdict of its own;
 # C2 calls the not-applicable case a pass in as many words, so offering n/a
 # there would invent a third answer the rubric does not have. The technical
-# rubric defines none: every axis it carries answers pass or fail.
-NA_AXES_BY_AUDIENCE = {"customer": {"C4"}, "technical": set()}
+# and product rubrics define none: every axis they carry answers pass or
+# fail, because neither entry shape has a slot with a genuine not-applicable
+# case - see "Why this rubric has seven axes" in rubric/product.md.
+NA_AXES_BY_AUDIENCE = {"customer": {"C4"}, "technical": set(), "product": set()}
 
 
 def na_axes(audience: str = DEFAULT_AUDIENCE) -> set[str]:
@@ -611,6 +613,7 @@ AXIS_NEEDS_FORMAT_BY_AUDIENCE = {
         "C2": ["Entry"],
         "C3": ["Entry", "Never appears"],
     },
+    "product": {"B1": ["Themes"]},
 }
 
 
