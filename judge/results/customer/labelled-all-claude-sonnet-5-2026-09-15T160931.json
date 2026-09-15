@@ -1,0 +1,2545 @@
+{
+  "schema": "chartula-evals/eval-log/1",
+  "metadata": {
+    "eval_id": "evl_08c0ff1ac5cc",
+    "timestamp": "2026-09-15T16:09:31Z",
+    "environment": "local",
+    "commit": "368d03f",
+    "dirty": true
+  },
+  "evaluation_config": {
+    "kind": "labelled",
+    "audience": "customer",
+    "criterion": {
+      "name": "customer",
+      "version": "customer-criterion-v1.0.0-47-g368d03f-dirty",
+      "digest": "sha256:8c213cdc9828d107",
+      "rubric_last_changed": "88b485e 2026-09-09",
+      "prompt_last_changed": "f4545d3 2026-09-03",
+      "labels_passed_against": "7213389",
+      "axes": {
+        "A1": "a5a1c68",
+        "B1": "47b5f34",
+        "B2": "a5a1c68",
+        "B3": "a5a1c68",
+        "C1": "a5a1c68",
+        "C2": "a5a1c68",
+        "C3": "a5a1c68",
+        "C4": "47b5f34",
+        "C5": "a5a1c68"
+      },
+      "judged_stale": []
+    },
+    "llm_judge": "claude-sonnet-5",
+    "parameters": {
+      "max_tokens": 2000,
+      "effort": "low",
+      "thinking": "adaptive",
+      "sampling": "not settable: temperature, top_p and top_k are rejected by this model family"
+    }
+  },
+  "execution_results": {
+    "calls": 118,
+    "agreed": 110,
+    "quotes_found_in_subject": 90,
+    "cost_usd": 0.481,
+    "per_axis": {},
+    "passed": {
+      "axes": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "complete": true,
+      "items": 19,
+      "judge_ships": 12,
+      "compared_against_labels": 0,
+      "human_ships": null,
+      "let_through": null,
+      "blocked": null,
+      "note": "no human verdict in this run; the judge side stands alone"
+    },
+    "results": [
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs.",
+        "reason": "The entry describes observable commands and behaviour a reader can run and see, satisfying rule 1 of half one; no release facts were provided to judge half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 995,
+          "output": 155,
+          "cache_read": 0
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs.",
+        "reason": "The opening clause rewrites cleanly as 'you can now preview release notes without writing/publishing, or generate to write them', describing what the reader can now do, per step 2-3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1039,
+          "output": 203,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs.",
+        "reason": "This describes new commands available to all users with no conditional subset, so slot 2 is correctly absent per rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 566,
+          "output": 143,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "shows the generated release notes without writing or publishing anything",
+        "reason": "the item names an outcome (preview lets you see notes without writing/publishing) beyond restating slot 1, satisfying step 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1124,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "chartula preview --tag <tag> --repo <owner/name>",
+        "reason": "The entry names the concrete commands and options the reader can use, satisfying rule 3's requirement that the reader can act on the naming without looking elsewhere.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 834,
+          "output": 93,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-01::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-01",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "`chartula preview --tag <tag> --repo <owner/name>`",
+        "reason": "The command names and flags are things a reader would type themselves when using the CLI, satisfying rule 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 844,
+          "output": 91,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.",
+        "reason": "The entry describes observable behavior a reader would encounter by running generate and seeing file output, satisfying rule 1; no release facts were given to check for omissions.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 971,
+          "output": 169,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title.",
+        "reason": "The opening clause rewrites cleanly as 'you can now see each release added as a new section... while earlier sections stay untouched', stating what the reader meets rather than the work done, satisfying step 3 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1015,
+          "output": 251,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "This describes universal behavior with no conditional subset affected, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 542,
+          "output": 58,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.",
+        "reason": "This clause adds information beyond slot 1 (that re-running leaves one section rather than duplicating), matching the passing contrast example under rule 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1100,
+          "output": 183,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "The entry only describes automatic tool behavior with no step, setting, or decision offered to the reader, so per rule 2 C4 is n/a",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 810,
+          "output": 83,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-02::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-02",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All expressions (CHANGELOG.md, generate, release tag) are things a reader meets by using the tool, satisfying rule 2",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 820,
+          "output": 80,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet.",
+        "reason": "This entry describes an observable behavior a reader can notice by running generate and seeing a GitHub release created/updated, satisfying rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 957,
+          "output": 124,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet.",
+        "reason": "The opening clause describes what now happens as a property of running the command, which rewrites cleanly as 'you can now have your release notes written to GitHub when you run generate', satisfying step 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1001,
+          "output": 244,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet.",
+        "reason": "The entry describes a behavior that applies to all runs of generate with no subset or vague qualifier, so slot 2 is correctly absent per rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 528,
+          "output": 128,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Re-running `generate` for the same tag updates that release's notes instead of creating a second one.",
+        "reason": "This clause adds information beyond slot 1 (that re-running keeps one release rather than duplicating), matching the 'contrast that adds something' pass case under rule 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1086,
+          "output": 105,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "The entry describes an automatic behavior change with no step, setting, or decision offered to the reader, so per rule 2 C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 796,
+          "output": 83,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-03::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-03",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All expressions (`generate`, GitHub release notes, tags) are things a reader would encounter through normal product use, satisfying rule 2",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 806,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught.",
+        "reason": "A reader can observe this change directly by running preview or generate and seeing the summary, satisfying rule 1 of half one; no release facts were given to check half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 975,
+          "output": 145,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used",
+        "reason": "The opening clause describes what the reader sees at the end of each run, which rewrites cleanly as \"you can now see a summary...\" per rule 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1019,
+          "output": 218,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Every `preview` and `generate` run now ends with a summary",
+        "reason": "The entry states it applies to every run always, so slot 2 is correctly absent per rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 546,
+          "output": 86,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Reading this across a few releases tells you whether the thorough check is catching anything the free check misses.",
+        "reason": "The item names an outcome beyond restating slot 1 - it tells the reader what they can now learn/decide from the summary, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1104,
+          "output": 121,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "Per rule 2, this is a metrics summary with nothing asked of the reader, so C4 is n/a as in the given n/a example.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 814,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-04::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-04",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All non-ordinary terms (preview, generate, rule-based, thorough checks, tokens) are things a reader would encounter directly while using the product, satisfying rule 2",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 824,
+          "output": 92,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review.",
+        "reason": "The entry describes an observable behavior a reader can encounter (flagged mistakes), satisfying rule 1 of half one.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 966,
+          "output": 166,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review.",
+        "reason": "The clause rewrites cleanly as 'you can now have every release note checked for obvious mistakes', satisfying step 3 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1010,
+          "output": 218,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "This check always runs and never makes a model call.",
+        "reason": "The entry states the change applies universally (always runs), so slot 2 is correctly absent per rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 537,
+          "output": 83,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "checked for obvious mistakes at no extra cost",
+        "reason": "The item states an outcome beyond slot 1 - the check catches errors without added cost or model calls, which a reader can rely on, satisfying step 2's test for information beyond slot 1",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1095,
+          "output": 177,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "The entry describes an automatic internal check with no step, setting, or decision offered to the reader, so per step 2 C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 805,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-05::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-05",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All expressions used (numbers, quoted/backticked names, breaking-change claim) are ordinary language a reader would meet through using the product, satisfying rule 2, so C5 passes by absence of any codebase-only jargon.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 815,
+          "output": 110,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't.",
+        "reason": "The entry describes an observable behavior change a reader would notice when running the tool (new check output, config toggle), satisfying rule 1 of half one; no facts were given to judge half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 979,
+          "output": 140,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes",
+        "reason": "The opening describes what the new check does (a mechanism that was built) rather than what the reader now experiences, so the rewrite to \"you can now...\" would have to invent the reader's side per rule 4.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1023,
+          "output": 372,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.",
+        "reason": "The item states the change applies to everyone by default with an opt-out condition clearly named, satisfying rule 1/2 of C2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 550,
+          "output": 122,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.",
+        "reason": "The item states an outcome beyond slot 1 - that the reader can control the check to avoid extra token cost, which is new information per rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1108,
+          "output": 243,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens",
+        "reason": "The entry names a concrete, reachable action (turn off setting in the faithfulness section of chartula.yaml), satisfying step 3 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 818,
+          "output": 125,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-06::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-06",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "chartula.yaml",
+        "reason": "The only non-ordinary-language expression is the config file name, which the reader would encounter in their own repository while using the product (rule 2)",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 828,
+          "output": 85,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published.",
+        "reason": "This entry describes an observable, user-facing behavior a reader would encounter directly when generating text, satisfying rule 1 of half one; no release facts were given to judge half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 958,
+          "output": 133,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published.",
+        "reason": "The clause rewrites cleanly as 'you can now see each generated text alongside its flagged passages and approve or edit it', satisfying step 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1002,
+          "output": 171,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.",
+        "reason": "The entry states the condition clearly (opt-in via config), letting readers know whether they're affected, satisfying rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 529,
+          "output": 96,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.",
+        "reason": "This clause states what a reader can now rely on (default behavior and how to enable it) beyond restating slot 1's mechanism, satisfying step 2 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1087,
+          "output": 217,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "unless you turn it on in the review section of chartula.yaml",
+        "reason": "The entry offers an optional setting and names concretely where to enable it, satisfying step 3's requirement that the reader can act without looking elsewhere.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 797,
+          "output": 103,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-07::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-07",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "the review section of chartula.yaml",
+        "reason": "The configuration file name and section are things the reader would encounter in their own repository while using the product, satisfying rule 2/4.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 807,
+          "output": 86,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other.",
+        "reason": "Rule 1: a reader can observe this by generating the different renderings and seeing distinct outputs, so the entry describes an observable change to the product surface.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 987,
+          "output": 117,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other.",
+        "reason": "The opening states what the reader now has/sees, rewriting cleanly as 'you can now get three renderings drawn from the same facts', satisfying rule 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1031,
+          "output": 120,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "This entry describes a universal change to how releases are rendered with no conditional scope, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 558,
+          "output": 79,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so they can't contradict each other",
+        "reason": "The item names an outcome beyond restating slot 1 - consistency across renderings - satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1116,
+          "output": 143,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "This entry describes a feature without asking the reader to do anything or offering an optional setting to change, so per step 1-2 of the decision procedure C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 826,
+          "output": 90,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-08::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-08",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "No non-ordinary identifiers, internal keys, or source-only expressions appear; all terms describe user-facing concepts, satisfying C5 by absence of jargon.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 836,
+          "output": 78,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out.",
+        "reason": "This describes an observable behavior change a reader would notice by generating text (fidelity to facts, shorter output when little to say), satisfying rule 1 of half one.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 957,
+          "output": 159,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them.",
+        "reason": "The opening states a property the reader now experiences (generated text only rephrases given facts), which rewrites cleanly as 'you can now trust that generated text only rephrases the facts', satisfying step 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1001,
+          "output": 215,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "This affected every run universally with no conditional subset, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 528,
+          "output": 69,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "When there's little to say about a change, the text stays short rather than being padded out.",
+        "reason": "This clause names something the reader can rely on (short output rather than padding) that goes beyond restating slot 1's fact-fidelity claim, satisfying decision procedure step 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1086,
+          "output": 199,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "The entry describes a behavior of the system with no step, setting, or decision offered to the reader, so per rule 2 C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 796,
+          "output": 82,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-09::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-09",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "titles, categories, and breaking markers",
+        "reason": "These terms (titles, categories, breaking markers) are conceptual descriptions a user could encounter through using the tool's output, not internal source identifiers, so C5 passes per rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 806,
+          "output": 109,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.",
+        "reason": "A reader can observe this by changing the factBase setting and seeing different generated output, satisfying rule 1",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 946,
+          "output": 130,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues.",
+        "reason": "The opening clause rewrites cleanly as 'you can now choose how much of a pull request feeds into the generated text', stating what the reader can now do per rule 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 990,
+          "output": 194,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "The item describes a universally applicable configuration option with no conditional scope, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 517,
+          "output": 76,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.",
+        "reason": "The item only restates slot 1 (the change and where to configure it) without naming any outcome the reader can now rely on, so it fails step 1/2 of the decision procedure.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1075,
+          "output": 211,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "It's set in the factBase section of chartula.yaml.",
+        "reason": "The entry names a concrete decision (fact-base depth options) and tells the reader exactly where to set it, satisfying step 3 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 785,
+          "output": 104,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-10::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-10",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "It's set in the factBase section of chartula.yaml.",
+        "reason": "The setting is described by its configuration file location and section name, which the reader would see in their own config file (rule 2/4), not an internal source-only key.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 795,
+          "output": 99,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests.",
+        "reason": "The entry describes an observable behavior change a reader can notice by using labels, satisfying rule 1 of half one; no facts were given to judge half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 981,
+          "output": 134,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests.",
+        "reason": "The opening clause rewrites cleanly as 'you can now exclude/force/restrict via a label', stating what the reader can now do, satisfying step 3 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1025,
+          "output": 198,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.",
+        "reason": "The entry names the condition under which behavior differs (using labels vs not), letting a reader place themselves inside or outside it, satisfying rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 552,
+          "output": 184,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "the tool behaves the same as before if you use no labels",
+        "reason": "the only candidate clause restates the fact that labels are optional/absent behavior, not a new outcome distinct from slot 1, so per rule 2 it fails",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1110,
+          "output": 89,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.",
+        "reason": "Entry names the concrete location (labels section of chartula.yaml) where the reader can act on the setting, satisfying step 3 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 820,
+          "output": 113,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-11::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-11",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "configured in the labels section of chartula.yaml",
+        "reason": "chartula.yaml and labels section are config elements the reader would see and edit themselves, meeting rule 2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 830,
+          "output": 72,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml.",
+        "reason": "This entry describes an observable behavior change (what appears in the generated changelog and a configurable option) that a reader could notice by generating a changelog or editing chartula.yaml, satisfying rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 954,
+          "output": 168,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded.",
+        "reason": "The opening states a property the reader observes (what is excluded by default), which rewrites cleanly as 'you'll find internal and chore changes left out', satisfying rule 3/5.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 998,
+          "output": 209,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "The entry describes a default behavior applying to all cases with an explicit exception (breaking changes), so scope is clearly stated per rule 1/2 with no vague gesture at unnamed conditions.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 525,
+          "output": 100,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Which categories are excluded can be changed in the filter section of chartula.yaml.",
+        "reason": "This clause tells the reader something beyond slot 1 (the filtering behavior) - that they can rely on customizing which categories are excluded, satisfying rule 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1083,
+          "output": 218,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Which categories are excluded can be changed in the filter section of chartula.yaml.",
+        "reason": "The entry names both the setting and where to find it (filter section of chartula.yaml), satisfying step 3 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 793,
+          "output": 105,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-12::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-12",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Which categories are excluded can be changed in the filter section of chartula.yaml.",
+        "reason": "chartula.yaml is a configuration file the reader would edit themselves, satisfying rule 2/4 for settings encountered in their own configuration.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 803,
+          "output": 182,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.",
+        "reason": "A reader can notice this by observing changed categorization and breaking-flag behavior in generated output, satisfying rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 977,
+          "output": 234,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed",
+        "reason": "The opening clause describes the internal mechanism of how categorization works rather than what the reader now meets or can do, per rule 4",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1021,
+          "output": 301,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "This describes a universal behavior change with no conditional scope, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 548,
+          "output": 58,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.",
+        "reason": "This clause names a concrete outcome beyond restating slot 1 - breaking changes remain correctly categorized while still being flagged, satisfying step 2 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1106,
+          "output": 218,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "This entry describes an internal behavior change with no step, setting, or decision offered to the reader, so per step 2 C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 816,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-13::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-13",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All expressions used (conventional-commit prefix, category, breaking flag) are things a reader would encounter using the product's own commit/changelog conventions, not internal source identifiers, so C5 passes.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 826,
+          "output": 101,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out.",
+        "reason": "The entry describes observable behavior a reader would notice when generating a release (correct commit/PR gathering and fallback text instead of omitted changes), satisfying rule 1.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 985,
+          "output": 173,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag.",
+        "reason": "The opening clause describes what Chartula does internally rather than what the reader meets or can now do, so the rewrite to 'you can now...' would invent the reader's side (rule 4)",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1029,
+          "output": 229,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "The entry describes universal behavior changes with no conditional subset, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 556,
+          "output": 60,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "instead of leaving the change out",
+        "reason": "The item states an outcome beyond slot 1's mechanism\u2014that changes are never omitted, which is new information the reader can rely on\u2014satisfying step 2 of the procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1114,
+          "output": 184,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "The entry describes an automatic behavior change with no step, setting, or decision offered to the reader, so C4 is n/a per rule 2.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 824,
+          "output": 82,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-14::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-14",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "All expressions used (git, GitHub, commits, pull requests, titles, descriptions, commit messages) are ordinary product-facing concepts a reader would meet using the tool, with no internal identifiers or source-level jargon, satisfying rule 2 by absence of any failing expression",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 834,
+          "output": 128,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables",
+        "reason": "The entry describes an observable capability a reader could use directly (configuring via a file, seeing a config error), satisfying rule 1 of half one.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1018,
+          "output": 114,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables",
+        "reason": "The opening clause rewrites cleanly as 'you can now configure settings via a chartula.yaml file', stating what the reader can now do, per rule 3",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1062,
+          "output": 196,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "The file is optional - the tool runs on its existing defaults with none present",
+        "reason": "The entry states the applicability condition clearly (optional file, default fallback), satisfying rule 2/1 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 589,
+          "output": 147,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "The file is optional - the tool runs on its existing defaults with none present",
+        "reason": "The item names an outcome beyond slot 1 - that the tool keeps working on defaults if no config file is present - satisfying step 2 of C3's decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1147,
+          "output": 203,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from",
+        "reason": "The entry states the optional action available (creating a config file) and tells the reader concretely how to reach it (a commented-out example file to copy from), satisfying step 3",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 857,
+          "output": 111,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-15::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-15",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "chartula.yaml (or .yml)",
+        "reason": "The filename is something a reader would create and see in their own repository, per rule 2, and no other identifiers require source knowledge",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 867,
+          "output": 87,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml",
+        "reason": "The entry describes a user-observable change (configurable behavior and error on invalid config) a reader would meet by using the product, satisfying rule 1",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 970,
+          "output": 165,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml",
+        "reason": "The opening clause rewrites cleanly as 'you can now configure how categories are ordered, displayed, and whether breaking changes are shown prominently', so it states what the reader can now do rather than the work done to build it.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1014,
+          "output": 206,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml",
+        "reason": "This is a new configurable feature affecting all users always, so slot 2 is correctly absent per step 1",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 541,
+          "output": 113,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error.",
+        "reason": "The item only restates the change itself (configurability and validation) without naming what the reader can now rely on or do, failing step 2 of the decision procedure.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1099,
+          "output": 252,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "is now configurable in a categories section of chartula.yaml",
+        "reason": "The entry names the concrete location (categories section of chartula.yaml) where the reader can act on the setting, satisfying step 3 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 809,
+          "output": 104,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-16::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-16",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "chartula.yaml, alongside the existing labels, factBase, and faithfulness sections",
+        "reason": "All named expressions are configuration file/section names the reader would encounter directly in their own config file (rule 2), so the item passes C5.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 819,
+          "output": 155,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml.",
+        "reason": "The entry describes an observable behavior change a reader would encounter when generating release notes, satisfying rule 1 of half one; no release facts are given to evaluate half two.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 994,
+          "output": 130,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Generated text for all three audiences could be cut off mid-word because no output-length limit was set",
+        "reason": "The opening clause states what went wrong as the reader ran into it, rewriting cleanly as 'this happened to you when...', per rule 3",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1038,
+          "output": 109,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Generated text for all three audiences could be cut off mid-word because no output-length limit was set",
+        "reason": "The entry affects all outputs (all three audiences, no output-length limit set) with no gestured-but-unnamed condition, so scope is correctly stated as universal (rule 1).",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 565,
+          "output": 108,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "you can raise or lower the limit yourself in the llm section of chartula.yaml",
+        "reason": "Beyond restating slot 1's negation, the item adds a genuine new capability the reader now has (configurable limit), satisfying rule 2's test for information not already given.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1123,
+          "output": 227,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "you can raise or lower the limit yourself in the llm section of chartula.yaml",
+        "reason": "The entry offers an optional setting and names concretely where to find it (llm section of chartula.yaml), satisfying step 3 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 833,
+          "output": 111,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-17::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-17",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "you can raise or lower the limit yourself in the llm section of chartula.yaml",
+        "reason": "The only non-ordinary expressions are the config file name and section, which the reader would see in their own repository (rule 2), so C5 passes.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 843,
+          "output": 174,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one.",
+        "reason": "This entry describes an observable behavior change (a reader can notice mislabeling no longer happens when writing commit prose), satisfying rule 1 of half one.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 981,
+          "output": 129,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking.",
+        "reason": "The opening clause describes the bug as encountered, rewriting cleanly as 'this happened to you when a change was mislabeled as breaking even though none were,' satisfying step 3 for a fix.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1025,
+          "output": 272,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "The item describes a bug affecting any change whose description discussed breaking changes in prose, a universal condition rather than a vague subset, so slot 2 is correctly absent per rule 1",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 552,
+          "output": 81,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so a mention in ordinary prose is no longer misread as one",
+        "reason": "The candidate outcome merely restates the negation of slot 1 (the mislabeling problem), so per rule 2 it fails C3.",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1110,
+          "output": 157,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "",
+        "reason": "This entry describes an internal parsing fix with no step, setting, or decision offered to the reader, so per rule 2 C4 is n/a.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 820,
+          "output": 83,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-18::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-18",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "Only an actual breaking-change footer now marks a change as breaking",
+        "reason": "\"breaking-change footer\" refers to a git commit convention the reader would only know from developer documentation, not from using the product, so per rule 3 it fails",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 830,
+          "output": 107,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim",
+        "reason": "This describes an observable behavior a reader could encounter when running the tool (a flagged passage in output), satisfying rule 1 of half one.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 956,
+          "output": 126,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::C1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "C1",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim",
+        "reason": "The opening states a property of the check's behavior that the reader directly experiences (seeing flagged passages), rewriting cleanly as 'you may still see a flagged passage when the check flags a mention of breaking', so it passes per the stated-as-property allowance in rule 5.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1000,
+          "output": 301,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::C2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "C2",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "The entry describes a general behavior of the check without any subset condition, so slot 2 is correctly absent per rule 1.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 527,
+          "output": 75,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::C3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing",
+        "reason": "The item states an outcome beyond slot 1 by telling the reader the flags won't block a run, satisfying step 2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1085,
+          "output": 181,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::C4",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "C4",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "n/a",
+        "quote": "these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing",
+        "reason": "The entry describes a behavior and advises awareness but offers no concrete step, setting, or decision the reader can act on, so per rule 2 C4 is n/a",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 795,
+          "output": 186,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::s5fv-19::C5",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "s5fv-19",
+        "axis": "C5",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim",
+        "reason": "the expressions used are plain descriptive language a user would encounter while using the tool's output, not internal identifiers requiring source knowledge, so rule 2 is satisfied",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 805,
+          "output": 176,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::document::A1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "document",
+        "axis": "A1",
+        "test_payload": {
+          "subject_label": "The document",
+          "subject": "---\ntitle: Release 0.1.0\ndescription: This release delivers the full Chartula pipeline that turns a release's commits and pull requests into fact-checked, audience-specific release notes, publishes them to CHANGELOG.md and GitHub, and includes fixes for truncated text and mislabeled breaking changes found while dogfooding the first release.\npublishedAt: 2026-07-17\n---\n\n### What's New\n\n- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing.\n- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.\n- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one.\n- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses.\n- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call.\n- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.\n- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.\n- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme.\n- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out.\n- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.\n- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.\n- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml.\n- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.\n- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out.\n- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing.\n- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error.\n\n### Bug Fixes\n\n- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml.\n- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one.\n- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "Every item describes an observable product change (commands, outputs, checks, config options) and no internal-only change (e.g. partial class refactor #54, test fixtures #67, solution folder #68) was carried into the changelog, satisfying both halves of A1.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 22678,
+          "output": 782,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::document::B1",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "document",
+        "axis": "B1",
+        "test_payload": {
+          "subject_label": "The document",
+          "subject": "---\ntitle: Release 0.1.0\ndescription: This release delivers the full Chartula pipeline that turns a release's commits and pull requests into fact-checked, audience-specific release notes, publishes them to CHANGELOG.md and GitHub, and includes fixes for truncated text and mislabeled breaking changes found while dogfooding the first release.\npublishedAt: 2026-07-17\n---\n\n### What's New\n\n- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing.\n- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.\n- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one.\n- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses.\n- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call.\n- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.\n- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.\n- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme.\n- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out.\n- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.\n- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.\n- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml.\n- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.\n- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out.\n- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing.\n- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error.\n\n### Bug Fixes\n\n- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml.\n- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one.\n- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "No entry states that ignoring it costs the reader (breaks setup, changes output, requires renaming/moving); all described changes are additive or optional, so per rule 3 there is no order to violate.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 2679,
+          "output": 177,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::document::B2",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "document",
+        "axis": "B2",
+        "test_payload": {
+          "subject_label": "The document",
+          "subject": "---\ntitle: Release 0.1.0\ndescription: This release delivers the full Chartula pipeline that turns a release's commits and pull requests into fact-checked, audience-specific release notes, publishes them to CHANGELOG.md and GitHub, and includes fixes for truncated text and mislabeled breaking changes found while dogfooding the first release.\npublishedAt: 2026-07-17\n---\n\n### What's New\n\n- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing.\n- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.\n- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one.\n- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses.\n- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call.\n- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.\n- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.\n- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme.\n- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out.\n- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.\n- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.\n- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml.\n- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.\n- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out.\n- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing.\n- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error.\n\n### Bug Fixes\n\n- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml.\n- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one.\n- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "### What's New",
+        "reason": "The groups present (What's New, Bug Fixes) follow the defined order and omit empty groups, satisfying rule 1 and 2, and the opening front matter meets the required format under rule 3.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 3599,
+          "output": 246,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "sonnet-5-fix-outcome-v010-out::document::B3",
+        "run": "sonnet-5-fix-outcome-v010-out",
+        "item": "document",
+        "axis": "B3",
+        "test_payload": {
+          "subject_label": "The document",
+          "subject": "---\ntitle: Release 0.1.0\ndescription: This release delivers the full Chartula pipeline that turns a release's commits and pull requests into fact-checked, audience-specific release notes, publishes them to CHANGELOG.md and GitHub, and includes fixes for truncated text and mislabeled breaking changes found while dogfooding the first release.\npublishedAt: 2026-07-17\n---\n\n### What's New\n\n- **Preview and generate commands**: Two commands are now available: `chartula preview --tag <tag> --repo <owner/name>` shows the generated release notes without writing or publishing anything, while `chartula generate` runs the same process and writes the outputs. Both print a summary for each audience and report an unknown command or a missing/invalid option as a clear error instead of crashing.\n- **CHANGELOG.md history**: Running `generate` adds each release as a new section at the top of CHANGELOG.md while leaving earlier sections untouched, and a first run creates the file with a title. Re-running `generate` for the same release tag replaces that section in place rather than duplicating it.\n- **GitHub release notes**: Running `generate` also writes the generated text to the tag's release notes on GitHub, creating the release if it doesn't exist yet. Re-running `generate` for the same tag updates that release's notes instead of creating a second one.\n- **Run metrics summary**: Every `preview` and `generate` run now ends with a summary of how many findings the rule-based and thorough checks made and how many tokens each step used, including the claims only the thorough check caught. Reading this across a few releases tells you whether the thorough check is catching anything the free check misses.\n- **Rule-based faithfulness check**: Every generated release note is now checked for obvious mistakes at no extra cost: a number, a quoted or backticked name, or a breaking-change claim that isn't in your source facts is flagged for review. This check always runs and never makes a model call.\n- **Thorough faithfulness check**: A second, model-based check now also compares the generated text against your source facts for meaning-level mistakes, such as a fix reworded into something it isn't. It's on by default; you can turn it off in the faithfulness section of chartula.yaml if you'd rather not spend the extra tokens.\n- **Review mode**: An opt-in review step lets you see each generated text alongside its flagged passages and either approve it as written or edit it before anything is published. Review is off by default, so text passes straight through unless you turn it on in the review section of chartula.yaml.\n- **Audience-specific renderings**: Each release is now rendered into three versions - technical, customer, and product-manager - all drawn from the same source facts, so they can't contradict each other. The customer version leaves out changes that aren't user-visible and their links, the technical version keeps every change and its pull request link, and the product-manager version is grouped by theme.\n- **Fact-only generation**: Generated text only rephrases the facts you provide - titles, categories, and breaking markers - and never adds a number, name, or detail that isn't in them. When there's little to say about a change, the text stays short rather than being padded out.\n- **Fact-base depth**: How much of a pull request feeds into the generated text is now a setting: title only, title and description (the default), or title, description, and linked issues. It's set in the factBase section of chartula.yaml.\n- **Label rules**: A GitHub label can now exclude a pull request from the changelog, force it into a specific category, or, in an opt-in mode, restrict the changelog to only labeled pull requests. Label handling is optional and configured in the labels section of chartula.yaml; the tool behaves the same as before if you use no labels.\n- **Filtering internal changes**: Internal and chore changes are left out of the changelog by default, though a breaking change is always kept even if its category would normally be excluded. Which categories are excluded can be changed in the filter section of chartula.yaml.\n- **Change categorization**: Each change's category is now assigned automatically from its conventional-commit prefix rather than guessed, with an unrecognized prefix falling back to a sane default. Whether a change is breaking is tracked separately from its category, so a breaking feature is still shown as a feature but flagged as breaking.\n- **Gathering commits and pull requests**: Chartula now determines the exact commits in a release from git and looks up the merged pull requests behind them on GitHub, including for a first release with no previous tag. When a pull request is missing or its title is blank or generic, it falls back to the pull request's description and then to the commit message instead of leaving the change out.\n- **Configuration file**: Chartula now reads settings from a chartula.yaml (or .yml) file as well as environment variables, covering the LLM provider and model, GitHub access, labels, filtering, fact-base depth, faithfulness, and review. The file is optional - the tool runs on its existing defaults with none present - and a commented-out example file is shipped to copy from; an invalid value now shows a clear configuration error instead of crashing.\n- **Category configuration**: How categories are ordered, displayed, and whether breaking changes are shown prominently is now configurable in a categories section of chartula.yaml, alongside the existing labels, factBase, and faithfulness sections. An unknown category name in that section is rejected with a clear error.\n\n### Bug Fixes\n\n- **Truncated release notes**: Generated text for all three audiences could be cut off mid-word because no output-length limit was set, letting the provider apply its own default and even causing the thorough check to flag the cut-off sentence as an unsupported claim. Output is no longer truncated by default, and you can raise or lower the limit yourself in the llm section of chartula.yaml.\n- **Mislabeled breaking changes**: A change whose description merely discussed breaking changes in prose could be marked as breaking itself, mislabeling several changes in a real release even though none were breaking. Only an actual breaking-change footer now marks a change as breaking, so a mention in ordinary prose is no longer misread as one.\n- Also: the rule-based faithfulness check still flags any mention of the word \"breaking\" anywhere in the generated text as a breaking-change claim; these flags are advisory and don't fail a run, so you may still see a flagged passage worth reviewing."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "",
+        "reason": "Entries mostly contain one or two sentences, no unsupported superlative claims of degree are present, and the header is a single sentence, satisfying rule 1, 2, and 3 of B3.",
+        "agree": true,
+        "quote_found": false,
+        "usage": {
+          "input": 2540,
+          "output": 750,
+          "cache_read": 1346
+        }
+      }
+    ]
+  }
+}

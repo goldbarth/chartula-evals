@@ -596,3 +596,80 @@ That direction costs a turn, not a release, and `targets.md` does not count it
 against the target.
 
 **The judge stands, so stage 5 continues** and the instrument loop stays closed.
+
+## 2026-09-15 - the outcome of a fix reaches the prompt, and C3 drops below the floor
+
+**What was changed.** goldbarth/chartula#122, the second half of #96 named as
+step 3 of [`plan.md`](plan.md). Two pull requests land against it, both in
+this rendering and neither measured on its own: #123 (merged 2026-09-09)
+rewrites C3's target so a bug-fix entry no longer closes on the bug being
+gone but on what the reader no longer has to do about it, and #126 (f7cda42)
+adds the two worked examples and aligns the prompt with the rest of the
+rubric - an opening chosen by the change's own type, action stated after the
+outcome, scope, breaking change.
+
+The comparison run, `sonnet-5-labels-out`, was rendered on 2026-09-08, before
+either #123 or #126 existed. So this turn measures the two together, and
+`plan.md`'s own rule for step 3 - that two changes landing on one axis in one
+turn cannot be told apart afterwards - applies to itself: the fall from 10 to
+4 cannot be credited to "the outcome of a fix" alone, and the C1 movement
+below may be the new per-type opening rather than anything about C3.
+
+**How.** `test-runs/sonnet-5-fix-outcome-v010-out.md`, rendered by Chartula
+`c72f068` from `v0.1.0` at `8061f46`, 28 changes. Judged over every axis by
+`judge/results/customer/labelled-all-claude-sonnet-5-2026-09-15T160931.json`
+(run `sonnet-5-fix-outcome-v010-out`), against
+`labelled-all-claude-sonnet-5-2026-09-08T130715.json` (run
+`sonnet-5-labels-out`). Same criterion, digest `sha256:8c213cdc9828d107`, no
+axis judged stale.
+
+| axis | before | after | |
+|------|--------|-------|---|
+| A1 | 0 | 0 | |
+| B1 | 0 | 0 | |
+| B2 | 0 | 0 | |
+| B3 | 0 | 0 | |
+| C1 | 2 | 3 | inside the floor |
+| C2 | 0 | 0 | |
+| C3 | 10 | 4 | **better** |
+| C4 | 0 | 0 | |
+| C5 | 2 | 1 | inside the floor |
+
+**The figure: 12 of 19 entries ship, against 11 of 24 before.**
+
+**C3 falls by six, from 10 of 24 to 4 of 19.** As a share that is 42 per cent
+to 21 per cent, outside the floor of one either way around ten set from three
+renderings of an unchanged prompt: 10 and 11 on 2026-09-04, and a third, 9,
+from `sonnet-5-customer-only-out` on 2026-09-08. C3 is out of the gate (see
+[`targets.md`](targets.md)), so this is a direction, not a ship-blocking
+figure on its own - and, per the note above, a direction with two candidate
+causes rather than one.
+
+**The same share once meant nothing, so it is checked here rather than
+assumed.** `sonnet-5-place-out` also had 19 entries and a C3 count of 4, and
+the "What C3 says about the method" section above traced that fall to a
+rendering a fifth shorter, not to the prompt change it was first credited to.
+This rendering is not that case: at 6,788 characters against 7,240 for the
+24-entry baseline (6,706 against 7,168 counting the customer section alone),
+it is 94 per cent of the length over five fewer entries, so entries got
+longer, not cut. Still, one rendering is one draw, and this figure rests on
+one. No second draw is taken in this phase: goldbarth/chartula#122 was
+rescoped for the alpha to a single rendering followed by a circuit breaker,
+so the figure is recorded as that single draw, not as a confirmed result.
+
+**C1 and C5 moved inside the floor.** C1 up by one to 3 of 19, C5 down by one
+to 1 of 19. Both are out of the gate and neither is a count stage 5 asks to
+read.
+
+**A1, B1, B2 and B3 sat still at zero.** No entry describes the tool's own
+internals, no claim of degree stands without a number to check it against, and
+both single-checked document axes hold.
+
+**What was kept alongside it.** `test-runs/sonnet-5-fix-outcome-out.md` and
+`.changelog.json`, rendered from the same Chartula commit `c72f068` - so the
+same prompt, #123 and #126 both in it - but from `v0.1.0` as it stands today
+at `0d4f6f4`: 44 changes through #112, not 28. A different release, so this is
+neither a turn nor a draw of this one. It is judged in
+`labelled-all-claude-sonnet-5-2026-09-15T135746.json` and kept because a
+render of the current prompt against the larger release exists and cost
+nothing further to keep.
