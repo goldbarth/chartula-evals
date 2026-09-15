@@ -16,7 +16,7 @@ can keep its house style. This file holds the defaults.
 |-----------|-----------------------------|-------------------------------------------|
 | Customer  | `customer/plain` (below)    | strawman, not agreed                      |
 | Technical | `technical/common-changelog` (below) | adopted, not written here             |
-| Product   | thematic                    | not written                               |
+| Product   | `product/thematic` (below)  | drafted, not agreed                       |
 
 A template fixes the form: headings, groups, entry shape, what may appear at
 all. It does not fix quality. Whether an entry opens on what the reader meets,
@@ -405,6 +405,128 @@ does not have to rediscover them, and they are not numbered as form rules.
 
 ---
 
-## Product
+## Product: `product/thematic`
 
-Not written.
+The reader is neither this document's other two. Not the customer template's
+user, who meets the product by running it, and not the technical template's
+developer, who meets it by reading it: a product manager, inside the project
+or close enough to it to be handed a roadmap, reading to track what shipped
+and to frame it for people who were not in the room. They meet the source no
+more than the customer does - they were never a contributor either - so rules
+36 to 38 below are close cousins of rules 12 to 14, for the same reason and not
+a coincidence.
+
+Grouping by change type, the technical template's axis, answers "what kind of
+change was this," which this reader did not ask. Grouping by what the reader
+has to do, the customer template's axis, answers a question this reader does
+not have - nobody hands a product manager a migration. What this reader asks
+is "which part of the product moved," so the document groups by theme, which
+is why this template earns its own name rather than becoming a third option
+under the customer one.
+
+### Serialisation
+
+One document, no front matter. Unlike the other two renderings this one has no
+file of its own: the text lives only in `renderings.product` of
+`changelog.json` (see [`changelog-json.md`](changelog-json.md)) until a
+destination is decided for it. Writing the shape ahead of the file keeps the
+order `docs/architecture.md` already put this rendering in - "the product
+rendering has no template yet, so it has no file" - and nothing here decides
+where it goes once it gets one.
+
+### Themes
+
+27. Groups are third-level headings, one per **theme**, in alphabetical order
+    by the theme's own name, and only those with entries. A fixed trailing
+    heading, **Other**, holds every entry no theme claims, and stands last
+    whenever it is not empty.
+28. A theme is a label on the pull requests behind a change, filtered through
+    the same allowlist the customer template's tags already use - see *Tags*
+    above. One vocabulary for both audiences rather than a second one invented
+    here keeps a label meaning one thing across the document set, and keeps
+    this template out of the trap that section already names: a fixed lookup
+    table goes stale the moment the project works on something it has no word
+    for, and a model asked to classify puts a word in the document the facts
+    never gave it.
+29. A change carrying more than one allow-listed label appears once, under the
+    first of its labels in the release's alphabetical order. It is not
+    repeated under a second theme - a reader comparing this release with the
+    last one has no way to tell a document that grew by one change from one
+    that grew by two, once a change can appear twice.
+30. **When there are no thematic labels there is one theme**, `Other`, holding
+    every entry, and the document still opens correctly. Fixing a project's
+    label discipline is not this template's job, on the reasoning the Tags
+    section already gives for the same case: an honest single group is not a
+    defect, and an invented taxonomy standing in for one would be.
+
+### Entry
+
+31. One bullet per entry, one entry per change.
+32. Two slots, in order: what changed, stated as a fact about the product and
+    never about the work that produced it, and why it matters - what it means
+    for the people the product serves, or for a decision the reader is
+    tracking. The second slot is the one neither of the other templates
+    carries; it is this reader's whole reason to be reading a changelog
+    rather than the pull requests themselves.
+33. One sentence per slot, two per entry. A third sentence on either one needs
+    a reason a reader would accept - the same ceiling the customer template
+    sets, for the same reason: a document this reader can scan in a sitting is
+    worth more than one that tries to say everything.
+34. The second slot is drawn from the facts of the change and from nothing
+    else - a linked issue's stated purpose, a pull request's own account of
+    what it was for, a figure already in front of the model. It is a
+    rephrasing exactly as the first slot is, and the faithfulness check covers
+    it on the same footing as everything else the model writes.
+35. A claim of impact needs something in the entry a reader could check it
+    against - a number, a named group affected, what held before. "This
+    matters a great deal" gives a reader nothing to hold; "cuts the cost of a
+    run by roughly a third" does.
+
+### Never appears
+
+36. Pull request numbers, commit hashes, issue references, author names,
+    compare links - the customer template's list, rule 12, for the same
+    reason: this reader traces nothing back to a repository.
+37. Configuration keys, file paths, class or method names, concrete default
+    values. A setting this reader meets is named as a place and a purpose,
+    never as a key.
+38. A verb or a noun that reads correctly only to whoever wrote the change -
+    "refactored," "introduced an abstraction for." This reader was not there
+    for the work; only its result is theirs to read.
+
+### An empty release
+
+A release with nothing theme-worthy can still be a real document - `Other`
+carries it, per rule 30. A release with no user-visible change at all is a
+different case, and follows the rule the customer template already sets for
+it: a fixed, configured notice, no groups, no entries.
+
+### Template options
+
+| Option               | Values     | Default                                  |
+|-----------------------|-----------|-------------------------------------------|
+| `emptyReleaseNotice`  | any string | `No changes to report in this release.`  |
+
+### Worked shape
+
+```markdown
+### Configuration
+
+- A project's own `chartula.yaml` now layers over environment variables
+  instead of requiring one or the other. Teams that already keep configuration
+  in a file no longer have to duplicate it as environment variables just to
+  satisfy the tool.
+
+### Release generation
+
+- A release can be previewed before anything is written or published, from
+  the same facts the real run would use. Reviewing a release no longer costs
+  a real run to see what it would contain.
+
+### Other
+
+- Technical, customer and product notes are now written from one shared set
+  of facts instead of three separate passes over the same pull requests. The
+  three can no longer describe a release differently from each other, which a
+  separate pass per audience could not promise.
+```
