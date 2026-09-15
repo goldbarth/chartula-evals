@@ -31,15 +31,21 @@ It is that Chartula's customer prompt is a single sentence and carries none of t
 
 ## What is here
 
-**The criterion.** [`rubric/customer.md`](rubric/customer.md) - three levels and nine axes, each with the one question it answers, the questions it leaves to a neighbour, a procedure and an explicit fail condition.
-[`rubric/how-a-rubric-is-built.md`](rubric/how-a-rubric-is-built.md) is the meta-rule the axes have to obey.
-[`docs/output-format.md`](docs/output-format.md) owns form, so the rubric judges conformance to it rather than restating it.
+**The criterion.** One rubric per audience, all built to the same meta-rule.
+[`rubric/customer.md`](rubric/customer.md) - three levels and nine axes.
+[`rubric/technical.md`](rubric/technical.md) - three levels and eight axes, two of them - imperative mood and self-describing - handed to it by Common Changelog rather than decided here.
+[`rubric/product.md`](rubric/product.md) - three levels and seven axes, on a two-slot entry rather than the other two's four, because nobody is asked to act on a product rendering.
+Each axis states the one question it answers, the questions it leaves to a neighbour, a procedure and an explicit fail condition.
+[`rubric/how-a-rubric-is-built.md`](rubric/how-a-rubric-is-built.md) is the meta-rule all three have to obey.
+[`docs/output-format.md`](docs/output-format.md) owns form, so a rubric judges conformance to it rather than restating it.
 
 **The cases.** [`test-runs/`](test-runs) - renderings of the same release, plus the release's facts.
 Six of them compare models and reasoning settings; the rest are turns of the production loop, one per change to Chartula.
-Three are labelled by hand; three are held out on purpose and stay unlabelled until a judge is trusted.
 
-**The verdicts.** [`labels/customer/`](labels/customer) - entries scored per axis with the passage each verdict points at, and a friction log of everything the rubric did not decide on its own.
+**The verdicts.** [`labels/customer/`](labels/customer) and [`labels/technical/`](labels/technical) - entries scored per axis with the passage each verdict points at, and a friction log of everything the rubric did not decide on its own.
+Customer has three runs labelled by hand, with three more held out on purpose until a judge is trusted.
+Technical has one, `opus-5-out`, 30 entries, not shippable.
+Product has none yet - no rendering has been generated for that audience.
 Rows for a production turn are left unscored on purpose: the judge scores those, and a person reads a sample of them back in a spot check.
 
 **Two measurements.** Separation asks whether a model can tell the axes apart at all, against constructed cases where one axis is broken in each.
@@ -63,9 +69,10 @@ a human label and a judge verdict are comparable only if both were made against 
 
 ## Status
 
-The criterion is written, frozen at v2.0.0, and the judge applies it.
-Nine axes have a figure against a rubric none of them is older than.
-Three of the nine measure well enough to gate on; the other six are recorded as out, with the reason, rather than left in a queue, and a count from those is a direction rather than a figure.
+Three audiences, three different stages of the same pipeline.
+
+**Customer.** The criterion is written: nine axes, v1.0.0 tagged and frozen, with a B2 fix already in the tree and waiting on a separation run before it becomes v2.0.0.
+Three of the nine axes measure well enough to gate on; the other six are recorded as out, with the reason, rather than left in a queue, and a count from those is a direction rather than a figure.
 Two spot checks have read a sample of the judge's verdicts back against a person: 50 of 50 and 46 of 49 agreed, so the judge has not drifted and the instrument loop stays closed.
 
 The production loop is running and the work is in Chartula.
@@ -73,11 +80,19 @@ Six changes have been measured since the freeze.
 The clearest is what a reader can meet: it was decided from the type of a commit, so the changelog carried entries about the tool's own file formats, and deciding it from a label instead took the coverage axis to zero.
 The last of the four document axes went with it, which is the first rendering where none of them fails.
 
-**No rendering ships whole yet.** The newest sends 11 of its 24 entries out unedited, and nine of the thirteen that are held back fail on one thing: the entry says what changed and never what the reader gets from it.
+**No customer rendering ships whole yet.** The newest sends 11 of its 24 entries out unedited, and nine of the thirteen that are held back fail on one thing: the entry says what changed and never what the reader gets from it.
 
 Two figures are known that were not before, and both cost turns to learn.
 A movement of one on any axis happens without changing anything, so it is not a result.
 And one rendering is not a measurement: the same prompt has produced 19, 24 and 25 entries, and a short rendering fails fewer entries on every axis at once, which is enough to look like an improvement.
+
+**Technical.** The criterion is written: eight axes, none of them tagged yet.
+One run is labelled, `opus-5-out`, 30 entries, not shippable - the format is no more in Chartula's technical prompt than it was in the customer one, so no rendering carries a release heading or the group set the format defines.
+Separation and agreement have not run against this rubric yet.
+
+**Product.** The criterion is written: seven axes, and stage 1 of the pipeline is as far as it has gone.
+No rendering has ever been generated for this audience, so there is no labelled corpus and no realistic case in the rubric, only constructed minimal pairs.
+The calibration builder and the separation harness both reach it now; the separation run itself has not been spent.
 
 Findings that belong in Chartula are filed there as issues and collected in [`docs/for-chartula.md`](docs/for-chartula.md).
 
