@@ -673,3 +673,111 @@ neither a turn nor a draw of this one. It is judged in
 `labelled-all-claude-sonnet-5-2026-09-15T135746.json` and kept because a
 render of the current prompt against the larger release exists and cost
 nothing further to keep.
+
+## 2026-09-16 - five renderings, four models, five structures
+
+Not a turn, and not judged.
+It answers the one question goldbarth/chartula#96 still had open: whether the same facts produce the same structure across runs and across models.
+
+**How.** `v0.1.0` at `8061f46` (28 changes, #41 to #70), rendered by Chartula `c72f068` for all three audiences with `--no-publish`.
+Five renderings: `claude-sonnet-5`, `gpt-5.6-terra`, `gemini-3.1-flash-lite`, and `gemini-3.5-flash-lite` twice.
+GPT and Gemini went through `provider: openai-compatible`.
+A first attempt with `gemini-3.8-flash` on a free-tier key ran for more than ten minutes with no answer and was abandoned; it left no data.
+The two `gemini-3.5-flash-lite` renderings differ only in whether the thorough check ran, and the check changes no text, so they are two draws of one model on one prompt.
+Structure was read by headings and line shape, not by the judge.
+The renderings are `test-runs/*-model-comparison.changelog.json`.
+
+From the facts, the technical rendering has exactly two groups, Added (25) and Fixed (1), and no change is breaking.
+
+| | Sonnet 5 | GPT 5.6 Terra | Gemini 3.1 Flash Lite | Gemini 3.5 Flash Lite, 1 | Gemini 3.5 Flash Lite, 2 |
+|---|---|---|---|---|---|
+| Technical groups | `Added`, `Fixed` | `[Added]`, `[Fixed]` | 18 invented | 19 invented | `[Added]`, `[Fixed]` |
+| Technical entries with reference at end | 26 of 26 | 26 of 26 | 27 of 27 | 26 of 26 | 26 of 26 |
+| Customer groups | What's New, Bug Fixes | all four | all four | three and an invented `### Also:` | all four |
+| Customer entries | 20 | 17 | 17 | 59, of them 34 `Also:` lines | 14 |
+| Customer "Breaking" with no breaking fact | no | no | yes | yes | no |
+| Product themes | `Other` | `[Other]` | `[Other]` | 17 invented | 18 invented |
+| Product sentences per entry | 2 | 2 | 2 | 1 | 1 |
+| Front matter, `## 0.1.0 - 2026-07-17` | yes | yes | yes | yes | yes |
+
+**What code decided held in every rendering.** The release heading, the front matter, which changes appear and the reference on each technical line are identical across all five.
+
+**What the prompt asked for held on Sonnet only.** GPT 5.6 Terra copied the `[group]` marker of the facts into its headings.
+Both Gemini Flash Lite models ignored the given group and built their own from the subject of each change.
+
+**Across runs of one model the structure moved as far as across models.** The two Gemini 3.5 draws went from 19 technical groups to 2, and from 59 customer entries to 14.
+
+**The customer group of an entry was the model's decision, and it varied.** Two groups on Sonnet, four on the others, with "What needs action" and "Breaking" assigned where no fact supports them.
+
+**What followed.** The second acceptance criterion of #96 did not hold.
+Under the decision rule set for the alpha, a structure that is not identical across runs moves into code, and no further format rules go into the prompt.
+That is goldbarth/chartula#129.
+The result is also recorded on #96.
+
+## 2026-09-16 - the structure in code, checked on one rendering
+
+Not a turn, and not judged.
+A check that goldbarth/chartula#129 does what it says against a live model, not a measurement of entry quality.
+
+**What was changed.** #129 moves the structure of every rendering into code.
+The model answers with one text per fact id as structured output, the plan decides groups, order, markers and references, and a fact left without an entry fails its audience.
+
+**How.** `test-runs/sonnet-5-structure-out.changelog.json`, rendered by the working tree that became Chartula `3855d54`, with `claude-sonnet-5`, all audiences, `--no-publish`.
+From `v0.1.0` as it stands today at `0d4f6f4`: 44 changes through #112, not the 28 of the comparison above.
+
+| | Entries | Groups | Lines that are not entries |
+|---|---|---|---|
+| Technical | 38 of 38 | Added 31, Fixed 7 | 0 |
+| Customer | 35 of 35 | What's New 28, Bug Fixes 7 | 0 |
+| Product | 38 of 38 | Other 38 | 0 |
+
+**The structure matched the plan exactly.** No audience failed, all 38 technical entries end on their reference, all 35 customer entries carry a label, the customer page carries its description, and `CHANGELOG.md` opens on `## 0.1.0 - 2026-09-04`.
+"What needs action" is absent because no change is breaking and no action label is configured.
+
+**What it cost.** From the run metrics:
+
+| | Calls | Input tokens | Output tokens |
+|---|---|---|---|
+| Rephrasing | 3 | 95,400 | 33,887 |
+| Thorough check | 3 | 113,190 | 24,943 |
+| Total | | | 267,420 tokens |
+
+About $1.51 at Anthropic's list prices of $3 and $15 per million tokens, thinking included in the output.
+The thorough check found 2 claims in 2 of 3 renderings; the rule-based check found none.
+
+**Roughly double the cost of the earlier Sonnet renderings, and not separated.** Two causes are in it at once.
+The release is larger: 44 changes where the earlier renderings had 28.
+And #129 has the model write one entry for every fact, with no collapsed `Also:` line, a label on every customer entry, and the answer as JSON.
+Telling the two apart needs a rendering of #129 on `8061f46`, which was not made.
+
+**The run took 10 minutes 1 second.** Earlier renderings took two to three minutes by the terminal's clock, which is an observation, not a recorded figure.
+A larger release does not explain a factor of three to five.
+The cause is unknown: the run metrics record neither the time a call took nor whether the provider client retried it.
+That gap is goldbarth/chartula#128.
+
+## 2026-09-16 - the structure in code holds on qwen3:14b
+
+Not a turn, and not judged.
+The same check as the entry above, on a local model through `provider: openai-compatible`.
+
+**How.** `test-runs/qwen3-14b-structure-out.changelog.json`, rendered by a Chartula build of `b10d62f`, which carries #129 and #130, with `qwen3:14b` on a local endpoint, all audiences, `--no-publish`.
+From `v0.1.0` at `0d4f6f4`: 44 changes through #112.
+The run's token counts, its duration and whether the thorough check ran were not recorded with it.
+
+| | Entries | Groups | Lines that are not entries |
+|---|---|---|---|
+| Technical | 38 of 38 | Added 31, Fixed 7 | 0 |
+| Customer | 35 of 35 | What's New 28, Bug Fixes 7 | 0 |
+| Product | 38 of 38 | Other 38 | 0 |
+
+**The structure matched the plan exactly, as it did on Sonnet 5.** No audience failed, all 38 technical entries end on their reference, all 35 customer entries carry a label, the customer page carries its description, and `CHANGELOG.md` opens on `## 0.1.0 - 2026-09-04`.
+On 2026-09-16 the same audiences rendered in five structures across four models while the structure was still the prompt's; here a fifth model, a local one, lands in the planned one.
+
+**What the words show, read but not judged.**
+
+- All 38 technical entries open on "This release will", the frame the prompt gives for testing the verb, rather than on the verb itself. By the procedure of C5 of `rubric/technical.md` that is an opening on the subject, not on an imperative verb.
+- Technical entries run to one sentence in 33 cases and two in 5.
+- Customer entries run to one sentence in 2 cases, two in 30 and three in 3.
+- Product entries run to one sentence in 10 cases and two in 28, so ten carry no second slot.
+
+Sentences were counted by their closing punctuation, with references, code spans and bold labels set aside first.
