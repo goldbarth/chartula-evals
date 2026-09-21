@@ -23,11 +23,10 @@ Everything that compares runs against each other lives here.
 Cost per run is measured.
 Six runs against the same release, four models, every figure confirmed against the invoice.
 
-Quality now has a written criterion and something that applies it at scale.
-What it says so far is that the question is premature:
-not one rendering, from any of the four models, goes out without a person editing it.
-The reason is not the model.
-It is that Chartula's customer prompt is a single sentence and carries none of the format this repository specifies.
+Quality has a written criterion and something that applies it at scale.
+What it says so far is that the question is still premature:
+no customer rendering, on any model, goes out without a person editing it.
+The format this repository specifies is in Chartula now - the structure of every rendering is decided in code, and the prompts carry the rules for the words (goldbarth/chartula#96) - so what holds an entry back is the entry itself, not the shape around it.
 
 ## What is here
 
@@ -45,7 +44,7 @@ Six of them compare models and reasoning settings; the rest are turns of the pro
 **The verdicts.** [`labels/customer/`](labels/customer) and [`labels/technical/`](labels/technical) - entries scored per axis with the passage each verdict points at, and a friction log of everything the rubric did not decide on its own.
 Customer has three runs labelled by hand, with three more held out on purpose until a judge is trusted.
 Technical has one, `opus-5-out`, 30 entries, not shippable.
-Product has none yet - no rendering has been generated for that audience.
+Product has none: renderings exist since 2026-09-16, but none has been labelled.
 Rows for a production turn are left unscored on purpose: the judge scores those, and a person reads a sample of them back in a spot check.
 
 **Two measurements.** Separation asks whether a model can tell the axes apart at all, against constructed cases where one axis is broken in each.
@@ -69,6 +68,7 @@ a human label and a judge verdict are comparable only if both were made against 
 
 ## Status
 
+As of 2026-09-21.
 Three audiences, three different stages of the same pipeline.
 
 **Customer.** The criterion is written: nine axes, v1.0.0 tagged and frozen, with a B2 fix already in the tree and waiting on a separation run before it becomes v2.0.0.
@@ -76,22 +76,24 @@ Three of the nine axes measure well enough to gate on; the other six are recorde
 Two spot checks have read a sample of the judge's verdicts back against a person: 50 of 50 and 46 of 49 agreed, so the judge has not drifted and the instrument loop stays closed.
 
 The production loop is running and the work is in Chartula.
-Six changes have been measured since the freeze.
+Every change measured since the freeze is in [`docs/measurements.md`](docs/measurements.md).
 The clearest is what a reader can meet: it was decided from the type of a commit, so the changelog carried entries about the tool's own file formats, and deciding it from a label instead took the coverage axis to zero.
 The last of the four document axes went with it, which is the first rendering where none of them fails.
 
-**No customer rendering ships whole yet.** The newest sends 11 of its 24 entries out unedited, and nine of the thirteen that are held back fail on one thing: the entry says what changed and never what the reader gets from it.
+**No customer rendering ships whole yet.** The newest judged one, from 2026-09-15, sends 12 of its 19 entries out unedited, against 11 of 24 before it.
+The failure that held most entries back - the entry says what changed and never what the reader gets from it - fell from 10 entries to 4, when the outcome of a fix reached the prompt.
 
 Two figures are known that were not before, and both cost turns to learn.
 A movement of one on any axis happens without changing anything, so it is not a result.
 And one rendering is not a measurement: the same prompt has produced 19, 24 and 25 entries, and a short rendering fails fewer entries on every axis at once, which is enough to look like an improvement.
 
 **Technical.** The criterion is written: eight axes, none of them tagged yet.
-One run is labelled, `opus-5-out`, 30 entries, not shippable - the format is no more in Chartula's technical prompt than it was in the customer one, so no rendering carries a release heading or the group set the format defines.
-Separation and agreement have not run against this rubric yet.
+One run is labelled, `opus-5-out`, 30 entries, not shippable; it predates the structure in code.
+Since goldbarth/chartula#96 the release heading, the groups and the reference at the end of every entry are written by Chartula rather than the model, and on 2026-09-16 they held on `claude-sonnet-5` and on a local `qwen3:14b` alike.
+Nothing rendered since has been labelled, and separation and agreement have not run against this rubric yet.
 
 **Product.** The criterion is written: seven axes, and stage 1 of the pipeline is as far as it has gone.
-No rendering has ever been generated for this audience, so there is no labelled corpus and no realistic case in the rubric, only constructed minimal pairs.
+Renderings exist since 2026-09-16, 38 entries each on `claude-sonnet-5` and `qwen3:14b`, but none is labelled, so there is no labelled corpus and no realistic case in the rubric yet, only constructed minimal pairs.
 The calibration builder and the separation harness both reach it now; the separation run itself has not been spent.
 
 Findings that belong in Chartula are filed there as issues and collected in [`docs/for-chartula.md`](docs/for-chartula.md).
