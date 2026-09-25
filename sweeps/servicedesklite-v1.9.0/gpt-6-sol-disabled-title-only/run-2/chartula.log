@@ -1,0 +1,81 @@
+Model:  openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+        gpt-6-sol, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- Integrate the M9 Frontend Redesign into main for v1.9.0. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add inline citation badges anchored in the assistant Markdown answer. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add a primary action button from `SuggestedNextSteps`. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a command palette on `Ctrl+K`. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Add optimistic status updates with rollback on the board and detail views. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Allow inline editing of status and assignee instead of using dialogs. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline citation badges with hover previews in the assistant chat. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Inject the agent roster into the system prompt. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Enforce the grounding check via `tool_choice`. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Add design tokens with one scale for spacing, radius, elevation, and semantic color. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Fix board card title wrapping so `-webkit-line-clamp` is not blockified. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Keep the assistant composer send button inside its panel. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Fix the Category header overlapping Due in the ticket queue. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Fix the write-honesty and confirmation policy in the system prompt. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Render summary timestamps in the user timezone. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Report failed knowledge-base searches as errors. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Score grounding by meaning instead of word overlap. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+
+--- Customer ---
+  description: This release updates the web interface and assistant behavior, alongside fixes to ticket views, summaries, and knowledge-base search.
+
+### What's New
+
+- **Citations in answers:** Citation badges now appear inline in the assistant’s Markdown answers. You can see where a citation belongs in the answer.
+- **Suggested next steps:** Suggested next steps now include a primary action button. You can use it to take the suggested action.
+- **Command palette:** You can now open the command palette with Ctrl+K. The shortcut gives you access to the palette.
+- **Status updates:** Status changes appear immediately on the board and detail view. If an update fails, the status returns to its previous value.
+- **Editing ticket details:** You can now edit status and assignee inline instead of in dialogs. Both fields can be changed where they appear.
+- **Citation previews:** Citation badges now appear inline in assistant chat, with previews on hover. You can inspect a citation from the chat.
+- **Agent roster:** The assistant now receives the agent roster in its instructions. It can refer to that roster when responding.
+- **Grounding check:** The assistant now runs the grounding check through a required tool choice. You can count on that check being invoked.
+- **Visual consistency:** Spacing, corner radius, elevation, and semantic colors now use shared design scales in the web interface. You can expect those values to follow the same scales across the interface.
+
+### What's Changed
+
+- **Frontend redesign:** Version 1.9.0 includes the M9 Frontend Redesign in the main release. You can use the redesign in this version.
+
+### Bug Fixes
+
+- **Board card titles:** Board card titles could fail to wrap as intended. They now wrap within the card.
+- **Assistant send button:** The assistant composer’s send button could extend outside its panel. You can count on it staying inside the panel.
+- **Ticket queue headings:** The Category heading could overlap Due in the ticket queue. You can read both headings separately.
+- **Assistant confirmations:** The assistant’s instructions now include a write-honesty and confirmation policy. You can expect it to follow that policy when responding.
+- **Summary timestamps:** Summary timestamps could appear in a timezone other than yours. You can read them in your timezone.
+- **Knowledge-base search errors:** A failed knowledge-base search was not reported as an error. You can now tell when the search fails.
+- **Grounding assessment:** The assistant’s grounding check could score responses by word overlap rather than meaning. You can count on the score reflecting meaning instead.
+  Flagged for review:
+    ! #223: "You can expect it to follow that policy when responding." - [#223] says the write-honesty and confirmation policy was added to the system prompt; it does not establish that the assistant reliably follows it.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (0 with a description, 0 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 1 claim, 3,069 in / 91 out, 3.9 s (longest 2.2 s)
+    of which 0 in cached, 0 out reasoning
+    caught 1 claim the rule-based check missed, for 3,160 tokens in 2 calls
+  Rephrasing:       2 calls, 2,809 in / 1,032 out, 18.3 s (longest 11.6 s)
+    of which 1,883 in cached, 0 out reasoning
+  Total:            7,001 tokens in 29.6 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T120919Z-v1.9.0.json

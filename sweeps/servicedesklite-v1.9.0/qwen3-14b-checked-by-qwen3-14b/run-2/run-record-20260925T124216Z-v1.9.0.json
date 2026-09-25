@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T12:42:16+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "qwen3:14b-ctx24k",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "qwen3:14b-ctx24k",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Saving over a network drive: A document saved to a network drive could lose the changes made while the connection dropped. Every change is kept now, so you no longer have to keep a local copy open as a backup while you work.\u0022 - The facts do not mention anything about saving over a network drive or changes being lost when the connection drops."
+        },
+        {
+          "text": "\u0022Saving over a network drive: Every change is kept now, so you no longer have to keep a local copy open as a backup while you work.\u0022 - The facts do not mention anything about saving over a network drive or changes being lost when the connection drops."
+        },
+        {
+          "text": "\u0022Saving over a network drive: A document saved to a network drive could lose the changes made while the connection dropped.\u0022 - The facts do not mention anything about saving over a network drive or changes being lost when the connection drops."
+        },
+        {
+          "text": "\u0022Primary action button: The action goes through the same command handler the manual path uses - no new automation, no new endpoint.\u0022 - The facts say \u0027the action goes through the same command handler the manual path uses - no new automation, no new endpoint\u0027 but this is about inline citation badges, not the primary action button.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022Optimistic status updates: Every status change waited for the full server round trip; on the Kanban board the dragged card snapped back to its source column until the API answered.\u0022 - The facts say \u0027Every status change waited for the full server round trip; on the Kanban board the dragged card snapped back to its source column until the API answered\u0027 but this is about optimistic status updates, not the new functionality.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022Inline status and assignee edit: Changing status or assignee never navigates or opens a modal. Scroll position and any open tab survive the change (only in-place state updates).\u0022 - The facts say \u0027Changing status or assignee never navigates or opens a modal. Scroll position and any open tab survive the change (only in-place state updates)\u0027 but this is about inline status and assignee edit, not the new functionality.",
+          "pullRequest": 234
+        },
+        {
+          "text": "\u0022Inline citation badges with hover preview: An answer without citations renders unchanged, with no empty sources block.\u0022 - The facts say \u0027An answer without citations renders unchanged, with no empty sources block\u0027 but this is about inline citation badges with hover preview, not the new functionality.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022Inject agent roster into system prompt: The model can name the valid agents without a failed assign_ticket call first (roster is in the system prompt of every chat request).\u0022 - The facts say \u0027The model can name the valid agents without a failed assign_ticket call first (roster is in the system prompt of every chat request)\u0027 but this is about injecting the agent roster into the system prompt, not the new functionality.",
+          "pullRequest": 221
+        },
+        {
+          "text": "\u0022Enforce grounding check via tool_choice: check_grounding was the only safety property in the assistant phrased as a prompt request. AgentLoop forces check_grounding through tool_choice once IRagRetrievalContext holds passages and no check has run this run.\u0022 - The facts say \u0027check_grounding was the only safety property in the assistant phrased as a prompt request. AgentLoop forces check_grounding through tool_choice once IRagRetrievalContext holds passages and no check has run this run\u0027 but this is about the enforcement of the grounding check via tool_choice, not the new functionality.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: Theme/DesignTokens.cs is now the single source for the palette, the spacing and radius scales, elevation, and the semantic chip colours.\u0022 - The facts say \u0027Theme/DesignTokens.cs is now the single source for the palette, the spacing and radius scales, elevation, and the semantic chip colours\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Primary action button: A ticket with no suggestions falls back to the current generic action, with no empty button.\u0022 - The facts say \u0027A ticket with no suggestions falls back to the current generic action, with no empty button\u0027 but this is about the primary action button, not the new functionality.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022Command palette on Ctrl\u002BK: The palette opens from every page and does not swallow the browser shortcut when a text field has focus (capture-phase handler intercepts only Ctrl/Cmd\u002BK).\u0022 - The facts say \u0027The palette opens from every page and does not swallow the browser shortcut when a text field has focus (capture-phase handler intercepts only Ctrl/Cmd\u002BK)\u0027 but this is about the command palette on Ctrl\u002BK, not the new functionality.",
+          "pullRequest": 236
+        },
+        {
+          "text": "\u0022Optimistic status updates: Status now renders immediately and reconciles with the server afterwards.\u0022 - The facts say \u0027Status now renders immediately and reconciles with the server afterwards\u0027 but this is about optimistic status updates, not the new functionality.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022Inline status and assignee edit: The same command handlers are called as before; no new endpoint.\u0022 - The facts say \u0027The same command handlers are called as before; no new endpoint\u0027 but this is about inline status and assignee edit, not the new functionality.",
+          "pullRequest": 234
+        },
+        {
+          "text": "\u0022Inline citation badges with hover preview: Tooltip shows source, heading, and snippet, and opens on keyboard focus too.\u0022 - The facts say \u0027Tooltip shows source, heading, and snippet, and opens on keyboard focus too\u0027 but this is about inline citation badges with hover preview, not the new functionality.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022Inject agent roster into system prompt: A test asserts the roster reaches the model: RosterInPromptTests reads the system prompt the loop actually sent upstream - all five seeded names present, \u0027Morgan Davis\u0027 absent, and an empty roster is stated rather than omitted.\u0022 - The facts say \u0027A test asserts the roster reaches the model: RosterInPromptTests reads the system prompt the loop actually sent upstream - all five seeded names present, \u0027Morgan Davis\u0027 absent, and an empty roster is stated rather than omitted\u0027 but this is about the inject agent roster into the system prompt, not the new functionality.",
+          "pullRequest": 221
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: All 16 scoped stylesheets and wwwroot/app.css read from the tokens.\u0022 - The facts say \u0027All 16 scoped stylesheets and wwwroot/app.css read from the tokens\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: No hard-coded colour literal in any Features/**/*.razor.css or Components/**/*.razor.css - and none in app.css either, which the AC did not require but which dark mode (#203) would otherwise have had to patch in two places\u0022 - The facts say \u0027No hard-coded colour literal in any Features/**/*.razor.css or Components/**/*.razor.css - and none in app.css either, which the AC did not require but which dark mode (#203) would otherwise have had to patch in two places\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: Spacing and radius come from the token scale\u0022 - The facts say \u0027Spacing and radius come from the token scale\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: dotnet build -c Release is warning-free; 585 tests pass\u0022 - The facts say \u0027dotnet build -c Release is warning-free; 585 tests pass\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Design tokens - one scale for spacing, radius, elevation, and semantic color: Before/after screenshots taken of dashboard, queue, board, ticket detail and assistant\u0022 - The facts say \u0027Before/after screenshots taken of dashboard, queue, board, ticket detail and assistant\u0027 but this is about design tokens, not the new functionality.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022Wrap board card title: Cards in a lane keep a consistent height.\u0022 - The facts say \u0027Cards in a lane keep a consistent height\u0027 but this is about wrapping the board card title, not the bug fix.",
+          "pullRequest": 240
+        },
+        {
+          "text": "\u0022Keep send button inside panel: The input and the button stay aligned at narrow widths.\u0022 - The facts say \u0027The input and the button stay aligned at narrow widths\u0027 but this is about keeping the send button inside the panel, not the bug fix.",
+          "pullRequest": 239
+        },
+        {
+          "text": "\u0022Stop category header overlapping due: Category matches its neighbours (uppercase) and is deliberately not a sort label.\u0022 - The facts say \u0027Category matches its neighbours (uppercase) and is deliberately not a sort label\u0027 but this is about stopping the category header from overlapping due, not the bug fix.",
+          "pullRequest": 238
+        },
+        {
+          "text": "\u0022Write-honesty and confirmation policy: No needless confirmation: when the user already asked for a change, make it - no re-asking.\u0022 - The facts say \u0027No needless confirmation: when the user already asked for a change, make it - no re-asking\u0027 but this is about the write-honesty and confirmation policy, not the bug fix.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022Render summary timestamps in user timezone: A regression test pins a fixed timezone (Europe/Berlin) and replays the field case: 10:07 UTC renders as 12:07.\u0022 - The facts say \u0027A regression test pins a fixed timezone (Europe/Berlin) and replays the field case: 10:07 UTC renders as 12:07\u0027 but this is about rendering summary timestamps in the user timezone, not the bug fix.",
+          "pullRequest": 222
+        },
+        {
+          "text": "\u0022Report failed knowledge-base search as error: The error flag flows to the dashboard (the invocation records result.IsError).\u0022 - The facts say \u0027The error flag flows to the dashboard (the invocation records result.IsError)\u0027 but this is about reporting a failed knowledge-base search as an error, not the bug fix.",
+          "pullRequest": 220
+        },
+        {
+          "text": "\u0022Score grounding by meaning: SemanticGroundingEvaluator embeds each substantive answer sentence with the retrieved passages in one Voyage call and scores each sentence by cosine similarity to its nearest passage.\u0022 - The facts say \u0027SemanticGroundingEvaluator embeds each substantive answer sentence with the retrieved passages in one Voyage call and scores each sentence by cosine similarity to its nearest passage\u0027 but this is about scoring grounding by meaning, not the bug fix.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21863,
+      "outputTokens": 1763,
+      "failedCalls": 0,
+      "durationSeconds": 42.644,
+      "longestCallSeconds": 23.175,
+      "retries": 0,
+      "cachedInputTokens": 207
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 23469,
+      "outputTokens": 2412,
+      "failedCalls": 0,
+      "durationSeconds": 46.546,
+      "longestCallSeconds": 41.868,
+      "retries": 0,
+      "cachedInputTokens": 10813
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 28,
+      "onlyThoroughFlags": 28,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 97.22,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

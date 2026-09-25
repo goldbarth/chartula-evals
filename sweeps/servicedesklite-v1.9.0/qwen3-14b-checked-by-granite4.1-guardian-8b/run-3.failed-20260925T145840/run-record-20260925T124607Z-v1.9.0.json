@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T12:46:07+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "qwen3:14b-ctx24k",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "granite4.1-guardian:8b-ctx24k",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "The thorough check could not be evaluated: openai-compatible at http://localhost:11434/v1 could not be reached for model \u0027granite4.1-guardian:8b-ctx24k\u0027: Unknown ChatFinishReason value. (Parameter \u0027value\u0027)."
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": false,
+      "error": "Changelog generation for \u0027v1.9.0\u0027 failed: the model\u0027s answer does not match the facts it was sent: an entry for fact 18, which it was not sent."
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21863,
+      "outputTokens": 2563,
+      "failedCalls": 0,
+      "durationSeconds": 46.553,
+      "longestCallSeconds": 24.765,
+      "retries": 0,
+      "cachedInputTokens": 21861
+    },
+    "faithfulnessCheck": {
+      "calls": 0,
+      "callsWithoutUsage": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "failedCalls": 1,
+      "durationSeconds": 37.598,
+      "longestCallSeconds": 37.598,
+      "retries": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 1,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 1,
+      "runsWithFindings": 0,
+      "flags": 0,
+      "onlyThoroughFlags": 0,
+      "notEvaluated": 1
+    },
+    "durationSeconds": 91.999,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

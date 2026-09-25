@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:09:56+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022with hover and keyboard-focus previews\u0022 - [#245] supports a hover/focus tooltip, but does not state that keyboard focus is usable to show it. Keyboard-focus support is described in [#233], not in the reintroduced Markdown citation badges described by [#245].",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022Inline assistant citations: Citations can now appear as numbered badges beside matching titles in assistant answers\u0022 - [#233] says badges are anchored in the streamed answer text by matching citation titles. It does not specify assistant Markdown answers; that behavior is described by [#245]. This repeats and blends the earlier implementation with the later Markdown implementation.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022with previews on hover or keyboard focus\u0022 - [#233] supports a CSS-only tooltip on hover or keyboard focus, but the output\u0027s separate inline-citation item presents this as the current Markdown answer behavior, which [#233] does not establish.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022The assistant no longer needs to ask again before carrying out a change the user already requested\u0022 - [#223] says not to re-ask when the user already requested a change, but explicitly allows confirmation for genuine user decisions, including hard-to-reverse actions with real doubt about intent or uncertain route suggestions. The statement is overbroad as written.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022You can rely on it to ask only when a genuine decision or missing information requires confirmation.\u0022 - [#223] also permits confirmation for hard-to-reverse actions with real doubt about intent and uncertain route_ticket suggestions; those cases are omitted from the stated rule.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022You can rely on the summary times matching the timezone shown in the ticket details.\u0022 - [#222] says timestamps are converted to the configured user timezone, matching the detail view. The facts do not establish that the configured timezone necessarily matches the timezone shown in ticket details in every case.",
+          "pullRequest": 222
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1516,
+      "failedCalls": 0,
+      "durationSeconds": 14.166,
+      "longestCallSeconds": 8.021,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22490,
+      "outputTokens": 451,
+      "failedCalls": 0,
+      "durationSeconds": 5.398,
+      "longestCallSeconds": 4.482,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 6,
+      "onlyThoroughFlags": 6,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 27.111,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

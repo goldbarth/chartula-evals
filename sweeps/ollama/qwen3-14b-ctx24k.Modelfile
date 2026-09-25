@@ -1,0 +1,4 @@
+# qwen3:14b with a context window that holds a whole Chartula prompt (about 12k tokens here).
+# Ollama defaults to a smaller window and cuts longer prompts silently; see Chartula docs/configuration.md.
+FROM qwen3:14b
+PARAMETER num_ctx 24576

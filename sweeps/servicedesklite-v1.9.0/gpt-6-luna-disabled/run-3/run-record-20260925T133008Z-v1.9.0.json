@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:30:08+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges anchored to matching titles in assistant answers, with tooltip previews and a sources-list fallback. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\u0022 - PR #244 says its integration removed #233\u2019s AnswerCitationLayout and tests, kept citations in the sources list, and deferred inline badges. PR #245 later reintroduced inline badges over sanitized Markdown. Presenting #233\u2019s implementation as a release addition is misleading.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022**Agent roster in assistant replies:**\u0022 - The active roster is injected into the assistant\u2019s system prompt, not necessarily included in its replies.",
+          "pullRequest": 221
+        },
+        {
+          "text": "\u0022**Grounding checks:** After knowledge-base passages are retrieved, the assistant now runs a grounding check before streaming its first answer token if it has not already checked.\u0022 - The check is forced before the first streamed token when passages are present and no check has run, but the mechanism guarantees only one check after retrieval\u2014not a new check after every retrieval.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022**Meaning-based grounding checks:** Grounding checks now compare answer sentences with retrieved passages by meaning, so supported paraphrases and translations can be recognized.\u0022 - The semantic evaluator scores embedding similarity; the facts report deterministic fake-embedder tests, not live validation that supported paraphrases and translations are recognized in practice.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1556,
+      "failedCalls": 0,
+      "durationSeconds": 14.532,
+      "longestCallSeconds": 8.397,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22530,
+      "outputTokens": 328,
+      "failedCalls": 0,
+      "durationSeconds": 8.128,
+      "longestCallSeconds": 4.733,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 30.459,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

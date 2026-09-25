@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:48:06+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "medium",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges to assistant answers, with hover and keyboard-focus previews.\u0022 - Although #233 initially added badges, #244 removed that implementation during integration and deferred inline badges; #245 subsequently reintroduced them over sanitized Markdown. Presenting #233 as a separate addition in this integrated changelog misrepresents what survived.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022A ticket\u2019s first actionable suggestion now appears as a button or agent picker\u0022 - The first actionable suggestion becomes the primary control, but only status changes use a button and assignments use an agent picker. Other actionable suggestions, such as comments, are routed through the comments tab; the facts do not establish that every first actionable suggestion appears as a button or picker.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022When you request a ticket change, the assistant may ask you to confirm it again or claim it succeeded without a successful result.\u0022 - The live reproduction did not reproduce either field behavior in five turns. The PR added prompt rules to prevent these behaviors; it does not establish that they were still occurring before this change.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 3854,
+      "failedCalls": 0,
+      "durationSeconds": 76.747,
+      "longestCallSeconds": 54.592,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 2167
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22418,
+      "outputTokens": 263,
+      "failedCalls": 0,
+      "durationSeconds": 9.752,
+      "longestCallSeconds": 6.135,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 94.429,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

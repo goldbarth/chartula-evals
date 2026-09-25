@@ -1,0 +1,97 @@
+Model:  openai-compatible at http://localhost:11434/v1, key from OPENAI_API_KEY
+        qwen3:14b-ctx24k, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- This release will integrate the complete M9 - Frontend Redesign milestone into `main` and add the v1.9.0 release notes. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- This release will reintroduce inline citation badges that were first built in #207, now over the sanitized Markdown answer instead of plain text. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- This release will make the most likely next step in `SuggestedNextSteps` a button that runs it. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- This release will add a keyboard-first command palette that opens over any page, anchored on the power-user `Ctrl/Cmd+K` chord. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- This release will apply the target status to the card up front (optimistically) and reconcile with the server afterwards. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- This release will replace `AssignTicketDialog` and `ChangeStatusDialog` with inline popovers anchored to the header actions. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- This release will anchor citations to the answer text and render inline badges with hover preview. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- This release will inject the agent roster into the system prompt of every chat request. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- This release will enforce the grounding check via `tool_choice` once `IRagRetrievalContext` holds passages and no check has run. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- This release will make `Theme/DesignTokens.cs` the single source for the palette, spacing, radius, elevation, and semantic chip colours. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- This release will wrap the title `<a>` in a `board-card__title-row` div to ensure `-webkit-line-clamp` applies. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- This release will target the panel through `::deep .assistant-chat` to restore its intended padding and layout. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- This release will give the `Category` column a `140px` width and render its header with the same uppercase style as its neighbours. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- This release will add two rules to the chat system prompt to enforce write honesty and avoid needless confirmation. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- This release will convert every timestamp in the `BuildTicketPrompt` to the user's local timezone before the model sees it. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- This release will return `IsError: true` for the catch branch of `search_knowledge_base`, distinguishing it from the `unavailable` degradation path. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- This release will score grounding by meaning using a semantic comparison of answer sentences and passages. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+  Flagged for review:
+    ! "This release will integrate the complete M9 - Frontend Redesign milestone into `main` and add the v1.9.0 release notes." - The facts do not support this claim. The facts describe that the PR merges two branches into one `main`, but they do not explicitly state that the release notes are added. The PR description says that it integrates the complete M9 - Frontend Redesign milestone into `main` and adds the v1.9.0 release notes, so the release can be tagged from a single coherent point. However, it is not supported by a specific fact from a pull request. The fact that supports this claim is not specified in a pull request number in brackets and is therefore not supported by the facts.
+    ! #245: "This release will reintroduce inline citation badges that were first built in #207, now over the sanitized Markdown answer instead of plain text." - The facts partially support this claim. The facts state that the inline citation badges are reintroduced, but they do not explicitly state that the badges were first built in #207. They do mention that the badges are now over the sanitized Markdown answer instead of plain text, which is supported by the facts. However, the claim that they were first built in #207 is not supported by the facts.
+    ! #237: "This release will make the most likely next step in `SuggestedNextSteps` a button that runs it." - The facts support this claim. The facts describe that `SuggestedNextSteps` is now `IReadOnlyList<SuggestedStep>` with the most likely next step as a button that runs it. This is supported by the facts.
+    ! #236: "This release will add a keyboard-first command palette that opens over any page, anchored on the power-user `Ctrl/Cmd+K` chord." - The facts support this claim. The facts describe that a keyboard-first command palette that opens over any page, anchored on the power-user `Ctrl/Cmd+K` chord is added. This is supported by the facts.
+    ! #235: "This release will apply the target status to the card up front (optimistically) and reconcile with the server afterwards." - The facts support this claim. The facts describe that the target status is applied to the card up front (optimistically) and reconciled with the server afterwards. This is supported by the facts.
+    ! #234: "This release will replace `AssignTicketDialog` and `ChangeStatusDialog` with inline popovers anchored to the header actions." - The facts support this claim. The facts describe that `AssignTicketDialog` and `ChangeStatusDialog` are replaced with inline popovers anchored to the header actions. This is supported by the facts.
+    ! "This release will anchor citations to the answer text and render inline badges with hover preview." - The facts partially support this claim. The facts state that citations are anchored to the answer text and inline badges are rendered with hover preview. However, the facts do not explicitly state that this is part of the v1.9.0 release. The fact that supports this claim is not specifically identified in a pull request number in brackets and is therefore not fully supported by the facts.
+    ! #221: "This release will inject the agent roster into the system prompt of every chat request." - The facts support this claim. The facts describe that the agent roster is injected into the system prompt of every chat request. This is supported by the facts.
+    ! #218: "This release will enforce the grounding check via `tool_choice` once `IRagRetrievalContext` holds passages and no check has run." - The facts support this claim. The facts describe that the grounding check is enforced via `tool_choice` once `IRagRetrievalContext` holds passages and no check has run. This is supported by the facts.
+    ! #213: "This release will make `Theme/DesignTokens.cs` the single source for the palette, spacing, radius, elevation, and semantic chip colours." - The facts support this claim. The facts describe that `Theme/DesignTokens.cs` is made the single source for the palette, spacing, radius, elevation, and semantic chip colours. This is supported by the facts.
+    ! #240: "This release will wrap the title `<a>` in a `board-card__title-row` div to ensure `-webkit-line-clamp` applies." - The facts support this claim. The facts describe that the title `<a>` is wrapped in a `board-card__title-row` div to ensure `-webkit-line-clamp` applies. This is supported by the facts.
+    ! #239: "This release will target the panel through `::deep .assistant-chat` to restore its intended padding and layout." - The facts support this claim. The facts describe that the panel is targeted through `::deep .assistant-chat` to restore its intended padding and layout. This is supported by the facts.
+    ! #238: "This release will give the `Category` column a `140px` width and render its header with the same uppercase style as its neighbours." - The facts support this claim. The facts describe that the `Category` column is given a `140px` width and its header is rendered with the same uppercase style as its neighbours. This is supported by the facts.
+    ! #223: "This release will add two rules to the chat system prompt to enforce write honesty and avoid needless confirmation." - The facts support this claim. The facts describe that two rules are added to the chat system prompt to enforce write honesty and avoid needless confirmation. This is supported by the facts.
+    ! #222: "This release will convert every timestamp in the `BuildTicketPrompt` to the user's local timezone before the model sees it." - The facts support this claim. The facts describe that every timestamp in the `BuildTicketPrompt` is converted to the user's local timezone before the model sees it. This is supported by the facts.
+    ! #220: "This release will return `IsError: true` for the catch branch of `search_knowledge_base`, distinguishing it from the `unavailable` degradation path." - The facts support this claim. The facts describe that `IsError: true` is returned for the catch branch of `search_knowledge_base`, distinguishing it from the `unavailable` degradation path. This is supported by the facts.
+    ! #219: "This release will score grounding by meaning using a semantic comparison of answer sentences and passages." - The facts do not fully support this claim. The facts describe that grounding is scored by meaning using a semantic comparison of answer sentences and passages. This is partially supported by the facts, as the facts mention that the `LexicalGroundingEvaluator` is kept as the fallback and that the `SemanticGroundingEvaluator` is introduced. However, the claim that this is part of the v1.9.0 release is not supported by the facts.
+
+--- Customer ---
+  description: This release integrates the complete M9 Frontend Redesign and includes several key improvements such as inline citation badges, optimistic status updates, a unified design token system, and enhanced grounding checks.
+
+### What's New
+
+- **Inline citation badges:** Inline citation badges now anchor to the assistant's Markdown answer. Changes are preserved even if the connection drops, so you no longer need a local backup copy while you work.
+- **Primary action button:** The primary action button now appears for suggested steps, making it easier to take action directly from the ticket header.
+- **Command palette:** A keyboard-first command palette now opens with Ctrl+K, accessible from any page and fully operable by keyboard.
+- **Optimistic status updates:** Status changes on the board now update immediately with an optimistic preview and roll back if the server rejects the change.
+- **Inline status and assignee edit:** Status and assignee changes are now made inline with popovers, keeping you on the same page without navigation or modals.
+- **Inline citation badges with hover preview:** Inline citation badges with tooltips now appear in the assistant's chat, showing source details on hover or keyboard focus.
+- **Agent roster in system prompt:** The agent roster is now injected into the system prompt, so the model can accurately name available agents without error.
+- **Enforced grounding check:** Grounding checks are now enforced via tool_choice, guaranteeing at least one check after any retrieval.
+- **Design tokens:** Design tokens now provide a unified scale for spacing, radius, elevation, and semantic color across the application.
+
+### What's Changed
+
+- **M9 Frontend Redesign integration:** The complete M9 Frontend Redesign is now merged into the main branch, including v1.9.0 release notes.
+
+### Bug Fixes
+
+- **Board card title wrapping:** Board card titles are now wrapped to ensure two-line clamping with ellipsis, preventing unbounded card growth.
+- **Send button inside panel:** The assistant composer's send button is now inside its panel, keeping it aligned with the input field.
+- **Category header alignment:** The Category header no longer overlaps with the Due column in the ticket queue, and both are now uppercase.
+- **System prompt honesty policy:** The system prompt now enforces write-honesty and confirmation policy, ensuring changes are only made after user confirmation and avoiding unnecessary questions.
+- **User timezone timestamps:** Summary timestamps are now rendered in the user's local timezone, matching the ticket detail view.
+- **Error reporting for failed searches:** Failed knowledge-base searches now report as errors, allowing the dashboard to track technical failures.
+- **Meaning-based grounding scoring:** Grounding is now scored by meaning instead of word overlap, correctly identifying paraphrased and translated answers.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 17 claims, 23,075 in / 1,544 out, 31.7 s (longest 31.2 s)
+    of which 10,813 in cached, reasoning not reported
+    caught 17 claims the rule-based check missed, for 24,619 tokens in 2 calls
+  Rephrasing:       2 calls, 21,863 in / 1,469 out, 50.3 s (longest 33.9 s)
+    of which 207 in cached, reasoning not reported
+  Total:            47,951 tokens in 1 min 29 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T124434Z-v1.9.0.json

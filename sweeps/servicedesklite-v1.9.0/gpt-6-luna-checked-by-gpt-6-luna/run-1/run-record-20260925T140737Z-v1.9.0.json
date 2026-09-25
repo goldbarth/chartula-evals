@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:07:37+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022the M9 frontend redesign together with changes to ticket workflows and assistant behavior\u0022 - The release-integrating PR says it integrates M9 and adds release notes; the facts do not establish that all listed workflow and assistant changes are part of this release as described in this release-wide claim."
+        },
+        {
+          "text": "\u0022beside matching passage titles in the assistant\u2019s Markdown answer\u0022 - The citation badges are anchored after a cited passage title in sanitized Markdown when that title appears verbatim. The output\u2019s wording could imply general placement beside a matching passage title, omitting that verbatim-title limitation. Also, this item rephrases the delivered Markdown implementation, not the earlier inline-badge implementation that was deferred.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022Citations can now appear as numbered badges beside matching titles in assistant answers\u0022 - This repeats the inline citation feature already described above. The facts support the delivered feature, but the output presents it as a separate feature; the facts describe one implementation, not two distinct badge features.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022unless the assistant has already checked it\u0022 - The forced check is skipped if a check has already run in this run; the facts do not say an earlier check by the assistant exempts a later retrieval from the force-once check. The check is guaranteed once after retrieval, not necessarily once per retrieval.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022Version 1.9.0 brings the M9 Frontend Redesign together with the web and assistant changes in this release.\u0022 - The facts say the release PR integrates M9 and adds release notes, but do not establish that the separately listed assistant changes are all included in v1.9.0."
+        },
+        {
+          "text": "\u0022unless the ticket match, required information, action, or intent needs clarification\u0022 - The prompt policy allows asking before a write for an ambiguous ticket match, missing required information, a hard-to-reverse action with real doubt about intent, or an uncertain route_ticket suggestion. The output\u2019s \u201Caction ... needs clarification\u201D is broader than that stated allowance.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1552,
+      "failedCalls": 0,
+      "durationSeconds": 16.763,
+      "longestCallSeconds": 9.245,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22526,
+      "outputTokens": 483,
+      "failedCalls": 0,
+      "durationSeconds": 5.906,
+      "longestCallSeconds": 4.622,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 6,
+      "onlyThoroughFlags": 6,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 31.232,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

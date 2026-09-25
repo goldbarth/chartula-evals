@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:09:57+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "qwen3:14b-ctx24k",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "granite4.1-guardian:8b-ctx24k",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022This release will make every status change render immediately and reconcile with the server afterwards, rather than waiting for the full server round trip. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))\u0022 - Claim 1: The release is said to make every status change render immediately, but the changelog states that status now renders optimistically and reconciles with the server afterwards. The changelog does not explicitly state that every status change renders immediately, but rather focuses on optimistic status updates with rollback. Claim 2: The changelog does not explicitly mention that the status changes reconcile with the server afterwards. It discusses reconciliation in the context of optimistic applies and rollbacks, but does not state that every status change does so. Claim 3: The claim suggests that the feature was not implemented correctly, as it does not mention any form of reconciliation or rollback, which the changelog does discuss. Claim 4: The changelog states: \u0027status now renders immediately and reconciles with the server afterwards,\u0027 which could be interpreted as meaning that every status change renders immediately and reconciles afterwards. However, the changelog also states that a rejected transition rolls back to the exact prior state, which implies that not every status change may render immediately if there is a rejection.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022This release will add a keyboard-first command palette that opens over any page, anchored on the power-user \u0060Ctrl/Cmd\u002BK\u0060 chord. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))\u0022 - The changelog states that a keyboard-first command palette is added, but it does not mention that it is keyboard-first. It only mentions that the palette opens over any page and is anchored on the \u0060Ctrl/Cmd\u002BK\u0060 chord. The changelog does not explicitly state that the feature is keyboard-first. The changelog also does not mention anything about making the palette the primary method of navigation or interaction, which would be implied by being keyboard-first. The changelog states that the palette is available on every page and does not swallow the browser shortcut when a text field has focus, but this does not necessarily mean that it is keyboard-first. A keyboard-first feature typically means that the UI is primarily controlled by keyboard shortcuts and commands, with less reliance on mouse interactions. The changelog does not discuss the extent to which the command palette replaces or complements other keyboard shortcuts or commands in the UI.",
+          "pullRequest": 236
+        },
+        {
+          "text": "\u0022This release will make the Change Status and Assign/Reassign buttons inline popovers anchored to\u003Cthink\u003ELet\u0027s analyze each constraint step by step in a numbered list as requested, using the example of how to answer the user question about the changelog of the release in the code repository of the code user goldbarth/ServiceDeskLite/pull/244. We also look at the provided facts in the conversation for verification of the output response. The response should be detailed and exhaustive. The output will have the following form: 1. Constraint: [constraint description]. Answer: [response to constraint 1] 2. Constraint: [constraint description]. Answer: [response to constraint 2] 3. Constraint: [constraint description]. Answer: [response to constraint 3] 4. Constraint: [constraint description]. Answer: [response to constraint 4] 5. Constraint: [constraint description]. Answer: [response to constraint 5] 6. Constraint: [constraint description]. Answer: [response to constraint 6] 7. Constraint: [constraint description]. Answer: [response to constraint 7] 8. Constraint: [constraint description]. Answer: [response to constraint 8] 9. Constraint: [constraint description]. Answer: [response to constraint 9] 10. Constraint: [constraint description]. Answer: [response to constraint 10] 11. Constraint: [constraint description]. Answer: [response to constraint 11] 12. Constraint: [constraint description]. Answer: [response to constraint 12] If all constraints are satisfied, then the output of the assistant response is:\u0022 - The changelog has been analyzed in detail, and each constraint has been discussed thoroughly. The response provides a comprehensive summary of the release, addressing both the changes and their impact on the application. Each constraint has been verified against the changelog, and the response correctly identifies what is added, changed, and fixed.",
+          "pullRequest": 244
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": []
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21863,
+      "outputTokens": 2340,
+      "failedCalls": 0,
+      "durationSeconds": 49.667,
+      "longestCallSeconds": 27.685,
+      "retries": 0,
+      "cachedInputTokens": 207
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22790,
+      "outputTokens": 999,
+      "failedCalls": 0,
+      "durationSeconds": 618.559,
+      "longestCallSeconds": 617.906,
+      "retries": 1,
+      "cachedInputTokens": 10220
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 677.224,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

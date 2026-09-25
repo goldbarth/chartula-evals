@@ -1,0 +1,85 @@
+Model:  openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+        gpt-6-sol, thinking high
+        thorough check: gpt-6-sol, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- Add the M9 frontend redesign to `main` as the v1.9.0 release point. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add citation badges anchored in sanitized assistant Markdown through `AssistantMarkdown.Render(markdown, citations)`. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add a primary ticket control that executes the first actionable `SuggestedStep`. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a `CommandPalette` available on every page through Ctrl/Cmd+K. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Add optimistic ticket status updates with rollback on the board and detail view. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Remove modal dialogs for ticket status and assignee changes in favor of inline `MudMenu` popovers. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add `AnswerCitationLayout` to place citation badges in assistant answers with hover and keyboard-focus previews. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Add the active agent roster to the chat system prompt using `GetAgentsHandler`. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Add a forced `check_grounding` `tool_choice` in `AgentLoop` after retrieval and before answer streaming. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Add `Theme/DesignTokens.cs` as the shared source for palette, spacing, radius, elevation, and semantic chip colors. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Fix two-line clamping of board card titles by wrapping the title link in `board-card__title-row`. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Fix the assistant composer send button extending beyond its panel by applying `::deep .assistant-chat` to the panel styles. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Fix overlap between the ticket queue's Category and Due headers by explicitly sizing the Category column. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Fix the chat system prompt's write-confirmation policy to prevent unverified success claims and redundant confirmation requests. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Fix ticket summary timestamps to use `Anthropic:UserTimeZone` before they reach the model. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Fix `search_knowledge_base` to return `IsError: true` on non-transient failures. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Fix grounding evaluation of paraphrases and translations by scoring answer sentences with `SemanticGroundingEvaluator`. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+  Flagged for review:
+    ! #233: "Add `AnswerCitationLayout` to place citation badges in assistant answers with hover and keyboard-focus previews." - Although PR #233 added AnswerCitationLayout, PR #244 removed it and its tests when Markdown rendering took precedence. PR #245 later reintroduced inline badges using AssistantMarkdown.Render, not AnswerCitationLayout. Presenting AnswerCitationLayout as an addition to this release misstates the final state.
+
+--- Customer ---
+  description: This release brings together ticket and assistant interface changes with updates to how the assistant checks and presents information.
+
+### What's New
+
+- **Citations in Markdown answers:** When the assistant quotes a passage title in a Markdown answer, a numbered citation badge appears beside it. You can match the badge to its Sources entry and inspect the source, heading, and snippet on hover or keyboard focus; citations without a matching title remain in Sources.
+- **Suggested ticket actions:** Tickets with actionable suggestions show the first as a status-change button or assignment picker, with other suggestions in a menu. You can act on that suggestion from the ticket header, while the usual controls remain available.
+- **Command palette:** Press Ctrl/Cmd+K on any page to open a palette for navigation and ticket search. You can open a result with the arrow keys and Enter, or close the palette with Esc and return focus to where you were.
+- **Ticket status updates:** A status change on the ticket board or detail page now appears before the server responds. You can count on the displayed status being reconciled after a successful change or restored after a rejection, with a message explaining the rejection.
+- **Inline ticket edits:** Changing a ticket's status or assignee now opens a menu in the ticket header instead of a dialog. You can make the change without leaving the ticket or losing your scroll position or current tab.
+- **Assistant citation previews:** When an assistant answer includes a citation's title, a numbered badge appears beside the cited passage. You can inspect its source, heading, and snippet by hovering or focusing on it, while citations that cannot be placed remain in Sources.
+- **Agent names in assistant chat:** When you ask the assistant to assign a ticket, it now has the active agent roster before attempting an assignment. It is instructed to use exact roster names and list valid agents rather than guess when the name you give is not on the roster.
+- **Grounding checks before answers:** Knowledge-base answers no longer stream before an initial grounding check after passages have been retrieved. You can count on the model receiving a verdict before the first streamed answer text, though passages retrieved later in a long chain are not guaranteed to be covered.
+- **Consistent interface styles:** Spacing, corners, and chip colors now follow shared design scales across the web app. You can rely on the same visual cue for a ticket status or priority as you move between the queue, board, and detail page.
+
+### What's Changed
+
+- **Frontend redesign release:** The v1.9.0 web app displays formatted assistant answers and offers a dark-mode toggle. You can read those answers without grounding details appearing in the transcript, with both interface changes available in this release.
+
+### Bug Fixes
+
+- **Board card titles:** Long ticket titles on the board could grow a card beyond its usual height. You can count on titles ending with an ellipsis after two lines and on long unbroken titles not stretching the lane.
+- **Assistant send button:** The assistant's send button could sit over the edge of its panel. You can count on the input and button staying aligned within the panel, including at narrow widths.
+- **Ticket queue headers:** In the ticket queue, the Category header could overlap Due and appear in a different case from nearby headers. You can count on the headers and their columns staying aligned, with Category shown in uppercase like its neighbours.
+- **Assistant change confirmations:** For a clear ticket-change request, the assistant is now instructed to act without asking for another confirmation. It is also told not to claim a change succeeded without a successful result, and to ask first when the ticket match, required information, intent for a hard-to-reverse action, or a routing suggestion is uncertain.
+- **Ticket summary times:** A ticket summary could show comment times in UTC while the ticket page showed local times. You can now compare created, due, comment, and event times in the summary against the ticket page in the same user timezone.
+- **Knowledge-base search failures:** A failed knowledge-base search could be recorded as successful. You can count on the dashboard's error rate including technical failures, while an unavailable search remains identified separately.
+- **Grounding verdicts:** Correct paraphrases and translations of retrieved passages could be marked ungrounded. Grounding verdicts now consider meaning instead of just shared words when semantic checking is available; otherwise, the earlier word-based check applies.
+  Flagged for review:
+    ! #235: "You can count on the displayed status being reconciled after a successful change or restored after a rejection" - The board reconciles with the server after success, but the detail view is only described as updating optimistically and restoring the previous ticket on rejection; server reconciliation after success is not established for the detail view.
+    ! #245: "Citations in Markdown answers: When the assistant quotes a passage title in a Markdown answer, a numbered citation badge appears beside it." - The facts say anchoring depends on the model quoting the passage title verbatim; the wording makes a badge sound guaranteed whenever a title is quoted, without that limitation.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 2 with findings, 3 claims, 22,507 in / 267 out, 9.8 s (longest 5.7 s)
+    of which 0 in cached, 0 out reasoning
+    caught 3 claims the rule-based check missed, for 22,774 tokens in 2 calls
+  Rephrasing:       2 calls, 21,293 in / 7,322 out, 2 min 22 s (longest 1 min 39 s)
+    of which 0 in cached, 5,510 out reasoning
+  Total:            51,389 tokens in 2 min 40 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T145918Z-v1.9.0.json

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T11:49:03+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Anchor assistant citation badges in answer text with previews on hover or keyboard focus. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\u0022 - Although #233 initially added those badges, #244 removed its \u0060AnswerCitationLayout\u0060 during integration and deferred inline badges. The shipped Markdown-based badges were reintroduced by #245, so listing #233 as an added feature distorts the integrated result.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022Require the chat system prompt to confirm a write succeeded before reporting it as complete, without asking users to reconfirm requested changes unnecessarily. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))\u0022 - #223 instructs the assistant not to claim a write happened unless a tool call was made and its result reported success. It does not require the prompt to confirm the write succeeded.",
+          "pullRequest": 223
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022You can act on a suggestion directly\u0022 - The first suggested step can be a non-actionable caption when no actionable suggestion exists; unmapped suggestions are displayed but cannot be clicked.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022Citations now appear as numbered badges beside matching titles in assistant answers\u0022 - This rephrases the earlier inline-citation implementation, which was removed during the frontend integration. Inline badges were subsequently reintroduced for sanitized Markdown answers in PR #245; the wording should describe that delivered implementation rather than imply the earlier one remained.",
+          "pullRequest": 233
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1394,
+      "failedCalls": 0,
+      "durationSeconds": 21.477,
+      "longestCallSeconds": 13.495,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22420,
+      "outputTokens": 345,
+      "failedCalls": 0,
+      "durationSeconds": 9.419,
+      "longestCallSeconds": 4.999,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 40.27,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

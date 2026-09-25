@@ -1,0 +1,57 @@
+Model:  openai-compatible at http://localhost:11434/v1, key from OPENAI_API_KEY
+        qwen3:14b-ctx24k, thinking disabled
+        thorough check: granite4.1-guardian:8b-ctx24k, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- Integrate M9 Frontend Redesign into main. This release will merge the complete M9 - Frontend Redesign milestone into `main` and add the v1.9.0 release notes, ensuring the release can be tagged from a single coherent point. This will allow for a unified codebase and streamline the release process by eliminating divergent branches. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Re-introduce inline citation badges anchored in the assistant Markdown answer. This release will restore the inline citation badges that were previously introduced, now rendered within the sanitized Markdown answer instead of plain text. This ensures the badges are correctly positioned and prevents potential XSS vulnerabilities. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add a primary action button from SuggestedNextSteps. This release will transform the `SuggestedNextSteps` into a list of actionable steps, with the most likely next step rendered as a primary button. This improves user experience by providing a direct, interactive way to take action. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a command palette on Ctrl+K. This release will introduce a keyboard-first command palette that opens on `Ctrl/Cmd+K`, providing quick access to navigation targets and ticket searches. This makes it easier for power users to navigate the application efficiently. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Add optimistic status updates with rollback on board and detail. This release will enable the status change to be applied immediately on the board and detail views, with a fallback to the previous state in case the update is rejected. This improves the responsiveness of the UI by reducing wait times for server responses. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Replace dialog-based status and assignee edits with inline popovers. This release will update the UI to use inline popovers instead of dialogs for editing the status and assignee of a ticket, improving the user experience by keeping the user on the current page and reducing modal interruptions. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline citation badges with hover preview in the assistant chat. This release will anchor citations to the answer text, making it easier for users to see which citations are relevant. Hovering over the badges will display a tooltip with the source information, making the content more informative and accessible. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Inject the agent roster into the system prompt. This release will ensure that the assistant has access to the agent roster directly in the system prompt, preventing the assistant from inventing or guessing agent names. This improves the accuracy and reliability of the assistant's responses. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Enforce the grounding check via tool_choice. This release will ensure that the grounding check is required to be executed whenever a grounding check is needed, preventing the assistant from producing answers without verifying that they are accurate and supported by the knowledge base. This improves the reliability of the assistant's output. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Implement design tokens for a unified design language. This release will replace all hard-coded colors, spacing, and radius values with design tokens defined in a central file. This will ensure a consistent look and feel across the application and make future design changes easier to manage. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Fix the board card title wrapping issue. This release will ensure that long titles in the board cards are properly wrapped and displayed in two lines, using the `-webkit-line-clamp` property. This prevents card titles from overflowing and disrupting the layout of the board. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Fix the assistant composer send button positioning. This release will ensure that the send button in the assistant composer is positioned correctly within its panel, keeping it aligned with the input field and preventing it from extending outside the panel. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Fix the Category header overlapping Due in the ticket queue. This release will ensure that the `Category` header label in the ticket queue is displayed in the correct font style and width to prevent it from overlapping with the `Due` column header. This improves the readability and aesthetics of the ticket queue. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Update the system prompt for write-honesty and confirmation policy. This release will ensure that the assistant's system prompt includes guidelines for write-honesty and confirmation policy. This prevents the assistant from asserting changes without proper confirmation and ensures that it behaves consistently in all user interactions. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Fix summary timestamps to render in the user's timezone. This release will adjust all timestamps in the ticket summary to be displayed in the user's local timezone, matching the timestamps shown in the ticket detail view. This improves consistency and usability for users in different time zones. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Fix the error reporting for failed knowledge-base search. This release will ensure that a failed knowledge-base search is flagged as an error, distinguishing it from degraded performance due to unavailability. This ensures that the error rate is accurately reflected in the dashboard and helps in identifying and addressing technical failures. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Fix the grounding scoring to consider meaning, not just word overlap. This release will update the grounding evaluation method to use a semantic similarity approach instead of relying on word overlap. This ensures that paraphrased or translated answers are correctly identified as grounded, improving the reliability of the grounding check. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+  Flagged for review:
+    ! The thorough check could not be evaluated: openai-compatible at http://localhost:11434/v1 could not be reached for model 'granite4.1-guardian:8b-ctx24k': Unknown ChatFinishReason value. (Parameter 'value').
+
+--- Customer ---
+  (failed) Changelog generation for 'v1.9.0' failed: the model's answer does not match the facts it was sent: an entry for fact 18, which it was not sent.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+1 of 2 audiences failed.
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 1 run, 0 with findings, 0 claims, no tokens
+  Thorough check:   1 run, 0 with findings, 0 claims, 0 in / 0 out, 37.6 s
+    1 call failed without an answer
+    1 of 1 run came back unreadable and verified nothing
+    caught 0 claims the rule-based check missed, for 0 tokens in 0 calls
+  Rephrasing:       2 calls, 21,863 in / 2,563 out, 46.6 s (longest 24.8 s)
+    of which 21,861 in cached, reasoning not reported
+  Total:            24,426 tokens in 1 min 31 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T124607Z-v1.9.0.json

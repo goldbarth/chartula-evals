@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:29:37+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "high",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges by matching each \u0060AssistantCitation\u0060 title to the answer text, retaining unmatched citations in the numbered sources list.\u0022 - Although #233 initially added these badges, #244 removed that implementation during the Markdown integration and deferred inline badges. They were subsequently reintroduced by #245 over sanitized Markdown. Presenting #233 as a separate addition in this changelog misstates what survived integration.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022The badge number matches the Sources list, and citations without a matching title remain listed there.\u0022 - PR #245 says unanchored citations remain in the Sources list, but does not establish that citations with inline badges also appear there. Its numbered-list consistency claim does not establish that all citations remain listed.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022When a ticket has an actionable suggestion, its first suggested step appears as a primary button or owner picker\u0022 - PR #237 says actionable steps are ordered first, but the primary control depends on the action: a status change gets a button and assignment gets an agent picker. The wording implies any actionable suggestion produces either control without that qualification.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022the product now tells the assistant and autonomous worker to check a draft against them before streaming an answer\u0022 - PR #218 says the check is enforced through \u0060tool_choice\u0060, not merely requested. Describing the change as telling them to check understates the mechanism that was added.",
+          "pullRequest": 218
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 13056,
+      "failedCalls": 0,
+      "durationSeconds": 119.51,
+      "longestCallSeconds": 73.801,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 10994
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22697,
+      "outputTokens": 335,
+      "failedCalls": 0,
+      "durationSeconds": 9.257,
+      "longestCallSeconds": 5.832,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 137.061,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

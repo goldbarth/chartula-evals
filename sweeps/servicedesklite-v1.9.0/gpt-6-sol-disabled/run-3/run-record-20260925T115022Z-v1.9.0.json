@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T11:50:22+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges with hover and keyboard-focus previews to assistant answers. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\u0022 - Although #233 initially added these badges, #244 removed that implementation when integrating M9, deferring inline badges to #243. They were subsequently reintroduced by #245 over sanitized Markdown. Listing #233 as a delivered addition misrepresents what remained in the release.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022The frontend redesign changes are now together in v1.9.0. Assistant answers retain Markdown and a Sources list; inline citation badges are not included in this integration.\u0022 - The integration PR deferred inline badges, but #245 subsequently reintroduced them for v1.9.0. In this release-level wording, saying they are not included is misleading.",
+          "pullRequest": 244
+        },
+        {
+          "text": "\u0022Long board card titles could grow beyond two lines and stretch their cards.\u0022 - The reported defect targets older Chrome. The available Chrome 149 did not reproduce it: the two-line clamp worked even before the fix.",
+          "pullRequest": 240
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1522,
+      "failedCalls": 0,
+      "durationSeconds": 25.042,
+      "longestCallSeconds": 15.951,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22492,
+      "outputTokens": 269,
+      "failedCalls": 0,
+      "durationSeconds": 7.299,
+      "longestCallSeconds": 3.693,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 40.178,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

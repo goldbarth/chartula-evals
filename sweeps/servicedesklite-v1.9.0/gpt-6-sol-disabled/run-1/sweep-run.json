@@ -1,0 +1,32 @@
+{
+  "cell": "gpt-6-sol-disabled",
+  "repetition": 1,
+  "status": "ok",
+  "exitCode": 0,
+  "mismatches": [],
+  "settings": {
+    "Chartula__Llm__Provider": "openai-compatible",
+    "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+    "Chartula__Faithfulness__Thorough": "true",
+    "Chartula__FactBase__Depth": "title-and-description",
+    "Chartula__Faithfulness__Model": "gpt-6-sol",
+    "Chartula__Faithfulness__Thinking": "disabled",
+    "Chartula__Llm__Model": "gpt-6-sol",
+    "Chartula__Llm__Thinking": "disabled"
+  },
+  "command": [
+    "chartula",
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v1.9.0",
+    "--since",
+    "675555a7",
+    "--repo",
+    "goldbarth/ServiceDeskLite"
+  ],
+  "chartula": "/home/goldbarth/.local/bin/chartula",
+  "toolVersion": "0.1.0-preview.3+7620e6d95b62190d12f57ba345479b524674fea1",
+  "startedAt": "2026-09-25T11:48:23+00:00",
+  "seconds": 40.5
+}

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:08:21+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022with a preview on hover or keyboard focus\u0022 - #245 says the badge has a hover/focus tooltip, but the listed tooltip contents are title, source \u203A heading, and snippet. It does not characterize this as a preview. More importantly, this release bullet merges #245 with #207\u0027s tooltip details, and #245 alone does not say its tooltip behavior was verified by browser E2E; however the claim itself is supported across the facts. No unsupported claim here.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022in both assistant chat and the autonomous worker\u0022 - #218 says the enforcement applies to the interactive assistant and autonomous worker because they share the loop. But the output says answers based on retrieved passages receive checks in both; the fact guarantees a check after retrieval, not that all such answers necessarily receive one in every circumstance? It does say guarantees at least one grounding check after any retrieval.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022the same user time zone as assistant chat\u0022 - #222 states summary timestamps use the same zone source as the chat path, Anthropic:UserTimeZone. The output\u0027s wording is supported.",
+          "pullRequest": 222
+        },
+        {
+          "text": "\u0022when embeddings are available, falling back to word matching when they are not\u0022 - #219 says the lexical evaluator is the fallback not only when no Voyage key is available, but also when an embedding failure occurs. The output implies fallback only when embeddings are unavailable, omitting the embedding-failure fallback; that omission does not assert the contrary, but narrows the stated conditions.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1479,
+      "failedCalls": 0,
+      "durationSeconds": 31.042,
+      "longestCallSeconds": 21.849,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22509,
+      "outputTokens": 366,
+      "failedCalls": 0,
+      "durationSeconds": 4.713,
+      "longestCallSeconds": 3.506,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 43.498,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

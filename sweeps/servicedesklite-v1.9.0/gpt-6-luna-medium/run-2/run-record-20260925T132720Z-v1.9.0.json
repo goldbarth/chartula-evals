@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:27:20+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "medium",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges anchored to matching answer text, with source details available on hover or keyboard focus.\u0022 - PR #233 initially added this, but PR #244 removed that implementation when integrating Markdown rendering and deferred inline badges. PR #245 later reintroduced them over sanitized Markdown. Presented as a separate addition alongside #245, this misstates what shipped.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022the first actionable suggestion appears in the header as a button or assignee picker\u0022 - The first step becomes the primary control, but when no suggestion is actionable it falls back to a caption. The facts do not say every ticket with suggestions has an actionable first step.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022After knowledge-base passages are retrieved, the assistant runs a grounding check before streaming its answer unless it has already checked during that run.\u0022 - The loop forces a check once after passages appear if none has run. A check earlier in the run does not establish that the newly retrieved passages were checked; the facts explicitly do not guarantee coverage of every passage in a longer chain.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022Completion claims are tied to successful tool results in the conversation\u0022 - The PR added a system-prompt instruction not to claim a change succeeded without a successful tool result. The facts do not establish a mechanism that guarantees the assistant always follows that instruction.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 8022,
+      "failedCalls": 0,
+      "durationSeconds": 64.534,
+      "longestCallSeconds": 44.552,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 6103
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22606,
+      "outputTokens": 319,
+      "failedCalls": 0,
+      "durationSeconds": 10.753,
+      "longestCallSeconds": 6.471,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 83.345,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

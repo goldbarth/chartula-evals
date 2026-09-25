@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:25:12+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges with keyboard-accessible tooltips in assistant answers, retaining a numbered sources list for citations that are not anchored.\u0022 - PR #233 initially added this, but PR #244 removed its inline-badge implementation during integration and deferred the feature. PR #245 later reintroduced badges over sanitized Markdown. Presenting #233\u2019s implementation as an addition in the final changelog misstates what survived integration.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022The title must be quoted verbatim for a badge to be anchored.\u0022 - The title must appear verbatim for anchoring, but the facts do not require it to be quoted.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022The assistant no longer asks for confirmation after you have already requested a change, including after correcting an earlier mistake. You can rely on it to report a change only after a tool call succeeds\u0022 - PR #223 added these rules to the system prompt and verified a live scenario. It does not establish that the assistant will always follow them; the wording presents model behavior as guaranteed.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1740,
+      "failedCalls": 0,
+      "durationSeconds": 16.952,
+      "longestCallSeconds": 9.807,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22715,
+      "outputTokens": 259,
+      "failedCalls": 0,
+      "durationSeconds": 6.868,
+      "longestCallSeconds": 3.537,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 31.982,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

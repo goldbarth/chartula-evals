@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:30:47+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Anchor assistant citations to matching titles in answer text with numbered badges and hover or keyboard-focus tooltips, retaining a sources list for unanchored citations.\u0022 - Although #233 originally implemented this, #244 removed its AnswerCitationLayout and tests during integration, deferring inline badges. The shipped Markdown-based implementation was reintroduced separately in #245, so listing #233 as an added release feature misrepresents what survived integration.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022the assistant no longer claims a change succeeded unless a tool reports success, and it does not ask you to confirm a change you already requested. You can rely on its change claims being tied to a successful result in the conversation.\u0022 - The PR added rules to the system prompt and verified specific live scenarios; it does not establish that the model will always follow them. The policy also permits confirmation for genuine user decisions, even when a change was requested.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022When an embedding is unavailable or fails, the check falls back to lexical scoring\u0022 - The facts specify fallback when there is no Voyage key or an embedding fails. They do not establish fallback whenever an embedding is otherwise unavailable.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 2220,
+      "failedCalls": 0,
+      "durationSeconds": 22.38,
+      "longestCallSeconds": 14.715,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 644
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22538,
+      "outputTokens": 283,
+      "failedCalls": 0,
+      "durationSeconds": 8.179,
+      "longestCallSeconds": 4.665,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 39.32,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

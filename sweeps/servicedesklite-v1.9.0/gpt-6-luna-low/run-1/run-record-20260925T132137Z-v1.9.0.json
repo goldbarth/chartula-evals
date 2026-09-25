@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:21:37+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges anchored to matching titles in assistant answers, with tooltips and a numbered sources list for citations without an anchor.\u0022 - PR #233 initially added this, but PR #244 removed its inline citation implementation and deferred the badges. PR #245 later reintroduced badges over sanitized Markdown. Describing #233\u2019s implementation as an addition in the resulting changelog misrepresents what remained.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022**Inline chat citations:** Assistant chat answers can show numbered citation badges beside matching passage titles, with source details available on hover or keyboard focus. Citations that are not anchored in the answer remain in the numbered Sources list.\u0022 - This rephrases the original inline-citation implementation, but that implementation was removed during M9 integration in favor of Markdown rendering and a Sources list. Inline badges were subsequently reintroduced over sanitized Markdown in #245; the original implementation did not ship as a separate feature.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022**Agent names for the assistant:** The assistant now receives the active agent roster when handling ticket assignments. You can rely on it to use roster names and list valid agents rather than inventing a name when the requested person is not on the roster.\u0022 - The facts establish that the roster and instructions are included in the prompt, and that a test checks the prompt content. They do not establish a guarantee that the model will always follow those instructions.",
+          "pullRequest": 221
+        },
+        {
+          "text": "\u0022**Assistant confirmations:** The assistant no longer reports a change as complete unless a tool call succeeds, and it does not ask again when you have already requested a change. You can rely on it to ask for confirmation only when a decision is genuinely needed, such as an ambiguous ticket match or uncertain intent for a hard-to-reverse action.\u0022 - The PR added these rules to the system prompt and verified a live scenario, but explicitly says model behavior cannot be pinned by the scripted tests. The unconditional claims and \u0027You can rely on it\u0027 overstate what a prompt policy establishes.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 2523,
+      "failedCalls": 0,
+      "durationSeconds": 25.794,
+      "longestCallSeconds": 17.563,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 926
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22552,
+      "outputTokens": 455,
+      "failedCalls": 0,
+      "durationSeconds": 11.114,
+      "longestCallSeconds": 7.26,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 4,
+      "onlyThoroughFlags": 4,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 45.093,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

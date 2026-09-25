@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:24:40+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "high",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges where citation titles appear in assistant answers, with hover and focus previews and a numbered sources fallback. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\u0022 - Although #233 initially built these badges, #244 removed that implementation during integration and deferred inline badges. #245 later reintroduced them over sanitized Markdown. Presenting #233 as a separate addition in this release misstates what shipped.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Category and Due appear as separate uppercase headers\u0022 - The facts say Category was changed to uppercase, but do not say Due was changed; the verification shows Due was already uppercase. The fix separated the headers and uppercased Category.",
+          "pullRequest": 238
+        },
+        {
+          "text": "\u0022It reports the change as complete only after a tool call succeeds, so you can rely on its account of the result.\u0022 - The PR added a system-prompt policy requiring a successful tool result before claiming a change was made. The facts do not establish that the assistant always follows that policy, so the guarantee that users can rely on its account is overstated.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 10706,
+      "failedCalls": 0,
+      "durationSeconds": 112.283,
+      "longestCallSeconds": 73.971,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 8879
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22476,
+      "outputTokens": 275,
+      "failedCalls": 0,
+      "durationSeconds": 7.653,
+      "longestCallSeconds": 3.972,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 128.357,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

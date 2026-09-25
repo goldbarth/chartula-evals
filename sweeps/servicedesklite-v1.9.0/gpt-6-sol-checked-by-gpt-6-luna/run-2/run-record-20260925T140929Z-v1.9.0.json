@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:09:29+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022The usual ticket controls remain available, so you can still use them when there is no actionable suggestion.\u0022 - The facts say generic Change Status / Assign / Edit controls remain always available, and no suggestions falls back to those controls. The output changes this to a claim specifically about when there is no actionable suggestion; it does not state that fallback condition.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022Markdown answers, dark mode, and the updated ticket controls are available together.\u0022 - The release-integration facts support Markdown rendering, dark-mode toggle, and updated ticket controls, but say citation badges were deferred to #243. This sentence is a release-wide statement and is not a rephrasing of one single fact."
+        },
+        {
+          "text": "\u0022The assistant\u0027s send button could sit against or over the edge of its panel.\u0022 - The facts describe the button as flush at the right border and hanging over it. They do not say it could sit merely against the edge as a separate condition; the fix addresses missing panel padding and restores the intended layout.",
+          "pullRequest": 239
+        },
+        {
+          "text": "\u0022Times in a ticket summary could differ from those shown on the ticket detail page.\u0022 - The facts specifically describe summary timestamps being rendered in UTC while the detail view shows local time, and say the summary path lacked timezone conversion. The broad wording implies possible differences generally, rather than the documented timezone mismatch.",
+          "pullRequest": 222
+        },
+        {
+          "text": "\u0022Checks now compare meaning when embeddings are available, so those answers can be recognized as supported.\u0022 - The facts say the semantic evaluator scores substantive answer sentences against retrieved passages, and that paraphrases and translations are recognized in tests using a fake embedder. They do not establish that all such answers will be recognized as supported in general; the semantic path is nondeterministic.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1402,
+      "failedCalls": 0,
+      "durationSeconds": 25.592,
+      "longestCallSeconds": 17.512,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22431,
+      "outputTokens": 416,
+      "failedCalls": 0,
+      "durationSeconds": 5.087,
+      "longestCallSeconds": 4.115,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 5,
+      "onlyThoroughFlags": 5,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 38.867,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

@@ -1,0 +1,85 @@
+Model:  openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+        gpt-6-sol, thinking disabled
+        thorough check: gpt-6-luna, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- Integrate the M9 Frontend Redesign milestone into `main` and add the v1.9.0 release notes. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add inline citation badges to sanitized assistant Markdown, with hover and focus previews and matching numbered sources. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Turn the first actionable `SuggestedNextSteps` item into a primary ticket action. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a `CommandPalette` available on every page through Ctrl/Cmd+K, with navigation and ticket search. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Apply ticket status changes optimistically on the board and detail view, rolling back rejected changes. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Replace ticket status and assignee dialogs with inline `MudMenu` controls. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline assistant citation badges with hover and focus previews, retaining the sources list for unmatched citations. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Include the active agent roster in the chat system prompt so assignments use valid agent names. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Require `check_grounding` through `tool_choice` after knowledge-base retrieval when no grounding check has run. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Centralize palette, spacing, radius, elevation, and semantic colors in `Theme/DesignTokens.cs`. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Wrap board card titles in `board-card__title-row` so the two-line clamp applies. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Fix the assistant panel styling so its send button remains inside the panel. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Give the ticket queue's Category column an explicit width and uppercase header so it does not overlap Due. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Clarify the chat system prompt's confirmation policy so it requires a successful tool result before claiming a write and avoids needless reconfirmation. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Render ticket summary timestamps in `Anthropic:UserTimeZone` before sending them to the model. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Report technical failures in `search_knowledge_base` as errors while retaining a distinct unavailable result. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Score grounded answers with `SemanticGroundingEvaluator` using sentence-to-passage similarity, with `LexicalGroundingEvaluator` as the fallback. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+
+--- Customer ---
+  description: This release brings together frontend changes to ticket workflows and assistant answers, alongside changes to assistant grounding and error reporting.
+
+### What's New
+
+- **Citations in assistant answers:** Citation badges now appear beside cited passage titles in the assistant’s Markdown answers, with a preview on hover or keyboard focus. Badges and the Sources list use matching numbers, and citations whose titles do not appear in the answer remain in the list.
+- **Suggested ticket actions:** The first suggested next step on a ticket appears as a button or agent picker when it can be acted on. You can use it to change status or assign an agent, while other suggestions remain available in a menu and the usual controls remain available.
+- **Command palette:** You can open a command palette from any page with Ctrl/Cmd+K to find pages and tickets. Arrow keys and Enter let you open a result, and Esc closes the palette and returns focus to where it was.
+- **Ticket status changes:** A ticket’s status now updates immediately when you move its card on the board or change it on the ticket page. If the server rejects the change, the previous status returns and a notification shows the error code; rapid changes on one ticket reconcile with the server’s accepted status.
+- **Ticket status and assignee:** Changing a ticket’s status or assignee now happens from menus in its header instead of a dialog. The ticket stays open on the same tab and at the same scroll position after you make a selection.
+- **Citations in assistant chat:** Citation badges appear beside matching passage titles in assistant answers, with source details available on hover or keyboard focus. Citations without a matching title remain in the numbered Sources list, and answers without citations remain unchanged.
+- **Agent names in assistant chat:** The assistant is now given the active agent roster in each chat request. It is instructed to use those names exactly and list valid agents when a requested name is not on the roster, rather than inventing or guessing one.
+- **Grounding checks:** Answers based on retrieved knowledge-base passages now receive at least one grounding check before the first answer text is streamed, in both assistant chat and the autonomous worker. You can count on a check after retrieval even when the model does not start one itself; this does not guarantee that every passage retrieved later in a long exchange is checked.
+- **Consistent interface styles:** Spacing, corners, colors, and status and priority chips now follow a shared design scale across the web interface. Board card titles also no longer clip midway through a character.
+
+### What's Changed
+
+- **Frontend release:** Version v1.9.0 brings the frontend redesign changes together in one release. The combined interface includes Markdown assistant answers, a dark-mode toggle, and the updated ticket views.
+
+### Bug Fixes
+
+- **Board card titles:** Long ticket titles on the board could make cards grow without a limit. Titles are now limited to two lines with an ellipsis, keeping card height bounded.
+- **Assistant send button:** The assistant’s send button could sit against or over the edge of its panel. It now stays inside the panel, aligned with the input even at narrow widths.
+- **Ticket queue headers:** The Category header in the ticket queue could overlap Due. The headers now sit side by side, with Category aligned to its column and styled like the neighboring headers.
+- **Assistant change confirmations:** The assistant is now instructed not to claim a ticket change succeeded unless the action ran and returned success in the conversation. It is also instructed to act on a change you have already requested without asking again, except when a genuine decision is still needed.
+- **Ticket summary times:** Ticket summaries could show timestamps in UTC even when the ticket page showed local time. Created dates, due dates, comments, and events in summaries now use the same user time zone as assistant chat.
+- **Knowledge-base search failures:** A failed knowledge-base search could be reported as a successful search. Technical failures are now reported as errors, so the dashboard’s error rate can reflect them while an unavailable search remains distinct.
+- **Grounding by meaning:** The grounding check could mark a correct paraphrase or translation as unsupported because it matched words rather than meaning. It now compares the meaning of answer sentences with retrieved passages when embeddings are available, falling back to word matching when they are not; it can still count non-source claims in a whole answer.
+  Flagged for review:
+    ! #245: "with a preview on hover or keyboard focus" - #245 says the badge has a hover/focus tooltip, but the listed tooltip contents are title, source › heading, and snippet. It does not characterize this as a preview. More importantly, this release bullet merges #245 with #207's tooltip details, and #245 alone does not say its tooltip behavior was verified by browser E2E; however the claim itself is supported across the facts. No unsupported claim here.
+    ! #218: "in both assistant chat and the autonomous worker" - #218 says the enforcement applies to the interactive assistant and autonomous worker because they share the loop. But the output says answers based on retrieved passages receive checks in both; the fact guarantees a check after retrieval, not that all such answers necessarily receive one in every circumstance? It does say guarantees at least one grounding check after any retrieval.
+    ! #222: "the same user time zone as assistant chat" - #222 states summary timestamps use the same zone source as the chat path, Anthropic:UserTimeZone. The output's wording is supported.
+    ! #219: "when embeddings are available, falling back to word matching when they are not" - #219 says the lexical evaluator is the fallback not only when no Voyage key is available, but also when an embedding failure occurs. The output implies fallback only when embeddings are unavailable, omitting the embedding-failure fallback; that omission does not assert the contrary, but narrows the stated conditions.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 4 claims, 22,509 in / 366 out, 4.7 s (longest 3.5 s)
+    of which 0 in cached, 0 out reasoning
+    caught 4 claims the rule-based check missed, for 22,875 tokens in 2 calls
+  Rephrasing:       2 calls, 21,293 in / 1,479 out, 31.0 s (longest 21.8 s)
+    of which 0 in cached, 0 out reasoning
+  Total:            45,647 tokens in 43.5 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T140821Z-v1.9.0.json

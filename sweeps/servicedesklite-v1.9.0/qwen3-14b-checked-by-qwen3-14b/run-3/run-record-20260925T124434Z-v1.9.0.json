@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T12:44:34+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "qwen3:14b-ctx24k",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "qwen3:14b-ctx24k",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022This release will integrate the complete M9 - Frontend Redesign milestone into \u0060main\u0060 and add the v1.9.0 release notes.\u0022 - The facts do not support this claim. The facts describe that the PR merges two branches into one \u0060main\u0060, but they do not explicitly state that the release notes are added. The PR description says that it integrates the complete M9 - Frontend Redesign milestone into \u0060main\u0060 and adds the v1.9.0 release notes, so the release can be tagged from a single coherent point. However, it is not supported by a specific fact from a pull request. The fact that supports this claim is not specified in a pull request number in brackets and is therefore not supported by the facts."
+        },
+        {
+          "text": "\u0022This release will reintroduce inline citation badges that were first built in #207, now over the sanitized Markdown answer instead of plain text.\u0022 - The facts partially support this claim. The facts state that the inline citation badges are reintroduced, but they do not explicitly state that the badges were first built in #207. They do mention that the badges are now over the sanitized Markdown answer instead of plain text, which is supported by the facts. However, the claim that they were first built in #207 is not supported by the facts.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022This release will make the most likely next step in \u0060SuggestedNextSteps\u0060 a button that runs it.\u0022 - The facts support this claim. The facts describe that \u0060SuggestedNextSteps\u0060 is now \u0060IReadOnlyList\u003CSuggestedStep\u003E\u0060 with the most likely next step as a button that runs it. This is supported by the facts.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022This release will add a keyboard-first command palette that opens over any page, anchored on the power-user \u0060Ctrl/Cmd\u002BK\u0060 chord.\u0022 - The facts support this claim. The facts describe that a keyboard-first command palette that opens over any page, anchored on the power-user \u0060Ctrl/Cmd\u002BK\u0060 chord is added. This is supported by the facts.",
+          "pullRequest": 236
+        },
+        {
+          "text": "\u0022This release will apply the target status to the card up front (optimistically) and reconcile with the server afterwards.\u0022 - The facts support this claim. The facts describe that the target status is applied to the card up front (optimistically) and reconciled with the server afterwards. This is supported by the facts.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022This release will replace \u0060AssignTicketDialog\u0060 and \u0060ChangeStatusDialog\u0060 with inline popovers anchored to the header actions.\u0022 - The facts support this claim. The facts describe that \u0060AssignTicketDialog\u0060 and \u0060ChangeStatusDialog\u0060 are replaced with inline popovers anchored to the header actions. This is supported by the facts.",
+          "pullRequest": 234
+        },
+        {
+          "text": "\u0022This release will anchor citations to the answer text and render inline badges with hover preview.\u0022 - The facts partially support this claim. The facts state that citations are anchored to the answer text and inline badges are rendered with hover preview. However, the facts do not explicitly state that this is part of the v1.9.0 release. The fact that supports this claim is not specifically identified in a pull request number in brackets and is therefore not fully supported by the facts."
+        },
+        {
+          "text": "\u0022This release will inject the agent roster into the system prompt of every chat request.\u0022 - The facts support this claim. The facts describe that the agent roster is injected into the system prompt of every chat request. This is supported by the facts.",
+          "pullRequest": 221
+        },
+        {
+          "text": "\u0022This release will enforce the grounding check via \u0060tool_choice\u0060 once \u0060IRagRetrievalContext\u0060 holds passages and no check has run.\u0022 - The facts support this claim. The facts describe that the grounding check is enforced via \u0060tool_choice\u0060 once \u0060IRagRetrievalContext\u0060 holds passages and no check has run. This is supported by the facts.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022This release will make \u0060Theme/DesignTokens.cs\u0060 the single source for the palette, spacing, radius, elevation, and semantic chip colours.\u0022 - The facts support this claim. The facts describe that \u0060Theme/DesignTokens.cs\u0060 is made the single source for the palette, spacing, radius, elevation, and semantic chip colours. This is supported by the facts.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022This release will wrap the title \u0060\u003Ca\u003E\u0060 in a \u0060board-card__title-row\u0060 div to ensure \u0060-webkit-line-clamp\u0060 applies.\u0022 - The facts support this claim. The facts describe that the title \u0060\u003Ca\u003E\u0060 is wrapped in a \u0060board-card__title-row\u0060 div to ensure \u0060-webkit-line-clamp\u0060 applies. This is supported by the facts.",
+          "pullRequest": 240
+        },
+        {
+          "text": "\u0022This release will target the panel through \u0060::deep .assistant-chat\u0060 to restore its intended padding and layout.\u0022 - The facts support this claim. The facts describe that the panel is targeted through \u0060::deep .assistant-chat\u0060 to restore its intended padding and layout. This is supported by the facts.",
+          "pullRequest": 239
+        },
+        {
+          "text": "\u0022This release will give the \u0060Category\u0060 column a \u0060140px\u0060 width and render its header with the same uppercase style as its neighbours.\u0022 - The facts support this claim. The facts describe that the \u0060Category\u0060 column is given a \u0060140px\u0060 width and its header is rendered with the same uppercase style as its neighbours. This is supported by the facts.",
+          "pullRequest": 238
+        },
+        {
+          "text": "\u0022This release will add two rules to the chat system prompt to enforce write honesty and avoid needless confirmation.\u0022 - The facts support this claim. The facts describe that two rules are added to the chat system prompt to enforce write honesty and avoid needless confirmation. This is supported by the facts.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022This release will convert every timestamp in the \u0060BuildTicketPrompt\u0060 to the user\u0027s local timezone before the model sees it.\u0022 - The facts support this claim. The facts describe that every timestamp in the \u0060BuildTicketPrompt\u0060 is converted to the user\u0027s local timezone before the model sees it. This is supported by the facts.",
+          "pullRequest": 222
+        },
+        {
+          "text": "\u0022This release will return \u0060IsError: true\u0060 for the catch branch of \u0060search_knowledge_base\u0060, distinguishing it from the \u0060unavailable\u0060 degradation path.\u0022 - The facts support this claim. The facts describe that \u0060IsError: true\u0060 is returned for the catch branch of \u0060search_knowledge_base\u0060, distinguishing it from the \u0060unavailable\u0060 degradation path. This is supported by the facts.",
+          "pullRequest": 220
+        },
+        {
+          "text": "\u0022This release will score grounding by meaning using a semantic comparison of answer sentences and passages.\u0022 - The facts do not fully support this claim. The facts describe that grounding is scored by meaning using a semantic comparison of answer sentences and passages. This is partially supported by the facts, as the facts mention that the \u0060LexicalGroundingEvaluator\u0060 is kept as the fallback and that the \u0060SemanticGroundingEvaluator\u0060 is introduced. However, the claim that this is part of the v1.9.0 release is not supported by the facts.",
+          "pullRequest": 219
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": []
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21863,
+      "outputTokens": 1469,
+      "failedCalls": 0,
+      "durationSeconds": 50.35,
+      "longestCallSeconds": 33.897,
+      "retries": 0,
+      "cachedInputTokens": 207
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 23075,
+      "outputTokens": 1544,
+      "failedCalls": 0,
+      "durationSeconds": 31.713,
+      "longestCallSeconds": 31.153,
+      "retries": 0,
+      "cachedInputTokens": 10813
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 17,
+      "onlyThoroughFlags": 17,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 89.979,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

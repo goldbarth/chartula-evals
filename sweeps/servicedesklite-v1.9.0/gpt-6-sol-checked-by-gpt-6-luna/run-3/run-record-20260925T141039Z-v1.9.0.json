@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:10:39+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Citation badges now appear beside matching passage titles in assistant answers, and hovering over or focusing a badge shows its source details.\u0022 - [#233] describes badges anchored after a matching title in the answer text, with a tooltip containing source, heading, and snippet. The output repeats this claim in its next bullet; however, the release facts say #233\u0027s badges were removed during the #244 integration and deferred to #243. In addition, #243 anchors badges in the sanitized Markdown answer, not specifically beside titles in the same manner as #233.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022The first actionable suggestion on a ticket now appears as a button or agent picker\u0022 - [#237] says the first step becomes the primary control, and actionable steps are ordered first. The wording is supported.",
+          "pullRequest": 237
+        },
+        {
+          "text": "\u0022Ticket status changes: A ticket\u2019s status now changes on screen immediately when you move its board card or change it on the ticket page.\u0022 - The board status is updated optimistically in [#235], but that fact explicitly says the detail view status popover was added in #208 and updates optimistically there. The output combines the two PRs into one claim; #234 describes inline status editing, but does not say it is immediate/optimistic. No single fact supports this combined claim as phrased.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022Citation badges now appear beside matching passage titles in assistant answers\u0022 - [#244] says Markdown leads and inline badges were deferred to #243; [#243] later reintroduces badges anchored in the sanitized Markdown answer after a cited passage title. It does not support presenting a separate #233 implementation as delivered in this release; the output also duplicates the citation feature.",
+          "pullRequest": 233
+        },
+        {
+          "text": "\u0022Grounding checks: Answers based on retrieved knowledge-base passages now receive a grounding check before the assistant begins streaming its reply.\u0022 - [#218] guarantees a check after retrieval and before the first streamed token. However, it applies when retrieved passages are held in the retrieval context and no check has run; the claim\u0027s unqualified \u201CAnswers based on\u201D overstates the stated condition.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022Consistent interface styling: Spacing, corners, colours and status chips now use shared styles across the interface.\u0022 - [#213] says all stylesheets read from design tokens and gives shared status/priority chip tokens for queue, board, and detail. It also explicitly notes that spacing and radius values were normalized, moving pixels by one to four in places. The output\u0027s broad \u201Cconsistent ... across the interface\u201D is not directly established as a guarantee of visual consistency beyond shared tokens.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022The frontend redesign is included together in v1.9.0, with Markdown answers and a sources list in the assistant.\u0022 - [#244] integrates M9 into main and adds release notes; its facts say Markdown rendering and sources list are part of the integration, but inline citation badges were deferred to #243, which later completes them. The broad release statement is supported as an integration summary, though it omits that the milestone was assembled from divergent branches.",
+          "pullRequest": 244
+        },
+        {
+          "text": "\u0022Grounding now compares meaning, so those answers can be recognised as supported\u0022 - [#219] introduces semantic scoring, but its facts say it does not close #188 entirely: whole-answer scoping remains open, and the semantic path is nondeterministic. The wording \u201CGrounding now compares meaning\u201D is supported; presenting correct paraphrases and translations as recognizable is supported by tests using a fake embedder, but the output\u0027s \u201Cso those answers can be recognised as supported\u201D may imply a general guarantee that the facts do not establish.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1430,
+      "failedCalls": 0,
+      "durationSeconds": 26.962,
+      "longestCallSeconds": 17.342,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22457,
+      "outputTokens": 816,
+      "failedCalls": 0,
+      "durationSeconds": 7.832,
+      "longestCallSeconds": 6.913,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 8,
+      "onlyThoroughFlags": 8,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 42.656,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

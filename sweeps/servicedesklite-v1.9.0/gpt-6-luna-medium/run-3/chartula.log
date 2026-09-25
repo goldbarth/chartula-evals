@@ -1,0 +1,88 @@
+Model:  openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+        gpt-6-luna, thinking medium
+        thorough check: gpt-6-sol, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- Integrate the complete M9 frontend redesign into `main` and include the v1.9.0 release notes. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add inline citation badges to sanitized assistant Markdown, keeping unanchored citations in the sources list through `AssistantMarkdown.Render(markdown, citations)`. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add a ticket-header primary control that executes the first actionable `SuggestedNextSteps` entry, with remaining steps in an overflow menu. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a keyboard-operated command palette to every page, with navigation from `NavRegistry` and debounced, cancellable ticket search. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Update ticket status optimistically in `TicketBoardFeatureState.MoveAsync`, reconciling successful changes and restoring the prior state when a move is rejected. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Replace `AssignTicketDialog.razor` and `ChangeStatusDialog.razor` with inline header popovers for assignee and status changes. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline citation badges by matching citation titles in assistant answers, retaining the numbered sources list for citations that are not anchored. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Include the active agent roster in each chat system prompt so the assistant can identify valid assignees without first calling `assign_ticket`. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Require `AgentLoop` to invoke `check_grounding` through `tool_choice` once after retrieval supplies passages and before answer tokens stream. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Use `Theme/DesignTokens.cs` as the shared source for the app's palette, spacing, radius, elevation, and semantic chip colors. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Wrap `.board-card__title` in a grid-item container so long titles clamp to two lines with an ellipsis. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Apply assistant panel styles through `::deep .assistant-chat` so the composer layout keeps the send button inside the panel. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Give the `Category` column a 140px width and render its header in uppercase to prevent overlap with `Due`. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Set a chat system-prompt policy that requires successful tool results before claiming a change and avoids confirmation when the user has already requested it. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Convert ticket-summary timestamps to `Anthropic:UserTimeZone` before including them in the model prompt. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Report non-transient `search_knowledge_base` failures with `IsError: true`, while preserving the unavailable result as non-error. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Use `SemanticGroundingEvaluator` to score answer sentences against retrieved passages by cosine similarity, falling back to `LexicalGroundingEvaluator` when embeddings are unavailable or fail. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+  Flagged for review:
+    ! #237: "Add a ticket-header primary control that executes the first actionable `SuggestedNextSteps` entry" - The first actionable step is the primary control when one exists, but it does not always execute directly: an assignment step opens an agent picker. If no step is actionable, it falls back to a caption.
+    ! #218: "Require `AgentLoop` to invoke `check_grounding` through `tool_choice` once after retrieval supplies passages" - The loop forces a check only if passages have been retrieved and no check has run. A model-initiated check satisfies the condition, so `AgentLoop` does not always force one through `tool_choice`.
+    ! #223: "avoids confirmation when the user has already requested it" - The policy still permits asking before a write when a genuine user decision is needed, such as an ambiguous ticket match, missing required information, or real doubt about a hard-to-reverse action.
+
+--- Customer ---
+  description: Version 1.9.0 brings a redesigned support-desk interface alongside updates to ticket workflows and assistant responses.
+
+### What's New
+
+- **Inline citation badges:** Citations whose titles appear in the assistant’s Markdown answer now show numbered badges after the passage title, with previews on hover or keyboard focus. Badge numbers match the Sources list, and citations without a matching title remain in that list.
+- **Suggested ticket actions:** When a ticket has suggested next steps, its first actionable step appears as a primary button or agent picker, with remaining steps in an overflow menu. You can run suggested status or assignment actions from the header, while unmapped steps stay non-clickable and tickets without suggestions keep the existing generic controls.
+- **Command palette:** Press Ctrl+K or Cmd+K on any page to open a palette for finding navigation destinations and tickets. You can navigate it with the keyboard, and pressing Esc returns focus to where it was before the palette opened.
+- **Immediate status updates:** A ticket’s status now changes on the board or detail page as soon as you choose a move, before the server responds. If the server rejects the change, the previous status is restored and the reason is shown, so a rejected or superseded move does not leave the interface showing an unaccepted status.
+- **Inline ticket controls:** Choosing a status or assignee from the ticket header now opens an inline menu instead of a dialog. You stay on the ticket with your scroll position and current tab intact, and errors appear in a snackbar.
+- **Assistant citation previews:** When the assistant’s answer includes citations, matching passage titles show numbered badges with previews on hover or keyboard focus. Citations without a matching title remain in the Sources list, and answers without citations are unchanged.
+- **Agent names for assignments:** The assistant can now identify the active agents when you ask it to assign a ticket. For assignment requests, it is instructed to use only roster names and list valid agents instead of guessing when a requested name is absent.
+- **Grounding checks:** After retrieving knowledge-base passages, the assistant now checks its draft against them before streaming an answer. The check runs at least once after retrieval for both chat and autonomous-worker runs, but is not guaranteed to cover every passage retrieved in a long run.
+- **Consistent interface styling:** Status and priority chips now use the same colors across ticket queues, boards, and detail pages. Spacing and rounded corners follow a consistent scale across the interface.
+
+### What's Changed
+
+- **M9 frontend redesign:** The complete M9 frontend redesign is now brought together in the v1.9.0 release. The release notes cover this consolidated release.
+
+### Bug Fixes
+
+- **Board card titles:** Long ticket titles on board cards now clamp to two lines with an ellipsis. Cards stay a bounded height, so long titles no longer stretch their lane.
+- **Assistant chat composer:** The assistant chat send button now sits inside its composer panel, including at narrow widths. The input and button stay aligned while messages scroll within the panel.
+- **Ticket list Category column:** On the ticket list, the Category header now appears in uppercase beside Due instead of running into it. The header and column contents stay aligned, and Category remains a label rather than a sort control.
+- **Assistant change confirmations:** The assistant no longer claims a ticket change succeeded unless a tool reports success in the conversation. When you have already requested a change, it proceeds without asking you to confirm again, while still asking when the ticket match or required details are unclear, intent is uncertain for a hard-to-reverse action, or a routing suggestion is uncertain.
+- **Ticket summary times:** Ticket summaries now show created, due, comment, and event times in your configured timezone. Summary times match the timezone used in the ticket detail view.
+- **Knowledge-base search errors:** When a knowledge-base search fails technically, it is now reported as an error instead of a successful search. The dashboard’s tool error rate reflects those failures, while an unavailable knowledge base remains a separate outcome.
+- **Meaning-based grounding:** The assistant’s grounding check now compares answer sentences with retrieved passages by meaning, allowing correct paraphrases and translations to count as supported. When semantic scoring is unavailable or fails, the check falls back to word overlap, so paraphrases may not count as supported in those cases.
+  Flagged for review:
+    ! #234: "Choosing a status or assignee from the ticket header now opens an inline menu instead of a dialog." - The header buttons open inline menus; choosing an item from a menu applies the change immediately. The choice does not open the menu.
+    ! #223: "The assistant no longer claims a ticket change succeeded unless a tool reports success in the conversation." - The PR added this rule to the system prompt, but does not establish that the assistant will always follow it. The original behavior was not reproducible in the live turns tested before the change.
+    ! #223: "When you have already requested a change, it proceeds without asking you to confirm again" - The PR added a no-needless-confirmation rule to the prompt and verified a specific live scenario. It does not establish that the assistant consistently proceeds without asking across requests.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 2 with findings, 6 claims, 22,613 in / 424 out, 11.1 s (longest 5.9 s)
+    of which 0 in cached, 0 out reasoning
+    caught 6 claims the rule-based check missed, for 23,037 tokens in 2 calls
+  Rephrasing:       2 calls, 21,293 in / 6,513 out, 52.3 s (longest 34.3 s)
+    of which 21,287 in cached, 4,608 out reasoning
+  Total:            50,843 tokens in 1 min 11 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T133159Z-v1.9.0.json

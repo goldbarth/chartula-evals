@@ -1,0 +1,4 @@
+# granite4.1-guardian:8b with a context window that holds a whole Chartula check prompt (about 11k tokens here).
+# Ollama defaults to a smaller window and cuts longer prompts silently; see Chartula docs/configuration.md.
+FROM granite4.1-guardian:8b
+PARAMETER num_ctx 24576

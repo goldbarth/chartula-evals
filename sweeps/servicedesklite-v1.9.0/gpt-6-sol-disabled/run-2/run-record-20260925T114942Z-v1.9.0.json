@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T11:49:42+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Add inline citation badges with hover and focus previews to assistant answers. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\u0022 - PR #233 initially added these badges, but PR #244 removed that implementation during the Markdown integration and deferred inline badges. PR #245 later reintroduced them over sanitized Markdown. Listing #233 as an added feature in the resulting changelog misrepresents what remained.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022You can count on those views sharing the same spacing and corner styles.\u0022 - The design tokens provide common spacing and radius scales, but the facts do not say the queue, board, and detail views use identical spacing or corner styles.",
+          "pullRequest": 213
+        },
+        {
+          "text": "\u0022The v1.9.0 frontend changes are now combined in one release. You can count on the assistant displaying formatted answers with citations in the Sources list.\u0022 - The integration PR combined M9 changes and, at that point, displayed citations only in the Sources list. A separate later PR reintroduced inline badges for v1.9.0. The wording presents the sources-list-only integration state as the release\u0027s citation behavior.",
+          "pullRequest": 244
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1431,
+      "failedCalls": 0,
+      "durationSeconds": 22.28,
+      "longestCallSeconds": 15.423,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22458,
+      "outputTokens": 286,
+      "failedCalls": 0,
+      "durationSeconds": 8.135,
+      "longestCallSeconds": 5.432,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 38.608,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

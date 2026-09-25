@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:08:50+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022with hover and keyboard-focus previews\u0022 - The release fact for [#245] supports a hover/focus tooltip, but separately calls out keyboard-focus behavior only in [#233]. This phrasing is part of the [#245] claim, whose fact says \u201Chover/focus tooltip\u201D rather than specifically describing keyboard focus. However, it is supported by [#233] and therefore not unsupported overall.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022You can count on a rejected change restoring the previous status and showing the error\u0022 - The fact says rejected status changes roll back and surface a snackbar carrying the ProblemDetails code; this summary is supported.",
+          "pullRequest": 235
+        },
+        {
+          "text": "\u0022with focus returning to where it was before\u0022 - The command palette fact says Esc restores focus to wherever it was before the palette opened. Supported.",
+          "pullRequest": 236
+        },
+        {
+          "text": "\u0022Assistant change confirmations\u0022 - This is titled as a confirmation-policy change, but [#223] explicitly says asking before a write remains legitimate only for genuine user decisions and missing information. The item\u2019s following text describes that qualification, so the heading is not an unsupported claim.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022Ticket summary timestamps now use the configured user timezone.\u0022 - Supported by [#222].",
+          "pullRequest": 222
+        },
+        {
+          "text": "\u0022When semantic evaluation is unavailable or embedding fails, you can still rely on the existing lexical check to provide a verdict.\u0022 - Supported by [#219], which says the lexical evaluator is the fallback for no Voyage key or embedding failure.",
+          "pullRequest": 219
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 1601,
+      "failedCalls": 0,
+      "durationSeconds": 15.373,
+      "longestCallSeconds": 9.953,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22572,
+      "outputTokens": 369,
+      "failedCalls": 0,
+      "durationSeconds": 4.692,
+      "longestCallSeconds": 3.726,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 6,
+      "onlyThoroughFlags": 6,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 28.396,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

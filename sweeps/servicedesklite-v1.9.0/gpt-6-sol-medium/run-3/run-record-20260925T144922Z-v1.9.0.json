@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T14:49:22+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-sol",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "medium",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Anchor streamed \u0060AssistantCitation\u0060 values as inline badges in the assistant answer.\u0022 - Although #233 initially implemented inline badges, #244 removed that implementation during integration and deferred the badges. #245 later reintroduced them over sanitized Markdown. Listing #233 as a delivered addition misrepresents what shipped.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022The assistant could claim a ticket change had happened without a successful result or ask for confirmation again after you had already requested it.\u0022 - [#223] says neither behavior reproduced in five live turns before the prompt change; earlier mitigation had resolved the observed behavior. The PR added explicit policy, not a demonstrated fix for these behaviors.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022not to ask again unless the ticket match is ambiguous, required information is missing, intent is in doubt for a hard-to-reverse action, or a routing suggestion is uncertain.\u0022 - [#223] permits asking before a write in those circumstances. Saying \u201Cnot to ask again unless\u201D changes the policy by implying repeated confirmation is permitted for those exceptions.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 2811,
+      "failedCalls": 0,
+      "durationSeconds": 57.322,
+      "longestCallSeconds": 41.076,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 1319
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22436,
+      "outputTokens": 258,
+      "failedCalls": 0,
+      "durationSeconds": 8.684,
+      "longestCallSeconds": 5.048,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 3,
+      "onlyThoroughFlags": 3,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 76.032,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}

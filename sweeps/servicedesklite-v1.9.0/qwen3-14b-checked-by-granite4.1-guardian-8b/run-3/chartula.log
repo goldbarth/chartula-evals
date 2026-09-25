@@ -1,0 +1,84 @@
+Model:  openai-compatible at http://localhost:11434/v1, key from OPENAI_API_KEY
+        qwen3:14b-ctx24k, thinking disabled
+        thorough check: granite4.1-guardian:8b-ctx24k, thinking disabled
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Generated changelog for v1.9.0
+
+--- Technical ---
+### Changed
+
+- This release will integrate the complete M9 - Frontend Redesign milestone into `main` and add the v1.9.0 release notes, so the release can be tagged from a single coherent point. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- This release will re-introduce inline citation badges that #207 first built, now over the sanitized Markdown answer instead of plain text - the last M9 item, so v1.9.0 ships with the badge feature complete rather than deferred. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- This release will make the most likely next step in the ticket header a button that runs it, rather than a grey caption. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- This release will add a keyboard-first command palette that opens over any page, anchored on the power-user `Ctrl/Cmd+K` chord. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- This release will make every status change render immediately and reconcile with the server afterwards, rather than waiting for the full server round trip. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- This release will make the Change Status and Assign/Reassign buttons inline popovers anchored to the header actions, rather than modal dialogs. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- This release will anchor citations to the answer text in the assistant chat, rather than rendering them as a flat 'Sources' list. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- This release will inject the agent roster into the system prompt, so the model can name the valid agents without a failed `assign_ticket` call first. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- This release will enforce the grounding check via `tool_choice`, so the model must verify a KB-grounded answer before the first streamed token. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- This release will make `Theme/DesignTokens.cs` the single source for the palette, spacing and radius scales, elevation, and the semantic chip colours, replacing all hard-coded colour literals, spacing and radius values, and other style elements. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- This release will wrap the title `<a>` in a `board-card__title-row` div, so the `-webkit-line-clamp` is not blockified and the title is clamped to two lines. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- This release will target the panel through `::deep .assistant-chat`, so the send button sits within the composer panel's bounds and the input and button stay aligned at any width. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- This release will give the `Category` column a `140px` width and render it with the same `tickets-table__label` class as its neighbours, so it no longer overlaps `Due` and reads correctly as `CATEGORY`. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- This release will add a paragraph in the chat system prompt that establishes a write honesty policy and a no needless confirmation policy, changing what the model is allowed to assert and when it must ask for user confirmation. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- This release will render summary timestamps in the user's timezone by converting every timestamp to the user's timezone before it reaches the model. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- This release will make the `search_knowledge_base` tool return `IsError: true` for a failed knowledge-base search, so it is distinguishable from an 'unavailable' result and can be counted as an error in the dashboard. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- This release will score grounding by meaning, not word overlap, so correct paraphrases and translations are recognized as grounded. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+  Flagged for review:
+    ! #235: "This release will make every status change render immediately and reconcile with the server afterwards, rather than waiting for the full server round trip. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))" - Claim 1: The release is said to make every status change render immediately, but the changelog states that status now renders optimistically and reconciles with the server afterwards. The changelog does not explicitly state that every status change renders immediately, but rather focuses on optimistic status updates with rollback. Claim 2: The changelog does not explicitly mention that the status changes reconcile with the server afterwards. It discusses reconciliation in the context of optimistic applies and rollbacks, but does not state that every status change does so. Claim 3: The claim suggests that the feature was not implemented correctly, as it does not mention any form of reconciliation or rollback, which the changelog does discuss. Claim 4: The changelog states: 'status now renders immediately and reconciles with the server afterwards,' which could be interpreted as meaning that every status change renders immediately and reconciles afterwards. However, the changelog also states that a rejected transition rolls back to the exact prior state, which implies that not every status change may render immediately if there is a rejection.
+    ! #236: "This release will add a keyboard-first command palette that opens over any page, anchored on the power-user `Ctrl/Cmd+K` chord. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))" - The changelog states that a keyboard-first command palette is added, but it does not mention that it is keyboard-first. It only mentions that the palette opens over any page and is anchored on the `Ctrl/Cmd+K` chord. The changelog does not explicitly state that the feature is keyboard-first. The changelog also does not mention anything about making the palette the primary method of navigation or interaction, which would be implied by being keyboard-first. The changelog states that the palette is available on every page and does not swallow the browser shortcut when a text field has focus, but this does not necessarily mean that it is keyboard-first. A keyboard-first feature typically means that the UI is primarily controlled by keyboard shortcuts and commands, with less reliance on mouse interactions. The changelog does not discuss the extent to which the command palette replaces or complements other keyboard shortcuts or commands in the UI.
+    ! #244: "This release will make the Change Status and Assign/Reassign buttons inline popovers anchored to<think>Let's analyze each constraint step by step in a numbered list as requested, using the example of how to answer the user question about the changelog of the release in the code repository of the code user goldbarth/ServiceDeskLite/pull/244. We also look at the provided facts in the conversation for verification of the output response. The response should be detailed and exhaustive. The output will have the following form: 1. Constraint: [constraint description]. Answer: [response to constraint 1] 2. Constraint: [constraint description]. Answer: [response to constraint 2] 3. Constraint: [constraint description]. Answer: [response to constraint 3] 4. Constraint: [constraint description]. Answer: [response to constraint 4] 5. Constraint: [constraint description]. Answer: [response to constraint 5] 6. Constraint: [constraint description]. Answer: [response to constraint 6] 7. Constraint: [constraint description]. Answer: [response to constraint 7] 8. Constraint: [constraint description]. Answer: [response to constraint 8] 9. Constraint: [constraint description]. Answer: [response to constraint 9] 10. Constraint: [constraint description]. Answer: [response to constraint 10] 11. Constraint: [constraint description]. Answer: [response to constraint 11] 12. Constraint: [constraint description]. Answer: [response to constraint 12] If all constraints are satisfied, then the output of the assistant response is:" - The changelog has been analyzed in detail, and each constraint has been discussed thoroughly. The response provides a comprehensive summary of the release, addressing both the changes and their impact on the application. Each constraint has been verified against the changelog, and the response correctly identifies what is added, changed, and fixed.
+
+--- Customer ---
+  description: This release introduces a range of improvements including inline citation badges, primary action buttons, a keyboard command palette, optimistic updates, design tokens, and enhanced grounding evaluation, along with several bug fixes and system improvements.
+
+### What's New
+
+- **Inline citation badges in Markdown answers:** Inline citation badges now appear within the assistant's Markdown answers, ensuring each citation is anchored to the cited passage. This guarantees that every change is preserved even if the connection drops, eliminating the need for a local backup copy while working.
+- **Primary action button for next step:** The most likely next action step for a ticket is now displayed as a primary button rather than a grey caption. This makes it more intuitive to take the next action without leaving the current page or opening a new dialog.
+- **Command palette on Ctrl+K:** A keyboard-first command palette opens on `Ctrl+K`, accessible from any page. It allows quick navigation or searching for tickets directly from the keyboard, improving efficiency for power users.
+- **Optimistic status updates with rollback:** Status changes on the Kanban board are now applied optimistically, with any server-side conflicts rolled back to the previous state. This improves responsiveness, with updates appearing instantly and corrections made automatically if needed.
+- **Inline status and assignee edits:** Status and assignee changes are now made inline using popovers, rather than requiring the user to open a dialog. This keeps the ticket open and avoids unnecessary navigation, simplifying the user experience.
+- **Inline citation badges with hover preview:** Inline citation badges with hover previews now appear in the assistant's chat, making it easier to see which sources support each claim. The badges appear directly after the passage they refer to, and hovering over them reveals the corresponding source details.
+- **Agent roster in system prompt:** The agent roster is now injected into the model's system prompt, ensuring the assistant can correctly reference the valid agents. This prevents the assistant from making up nonexistent agents or picking an incorrect match.
+- **Enforce grounding check via tool choice:** The assistant now enforces the grounding check via tool choice before any answer is streamed to the user. This ensures that every verified answer is backed by the relevant knowledge base content, preventing the model from skipping this safety step.
+- **Centralized design tokens:** All styling is now controlled by a centralized design token scale that defines spacing, radius, elevation, and semantic color values. This eliminates inconsistent colors, spacing, and design elements across the application.
+
+### What's Changed
+
+- **Integrate M9 Frontend Redesign:** The complete M9 Frontend Redesign has been integrated into the main branch, ensuring that the full set of improvements and fixes from that milestone are available in a single consistent version of the code.
+
+### Bug Fixes
+
+- **Clamp board card title:** The title on a board card is now correctly wrapped with a line clamp to prevent it from extending beyond the card. This ensures cards maintain a consistent height and the two-line title is properly displayed.
+- **Send button inside panel:** The send button in the assistant chat is now correctly placed within the panel, maintaining alignment with the input at all widths. This prevents the button from hanging outside the composer panel.
+- **Fix Category header overlap:** The `Category` column header in the ticket queue is now properly spaced and rendered with the same styling as the `Due` column, preventing overlap and ensuring header alignment.
+- **Write honesty and confirmation policy:** The assistant's system prompt now clearly defines policies for write honesty and confirmation. This ensures changes are only confirmed and executed when the user actually requests them, reducing unnecessary or misleading confirmations.
+- **Summary timestamps in local timezone:** Summary timestamps now render in the user's local timezone rather than UTC, ensuring consistency between the ticket summary and the ticket detail view.
+- **Report failed knowledge-base search as error:** Failed knowledge-base searches are now reported as errors rather than successful results. This allows the system to better distinguish between real knowledge failures and intentional unavailability.
+- **Score grounding by meaning:** The grounding evaluation now scores answers based on semantic similarity rather than simple keyword matching, improving accuracy for paraphrased or translated responses.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 3 claims, 22,790 in / 999 out, 10 min 18 s (longest 10 min 17 s)
+    of which 10,220 in cached, reasoning not reported
+    caught 3 claims the rule-based check missed, for 23,789 tokens in 2 calls
+  Rephrasing:       2 calls, 21,863 in / 2,340 out, 49.7 s (longest 27.7 s)
+    of which 207 in cached, reasoning not reported
+  Total:            47,992 tokens in 11 min 17 s
+  Retries:          1 (rephrasing 0, thorough check 1)
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20260925T130957Z-v1.9.0.json

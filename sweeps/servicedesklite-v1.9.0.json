@@ -1,0 +1,103 @@
+{
+  "clone": "~/repos/ServiceDeskLite-sweep",
+  "chartula": "chartula",
+  "tag": "v1.9.0",
+  "args": [
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v1.9.0",
+    "--since",
+    "675555a7",
+    "--repo",
+    "goldbarth/ServiceDeskLite"
+  ],
+  "repetitions": 3,
+  "env": {
+    "Chartula__Llm__Provider": "openai-compatible",
+    "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+    "Chartula__Faithfulness__Thorough": "true",
+    "Chartula__FactBase__Depth": "title-and-description"
+  },
+  "cells": [
+    {
+      "name": "{llm_model}-{llm_thinking}",
+      "note": "axis A: render model and thinking, check fixed on the reference",
+      "env": {
+        "Chartula__Faithfulness__Model": "gpt-6-sol",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      },
+      "grid": {
+        "Chartula__Llm__Model": [
+          "gpt-6-luna",
+          "gpt-6-sol"
+        ],
+        "Chartula__Llm__Thinking": [
+          "disabled",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    },
+    {
+      "name": "{llm_model}-checked-by-{faithfulness_model}",
+      "note": "axis B: render x check, thinking fixed; the check on gpt-6-sol is axis A's -disabled cell",
+      "env": {
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      },
+      "grid": {
+        "Chartula__Llm__Model": [
+          "gpt-6-luna",
+          "gpt-6-sol"
+        ],
+        "Chartula__Faithfulness__Model": [
+          "gpt-6-luna"
+        ]
+      }
+    },
+    {
+      "name": "gpt-6-sol-disabled-no-thorough",
+      "note": "side axis: thorough check off",
+      "env": {
+        "Chartula__Llm__Model": "gpt-6-sol",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Thorough": "false"
+      }
+    },
+    {
+      "name": "gpt-6-sol-disabled-title-only",
+      "note": "side axis: fact base depth",
+      "env": {
+        "Chartula__Llm__Model": "gpt-6-sol",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "gpt-6-sol",
+        "Chartula__Faithfulness__Thinking": "disabled",
+        "Chartula__FactBase__Depth": "title-only"
+      }
+    },
+    {
+      "name": "qwen3-14b-checked-by-qwen3-14b",
+      "note": "local; the check shares the render endpoint, so it cannot be the reference; num_ctx 24576 via sweeps/ollama/*.Modelfile, Ollama's default would cut the prompt",
+      "env": {
+        "Chartula__Llm__BaseUrl": "http://localhost:11434/v1",
+        "Chartula__Llm__Model": "qwen3:14b-ctx24k",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "qwen3:14b-ctx24k",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      }
+    },
+    {
+      "name": "qwen3-14b-checked-by-granite4.1-guardian-8b",
+      "note": "local extra cell: a specialised check model; num_ctx 24576 via sweeps/ollama/*.Modelfile, Ollama's default would cut the prompt",
+      "env": {
+        "Chartula__Llm__BaseUrl": "http://localhost:11434/v1",
+        "Chartula__Llm__Model": "qwen3:14b-ctx24k",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "granite4.1-guardian:8b-ctx24k",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      }
+    }
+  ]
+}

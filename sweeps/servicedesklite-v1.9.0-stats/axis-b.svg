@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 346" width="560" height="346" class="viz" role="img" aria-labelledby="tb"><style>
+  .viz { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .bg { fill: #fcfcfb; } .t { fill: #0b0b0b; } .t2 { fill: #52514e; } .m { fill: #898781; }
+  .grid { stroke: #e1e0d9; stroke-width: 1; } .base { stroke: #c3c2b7; stroke-width: 1; } .ring { stroke: #fcfcfb; }
+  .s1 { stroke: #2a78d6; fill: #2a78d6; } .s2 { stroke: #eb6834; fill: #eb6834; }
+  .l1 { stroke: #2a78d6; fill: none; } .l2 { stroke: #eb6834; fill: none; }
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1a1a19; } .t { fill: #ffffff; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
+    .base { stroke: #383835; } .ring { stroke: #1a1a19; }
+    .s1 { stroke: #3987e5; fill: #3987e5; } .s2 { stroke: #d95926; fill: #d95926; }
+    .l1 { stroke: #3987e5; } .l2 { stroke: #d95926; }
+  }
+</style><title id="tb">Axis B: flags per run by render model and check model</title><rect class="bg" width="560" height="346"/>
+<text class="t" x="20" y="24" font-size="15" font-weight="600">Axis B - does it depend on who checks?</text>
+<text class="t2" x="20" y="44" font-size="12">Flags per run, median (min-max) of 3 runs; thinking disabled for both.</text>
+<text class="t2" x="340" y="62" font-size="12" text-anchor="middle">checked by</text>
+<text class="t" x="245" y="82" font-size="12" font-weight="600" text-anchor="middle">gpt-6-luna</text>
+<text class="t" x="435" y="82" font-size="12" font-weight="600" text-anchor="middle">gpt-6-sol</text>
+<text class="t2" x="138" y="136" font-size="11" text-anchor="end">rendered by</text><text class="t" x="138" y="152" font-size="12" font-weight="600" text-anchor="end">gpt-6-luna</text>
+<g><title>gpt-6-luna checked by gpt-6-luna: flags 6, technical 0, customer 6</title><rect x="151" y="93" width="188" height="94" rx="4" fill="#184f95"/><text x="245.0" y="134.0" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">6</text><text x="245.0" y="154.0" font-size="11" fill="#ffffff" text-anchor="middle">technical 0 · customer 6</text><text x="245.0" y="178" font-size="10" fill="#ffffff" text-anchor="middle">checks itself</text></g>
+<g><title>gpt-6-luna checked by gpt-6-sol: flags 4 (3-4), technical 1, customer 3 (2-3)</title><rect x="341" y="93" width="188" height="94" rx="4" fill="#3987e5"/><text x="435.0" y="134.0" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="middle">4 (3-4)</text><text x="435.0" y="154.0" font-size="11" fill="#0b0b0b" text-anchor="middle">technical 1 · customer 3 (2-3)</text></g>
+<text class="t2" x="138" y="232" font-size="11" text-anchor="end">rendered by</text><text class="t" x="138" y="248" font-size="12" font-weight="600" text-anchor="end">gpt-6-sol</text>
+<g><title>gpt-6-sol checked by gpt-6-luna: flags 5 (4-8), technical 0, customer 5 (4-8)</title><rect x="151" y="189" width="188" height="94" rx="4" fill="#256abf"/><text x="245.0" y="230.0" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">5 (4-8)</text><text x="245.0" y="250.0" font-size="11" fill="#ffffff" text-anchor="middle">technical 0 · customer 5 (4-8)</text></g>
+<g><title>gpt-6-sol checked by gpt-6-sol: flags 3 (3-4), technical 1 (1-2), customer 2</title><rect x="341" y="189" width="188" height="94" rx="4" fill="#6da7ec"/><text x="435.0" y="230.0" font-size="20" font-weight="600" fill="#0b0b0b" text-anchor="middle">3 (3-4)</text><text x="435.0" y="250.0" font-size="11" fill="#0b0b0b" text-anchor="middle">technical 1 (1-2) · customer 2</text><text x="435.0" y="274" font-size="10" fill="#0b0b0b" text-anchor="middle">checks itself</text></g>
+<text class="m" x="20" y="332" font-size="10">ServiceDeskLite v1.9.0 since v1.7.0, 18 facts, Chartula 0.1.0-preview.3.</text><text class="m" x="20" y="344" font-size="10">The fill darkens with the median; the number is the value.</text></svg>

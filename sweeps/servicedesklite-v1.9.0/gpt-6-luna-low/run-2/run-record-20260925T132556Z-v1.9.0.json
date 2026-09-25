@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-25T13:25:56+00:00",
+  "tag": "v1.9.0",
+  "repository": "goldbarth/ServiceDeskLite",
+  "range": {
+    "start": "since",
+    "from": "675555a7",
+    "fromCommit": "675555a705a25e961626e249f6d9c072f39b51b8",
+    "toCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3\u002B7620e6d95b62190d12f57ba345479b524674fea1",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:18467240be1e8a49ca134d8d94ebaf281104fff70ad715fbc0c6b71dc048b5c1",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-sol",
+    "checkThinking": "disabled"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022Anchor assistant citations to matching answer titles with numbered inline badges and tooltips, retaining unanchored citations in the sources list.\u0022 - Although #233 initially implemented inline badges, #244 removed that implementation when integrating Markdown rendering and deferred inline badges to #243. They were subsequently reintroduced over sanitized Markdown in #245. Presenting #233 as a separate addition in this changelog misstates what survived integration.",
+          "pullRequest": 233
+        }
+      ]
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\u0022with a preview available on hover or keyboard focus\u0022 - The delivered Markdown badges in #245 have a hover/focus tooltip, but the fact does not establish that the badge itself is keyboard-focusable. The earlier keyboard-focus implementation in #233 was removed during #244\u0027s integration.",
+          "pullRequest": 245
+        },
+        {
+          "text": "\u0022the assistant and autonomous worker are required to run a grounding check before streaming an answer\u0022 - #218 forces a check once after passages are retrieved and before the first streamed token, but its stated limitation is that it does not guarantee a check for every later retrieval in a run. This wording overstates the guarantee as a check before streaming an answer.",
+          "pullRequest": 218
+        },
+        {
+          "text": "\u0022The assistant no longer asks you to confirm a change you already requested, including after it corrects an earlier mistake.\u0022 - #223 added a prompt policy against needless confirmation and verified it in a live pass; it does not establish that the assistant will never ask unnecessarily. The fact also allows questions when a genuine user decision is needed.",
+          "pullRequest": 223
+        },
+        {
+          "text": "\u0022You can rely on it to report a change only after a tool call succeeds\u0022 - #223 states a system-prompt rule and reports live verification, not a mechanism that guarantees the model will always follow that rule.",
+          "pullRequest": 223
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 21293,
+      "outputTokens": 2286,
+      "failedCalls": 0,
+      "durationSeconds": 23.92,
+      "longestCallSeconds": 16.387,
+      "retries": 0,
+      "cachedInputTokens": 21287,
+      "reasoningTokens": 803
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 22439,
+      "outputTokens": 397,
+      "failedCalls": 0,
+      "durationSeconds": 11.204,
+      "longestCallSeconds": 7.245,
+      "retries": 0,
+      "cachedInputTokens": 0,
+      "reasoningTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 2,
+      "flags": 5,
+      "onlyThoroughFlags": 5,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 43.415,
+    "release": {
+      "commits": 19,
+      "pullRequests": 19,
+      "facts": 18,
+      "factsWithDescription": 18,
+      "descriptionCharacters": 40459
+    }
+  }
+}
