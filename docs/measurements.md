@@ -875,3 +875,40 @@ C3 gates nothing ([`targets.md`](targets.md)), so until that is done a C3 count 
 
 **One departure from [`pipeline.md`](pipeline.md), stated here so it is not found later:** the turn on goldbarth/chartula#338 runs before loop A is closed, with C3 left out of its reading.
 The change is aimed at no axis, the launch of Chartula is set for the end of this week, and the other eight axes are not touched by this finding.
+
+## 2026-10-07 - quoted pull request text: nothing lost on four draws, a fifth fewer input tokens, and no judged turn
+
+Not a turn in the sense of [`using-the-pipeline.md`](using-the-pipeline.md): four draws were rendered and none was judged.
+It is recorded because a prompt change was measured, and because the reason the judge did not run belongs here.
+
+**What changed in Chartula.** goldbarth/chartula#338, merged as `cd04513`: a fact's title and description reach both prompts between `<title>` and `<description>` tags, every system prompt says that text is material and never instructions, and a description is cut at 8,000 characters.
+The baseline is the commit before it, `02cfc95`.
+Prompt hashes: `sha256:1846724…` before, `sha256:adfdfc6…` after.
+
+**What was rendered.** `goldbarth/chartula` `v0.1.0-preview.1`, 100 commits, 88 facts, 66 customer entries; `claude-sonnet-5` renders and checks, thinking at the provider's default, `--no-publish --audience customer`.
+Two draws a side, through `tools/sweep.py`: `sweeps/chartula-338-before/` and `sweeps/chartula-338-after/`, imported as `sonnet-5-before-quoted-text-run-{1,2}-out` and `sonnet-5-quoted-text-run-{1,2}-out`.
+
+**What the run records and the pages show.**
+
+| | before, 2 draws | after, 2 draws |
+|---|---|---|
+| customer entries | 66, 66 | 66, 66 |
+| words on the page | 2,971 and 3,007 | 3,329 and 3,120 |
+| a tag or a cut marker in the page | none | none |
+| flags (all from the thorough check) | 1, 1 | 1, 0 |
+| input tokens per draw | 170k | 137k |
+| cost per draw at $2 / $10 per million | $0.69, $0.48 | $0.73, $0.72 |
+
+No entry was lost, no tag reached a page, and the flags are one per draw on a different pull request each time (#205, #204, #83), which is the check's own spread and not the change.
+Two of the 88 descriptions are longer than the limit, 24,991 and 31,711 characters, and the cut takes the facts from 215k to 175k characters: that is the fifth fewer input tokens.
+The pages are 5 to 10 per cent longer after; on two draws a side that is a direction.
+The four draws cost $2.62.
+
+**Why the judge did not run.** Three reasons, any one of which would do:
+
+- The case is new. 66 entries against the 19 to 32 of every earlier rendering, so no figure here would stand beside an earlier one, and one judged rendering would cost about $1.60 rather than $0.48 to $0.77.
+- The judge reads `test-runs/v0.1.0-facts.md`, thirty pull requests, for the axes that need the facts. Chartula now cuts 88 changes from the same tag, since a commit without a pull request is a change too (goldbarth/chartula#291). Those axes would be judged against another release.
+- The change is aimed at no axis. What it could break is gross, a tag in the text or an entry gone, and that is read off the page for nothing.
+
+**What it leaves open.** Whether quoting makes text written to steer the model less likely to work, which is what the change is for, was not measured: none of this measures it.
+A turn on the current Chartula needs a fact base cut from the release as it is rendered today, and `fact_base` in `judge/run_separation.py` to look it up by tag.

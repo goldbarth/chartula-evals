@@ -1,0 +1,28 @@
+{
+ "clone": "~/repos/chartula-sweep",
+ "chartula": "/home/goldbarth/.local/share/chartula-eval/338-before/chartula",
+ "tag": "v0.1.0-preview.1",
+ "args": [
+  "generate",
+  "--no-publish",
+  "--tag",
+  "v0.1.0-preview.1",
+  "--repo",
+  "goldbarth/chartula",
+  "--audience",
+  "customer",
+  "--yes"
+ ],
+ "repetitions": 2,
+ "env": {},
+ "cells": [
+  {
+   "name": "sonnet-5",
+   "note": "goldbarth/chartula#338, before the change: claude-sonnet-5 as chartula.yaml pins it, customer only, as a turn of using-the-pipeline.md asks",
+   "env": {
+    "Chartula__Llm__Provider": "anthropic",
+    "Chartula__Llm__Model": "claude-sonnet-5"
+   }
+  }
+ ]
+}

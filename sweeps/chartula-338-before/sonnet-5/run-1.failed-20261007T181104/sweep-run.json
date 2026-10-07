@@ -1,0 +1,30 @@
+{
+  "cell": "sonnet-5",
+  "repetition": 1,
+  "status": "failed",
+  "exitCode": 1,
+  "mismatches": [
+    "no run record was written"
+  ],
+  "settings": {
+    "Chartula__Llm__Provider": "anthropic",
+    "Chartula__Llm__Model": "claude-sonnet-5"
+  },
+  "command": [
+    "/home/goldbarth/.local/share/chartula-eval/338-before/chartula",
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v0.1.0-preview.1",
+    "--repo",
+    "goldbarth/chartula",
+    "--audience",
+    "customer",
+    "--yes"
+  ],
+  "chartula": "/home/goldbarth/.local/share/chartula-eval/338-before/chartula",
+  "toolVersion": null,
+  "openaiKey": null,
+  "startedAt": "2026-10-07T15:56:31+00:00",
+  "seconds": 0.4
+}

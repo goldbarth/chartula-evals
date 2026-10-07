@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": 2,
+  "tag": "v0.1.0-preview.1",
+  "changes": [
+    {
+      "title": "feat(ci): release self-contained binaries from a preview tag",
+      "number": 208,
+      "url": "https://github.com/goldbarth/chartula/pull/208",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(curation): pair a revert with what it takes back",
+      "number": 207,
+      "url": "https://github.com/goldbarth/chartula/pull/207",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        206
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(prompting): ask for identifiers from the facts as code spans",
+      "number": 205,
+      "url": "https://github.com/goldbarth/chartula/pull/205",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        143
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): judge every model answer by the same preconditions",
+      "number": 204,
+      "url": "https://github.com/goldbarth/chartula/pull/204",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        85,
+        94
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(serialization): record how changelog.json was made",
+      "number": 202,
+      "url": "https://github.com/goldbarth/chartula/pull/202",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        179
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: default to Sonnet 5 and the technical and customer audiences",
+      "number": 199,
+      "url": "https://github.com/goldbarth/chartula/pull/199",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        177
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: ask where a first release starts instead of rendering all history",
+      "number": 198,
+      "url": "https://github.com/goldbarth/chartula/pull/198",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        138
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(curation): read no description from hidden comments or an unfilled template",
+      "number": 197,
+      "url": "https://github.com/goldbarth/chartula/pull/197",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        141
+      ],
+      "labels": []
+    },
+    {
+      "title": "Bump the test-tooling group with 3 updates",
+      "number": 196,
+      "url": "https://github.com/goldbarth/chartula/pull/196",
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": [
+        "dependencies",
+        ".NET"
+      ]
+    },
+    {
+      "title": "Bump the nuget-minor-and-patch group with 7 updates",
+      "number": 172,
+      "url": "https://github.com/goldbarth/chartula/pull/172",
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": [
+        "dependencies",
+        ".NET"
+      ]
+    },
+    {
+      "title": "docs(repo): add a security policy with private reporting",
+      "number": 169,
+      "url": "https://github.com/goldbarth/chartula/pull/169",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        161
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs(cli): recommend a fine-grained token instead of gh auth token",
+      "number": 168,
+      "url": "https://github.com/goldbarth/chartula/pull/168",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        160
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(config): require https for every endpoint except loopback",
+      "number": 167,
+      "url": "https://github.com/goldbarth/chartula/pull/167",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        159
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(config): read endpoints and credential names from the environment only",
+      "number": 166,
+      "url": "https://github.com/goldbarth/chartula/pull/166",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        158
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(history): resolve git from PATH, never from the checkout",
+      "number": 165,
+      "url": "https://github.com/goldbarth/chartula/pull/165",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        157
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs(config): record the Sonnet 5 run cost from generating this changelog",
+      "number": 156,
+      "url": "https://github.com/goldbarth/chartula/pull/156",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(output): keep a draft attached to its tag when its notes are updated",
+      "number": 155,
+      "url": "https://github.com/goldbarth/chartula/pull/155",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(output): create release notes as a draft",
+      "number": 154,
+      "url": "https://github.com/goldbarth/chartula/pull/154",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        131
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): exit non-zero when a requested audience failed",
+      "number": 153,
+      "url": "https://github.com/goldbarth/chartula/pull/153",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        148
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): refuse an anthropic run without a key before any work starts",
+      "number": 152,
+      "url": "https://github.com/goldbarth/chartula/pull/152",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        147
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): default --tag and --repo from the checkout the run starts in",
+      "number": 151,
+      "url": "https://github.com/goldbarth/chartula/pull/151",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        150
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(generation): escape angle brackets the model writes outside code spans",
+      "number": 144,
+      "url": "https://github.com/goldbarth/chartula/pull/144",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        137
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(faithfulness): ground the pull request reference the thorough check sees",
+      "number": 142,
+      "url": "https://github.com/goldbarth/chartula/pull/142",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        140
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for itself",
+      "number": 139,
+      "url": "https://github.com/goldbarth/chartula/pull/139",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        95
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: start pre-releases at 0.1.0-preview.1 instead of 1.0.0-preview.1",
+      "number": 136,
+      "url": "https://github.com/goldbarth/chartula/pull/136",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(llm): refuse a thinking mode the anthropic model rejects at config load",
+      "number": 133,
+      "url": "https://github.com/goldbarth/chartula/pull/133",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: mark openai-compatible provider as experimental",
+      "number": 132,
+      "url": "https://github.com/goldbarth/chartula/pull/132",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": [
+        "area:cli",
+        "type:docs"
+      ]
+    },
+    {
+      "title": "fix(llm): fail a faithfulness check the prompt never reached intact",
+      "number": 130,
+      "url": "https://github.com/goldbarth/chartula/pull/130",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        85
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: put the structure of every rendering together in code",
+      "number": 129,
+      "url": "https://github.com/goldbarth/chartula/pull/129",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        96
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs(cli): add a command reference in the omarchy-manual style",
+      "number": 127,
+      "url": "https://github.com/goldbarth/chartula/pull/127",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat: give every audience the shape its template and rubric specify",
+      "number": 126,
+      "url": "https://github.com/goldbarth/chartula/pull/126",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: reframe status as alpha in progress, not phase 1 complete",
+      "number": 125,
+      "url": "https://github.com/goldbarth/chartula/pull/125",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add versioning policy for the NuGet package",
+      "number": 124,
+      "url": "https://github.com/goldbarth/chartula/pull/124",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(prompting): say where an outcome comes from, not only what is not one",
+      "number": 123,
+      "url": "https://github.com/goldbarth/chartula/pull/123",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(facts): decide what a reader can meet from a label, not from a category",
+      "number": 121,
+      "url": "https://github.com/goldbarth/chartula/pull/121",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        119
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(facts): carry the labels of a change into the fact base",
+      "number": 120,
+      "url": "https://github.com/goldbarth/chartula/pull/120",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        98
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): put the place a setting is reached behind the outcome",
+      "number": 118,
+      "url": "https://github.com/goldbarth/chartula/pull/118",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        117
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): render only the audiences a run asks for",
+      "number": 116,
+      "url": "https://github.com/goldbarth/chartula/pull/116",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        115
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): leave the model room to write after it has finished thinking",
+      "number": 114,
+      "url": "https://github.com/goldbarth/chartula/pull/114",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        113
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(llm): carry the four format rules the customer prompt left out",
+      "number": 112,
+      "url": "https://github.com/goldbarth/chartula/pull/112",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        111
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): warn at startup when a run has no GitHub token",
+      "number": 110,
+      "url": "https://github.com/goldbarth/chartula/pull/110",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        89
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(output): keep the rendering when the description is all the model wrote",
+      "number": 109,
+      "url": "https://github.com/goldbarth/chartula/pull/109",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        108
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): require the outcome slot instead of allowing it to be dropped",
+      "number": 106,
+      "url": "https://github.com/goldbarth/chartula/pull/106",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: refine project description in README",
+      "number": 105,
+      "url": "https://github.com/goldbarth/chartula/pull/105",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(output): write the customer rendering as a page of its own",
+      "number": 104,
+      "url": "https://github.com/goldbarth/chartula/pull/104",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        103
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(output): write a run's artefacts without publishing a release",
+      "number": 101,
+      "url": "https://github.com/goldbarth/chartula/pull/101",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        100
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(llm): state the shape of a customer entry instead of leaving it to the model",
+      "number": 99,
+      "url": "https://github.com/goldbarth/chartula/pull/99",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: point at where Chartula is measured",
+      "number": 97,
+      "url": "https://github.com/goldbarth/chartula/pull/97",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(llm): add an OpenAI-compatible provider with a configurable base URL",
+      "number": 88,
+      "url": "https://github.com/goldbarth/chartula/pull/88",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        78
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: record what thinking costs, measured both ways",
+      "number": 84,
+      "url": "https://github.com/goldbarth/chartula/pull/84",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat: make thinking a decision instead of a default",
+      "number": 83,
+      "url": "https://github.com/goldbarth/chartula/pull/83",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        82
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: say which models Chartula is meant to run on",
+      "number": 81,
+      "url": "https://github.com/goldbarth/chartula/pull/81",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        77
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix: tell an unreadable thorough check from a clean one",
+      "number": 80,
+      "url": "https://github.com/goldbarth/chartula/pull/80",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        76
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix: leave breaking-change claims to the thorough check",
+      "number": 74,
+      "url": "https://github.com/goldbarth/chartula/pull/74",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        71
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix: tell an unreported LLM call from a cheap one",
+      "number": 73,
+      "url": "https://github.com/goldbarth/chartula/pull/73",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix: two release blockers found by dogfooding v0.1.0",
+      "number": 70,
+      "url": "https://github.com/goldbarth/chartula/pull/70",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: bring the docs up to what Chartula actually is",
+      "number": 69,
+      "url": "https://github.com/goldbarth/chartula/pull/69",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat: report what a run does and what it costs",
+      "number": 66,
+      "url": "https://github.com/goldbarth/chartula/pull/66",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        26
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: add configuration sections for categories",
+      "number": 65,
+      "url": "https://github.com/goldbarth/chartula/pull/65",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        25
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(config): read chartula.yaml with sensible defaults",
+      "number": 64,
+      "url": "https://github.com/goldbarth/chartula/pull/64",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        24
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): generate and preview commands wired to the pipeline",
+      "number": 63,
+      "url": "https://github.com/goldbarth/chartula/pull/63",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        23
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(output): store all audience texts in changelog.json",
+      "number": 62,
+      "url": "https://github.com/goldbarth/chartula/pull/62",
+      "category": "Feature",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        22
+      ],
+      "labels": [
+        "visibility:internal"
+      ]
+    },
+    {
+      "title": "feat(releases): write the generated text back to GitHub release notes",
+      "number": 61,
+      "url": "https://github.com/goldbarth/chartula/pull/61",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        21
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(output): write CHANGELOG.md, prepend and preserve history",
+      "number": 60,
+      "url": "https://github.com/goldbarth/chartula/pull/60",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        20
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(review): opt-in review mode for human sign-off of flagged passages",
+      "number": 59,
+      "url": "https://github.com/goldbarth/chartula/pull/59",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        19
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(faithfulness): thorough second-pass LLM check with a toggle",
+      "number": 58,
+      "url": "https://github.com/goldbarth/chartula/pull/58",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        18
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(faithfulness): rule-based check that catches obvious hallucinations",
+      "number": 57,
+      "url": "https://github.com/goldbarth/chartula/pull/57",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        17
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(formatting): consistent formatting and tone per audience",
+      "number": 56,
+      "url": "https://github.com/goldbarth/chartula/pull/56",
+      "category": "Feature",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        16
+      ],
+      "labels": [
+        "visibility:internal"
+      ]
+    },
+    {
+      "title": "feat(rendering): render technical, customer, and PM from one fact base",
+      "number": 55,
+      "url": "https://github.com/goldbarth/chartula/pull/55",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        15
+      ],
+      "labels": [
+        "visibility:user-facing"
+      ]
+    },
+    {
+      "title": "refactor(prompting): move prompt text into a partial class",
+      "number": 54,
+      "url": "https://github.com/goldbarth/chartula/pull/54",
+      "category": "Refactor",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(prompting): prompt architecture that rephrases facts, never invents",
+      "number": 53,
+      "url": "https://github.com/goldbarth/chartula/pull/53",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        14
+      ],
+      "labels": [
+        "visibility:user-facing"
+      ]
+    },
+    {
+      "title": "feat(generation): generate a changelog through the provider interface",
+      "number": 52,
+      "url": "https://github.com/goldbarth/chartula/pull/52",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        13
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(serialization): write the fact base to changelog.json",
+      "number": 51,
+      "url": "https://github.com/goldbarth/chartula/pull/51",
+      "category": "Feature",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        12
+      ],
+      "labels": [
+        "visibility:internal"
+      ]
+    },
+    {
+      "title": "feat(facts): make fact-base depth configurable",
+      "number": 50,
+      "url": "https://github.com/goldbarth/chartula/pull/50",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        11
+      ],
+      "labels": [
+        "visibility:user-facing"
+      ]
+    },
+    {
+      "title": "feat(facts): transform curated changes into the release fact base",
+      "number": 49,
+      "url": "https://github.com/goldbarth/chartula/pull/49",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        10
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(facts): define the fact-base data model (index card per change)",
+      "number": 48,
+      "url": "https://github.com/goldbarth/chartula/pull/48",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        9
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(filtering): drop internal/chore changes by default",
+      "number": 47,
+      "url": "https://github.com/goldbarth/chartula/pull/47",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        8
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(labels): steer curation with label rules from config",
+      "number": 46,
+      "url": "https://github.com/goldbarth/chartula/pull/46",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        7
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(categorization): assign categories deterministically before the LLM",
+      "number": 45,
+      "url": "https://github.com/goldbarth/chartula/pull/45",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        6
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(curation): degrade gracefully when clean PRs are missing",
+      "number": 44,
+      "url": "https://github.com/goldbarth/chartula/pull/44",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        5
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(pull-requests): fetch merged PRs for a release from the GitHub API",
+      "number": 43,
+      "url": "https://github.com/goldbarth/chartula/pull/43",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        4
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(history): read the commit range for a release from git",
+      "number": 42,
+      "url": "https://github.com/goldbarth/chartula/pull/42",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        3
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(llm): abstract the LLM provider behind IChangelogModel",
+      "number": 41,
+      "url": "https://github.com/goldbarth/chartula/pull/41",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        2
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: change badges style to flat-badge",
+      "number": null,
+      "url": null,
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add pr badge to readme",
+      "number": null,
+      "url": null,
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: remove contents area",
+      "number": null,
+      "url": null,
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: remove contents area",
+      "number": null,
+      "url": null,
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "Initial scaffold: project structure, license, docs",
+      "number": null,
+      "url": null,
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "customer": "### What's New\n\n- **Release binaries:** Releases now include ready-to-run binaries for six platforms instead of a NuGet package. Anyone downloading one can run it directly, without installing the .NET SDK first.\n- **Technical entry formatting:** Technical changelog entries now show command names, options, configuration keys, files, types and methods as code-formatted text, spelled exactly as given. You can trust that every such name matches what appears in the project rather than a shortened or reworded version.\n- **Changelog file provenance:** changelog.json can now include a record of how it was produced: the tool version, the model provider and model used, and a hash of the prompt. It's included only when that information is available, so the file's existing format is unaffected when it isn't.\n- **Default model and audiences:** A run with no options now defaults to the Claude Sonnet 5 model and renders both the technical and customer changelogs; the product changelog renders only when you ask for it by name. You can still choose any audience combination or model yourself.\n- **Release start:** A release for a project's first tag no longer renders its entire commit history automatically. You decide where the release starts: pass --since \\<ref> to begin after a previous point, or --whole-history to render everything on purpose.\n- **Release notes drafts:** GitHub release notes written by a run are now created as a draft rather than published immediately, so you can review them before the release goes live. Updating an already-published release still updates it in place without turning it back into a draft.\n- **Automatic tag and repository:** Running the tool inside a git checkout no longer requires passing --tag or --repo. The nearest tag and the repository are picked up automatically and shown before the run starts, so you can still override either flag directly when you need to.\n- **Model setting validation:** A configuration combining a thinking mode with a model that rejects it is now caught before the run starts, instead of failing partway through after fetching data and calling the model. The error message names the setting to change.\n- **Changelog entry structure:** Every change in a release now gets its own entry in the generated changelog rather than being grouped into a collapsed summary line. Entries for technical, customer, and product readers follow a consistent, predictable structure in each run.\n- **Changelog templates:** Technical and product changelogs now follow fixed templates: technical entries are grouped into Changed, Added and Fixed with breaking changes listed first, and CHANGELOG.md opens each release with its version and date. Internal work, documentation, and refactors are left out of both unless they are breaking or specifically labelled.\n- **Pull request labels in changelog.json:** changelog.json now carries the labels from each pull request alongside its other details, exactly as they were applied. This makes it possible for future renderings to group or tag changes by subject matter rather than only by change type.\n- **Selecting audiences:** A run can now render only the audiences you name with --audience, instead of always producing all three. You no longer pay for calls to audiences you don't read; leave the option off and every audience still renders as before.\n- **Customer changelog ordering:** The customer changelog now puts entries that ask you to act above ones that don't, with a breaking change always listed first, and groups no longer end with a trailing summary line. Vague claims like \"faster\" or \"more reliable\" are left out unless the entry gives you something to check them against.\n- **GitHub token warning:** A run started without a GitHub token now prints a warning before doing any work, noting the lower request limit that applies without one and how to set it. The run still continues unauthenticated; nothing is required unless you want the higher limit.\n- **Published release page:** A run now writes release-\\<tag>.md, a ready-to-publish page for the customer changelog, with a title, description, and publish date drawn from the release. A release with nothing for that audience produces no page at all.\n- **Generate without publishing:** A --no-publish option now writes changelog.json and CHANGELOG.md without creating or updating a GitHub release, and the run lists what it wrote and what it skipped. Without the flag, generate still writes and publishes as before.\n- **OpenAI-compatible provider:** The llm.provider setting now also accepts openai-compatible, letting a run send its model calls to any endpoint speaking the OpenAI chat-completions format, including one hosted on your own machine so release data never has to leave it. Both the model and the endpoint address must be set explicitly for this provider; there is no default to fall back on.\n- **Model thinking mode:** A new llm.thinking setting lets you choose whether the model reasons before answering, instead of that being decided silently by whichever model you picked. Left at its default it behaves as before, and can be set to disabled or adaptive depending on the model, so the cost of a run is a decision rather than a surprise.\n- **Run cost summary:** Every preview and generate run now ends with a summary of how many checks ran, how many claims they found, and how many tokens each spent, including what the deeper check caught that the free one missed. You can use this to judge whether the deeper check is worth its cost on your own releases.\n- **Category configuration:** A new categories section in chartula.yaml lets you set the order categories appear in, rename their display labels, and control whether breaking changes are shown prominently. An unknown category name in the configuration is rejected with a clear error.\n- **Configuration file:** The tool now reads settings from a chartula.yaml file when one is present, letting you refine behaviour such as how much detail each change carries; with no file, it runs with sensible defaults. An invalid value in the file is reported as a clear configuration error instead of a crash.\n- **Generate and preview commands:** The tool now has two commands: generate, which produces and publishes a release's changelog, and preview, which runs the same process but writes and publishes nothing, so you can see the result first. Both take --tag and --repo and report clear errors rather than crashing.\n- **GitHub release notes:** A generate run now writes its generated text directly to the release's GitHub notes, creating the release if it doesn't exist yet. Running it again for the same tag updates those notes in place rather than creating a second release.\n- **CHANGELOG.md history:** Each release is now written as a new section at the top of CHANGELOG.md, with earlier sections kept untouched below it. Running the same release again replaces its section in place instead of duplicating it.\n- **Review mode:** An optional review mode lets you look over each generated text and its flagged passages before anything is published, approving it as written or editing it yourself. It stays off by default, so nothing changes unless you turn it on.\n- **Thorough faithfulness check:** A second, deeper check now looks for subtle wording that oversells what a change actually does, such as a bug fix described as closing a security hole, catching things a simple check can't see. It runs by default and can be turned off with a single setting.\n- **Rule-based faithfulness check:** Every generated text is now checked, at no extra cost, for numbers, quoted names, or breaking-change claims that don't appear anywhere in the source facts. Flagged passages are surfaced for review rather than blocking the run outright.\n- **Audience renderings:** A release now produces three versions - technical, customer, and product - all drawn from the same underlying facts, so they can never disagree on what changed. The customer version leaves out changes that aren't user-visible, while the technical version keeps full detail and links.\n- **Rephrasing only:** Generated text is now built strictly by rephrasing the established facts of a release, never adding anything that isn't already known. A release with little to say produces a short entry rather than a padded one.\n- **Changelog generation:** The tool can now generate a changelog by calling a language model through a single, swappable interface, with a release that has no changes making no call at all. A provider failure is reported clearly rather than crashing the run.\n- **Source detail level:** A new setting lets you choose how much detail from each pull request feeds its changelog entry: title only, title plus description (the default), or title, description, and linked issues. An unrecognized value is rejected with a clear error at startup.\n- **Release fact base:** Each change in a release is now assembled into a complete, structured record - category, breaking status, reader visibility, and linked issues - before any text is generated. This record comes entirely from deterministic rules, never from the model.\n- **Change records:** Each change now has its own structured record of established facts - title, link, category, visibility, and linked issues - that generated text may only rephrase from, never add to.\n- **Internal changes filtered:** Internal and chore-type changes are now left out of the changelog by default, while breaking changes are never dropped regardless of their category. The excluded categories can be changed in configuration.\n- **Label-based curation:** GitHub labels can now steer what appears in the changelog: a label can exclude a change, force it into a particular category, or require a label for inclusion at all. All of this is optional and set in configuration; with no labels, nothing changes.\n- **Change categorization:** Each change is now assigned a category - feature, fix, performance, documentation, refactor, internal, or other - based on its commit prefix, decided before any text is generated. Breaking changes are flagged separately, so a breaking feature still shows as a feature while being marked breaking.\n- **Fallback for missing pull requests:** When a release has no associated pull requests, or a pull request has an uninformative title like \"WIP\", the changelog now falls back to the commit message or the pull request's description rather than leaving that change out. A release with nothing to report simply produces an empty result rather than failing.\n- **Changes grouped by pull request:** Changes are now summarized per merged pull request rather than per raw commit, using each pull request's title, description, labels, and link. A failure reaching the GitHub API is reported clearly rather than crashing the run.\n- **Release commit range:** The tool now works out exactly which commits belong to a release by reading git directly, covering both an ordinary release since the previous tag and a first release with no previous tag to compare against.\n- **Model provider setup:** The tool now generates changelog text through a single interface that can work with different language model providers, starting with Anthropic's. The API key is read from your environment or configuration rather than being built into the tool.\n\n### What's Changed\n\n- **Testing dependencies:** Testing tools used to build the project were updated to their latest versions.\n- **Dependency updates:** The libraries the tool depends on for AI model calls were updated to their latest versions.\n- **Project setup:** The project's initial structure, license, and documentation were established.\n\n### Bug Fixes\n\n- **Reverted changes:** A change that was reverted within the same release could previously still show up in the changelog as if it shipped. Reverted pull requests and the commits that reverted them are now matched and left out together, so the changelog only shows what actually shipped.\n- **Truncated model responses:** A changelog could previously be generated from a prompt that was cut off partway, with the missing instructions and facts never flagged as a problem. A run now fails loudly whenever a model's response doesn't fit what it reasonably should, for both rephrasing and the faithfulness check, naming the problem instead of producing an incomplete result.\n- **Pull request template text:** A pull request description was previously picked up as-is even when it was only hidden comments or an unfilled template, letting placeholder and example text leak into the changelog. Hidden comments are now stripped and an untouched template is treated as if no description was given, so only what the author actually wrote reaches the generated text.\n- **Insecure endpoint addresses:** An endpoint address pointing to another machine over plain http could previously send credentials in the clear. Such addresses are now refused at startup unless they use https or point at your own machine, with an error naming the setting and value to fix.\n- **Endpoint and credential settings:** chartula.yaml could previously set the model endpoint, its credential variable name, the GitHub endpoint, and its token variable name, even though that file is part of the repository and these settings control where release data and credentials go. Those four settings must now be set as environment variables instead; a leftover value in chartula.yaml is refused at startup, naming the environment variable to use.\n- **Git executable resolution:** A git executable committed inside the repository being read could previously run instead of the real git, with full access to your environment and keys. The tool now always resolves git from your system PATH, and a machine without git is refused before any work starts.\n- **Draft release updates:** Updating a draft release's notes could previously detach it from its tag, causing the next run to create a second draft instead of finding the first. The update now keeps the tag attached, so re-running updates the same draft.\n- **Exit status on partial failure:** A run where one requested audience failed to render previously still reported success and could overwrite an existing changelog with an incomplete one. The command now exits with an error whenever any audience fails, writes only what did render, and leaves prior files untouched when nothing rendered at all.\n- **Missing API key:** Running against the Anthropic provider without an API key previously fetched pull requests from GitHub before failing on the first model call. The missing key is now caught immediately, before any request goes out, naming the environment variable to set.\n- **Angle brackets in generated text:** Text written by the model could previously render incorrectly wherever it included angle brackets outside of code formatting. Such brackets are now escaped automatically in every changelog and release notes file, so they display as written.\n- **Faithfulness check accuracy:** The thorough faithfulness check could previously flag a correct pull request link as unsupported because it wasn't given the reference to compare against. It now receives the same pull request number and link the generated text carries, so a correct reference is no longer flagged by mistake.\n- **Faithfulness check on truncated prompts:** A faithfulness check whose prompt was cut off by the endpoint could previously come back with a clean verdict, since the model never saw what it was supposed to verify. Such a check now fails the run instead of reporting a false clean result.\n- **Customer entry clarity:** A customer changelog entry could previously describe only what changed and never what it means for you, because the instructions said what not to write without saying what to write instead. Entries now state what you can rely on going forward, taken from the facts of the change.\n- **Visibility of changes:** Every change of a given type, such as a new feature, was previously shown to customers regardless of whether it was something a user could actually see or use. Whether a change reaches the customer changelog is now decided by a label on the pull request when one is set, falling back to its category only when no label applies.\n- **Customer entry wording:** An entry about a configurable setting could previously name only where to set it without saying what choosing it gets you. Such entries now state what you can rely on first, with the place to change the setting following it.\n- **Customer changelog cut short:** Long customer changelogs could previously come back empty, because the model ran out of room to write after reasoning through its answer. The limit on how much it can write has been doubled, from 16,000 to 32,000, so both the thinking and the final text have space to complete.\n- **Missing customer page:** A customer changelog could previously come back as an empty page when the model's entire answer was mistaken for just the page's description, leaving nothing in the body. The full answer is now kept as the body whenever stripping out a description would leave nothing behind.\n- **Customer entry outcomes:** A customer changelog entry could previously leave out what a change means for you, since that part was optional. It now has to be included, so every entry says what you can rely on rather than only what changed.\n- **Customer changelog consistency:** The customer changelog's shape - grouping, wording, and what counts as jargon - previously varied between runs and models, since nothing specified it. It now follows a fixed structure: changes are grouped consistently, entries open on what you observe rather than the work behind it, and a setting is only mentioned together with where to change it.\n- **Unreadable faithfulness check:** A thorough faithfulness check that could not read the model's answer previously reported the same as a check that found nothing, so a run looked clean when nothing had actually been verified. The run summary and review flags now say when a check could not be read, distinct from one that checked cleanly.\n- **Breaking-change flag accuracy:** The free faithfulness check previously flagged any mention of the word \"breaking\" as an unsupported claim, even in a sentence merely describing the breaking-change feature itself, creating flags that taught reviewers to ignore them. That check no longer looks for breaking-change claims; the deeper check, which understands meaning rather than matching a word, covers this instead.\n- **LLM call reporting:** A model call that reported no token usage could previously look identical to one that used very few tokens in the run's reporting.\n- **Truncated output and false breaking flags:** Generated text could previously be cut off mid-word because no limit was sent to the model, and unrelated prose that simply discussed breaking changes could be mislabelled as one. Output now completes in full since a configurable limit is always sent, and only an actual breaking-change marker in a commit is treated as one instead of the word appearing anywhere in the text."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.3+cd04513e1cb271b9479d1cb5564e4258b36f5668",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "provider-default",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "claude-sonnet-5",
+    "checkThinking": "provider-default"
+  }
+}

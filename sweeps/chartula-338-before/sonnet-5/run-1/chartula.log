@@ -1,0 +1,105 @@
+Model:  anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+        claude-sonnet-5, thinking provider-default
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Range:  every commit up to v0.1.0-preview.1 (100 commits), the first tag
+Reading pull requests (100 commits)
+Rendering customer
+Checking customer
+Generated changelog for v0.1.0-preview.1
+
+--- Customer ---
+  description: This release takes Chartula from its initial scaffold to a complete, configurable pipeline that turns pull requests into checked, multi-audience release notes, now distributed as self-contained binaries.
+
+### What's New
+
+- **Self-contained release binaries:** Each preview release now publishes a ready-to-run binary for every supported platform, downloadable from the release page. You no longer need the .NET runtime installed to run Chartula.
+- **Code-formatted identifiers:** Technical changelog entries now show command names, options, configuration keys, files, types and methods as code-formatted text, spelled exactly as given in the source material. You can trust that a name you copy from an entry matches the real one.
+- **Changelog provenance:** `changelog.json` can now include a `provenance` object recording the tool version, provider, model and prompt hash used to produce it. You can check how a changelog was generated without hunting that information down elsewhere.
+- **Default model and audiences:** A run with no `--audience` flag now renders the technical and customer changelogs, using Claude Sonnet 5 as the default model. You no longer have to name them to get the two outputs most releases publish; the product audience still renders only when you ask for it by name.
+- **Where a release starts:** A run against a project's first tag now stops and asks where the release should start, instead of silently rendering its entire history as one release. Start it after a specific tag or commit with `--since <ref>`, or render everything on purpose with `--whole-history`.
+- **Draft release notes:** Generated release notes are now published as a draft release on GitHub rather than directly public. You can review them and publish when ready, and re-running the tool updates that same draft instead of creating a duplicate.
+- **Defaults from your checkout:** `chartula preview` and `generate` can now run with no `--tag` or `--repo` flags inside a git checkout, picking up the nearest tag and the repository from your `origin` remote. You can still override either flag, and the tool prints which values it picked up before the run starts.
+- **Early check for thinking mode:** A configuration pairing an unsupported `thinking` mode with your Anthropic model now fails immediately, before any requests are sent. You no longer have to wait for a release to fail partway through to discover the mismatch.
+- **Consistent changelog structure:** Every change now gets its own entry in the generated changelog, instead of being collapsed into a shared 'Also:' line. You can rely on entries following the same grouping and order on every run.
+- **Technical and product structure:** Technical and product changelog sections now follow a fixed structure instead of varying between runs: entries are grouped under Changed, Added and Fixed, with breaking changes listed first, and `CHANGELOG.md` sections now open on the version and date. Internal work, docs changes and refactors are left out of these sections unless they are breaking or specifically labelled.
+- **Labels in changelog.json:** `changelog.json` now includes the labels attached to each change. You can use them to filter or group changes yourself, such as by topic, without waiting for a built-in filter.
+- **Audience selection:** You can now limit a run to specific changelog audiences with `--audience`, for example `--audience customer` or `--audience technical,product`. Only the outputs for the audiences you render are written, and an unrecognized name is rejected with the list of valid ones.
+- **Customer entry ordering and claims:** Entries asking something of you could appear below ones that did not, and claims like 'much faster' could appear with nothing to check them against. Entries needing your attention now always sort first, breaking changes above all, and a claim of degree only appears when there is a number behind it.
+- **No GitHub token warning:** A run without a GitHub token now prints a warning before it starts, explaining the lower rate limit and how to set one. You can see the risk upfront instead of discovering it when a release fails partway through.
+- **Publishable release page:** Each run can now write `release-<tag>.md`, a ready-to-publish page built from the customer rendering, with a title, description and publish date. You no longer need to copy the customer text out of `changelog.json` and build the page yourself.
+- **Generate without publishing:** `chartula generate` now accepts `--no-publish`, which writes `changelog.json` and `CHANGELOG.md` but leaves the GitHub release notes untouched. The run lists what it wrote and what it skipped, so you can produce these files without publishing a release.
+- **OpenAI-compatible provider:** `llm.provider` now also accepts `openai-compatible`, letting you point Chartula at any endpoint speaking the OpenAI chat-completions dialect, whether a cheaper hosted service or a model running on your own machine. Model and endpoint have no default for this provider, so you choose exactly where your release data goes.
+- **Thinking mode setting:** `llm.thinking` now lets you choose whether the model uses extended thinking: `provider-default` (unchanged behavior), `disabled`, or `adaptive`. You can now control this cost instead of it being decided silently by whichever model you use.
+- **Run cost summary:** Every `preview` and `generate` run now ends with a summary of how many checks ran, how many claims they found, and how many tokens were spent, including what the thorough check alone caught. You can use this to judge whether the thorough check is worth its cost on your releases.
+- **Category configuration:** You can now configure category order, display names and whether breaking changes are shown prominently, in a new `categories` section of `chartula.yaml`. An unknown category name is rejected with a clear error.
+- **Configuration file:** Chartula now reads an optional `chartula.yaml` (or `.yml`) to refine its behavior, while still running with sensible defaults when no file is present. A configuration mistake now stops the run with a clear 'Configuration error:' message instead of a crash.
+- **Generate and preview commands:** `chartula generate` and `chartula preview` are now available, each taking `--tag` and `--repo`. `preview` runs the same process as `generate` but writes and publishes nothing, so you can see the result before committing to it.
+- **GitHub release notes:** `chartula generate` now writes the generated changelog directly to the release's GitHub notes. Running it again for the same tag updates those notes in place instead of creating a duplicate release.
+- **CHANGELOG.md history:** Each release is now written as a new section at the top of `CHANGELOG.md`, with earlier sections kept intact. Running the tool again for the same release replaces that section in place rather than duplicating or reordering it.
+- **Review mode:** You can now turn on a review step that shows you each generated text together with any flagged passages before it is used, letting you approve it as-is or edit it. Review is off by default, so existing runs are unaffected until you opt in.
+- **Thorough faithfulness check:** A second, more thorough check now re-reads each generated text against the source facts to catch subtle hallucinations a simple check would miss, such as a bug fix rendered as something more dramatic than it was. It is on by default, and you can turn it off with a single setting.
+- **Rule-based faithfulness check:** A free, always-on check now flags numbers, quoted names or breaking-change claims in generated text that do not appear in the underlying facts. It costs no extra tokens and runs on every release.
+- **Three audience renderings:** Chartula now produces technical, customer and product-manager versions of a release from the same underlying facts. You can rely on the three never contradicting each other, since each is just a different view over the same source.
+- **Rephrasing instead of inventing:** Generated changelog text is now built strictly from the established facts of a change; categories and breaking markers are given to the model rather than decided by it, and numbers or names not in the facts are never introduced. When the facts behind a change are thin, the entry stays brief instead of being padded out.
+- **Changelog generation:** Chartula can now generate a changelog from a release's facts through its configured model provider. Provider errors are caught and reported rather than crashing the run.
+- **Fact-base depth setting:** You can now control how much source material feeds each change's description, pull request title only, title plus description (the default), or title, description and linked issues, set in the `factBase` section of `chartula.yaml`. Choose the depth that fits how your team writes pull requests.
+- **Release fact base:** Chartula now assembles a complete fact base for each release, with category, breaking status and linked issues resolved deterministically from pull request data rather than guessed by a model. This fact base is what every changelog audience is generated from.
+- **Change fact model:** Each change is now captured as a structured record of established facts, title, number, link, category, visibility, breaking status and linked issues, rather than left to be inferred later. Nothing in this record is generated by a model.
+- **Filtering internal changes:** Internal and chore changes are now left out of the changelog by default. You can override which categories are excluded in configuration, and a breaking change is never dropped even if its category would otherwise be excluded.
+- **Label-based curation rules:** You can now use GitHub labels to steer what appears in the changelog: excluding a pull request, forcing it into a specific category, or limiting output to only labelled pull requests. All of this is optional, configured under `labels` in `chartula.yaml`, and the tool behaves the same as before if you set none of it.
+- **Deterministic change categories:** Each change's category, feature, fix, performance, documentation, refactor, internal or other, is now decided from its Conventional Commit prefix before any model sees it, with breaking changes tracked separately. You can rely on categorization being consistent and not something the model decides.
+- **Fallback for missing pull request data:** When a release has no associated pull requests, or a pull request has a blank or uninformative title, the changelog now falls back to the commit message or the pull request's description instead of leaving that change out. You no longer need clean pull request discipline on every release to get a complete changelog.
+- **Pull-request based changes:** Changes are now summarized per merged pull request rather than per raw commit, using each pull request's title, description and labels. API failures are reported with a clear error instead of crashing the run.
+- **Commit range detection:** Chartula now determines exactly which commits belong to a release by reading the range since the previous tag, falling back to the full history when there is no previous tag. You no longer need to work out that range yourself.
+- **Configurable model provider:** Chartula can now generate changelog text through a configured language model provider, with the API key read from your environment rather than hardcoded. Anthropic is supported as the first provider.
+
+### What's Changed
+
+- **Test tooling updates:** Internal test tooling dependencies were updated, including coverlet.collector, Microsoft.NET.Test.Sdk and xunit.runner.visualstudio, to their latest versions.
+- **Dependency updates:** Several NuGet dependencies were updated to their latest versions, including the Anthropic SDK, Microsoft.Extensions.AI and related packages.
+- **Initial project scaffold:** The project's initial structure, license and documentation were added.
+
+### Bug Fixes
+
+- **Reverted changes in the changelog:** A commit that reverted an earlier change could still leave that change in the changelog as if it had shipped. Reverted pull requests are now paired with their revert and dropped together when nothing was actually shipped, so you no longer see changes that were undone within the same release.
+- **Truncated model responses:** A rendering could be produced from a prompt an endpoint had silently truncated, generating entries that looked fine but were never checked against the real facts. A truncated call now fails the run immediately, naming the problem, instead of completing silently.
+- **Pull request description text:** A changelog entry could pick up hidden HTML comments or an unfilled pull request template as if they were real description text. Hidden comments are now stripped, and an empty, unfilled template is treated as no description at all.
+- **Endpoint security requirement:** A configured GitHub or model endpoint using plain `http` to a remote host could send your credentials in cleartext. Non-loopback endpoints must now use `https`; a run with an insecure one is refused before any request goes out, naming the setting to fix.
+- **Endpoint and credential settings:** `chartula.yaml` can no longer set the model or GitHub endpoint URLs, or the names of the credential variables to read; only the environment can. If your configuration file sets any of these, the run now stops with an error naming the environment variable to use instead.
+- **Git resolution:** Chartula could previously run a `git` executable committed inside the checkout it was reading, rather than the real one on your system. It now always resolves `git` from your `PATH`, and a machine without git is refused before any work starts.
+- **Draft release notes update:** Updating a draft release's notes could detach it from its tag, causing the next run to create a second draft instead of updating the first. The update now keeps the tag attached, so re-running updates the same draft.
+- **Exit status on partial failure:** A run where some requested audiences failed to render previously exited successfully and could overwrite `changelog.json` with an incomplete result. The command now exits with an error when any audience fails, and writes nothing at all when none rendered.
+- **Missing Anthropic key:** A run without an Anthropic API key previously fetched pull requests and only failed per audience with a raw error from the model's API. It now stops immediately with a clear configuration error naming the environment variable to set, before any GitHub request is made.
+- **Angle brackets in rendered text:** Text like `release-<tag>.md` written outside a code span could render incorrectly in the generated changelog, release notes and release page. Angle brackets outside code spans are now escaped, so this renders as written.
+- **Pull request references in faithfulness checks:** The thorough faithfulness check previously did not see the pull request reference included in technical entries, so it could flag a correct link as an unsupported claim. It now receives that reference as part of the facts it checks against.
+- **Truncated faithfulness checks:** A faithfulness check could return a clean verdict even when the facts it was meant to check were truncated before reaching the model, reporting zero claims found when nothing was actually verified. The check now fails the run when the endpoint reports fewer tokens than the facts it sent could fit.
+- **Customer entry outcomes:** A customer changelog entry could state what changed without saying what you actually gain from it, sometimes just negating the problem it describes. Entries now draw that outcome from the facts of the change itself, which usually say what it was for.
+- **User-visible change detection:** Every change typed as a feature was previously treated as something you would notice, even internal, repository-only ones like file layout or serialization changes. Visibility is now decided by a label attached to the pull request, falling back to the category only when no label says otherwise.
+- **Settings mentioned in entries:** An entry about a configurable setting could name where to set it without ever saying what you gain from using it. The setting's benefit is now stated first, with where to set it always coming after.
+- **Customer rendering cut off:** A long customer rendering could come back as zero characters with no release page, because the model used its entire token budget thinking and had none left to write the answer. The output budget has been doubled, giving the model room to write after it finishes thinking.
+- **Customer rendering lost to its own description:** A customer rendering could come back as a description with no entries underneath it, and the entire rendering would be dropped as if the release had nothing to say to that audience. A description is no longer pulled out of a response when doing so would leave nothing behind.
+- **Required entry outcomes:** Customer changelog entries could omit the outcome, what you can now rely on, and still be considered complete, since that part was allowed to be dropped. The outcome is now required in every entry, so you are told what you actually gain from a change.
+- **Customer changelog shape:** The customer changelog previously had no defined structure, so its grouping, wording and openings varied between runs and models. Entries now follow a fixed shape, grouped consistently, built from established parts, and avoiding openings like 'Added' or jargon only a contributor would recognize.
+- **Unreadable faithfulness checks:** A thorough faithfulness check that could not be read back from the model previously looked identical to one that checked the text and found nothing wrong. The run summary and flagged passages now say when a check came back unreadable, rather than reporting it as clean.
+- **Breaking-change wording flags:** The free rule-based check previously flagged any mention of the word 'breaking' as a false claim, even in sentences just describing the breaking-change setting itself. That check has been removed; breaking-change claims are now left to the thorough check, which can tell a mention from an actual claim.
+- **LLM call cost reporting:** A model call that reported no token usage could look the same as one that genuinely cost nothing. Chartula now tells the two apart.
+- **Truncated output and false breaking changes:** Generated text could be cut off mid-word because no output limit was sent to the model, and prose merely discussing breaking changes could be mislabelled as one. Both are fixed now: the output limit is always sent and configurable, and only a formal Conventional Commits footer marks a change as breaking.
+
+Flagged for review:
+  ! #205: "You can trust that a name you copy from an entry matches the real one." - The fact describes this as a prompt instruction asking the model to spell identifiers exactly as the facts do, checked afterward by a rule-based flag that catches mismatches for review rather than preventing them, and the change is explicitly marked 'Draft until the run the issue asks for' pending a single verification run. This does not support a guarantee that a copied name will match the real one.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep/changelog.json
+  - /home/goldbarth/repos/chartula-sweep/release-v0.1.0-preview.1.md
+
+Run metrics
+  Release:          100 commits, 95 pull requests, 5 commits without one, 88 facts (81 with a description, 215,416 characters)
+  Rule-based check: 1 run, 0 with findings, 0 claims, no tokens
+  Thorough check:   1 run, 1 with findings, 1 claim, 92,375 in / 14,552 out, 2 min 22 s
+    of which 0 in cached, reasoning not reported
+    caught 1 claim the rule-based check missed, for 106,927 tokens in 1 call
+  Rephrasing:       1 call, 78,018 in / 20,037 out, 3 min 18 s
+    of which 0 in cached, reasoning not reported
+  Total:            204,982 tokens in 6 min 18 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep/chartula-runs/20261007T162054Z-v0.1.0-preview.1.json

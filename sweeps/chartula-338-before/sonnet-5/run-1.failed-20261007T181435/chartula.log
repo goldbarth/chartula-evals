@@ -1,0 +1,34 @@
+Model:  anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+        claude-sonnet-5, thinking provider-default
+GitHub: https://api.github.com/, token from GITHUB_TOKEN
+Range:  every commit up to v0.1.0-preview.1 (100 commits), the first tag
+Reading pull requests (100 commits)
+Unhandled exception. System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
+ ---> System.TimeoutException: The operation was canceled.
+ ---> System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Operation canceled.
+ ---> System.Net.Sockets.SocketException (125): Operation canceled
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpClient.HandleFailure(Exception e, Boolean telemetryStarted, HttpResponseMessage response, CancellationTokenSource cts, CancellationToken cancellationToken, CancellationTokenSource pendingRequestsCts)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Chartula.Infrastructure.PullRequests.GitHubPullRequestReader.GetPullsForCommitAsync(RepositoryCoordinates repository, String sha, Boolean first, CancellationToken cancellationToken) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Infrastructure/PullRequests/GitHubPullRequestReader.cs:line 167
+   at Chartula.Infrastructure.PullRequests.GitHubPullRequestReader.GetMergedPullRequestsAsync(RepositoryCoordinates repository, CommitRange range, CancellationToken cancellationToken) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Infrastructure/PullRequests/GitHubPullRequestReader.cs:line 47
+   at Chartula.Core.Pipeline.ReleasePipeline.RunStepsAsync(ReleaseRequest request, PipelineMode mode, CancellationToken cancellationToken) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Core/Pipeline/ReleasePipeline.cs:line 124
+   at Chartula.Core.Pipeline.ReleasePipeline.RunAsync(ReleaseRequest request, PipelineMode mode, CancellationToken cancellationToken) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Core/Pipeline/ReleasePipeline.cs:line 86
+   at Chartula.Cli.Commands.ReleaseCommand.RunAsync(IReleasePipeline pipeline, PipelineMode mode, ReleaseRequest request, TextWriter output, CancellationToken cancellationToken) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Cli/Commands/ReleaseCommand.cs:line 30
+   at Chartula.Cli.Program.Main(String[] args) in /tmp/claude-1000/-home-goldbarth-repos-chartula/b8c645b4-11db-4144-927f-c9115b35591e/scratchpad/wt-before/src/Chartula.Cli/Program.cs:line 115
+   at Chartula.Cli.Program.<Main>(String[] args)
