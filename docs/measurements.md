@@ -837,3 +837,41 @@ The entries that moved:
 
 Whether the change or the draw moved the command-palette, grounding-check and citations entries cannot be told apart on two draws a side.
 Entries that close on the fault being gone, which the prompt forbids, passed C3.
+
+## 2026-10-07 - spot check: the judge lets through on C3, and the rate has doubled twice
+
+Stage 6 of [`pipeline.md`](pipeline.md), the third one, and overdue: five sections since 2026-09-08.
+Not a turn of stage 5 and it moves no product figure.
+
+**What was read.** Ten entries of `sonnet-5-fix-outcome-v010-out` against `judge/results/customer/labelled-all-claude-sonnet-5-2026-09-15T160931.json` on the five item axes: 50 cells, all 50 filled in.
+Cut with the usual seven the judge passed and three it failed.
+Reading took 34 minutes.
+
+**The result: 44 of 50 agreed.**
+
+**Let through: 4, which is 8.0 per 100 cells read.**
+The instrument target in [`targets.md`](targets.md) is at most 2 in 100.
+
+| entry | axis | judge | person | what is left once slot 1 is struck |
+|-------|------|-------|--------|------------------------------------|
+| `s5fv-07` review mode | C3 | pass | fail | "off by default ... unless you turn it on": scope and action, no gain for the reader |
+| `s5fv-06` thorough check | C3 | pass | fail | "on by default" and how to turn it off: default state and action, no outcome |
+| `s5fv-17` truncated notes | C3 | pass | fail | "no longer truncated", the negation of the fault, and a setting, which is C4's |
+| `s5fv-17` truncated notes | C2 | pass | fail | "could be cut off" names no condition; a reader with short notes cannot tell |
+
+**Three of the four share one pattern, on C3:** the entry closes on a default, a setting or the fault being gone, and the judge takes that for an outcome.
+It is the pattern of the one C3 case of 2026-09-08 ("stays off by default so nothing is held up unless you turn it on"), and of the note under 2026-09-24 that entries closing on the fault being gone passed C3.
+
+**The rate over three spot checks:** 0 on 2026-09-04, 4.1 per 100 on 2026-09-08, 8.0 today.
+The second one was recorded and not acted on, because one check at 0 and one at 4.1 is not a trend.
+Three are, and the cases are of one kind.
+
+**Too strict: 2,** both on C1: `s5fv-06` and `s5fv-14`, failed by the judge and passed by the person on the same reading, that the clause rewrites as "you can now ..." with only its own content.
+That direction costs a turn, not a release, and is not counted against the target.
+
+**The judge has drifted on C3, and stands on the other axes.**
+Loop A opens for C3 only: its text has to say that a default, a setting and the negation of the fault are not an outcome, and its human column of 53 entries is passed again.
+C3 gates nothing ([`targets.md`](targets.md)), so until that is done a C3 count is not read at all, rather than read as a direction.
+
+**One departure from [`pipeline.md`](pipeline.md), stated here so it is not found later:** the turn on goldbarth/chartula#338 runs before loop A is closed, with C3 left out of its reading.
+The change is aimed at no axis, the launch of Chartula is set for the end of this week, and the other eight axes are not touched by this finding.
