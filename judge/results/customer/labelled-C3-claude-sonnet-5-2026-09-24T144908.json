@@ -1,0 +1,412 @@
+{
+  "schema": "chartula-evals/eval-log/1",
+  "metadata": {
+    "eval_id": "evl_39798d9d2314",
+    "timestamp": "2026-09-24T14:49:08Z",
+    "environment": "local",
+    "commit": "6602c8a",
+    "dirty": true
+  },
+  "evaluation_config": {
+    "kind": "labelled",
+    "audience": "customer",
+    "criterion": {
+      "name": "customer",
+      "version": "customer-criterion-v1.0.0-57-g6602c8a-dirty",
+      "digest": "sha256:8c213cdc9828d107",
+      "rubric_last_changed": "88b485e 2026-09-09",
+      "prompt_last_changed": "f4545d3 2026-09-03",
+      "labels_passed_against": "7213389",
+      "axes": {
+        "C3": "a5a1c68"
+      },
+      "judged_stale": []
+    },
+    "llm_judge": "claude-sonnet-5",
+    "parameters": {
+      "max_tokens": 2000,
+      "effort": "low",
+      "thinking": "adaptive",
+      "sampling": "not settable: temperature, top_p and top_k are rejected by this model family"
+    }
+  },
+  "execution_results": {
+    "calls": 17,
+    "agreed": 15,
+    "quotes_found_in_subject": 17,
+    "cost_usd": 0.0652,
+    "per_axis": {},
+    "passed": {
+      "axes": [
+        "C3"
+      ],
+      "complete": false,
+      "items": 17,
+      "judge_ships": 15,
+      "compared_against_labels": 0,
+      "human_ships": null,
+      "let_through": null,
+      "blocked": null,
+      "note": "no human verdict in this run; the judge side stands alone"
+    },
+    "results": [
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-01::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-01",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Inline citation badges:** Citation badges now appear beside cited passages in sanitized Markdown answers, with hover or focus previews and matching numbers in the Sources list. Citations whose titles do not appear in the answer remain in the Sources list, so you can still find every cited source."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "Citations whose titles do not appear in the answer remain in the Sources list, so you can still find every cited source.",
+        "reason": "The item names an outcome (being able to find every cited source) that goes beyond restating slot 1's description of badges appearing, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1096,
+          "output": 209,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-02::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-02",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Suggested ticket actions:** The first actionable suggested step now appears as the primary control in the ticket header, while remaining suggestions appear in an overflow menu. You can act on the recommendation directly, and the existing ticket controls remain available when there are no actionable suggestions."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can act on the recommendation directly, and the existing ticket controls remain available when there are no actionable suggestions.",
+        "reason": "The item names an outcome beyond slot 1 - acting directly on the recommendation - satisfying step 1/2 of the decision procedure",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1095,
+          "output": 185,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-03::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-03",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Command palette:** You can now press Ctrl+K or Cmd+K on any page to search tickets or open navigation destinations. The palette supports arrow keys, Enter, and Esc, so you can use it without leaving the keyboard and return focus to where you started."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you can use it without leaving the keyboard and return focus to where you started",
+        "reason": "The item names an outcome beyond restating slot 1: keyboard-only workflow with focus returning to origin, satisfying rule 2's test for information not already in slot 1",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1090,
+          "output": 113,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-04::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-04",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Immediate status updates:** Ticket status changes now appear immediately on the board and ticket detail page, and rejected changes return to the previous status with an error code. You can rely on rapid changes settling on the status accepted by the server instead of waiting for each response."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on rapid changes settling on the status accepted by the server instead of waiting for each response.",
+        "reason": "The item names a distinct outcome beyond slot 1's event description, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1087,
+          "output": 158,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-05::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-05",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Inline ticket editing:** Status and assignee changes now open in the ticket header instead of a dialog. You can make either change without leaving the ticket, losing your scroll position, or switching away from the current tab."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can make either change without leaving the ticket, losing your scroll position, or switching away from the current tab.",
+        "reason": "The item names a concrete outcome beyond slot 1 (retaining scroll position, tab, and context), satisfying rule 2's test that it tells the reader something new",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1072,
+          "output": 170,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-06::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-06",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Assistant citations:** Citations now appear as numbered badges beside the answer text they support, with source, heading, and snippet details available on hover or keyboard focus. Unmatched citations remain in a numbered Sources list, so you can still review them without an empty list appearing on answers that have no citations."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you can still review them without an empty list appearing on answers that have no citations",
+        "reason": "The item states what the reader can now rely on (unmatched citations remain reviewable, no empty list shown), which is information beyond restating slot 1, satisfying rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1100,
+          "output": 100,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-07::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-07",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Agent roster awareness:** The assistant now receives the active agent roster with each chat request. When you ask it to assign a ticket, you can rely on it to use an exact roster name or list valid agents instead of inventing or approximating one."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "you can rely on it to use an exact roster name or list valid agents instead of inventing or approximating one",
+        "reason": "The item names an outcome beyond restating slot 1 - what the reader can now rely on when assigning tickets - satisfying rule 1/2",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1080,
+          "output": 99,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-08::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-08",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Grounding checks:** Answers based on knowledge-base passages are now checked for grounding before the first response text is streamed. You can rely on at least one check after retrieval rather than depending on the assistant to perform it voluntarily."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on at least one check after retrieval rather than depending on the assistant to perform it voluntarily.",
+        "reason": "The item names an outcome (reliable guarantee of a check) that goes beyond restating slot 1's event, satisfying rule 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1079,
+          "output": 202,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-09::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-09",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Consistent visual styling:** Spacing, corner radius, elevation, semantic colors, and status and priority chip colors now use one shared design scale across the interface. You can rely on the same visual meaning and spacing patterns across the queue, board, ticket details, dashboard, and assistant."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on the same visual meaning and spacing patterns across the queue, board, ticket details, dashboard, and assistant.",
+        "reason": "The item names an outcome beyond slot 1: readers can rely on consistent meaning across specific surfaces, which is new information, satisfying rule 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1099,
+          "output": 127,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-10::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-10",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Frontend redesign release:** The complete M9 Frontend Redesign is now integrated into the v1.9.0 release, including Markdown answers, saved-view query parameters, dark mode, and the redesigned ticket and assistant interfaces. You can rely on these changes being available together from one release point."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on these changes being available together from one release point.",
+        "reason": "The item names an outcome (reliability of features being available together from a single release point) that goes beyond restating slot 1's list of features, satisfying decision procedure step 1 and 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1102,
+          "output": 109,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-11::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-11",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Board card titles:** Long board card titles could grow beyond two lines and stretch their cards or lane columns. Titles now stay within two lines with an ellipsis, so you no longer have to work around inconsistent card heights."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you no longer have to work around inconsistent card heights",
+        "reason": "The item states an outcome beyond restating slot 1 (titles clipped to two lines), satisfying rule 2's test that something new is told to the reader",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1077,
+          "output": 156,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-12::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-12",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Assistant composer layout:** The assistant send button could sit flush with or beyond the panel edge because the panel layout was not applied. The composer now stays inside the panel with its input and button aligned at narrow and wide widths, so you no longer have to adjust the window to use it."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you no longer have to adjust the window to use it",
+        "reason": "The outcome names something new the reader gains (no longer needing to resize the window), which goes beyond restating slot 1's layout fix, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1093,
+          "output": 110,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-13::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-13",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Ticket queue headers:** The Category header could overlap Due in the ticket queue and appear in a different case from neighboring headers. The columns now remain aligned with separate uppercase headers, so you no longer have to interpret the merged \u201cCategoryUE\u201d label."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so you no longer have to interpret the merged \u201cCategoryUE\u201d label",
+        "reason": "The stated outcome is merely the negation of slot 1's problem (overlapping/merged header), not new information, per rule 2",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1090,
+          "output": 184,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-14::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-14",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Assistant write confirmations:** The assistant now reports a change only after its tool call succeeds and no longer asks you to reconfirm a change you already requested. You can rely on completed-change messages reflecting a successful result while still being asked when a genuine decision or missing detail requires your input."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "You can rely on completed-change messages reflecting a successful result while still being asked when a genuine decision or missing detail requires your input.",
+        "reason": "The item names a concrete outcome the reader can rely on beyond a restatement of slot 1, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1097,
+          "output": 124,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-15::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-15",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Summary timestamps:** Ticket summaries could show timestamps in UTC instead of the user timezone used by the ticket detail view. Summary dates and times now use the configured user timezone and include its offset, so you no longer have to reconcile conflicting times."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you no longer have to reconcile conflicting times",
+        "reason": "The item names an outcome (no longer needing to reconcile conflicting times) that goes beyond restating slot 1's fix of timezone display, satisfying step 2.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1089,
+          "output": 106,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-16::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-16",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Knowledge-base search errors:** A failed knowledge-base search could be reported as a successful result and counted as healthy. Technical failures are now recorded as errors while an unavailable knowledge base remains a separate result, so you can rely on the dashboard error rate to reflect actual search failures."
+        },
+        "human": "?",
+        "verdict": "pass",
+        "quote": "so you can rely on the dashboard error rate to reflect actual search failures",
+        "reason": "The item names a concrete outcome (trust in the dashboard error rate) that goes beyond restating slot 1, satisfying step 2 of the decision procedure.",
+        "agree": true,
+        "quote_found": true,
+        "usage": {
+          "input": 1100,
+          "output": 112,
+          "cache_read": 1346
+        }
+      },
+      {
+        "id": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24::gpr2-17::C3",
+        "run": "gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24",
+        "item": "gpr2-17",
+        "axis": "C3",
+        "test_payload": {
+          "subject_label": "The entry",
+          "subject": "- **Semantic grounding:** Grounding checks could mark correct paraphrases, translations, and requested hedging as ungrounded because they did not repeat the source wording. Answers are now compared with retrieved passages by meaning when Voyage is available, with the previous word-overlap check as a fallback, so you no longer have to treat those wording differences as unsupported by default."
+        },
+        "human": "?",
+        "verdict": "fail",
+        "quote": "so you no longer have to treat those wording differences as unsupported by default",
+        "reason": "This restates the negation of slot 1 (correct paraphrases being marked ungrounded) rather than stating a new outcome, per rule 2",
+        "agree": false,
+        "quote_found": true,
+        "usage": {
+          "input": 1123,
+          "output": 89,
+          "cache_read": 1346
+        }
+      }
+    ]
+  }
+}

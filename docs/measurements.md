@@ -781,3 +781,59 @@ On 2026-09-16 the same audiences rendered in five structures across four models 
 - Product entries run to one sentence in 10 cases and two in 28, so ten carry no second slot.
 
 Sentences were counted by their closing punctuation, with references, code spans and bold labels set aside first.
+
+## 2026-09-24 - a bounded customer outcome halves the faithfulness flags, and C3 moves the other way, unresolved on two draws
+
+Not a turn in the sense of `docs/using-the-pipeline.md`, and not comparable with any section above: another release, another rendering model, one axis, two draws a side.
+It is recorded because a prompt change was judged, and a judged change belongs here.
+
+**What changed in Chartula.** goldbarth/chartula#252, merged as `2aded1c`; the draws were rendered from its branch commit `eb5131e`.
+The customer format bounds its outcome by the facts: a limit the facts name is carried into the outcome, a model instruction is stated as what the product tells the model, and something the reader "no longer has to do" is named only when the facts say they had to do it.
+The baseline is the commit before it, `562965b`, which keeps the reason in each thorough-check flag and touches no customer prompt text.
+Prompt hashes: `sha256:a642c29…` before, `sha256:1846724…` after.
+
+**What was rendered.** `goldbarth/ServiceDeskLite` `v1.9.0` with `--since 675555a7` (the commit of `v1.7.0`), 19 commits, 18 facts, so that the case holds about twenty changes.
+`gpt-5.6-sol` renders and checks, thinking disabled, `openai-compatible`, `--no-publish`.
+Three draws before the change and four after; each draw's token counts are in its run record in that clone's `chartula-runs/`, and the renders were not priced.
+
+The three baseline texts were overwritten by the next render and recovered from the editor's local history.
+Each was matched to its run record by prompt hash and by the flagged claims found in its text: all 33, two of them only once the label's bold and a capital letter were set aside.
+The published customer pages were not recovered, so no run here was imported with `--page`, before or after, and B2 was not judged.
+One draw after the change, `133112`, lost its text the same way; its run record is complete, so it counts for the flags and not for C3.
+
+**What the change was aimed at: the thorough check's flags, from the run records.**
+
+| per draw | before, 3 draws | after, 4 draws |
+|---|---|---|
+| flags | 11 | 6.25 |
+| flags quoting the outcome ("rely on", "no longer have to", "so you can") | 5.7 | 1.75 |
+| #221 (a model instruction as a guarantee) | 3 of 3 draws | 1 of 4 |
+| #223 (the same) | 3 of 3 | 2 of 4 |
+| #237 and #244, which the change does not touch | 3 of 3 each | 3 of 4, 2 of 4 |
+
+The two untouched facts held, so the drop is not the check's own noise.
+Two facts recur after the change that did not before, #218 and #240, each in 3 of 4 draws against 1 of 3.
+
+**What it might have cost: C3, two draws a side.** The question was whether a bounded outcome loses outcomes.
+
+| pair | before | after | change | result files |
+|---|---|---|---|---|
+| run-1 | 2 of 17 | 5 of 17 | +3 | `labelled-C3-claude-sonnet-5-2026-09-24T144702.json`, `…T144759.json` |
+| run-2 | 2 of 17 | 3 of 17 | +1 | `…T144908.json`, `…T145042.json` |
+
+All four carry the digest `sha256:8c213cdc9828d107`, nothing unparsed, 17 entries in every rendering.
+Judged $0.27.
+
+**What the movement is worth.** C3 is out of the gate, so this is a direction; +3 is past the noise floor, +1 is not.
+The entries that moved:
+
+- The ticket-queue entry fails in all four.
+- The semantic-grounding entry failed in both draws before and passes in both after.
+- The frontend-release entry passed in both draws before and fails in both after, with an outcome sentence that differs between them in a word or two ("You can rely on these changes being available together from one release point").
+  That points at the judge rather than the change.
+- The command-palette entry fails in both draws after.
+  One draw before closed on "so you can use it without leaving the keyboard", which the fact supports ("keyboard-first", "Fully keyboard operable"); the other draw before closed on the keys alone and passed.
+- Two entries fail in one draw after only: the grounding-check entry, whose outcome now carries the force-once limit the new rule asks for, and a citations entry that closes on answers without citations staying unchanged.
+
+Whether the change or the draw moved the command-palette, grounding-check and citations entries cannot be told apart on two draws a side.
+Entries that close on the fault being gone, which the prompt forbids, passed C3.
