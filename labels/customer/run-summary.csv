@@ -10,3 +10,11 @@ sonnet-5-rules-repeat-out,?
 sonnet-5-customer-only-out,?
 sonnet-5-place-out,?
 sonnet-5-labels-out,?
+sonnet-5-fix-outcome-out,?
+sonnet-5-fix-outcome-v010-out,?
+gpt-5.6-sol-pre-prompt-change-baseline-run-1-2026-09-24,?
+gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24,?
+gpt-5.6-sol-pre-prompt-change-baseline-run-3-2026-09-24,?
+gpt-5.6-sol-post-prompt-change-baseline-run-1-2026-09-24,?
+gpt-5.6-sol-post-prompt-change-baseline-run-2-2026-09-24,?
+gpt-5.6-sol-post-prompt-change-baseline-run-3-2026-09-24,?

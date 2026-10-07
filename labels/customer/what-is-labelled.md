@@ -15,19 +15,27 @@ Process shared with every audience: [`../how-to-label.md`](../how-to-label.md).
 
 <!-- labels.py sync: runs labelled -->
 
-| run                        | items | shippable     |
-|----------------------------|-------|---------------|
-| sonnet-5-out               | 26    | not shippable |
-| opus-5-out                 | 25    | not shippable |
-| sonnet-5-no-thinking-out   | 2     | not shippable |
-| sonnet-5-format-out        | 20    | ?             |
-| sonnet-5-format-fm-out     | 20    | ?             |
-| sonnet-5-outcome-out       | 19    | ?             |
-| sonnet-5-rules-out         | 24    | ?             |
-| sonnet-5-rules-repeat-out  | 25    | ?             |
-| sonnet-5-customer-only-out | 25    | ?             |
-| sonnet-5-place-out         | 19    | ?             |
-| sonnet-5-labels-out        | 24    | ?             |
+| run                                                      | items | shippable     |
+|----------------------------------------------------------|-------|---------------|
+| sonnet-5-out                                             | 26    | not shippable |
+| opus-5-out                                               | 25    | not shippable |
+| sonnet-5-no-thinking-out                                 | 2     | not shippable |
+| sonnet-5-format-out                                      | 20    | ?             |
+| sonnet-5-format-fm-out                                   | 20    | ?             |
+| sonnet-5-outcome-out                                     | 19    | ?             |
+| sonnet-5-rules-out                                       | 24    | ?             |
+| sonnet-5-rules-repeat-out                                | 25    | ?             |
+| sonnet-5-customer-only-out                               | 25    | ?             |
+| sonnet-5-place-out                                       | 19    | ?             |
+| sonnet-5-labels-out                                      | 24    | ?             |
+| sonnet-5-fix-outcome-out                                 | 32    | ?             |
+| sonnet-5-fix-outcome-v010-out                            | 19    | ?             |
+| gpt-5.6-sol-pre-prompt-change-baseline-run-1-2026-09-24  | 17    | ?             |
+| gpt-5.6-sol-pre-prompt-change-baseline-run-2-2026-09-24  | 17    | ?             |
+| gpt-5.6-sol-pre-prompt-change-baseline-run-3-2026-09-24  | 17    | ?             |
+| gpt-5.6-sol-post-prompt-change-baseline-run-1-2026-09-24 | 17    | ?             |
+| gpt-5.6-sol-post-prompt-change-baseline-run-2-2026-09-24 | 17    | ?             |
+| gpt-5.6-sol-post-prompt-change-baseline-run-3-2026-09-24 | 17    | ?             |
 
 <!-- labels.py sync: end -->
 
