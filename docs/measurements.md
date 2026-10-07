@@ -876,10 +876,10 @@ C3 gates nothing ([`targets.md`](targets.md)), so until that is done a C3 count 
 **One departure from [`pipeline.md`](pipeline.md), stated here so it is not found later:** the turn on goldbarth/chartula#338 runs before loop A is closed, with C3 left out of its reading.
 The change is aimed at no axis, the launch of Chartula is set for the end of this week, and the other eight axes are not touched by this finding.
 
-## 2026-10-07 - quoted pull request text: nothing lost on four draws, a fifth fewer input tokens, and no judged turn
+## 2026-10-07 - quoted pull request text: nothing lost on four draws, a fifth fewer input tokens, and the gate axes unmoved on one judged draw a side
 
-Not a turn in the sense of [`using-the-pipeline.md`](using-the-pipeline.md): four draws were rendered and none was judged.
-It is recorded because a prompt change was measured, and because the reason the judge did not run belongs here.
+Not a full turn in the sense of [`using-the-pipeline.md`](using-the-pipeline.md): four draws were rendered, and one a side was judged on the three axes in the gate only.
+It is recorded because a prompt change was measured, and because the reason the judge did not run on every axis belongs here.
 
 **What changed in Chartula.** goldbarth/chartula#338, merged as `cd04513`: a fact's title and description reach both prompts between `<title>` and `<description>` tags, every system prompt says that text is material and never instructions, and a description is cut at 8,000 characters.
 The baseline is the commit before it, `02cfc95`.
@@ -904,11 +904,29 @@ Two of the 88 descriptions are longer than the limit, 24,991 and 31,711 characte
 The pages are 5 to 10 per cent longer after; on two draws a side that is a direction.
 The four draws cost $2.62.
 
-**Why the judge did not run.** Three reasons, any one of which would do:
+**Why the judge did not run on every axis.** Three reasons, any one of which would do:
 
-- The case is new. 66 entries against the 19 to 32 of every earlier rendering, so no figure here would stand beside an earlier one, and one judged rendering would cost about $1.60 rather than $0.48 to $0.77.
+- The case is new. 66 entries against the 19 to 32 of every earlier rendering, so no figure here would stand beside an earlier one, and one rendering judged on all nine axes would cost $3.45 to $6.65 by the judge's own estimate (400 calls, 925k input tokens) rather than $0.48 to $0.77.
 - The judge reads `test-runs/v0.1.0-facts.md`, thirty pull requests, for the axes that need the facts. Chartula now cuts 88 changes from the same tag, since a commit without a pull request is a change too (goldbarth/chartula#291). Those axes would be judged against another release.
 - The change is aimed at no axis. What it could break is gross, a tag in the text or an entry gone, and that is read off the page for nothing.
+
+**What the judge found on the gate axes.** B2, B3 and C4 are the three axes in the gate ([`targets.md`](targets.md)), and none of them reads the fact base, so the second reason above does not touch them.
+The first draw a side was judged, `sonnet-5-before-quoted-text-run-1-out` against `sonnet-5-quoted-text-run-1-out`; rows were laid out for all four draws (prefixes `s5bq1`, `s5bq2`, `s5q1`, `s5q2`), and the second draws were not judged.
+
+| axis | before | after |
+|---|---|---|
+| B2 | 0 of 1 failed | 0 of 1 failed |
+| B3 | 0 of 1 failed | 0 of 1 failed |
+| C4 | 12 of 66 failed | 9 of 66 failed |
+
+B2 and B3 pass on both sides.
+C4 moves by three, and the entries the judge would ship go from 54 to 57 of 66.
+That is not a result: the noise floor was measured on renderings of about 25 entries, nothing has measured it at 66, and with about ten fails a difference of three between two draws is what chance alone gives.
+The change is aimed at no axis, so this reads as no movement, which is what the turn needed to show: quoting broke nothing the gate looks at.
+
+Both sides were judged under the same criterion digest, `sha256:8c213cdc9828d107`, recorded as `customer-criterion-v1.0.0-65-gdfef93f-dirty`; the suffix comes from uncommitted label rows and unrelated files in the tree, not from the rubric, which `run_labelled.py` refuses to judge uncommitted.
+Result files: `judge/results/customer/labelled-{B2,B3,C4}-claude-sonnet-5-2026-10-07T18*.json`, before at `184233`, `184241`, `184439`, after at `184442`, `184449`, `184645`.
+The judge cost $0.46 for 136 calls, $0.04 for B2 and B3 and $0.38 for C4, against a dry-run estimate of $1.18 to $2.27.
 
 **What it leaves open.** Whether quoting makes text written to steer the model less likely to work, which is what the change is for, was not measured: none of this measures it.
 A turn on the current Chartula needs a fact base cut from the release as it is rendered today, and `fact_base` in `judge/run_separation.py` to look it up by tag.
