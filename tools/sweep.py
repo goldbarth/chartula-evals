@@ -4,6 +4,8 @@
     python3 tools/sweep.py sweeps/servicedesklite-v1.9.0.json --dry-run
     python3 tools/sweep.py sweeps/servicedesklite-v1.9.0.json
     python3 tools/sweep.py sweeps/servicedesklite-v1.9.0.json --only sol-disabled
+    python3 tools/sweep.py sweeps/cmp-small-chartula-preview5.json --baseline
+    python3 tools/sweep.py sweeps/cmp-small-chartula-preview5.json --repetitions 1
 
 A plan names a clone, the `chartula generate` arguments, how many repetitions, and
 the cells: each cell is a set of `Chartula__...` environment variables. Chartula
@@ -29,10 +31,38 @@ again. A run is finished when its `sweep-run.json` exists and does not say
 `failed`; a failed run is tried again, and its folder is kept as
 `run-<n>.failed-<time>`.
 
+**A text Chartula refused is a result, not a failure.** When every model call was
+answered and Chartula still did not render an audience (the answer left out a
+fact, or was cut off), the run is `incomplete`: it is finished and is not tried
+again. Trying until the model gets through would keep the draws that worked and
+lose how often it does not. Only a run whose calls failed, or that left no record,
+is `failed` and tried again.
+
 **The record is checked against the cell.** The run record's provenance says
 which model, thinking, check model and depth the run actually used. A cell whose
 record says otherwise is marked `mismatch`, because a figure read from it would
 belong to another cell.
+
+**The facts are checked against the plan's other runs.** A pull request is read
+from GitHub on every run, so a description edited between two runs gives the
+second one other facts. The first finished run of a plan sets the reference
+(`sweeps/<plan>/facts.sha256`, a hash of the record's `facts`), and a run whose
+facts differ is marked `mismatch`.
+
+**A baseline is taken before anything is spent.** `--baseline` runs
+`chartula preview` on the plan's release, which makes no model call, and keeps its
+output in `sweeps/<plan>/_baseline/` together with the clone's commit, its
+`chartula.yaml` and the tool version. A sweep that finds a baseline refuses to
+start when the clone or its configuration has changed since, and marks a run
+`mismatch` when its record counts another release than the preview did. A plan
+with `"requireBaseline": true` does not start without one.
+
+**An optional cell runs only when it is named.** A cell with `"optional": true` is
+left out unless `--only` names it, so a block that depends on the budget left
+cannot be spent by starting the plan as a whole.
+
+**`--repetitions N` stops after repetition N**, so a pilot is the plan's first
+repetition rather than runs beside it.
 
 The thorough check shares the rendering's provider and endpoint; only its model
 and thinking are its own (`ThoroughCheckModel` in Chartula). A cell that renders
@@ -44,9 +74,11 @@ This makes no model call itself, so it runs on a plain `python3`.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import itertools
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -74,6 +106,16 @@ PROVENANCE = {
 # What one run leaves in the clone, besides its run record.
 OUTPUTS = ["changelog.json", "CHANGELOG.md"]
 
+# The two names Chartula reads its configuration from.
+CONFIG_FILES = ["chartula.yaml", "chartula.yml"]
+
+# The size of the release as `chartula preview` prints it, and as a run record counts it.
+RELEASE_LINE = re.compile(
+    r"^Release: ([\d,]+) commits?, ([\d,]+) pull requests?, ([\d,]+) facts? "
+    r"\(([\d,]+) with a description, ([\d,]+) characters\)", re.MULTILINE)
+RELEASE_FIELDS = ["commits", "pullRequests", "facts", "factsWithDescription", "descriptionCharacters"]
+PROMPT_LINE = re.compile(r"^\s+(\w+)\s+\d+ rephrasing calls?, ([\d,]+) characters of prompt", re.MULTILINE)
+
 
 def cells(plan: dict) -> list[dict]:
     """The plan's cells in order: listed ones as written, a grid as its product.
@@ -87,9 +129,11 @@ def cells(plan: dict) -> list[dict]:
                 # Chartula__Faithfulness__Model is {faithfulness_model} in a name template,
                 # so a render model and a check model in one grid stay apart.
                 name = entry["name"].format(**{placeholder(k): v for k, v in zip(keys, values)})
-                out.setdefault(name, {"name": name, "env": env, "note": entry.get("note")})
+                out.setdefault(name, {"name": name, "env": env, "note": entry.get("note"),
+                                      "optional": entry.get("optional", False)})
         else:
-            out.setdefault(entry["name"], {"name": entry["name"], "env": entry["env"], "note": entry.get("note")})
+            out.setdefault(entry["name"], {"name": entry["name"], "env": entry["env"], "note": entry.get("note"),
+                                           "optional": entry.get("optional", False)})
     for cell in out.values():
         bad = [k for k in cell["env"] if not k.startswith(PREFIX)]
         if bad:
@@ -177,12 +221,100 @@ def mismatches(record: Path | None, cell_env: dict, plan_env: dict) -> list[str]
     return out
 
 
-def key_suffix() -> str | None:
-    """The last four characters of OPENAI_API_KEY, the part the provider's key list shows.
+def refused(record: Path | None) -> list[str]:
+    """The audiences Chartula did not render although every model call was answered:
+    the model's own result, as opposed to a call that failed."""
+    if record is None:
+        return []
+    data = json.loads(record.read_text(encoding="utf-8"))
+    metrics = data.get("metrics", {})
+    if any(metrics.get(phase, {}).get("failedCalls") for phase in ("rephrase", "faithfulnessCheck")):
+        return []
+    return [a["audience"] for a in data.get("audiences", []) if not a.get("rendered")]
+
+
+def key_suffix(variable: str = "OPENAI_API_KEY") -> str | None:
+    """The last four characters of a provider's key, the part the provider's key list shows.
     Which key a run spent on is otherwise known only from memory, and the usage
     dashboard splits by key; four characters name the key without disclosing it."""
-    key = os.environ.get("OPENAI_API_KEY")
+    key = os.environ.get(variable)
     return f"...{key[-4:]}" if key else None
+
+
+def git(clone: Path, *args: str) -> str:
+    return subprocess.run(["git", "-C", str(clone), *args], capture_output=True, text=True, check=True).stdout.strip()
+
+
+def clone_state(clone: Path) -> dict:
+    """What a run reads from the clone besides the release: the commit it stands on and
+    its configuration. Two runs compare only when both are the same."""
+    config = {n: hashlib.sha256((clone / n).read_bytes()).hexdigest() for n in CONFIG_FILES if (clone / n).exists()}
+    return {"cloneHead": git(clone, "rev-parse", "HEAD"), "config": config}
+
+
+def facts_hash(record: Path) -> str | None:
+    """A hash of the record's facts, over a form that does not depend on key order."""
+    facts = json.loads(record.read_text(encoding="utf-8")).get("facts")
+    if facts is None:
+        return None
+    return hashlib.sha256(json.dumps(facts, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def baseline(plan: dict, clone: Path, command: list[str], binary: str, out_dir: Path) -> None:
+    """Run `chartula preview` on the plan's release and keep what it found. No model call."""
+    preview = [command[0], "preview", *[a for a in command[2:] if a != "--no-publish"], "--plain"]
+    env = {k: v for k, v in os.environ.items() if not k.startswith(PREFIX)}
+    env.update({k: str(v) for k, v in plan.get("env", {}).items()})
+    result = subprocess.run(preview, cwd=clone, env=env, capture_output=True, text=True)
+    text = result.stdout + result.stderr
+    target = out_dir / "_baseline"
+    target.mkdir(parents=True, exist_ok=True)
+    (target / "preview.txt").write_text(text, encoding="utf-8")
+    release = RELEASE_LINE.search(text)
+    if result.returncode != 0 or release is None:
+        sys.exit(f"{' '.join(preview)} did not print a release (exit {result.returncode}); see {target / 'preview.txt'}")
+
+    number = lambda s: int(s.replace(",", ""))  # noqa: E731
+    found = {
+        "recordedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "command": preview,
+        "chartula": binary,
+        "toolVersion": subprocess.run([command[0], "--version"], capture_output=True, text=True).stdout.strip(),
+        "clone": str(clone),
+        **clone_state(clone),
+        "tagCommit": git(clone, "rev-parse", f"{plan['tag']}^{{commit}}"),
+        "release": dict(zip(RELEASE_FIELDS, map(number, release.groups()))),
+        "promptCharacters": {a: number(n) for a, n in PROMPT_LINE.findall(text)},
+        # From the release line on: the header above it names the model and the keys of this shell.
+        "previewSha256": hashlib.sha256(text[release.start():].encode("utf-8")).hexdigest(),
+    }
+    (target / "baseline.json").write_text(json.dumps(found, indent=2) + "\n", encoding="utf-8")
+    print(f"baseline  {target}/baseline.json")
+    print(f"  {found['toolVersion']}, clone at {found['cloneHead'][:9]}, config {found['config'] or 'none'}")
+    print(f"  {release.group(0)}")
+    for audience, characters in found["promptCharacters"].items():
+        print(f"  {audience}: {characters:,} characters of prompt")
+
+
+def read_baseline(out_dir: Path) -> dict | None:
+    path = out_dir / "_baseline" / "baseline.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+def release_mismatches(record: Path | None, base: dict | None, reference: Path) -> tuple[list[str], str | None]:
+    """Whether this run read the release the plan's other runs read. Returns the
+    differences and the hash of this run's facts."""
+    if record is None:
+        return [], None
+    out = []
+    counted = json.loads(record.read_text(encoding="utf-8")).get("metrics", {}).get("release", {})
+    for field in RELEASE_FIELDS if base else []:
+        if counted.get(field) != base["release"][field]:
+            out.append(f"release.{field}: the baseline counted {base['release'][field]}, this run {counted.get(field)}")
+    facts = facts_hash(record)
+    if facts is not None and reference.exists() and reference.read_text(encoding="utf-8").strip() != facts:
+        out.append(f"facts: differ from the plan's first finished run ({reference.name})")
+    return out, facts
 
 
 def main() -> None:
@@ -190,6 +322,9 @@ def main() -> None:
     parser.add_argument("plan", type=Path, help="a sweep plan, see sweeps/")
     parser.add_argument("--dry-run", action="store_true", help="list the runs, run nothing")
     parser.add_argument("--only", action="append", help="only this cell; may be given more than once")
+    parser.add_argument("--repetitions", type=int, help="stop after this repetition; default: every one the plan asks for")
+    parser.add_argument("--baseline", action="store_true",
+                        help="run `chartula preview` on the release and keep it; no model call, then stop")
     args = parser.parse_args()
 
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
@@ -197,14 +332,16 @@ def main() -> None:
     tag = plan["tag"]
     command = [plan.get("chartula", "chartula"), *plan["args"]]
     out_dir = SWEEPS / args.plan.stem
-    todo = [c for c in cells(plan) if not args.only or c["name"] in args.only]
+    todo = [c for c in cells(plan) if (c["name"] in args.only if args.only else not c["optional"])]
+    left_out = [c["name"] for c in cells(plan) if c["optional"] and c not in todo]
     if args.only and len(todo) != len(set(args.only)):
         known = {c["name"] for c in cells(plan)}
         sys.exit(f"no such cell: {', '.join(sorted(set(args.only) - known))}")
 
     binary = shutil.which(command[0])
-    key = key_suffix()
-    runs = [(n, c) for n in range(1, plan["repetitions"] + 1) for c in todo]
+    key, anthropic_key = key_suffix(), key_suffix("ANTHROPIC_API_KEY")
+    repetitions = min(args.repetitions or plan["repetitions"], plan["repetitions"])
+    runs = [(n, c) for n in range(1, repetitions + 1) for c in todo]
     pending = [(n, c) for n, c in runs if not done(out_dir / c["name"] / f"run-{n}")]
 
     print(f"plan      {args.plan}")
@@ -212,10 +349,16 @@ def main() -> None:
     print(f"chartula  {binary or 'NOT FOUND: ' + command[0]}")
     print(f"command   {' '.join(command)}")
     print(f"openai    {key or 'OPENAI_API_KEY not set'}")
-    print(f"cells     {len(todo)}, repetitions {plan['repetitions']}: {len(runs)} runs, {len(pending)} not done")
+    print(f"anthropic {anthropic_key or 'ANTHROPIC_API_KEY not set'}")
+    base = read_baseline(out_dir)
+    print(f"baseline  {'taken ' + base['recordedAt'] if base else 'none'}")
+    of = f" of {plan['repetitions']}" if repetitions != plan["repetitions"] else ""
+    print(f"cells     {len(todo)}, repetitions {repetitions}{of}: {len(runs)} runs, {len(pending)} not done")
     for cell in todo:
         note = f"   ({cell['note']})" if cell.get("note") else ""
         print(f"  {cell['name']}{note}")
+    for name in left_out:
+        print(f"  left out, optional: {name}")
 
     if args.dry_run:
         return
@@ -223,6 +366,17 @@ def main() -> None:
         sys.exit(f"{command[0]} is not on PATH")
     if not (clone / ".git").exists():
         sys.exit(f"{clone} is not a git checkout")
+    if args.baseline:
+        baseline(plan, clone, command, binary, out_dir)
+        return
+    if base is None and plan.get("requireBaseline"):
+        sys.exit(f"{args.plan} asks for a baseline and has none; take it with --baseline first, it costs no tokens")
+    if base is not None:
+        now = clone_state(clone)
+        changed = [k for k in now if now[k] != base[k]]
+        if changed:
+            sys.exit(f"{clone} is not what the baseline was taken on: {', '.join(changed)} changed.\n"
+                     "Put the clone back, or take the baseline again with --baseline.")
     left = leftovers(clone, tag)
     if left:
         sys.exit(f"{clone} still holds the outputs of an earlier run: {', '.join(left)}.\n"
@@ -245,23 +399,33 @@ def main() -> None:
 
         record = collect(clone, tag, target, started)
         problems = mismatches(record, cell["env"], plan.get("env", {}))
+        reference = out_dir / "facts.sha256"
+        differences, facts = release_mismatches(record, base, reference)
+        problems += differences
+        if code == 0 and facts is not None and not reference.exists():
+            reference.write_text(facts + "\n", encoding="utf-8")
         version = None
         if record is not None:
             version = json.loads(record.read_text(encoding="utf-8")).get("provenance", {}).get("toolVersion")
             versions.add(version)
 
-        status = "failed" if code != 0 else "mismatch" if problems else "ok"
+        not_rendered = refused(record)
+        status = ("failed" if code != 0 and not not_rendered else "mismatch" if problems
+                  else "incomplete" if not_rendered else "ok")
         (target / "sweep-run.json").write_text(json.dumps({
             "cell": cell["name"],
             "repetition": n,
             "status": status,
             "exitCode": code,
             "mismatches": problems,
+            "notRendered": not_rendered,
             "settings": {**plan.get("env", {}), **cell["env"]},
             "command": command,
             "chartula": binary,
             "toolVersion": version,
+            "factsSha256": facts,
             "openaiKey": key,
+            "anthropicKey": anthropic_key,
             "startedAt": datetime.fromtimestamp(started, timezone.utc).isoformat(timespec="seconds"),
             "seconds": round(finished - started, 1),
         }, indent=2) + "\n", encoding="utf-8")

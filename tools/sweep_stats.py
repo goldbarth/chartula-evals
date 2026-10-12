@@ -55,6 +55,10 @@ def price(prices: dict, model: str, usage: dict) -> tuple[float, float]:
     if model not in prices:
         sys.exit(f"{model} is not in the price table")
     p = prices[model]
+    # A model priced by prompt length pays `over` for a request past the threshold. The record
+    # holds a phase's total, not each call, so the average call decides.
+    if "over" in p and usage["inputTokens"] / max(usage.get("calls", 1), 1) > p["over"]["tokens"]:
+        p = p["over"]
     total, cached, out = usage["inputTokens"], usage.get("cachedInputTokens", 0), usage["outputTokens"]
     billed = ((total - cached) * p["input"] + cached * p["cachedInput"] + out * p["output"]) / PER
     uncached = (total * p["input"] + out * p["output"]) / PER
