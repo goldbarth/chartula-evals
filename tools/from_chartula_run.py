@@ -2,11 +2,18 @@
 """Turn a Chartula run's `changelog.json` into the files this harness reads.
 
     python3 tools/from_chartula_run.py <changelog.json> --run sonnet-5-format-out
-    python3 tools/from_chartula_run.py <changelog.json> --run <name> --facts
+    python3 tools/from_chartula_run.py <changelog.json> --run <name> --facts \
+        --record <chartula-runs/...json>
 
-A run of `chartula generate --no-publish` writes one file holding both halves of
-a case: the fact base under `changes`, and the rendered text per audience under
-`renderings`. Neither is in the shape the judge reads, so this writes them out.
+A run of `chartula generate --no-publish` writes the two halves of a case: the
+rendered text per audience under `renderings` in `changelog.json`, and the fact
+base it was rendered from under `facts` in its run record in `chartula-runs/`.
+Neither is in the shape the judge reads, so this writes them out.
+
+`changelog.json` carried the fact base itself up to its schema version 1. From
+version 2 on it leaves the pull request descriptions out, since it is meant to be
+published (chartula#260), and the facts come from the run record, which keeps
+them whole. A version 1 file still works on its own.
 
 **The rendering** goes to `test-runs/{run}.md`, split into the `--- Customer ---`
 sections `run_labelled.py` looks for.
@@ -69,21 +76,39 @@ def rendering(data: dict, run: str, page: Path | None = None) -> str:
     return "\n".join(out).rstrip() + "\n"
 
 
-def facts(data: dict) -> str:
+def fact_list(data: dict, record: dict | None) -> list[dict]:
+    """The changes with their descriptions: from the run record when there is one,
+    from a version 1 `changelog.json` otherwise. A version 2 file has no
+    descriptions, and a fact base without them would judge every rendering against
+    titles alone, so it is refused rather than written."""
+    if record is not None:
+        if record.get("tag") != data.get("tag"):
+            sys.exit(f"the run record is for {record.get('tag')}, the changelog.json for {data.get('tag')}")
+        if record.get("facts") is None:
+            sys.exit("the run record has no `facts`: it was written by a Chartula before run records kept them")
+        return record["facts"]
+    if data.get("schemaVersion") == 1:
+        return data.get("changes") or []
+    sys.exit(
+        "this changelog.json carries no descriptions (schemaVersion 2).\n"
+        "  Pass --record with the run record the same run wrote in chartula-runs/."
+    )
+
+
+def facts(data: dict, changes: list[dict]) -> str:
     """The fact base, in the shape the one already in the repository has.
 
     One section per change, `## #<number> <title>`, then the description it was
     merged with. Nothing here says whether a change is user-visible."""
     tag = data.get("tag", "an unnamed tag")
-    changes = data.get("changes") or []
     out = [
         f"# Fact base: Chartula {tag}",
         "",
         f"The {len(changes)} changes the release was cut from, each with the title and the",
         "description it was merged with.",
         "",
-        f"Written by `tools/from_chartula_run.py` from a run's `changelog.json`, which is",
-        "Chartula's own record of what it was given. Not read from the repository by hand.",
+        f"Written by `tools/from_chartula_run.py` from a Chartula run's own record of what",
+        "it was given. Not read from the repository by hand.",
         "",
         "Nothing here marks a change as user-visible or internal. Chartula decides that",
         "per change and records it, and it is dropped on the way in: that is the question",
@@ -129,6 +154,12 @@ def main() -> None:
         help="the run's release-<tag>.md, used as the customer section instead of "
              "the changelog.json field, so the judge sees the opening as published",
     )
+    parser.add_argument(
+        "--record",
+        type=Path,
+        help="the run record the same run wrote in chartula-runs/; the fact base is read "
+             "from its `facts`, which a changelog.json of schema version 2 no longer carries",
+    )
     parser.add_argument("--force", action="store_true", help="overwrite a file that exists")
     args = parser.parse_args()
 
@@ -137,20 +168,29 @@ def main() -> None:
     data = json.loads(args.changelog.read_text(encoding="utf-8"))
 
     version = data.get("schemaVersion")
-    if version != 1:
+    if version not in (1, 2):
         print(
-            f"  schemaVersion is {version}, not 1. The fields this reads may have moved;\n"
+            f"  schemaVersion is {version}, not 1 or 2. The fields this reads may have moved;\n"
             "  check docs/changelog-json.md in Chartula before trusting the output.",
             file=sys.stderr,
         )
 
+    record = None
+    if args.record is not None:
+        if not args.record.exists():
+            raise SystemExit(f"no such file: {args.record}")
+        record = json.loads(args.record.read_text(encoding="utf-8"))
+
     if args.page is not None and not args.page.exists():
         raise SystemExit(f"no such file: {args.page}")
+
+    # Before anything is written, so a refused fact base leaves no half a case behind.
+    changes = fact_list(data, record) if args.facts else None
 
     write(RUNS / f"{args.run}.md", rendering(data, args.run, args.page), args.force)
 
     if args.facts:
-        write(RUNS / f"{data.get('tag', 'untagged')}-facts.md", facts(data), args.force)
+        write(RUNS / f"{data.get('tag', 'untagged')}-facts.md", facts(data, changes), args.force)
     else:
         existing = RUNS / f"{data.get('tag', 'untagged')}-facts.md"
         where = existing.relative_to(REPO) if existing.exists() else "none in the repository"
