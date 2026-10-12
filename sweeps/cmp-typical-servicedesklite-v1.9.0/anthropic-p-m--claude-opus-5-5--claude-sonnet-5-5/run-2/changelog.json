@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 2,
+  "tag": "v1.9.0",
+  "changes": [
+    {
+      "title": "feat(web): inline citation badges anchored in the assistant Markdown answer (#243)",
+      "number": 245,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/245",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        243
+      ],
+      "labels": []
+    },
+    {
+      "title": "release: v1.9.0 - integrate M9 Frontend Redesign into main",
+      "number": 244,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/244",
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(web): wrap board card title so -webkit-line-clamp is not blockified (#216)",
+      "number": 240,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/240",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        216
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(web): keep the assistant composer send button inside its panel (#215)",
+      "number": 239,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/239",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        215
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(web): stop the Category header overlapping Due in the ticket queue (#214, #228)",
+      "number": 238,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/238",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        214,
+        228
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): primary action button from SuggestedNextSteps (#211)",
+      "number": 237,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/237",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        211
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): command palette on Ctrl+K (#210)",
+      "number": 236,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/236",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        210
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): optimistic status updates with rollback on board and detail (#209)",
+      "number": 235,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/235",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        209
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): inline status and assignee edit instead of dialogs (#208)",
+      "number": 234,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/234",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        208
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): inline citation badges with hover preview in the assistant chat (#207)",
+      "number": 233,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/233",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        207
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs(repo): add v1.8.0 release notes",
+      "number": 224,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/224",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(assistant): write-honesty and confirmation policy in the system prompt (#190, #195)",
+      "number": 223,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/223",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        190,
+        195
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(api): render summary timestamps in the user timezone (#194)",
+      "number": 222,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/222",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        194
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(assistant): inject the agent roster into the system prompt (#193)",
+      "number": 221,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/221",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        193
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(api): report a failed knowledge-base search as an error (#191)",
+      "number": 220,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/220",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        191
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(assistant): score grounding by meaning, not word overlap (#188)",
+      "number": 219,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/219",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        188
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(assistant): enforce the grounding check via tool_choice (#187)",
+      "number": 218,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/218",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        187
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): design tokens - one scale for spacing, radius, elevation, and semantic color (#202)",
+      "number": 213,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/213",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        202
+      ],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Changed\n\n- Integrate the full M9 Frontend Redesign milestone into `main` and add the v1.9.0 release notes in `docs/releases/v1.9.0.md`. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))\n\n### Added\n\n- Add inline `[n]` citation badges anchored in the sanitized Markdown assistant answer, with a hover/focus tooltip and unanchored citations kept in the sources list. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))\n- Add a primary action control in the ticket header driven by `SuggestedNextSteps`, now an `IReadOnlyList<SuggestedStep>` tagged with a `SuggestedActionKind`, with remaining steps in an overflow menu. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))\n- Add a keyboard-operable `CommandPalette` opened with `Ctrl/Cmd+K` on every page, offering navigation entries from `NavRegistry` and debounced, cancellable ticket search. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))\n- Apply ticket status changes optimistically on the board and detail view, rolling back on a rejected transition and showing a snackbar with the ProblemDetails `code`. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))\n- Replace `AssignTicketDialog.razor` and `ChangeStatusDialog.razor` with inline `MudMenu` popovers that change status and assignee without navigation or a modal. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))\n- Add inline citation badges with a hover and keyboard-focus tooltip to assistant chat answers, keeping a numbered sources list for unanchored citations. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\n- Inject the active agent roster into the chat system prompt so the assistant uses only valid agent names when assigning tickets. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))\n- Enforce a `check_grounding` call via `tool_choice` in `AgentLoop` once after knowledge-base passages are retrieved, before the answer streams. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))\n- Introduce `Theme/DesignTokens.cs` as the single source for palette, spacing, radius, elevation and semantic chip colours, and change `KpiCard.Accent` to the `KpiAccent` tone enum. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))\n\n### Fixed\n\n- Fix board card titles not clamping to two lines by wrapping the title in a `board-card__title-row` element. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))\n- Fix the assistant composer send button overflowing its panel by targeting the panel through `::deep .assistant-chat`. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))\n- Fix the `Category` header overlapping `Due` in the ticket queue by giving the column a fixed width and an uppercase label. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))\n- Add a chat system prompt policy that forbids claiming a change without a successful tool result and avoids needless re-confirmation of requested writes. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))\n- Render ticket summary timestamps in the `Anthropic:UserTimeZone` zone instead of UTC. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))\n- Report a failed `search_knowledge_base` call as an error result (`IsError: true`), distinct from the unavailable path. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))\n- Score grounding by semantic similarity with `SemanticGroundingEvaluator`, falling back to `LexicalGroundingEvaluator` when embeddings are unavailable or fail. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))"
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "claude-sonnet-5-5",
+    "checkThinking": "low"
+  }
+}

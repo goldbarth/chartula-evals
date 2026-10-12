@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-09T16:20:27+00:00",
+  "command": [
+    "chartula",
+    "preview",
+    "--tag",
+    "v0.1.0-preview.5",
+    "--repo",
+    "goldbarth/chartula",
+    "--yes",
+    "--plain"
+  ],
+  "chartula": "/home/goldbarth/.local/bin/chartula",
+  "toolVersion": "chartula 0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+  "clone": "/home/goldbarth/repos/chartula-sweep-cmp",
+  "cloneHead": "541842dfb1ab40a7bea084297f46a550b5927042",
+  "config": {
+    "chartula.yaml": "95aaf2502139c74830d9137c19ad54315fbeeb6b0fbecdac16f90bd16e36b6ae"
+  },
+  "tagCommit": "541842dfb1ab40a7bea084297f46a550b5927042",
+  "release": {
+    "commits": 8,
+    "pullRequests": 8,
+    "facts": 7,
+    "factsWithDescription": 7,
+    "descriptionCharacters": 20294
+  },
+  "promptCharacters": {
+    "technical": 21540,
+    "customer": 25605
+  },
+  "previewSha256": "1d0756d6ce5a95c8689055fe326e436baf5df1f1a89f1ce17f9301996ebcda2b"
+}

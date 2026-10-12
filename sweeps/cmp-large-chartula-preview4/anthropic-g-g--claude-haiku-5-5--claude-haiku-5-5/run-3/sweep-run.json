@@ -1,0 +1,34 @@
+{
+  "cell": "anthropic-g-g--claude-haiku-5-5--claude-haiku-5-5",
+  "repetition": 3,
+  "status": "ok",
+  "exitCode": 0,
+  "mismatches": [],
+  "notRendered": [],
+  "settings": {
+    "Chartula__Faithfulness__Thorough": "true",
+    "Chartula__FactBase__Depth": "title-and-description",
+    "Chartula__Llm__Provider": "anthropic",
+    "Chartula__Llm__Model": "claude-haiku-5-5",
+    "Chartula__Llm__Thinking": "disabled",
+    "Chartula__Faithfulness__Model": "claude-haiku-5-5",
+    "Chartula__Faithfulness__Thinking": "disabled"
+  },
+  "command": [
+    "chartula",
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v0.1.0-preview.4",
+    "--repo",
+    "goldbarth/chartula",
+    "--yes"
+  ],
+  "chartula": "/home/goldbarth/.local/bin/chartula",
+  "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+  "factsSha256": "b1bd2c40e8c273bb7ae229eb285c3e5bf8950fec7b5e7e8122333d5004601659",
+  "openaiKey": "...trcA",
+  "anthropicKey": "...LAAA",
+  "startedAt": "2026-10-09T19:15:57+00:00",
+  "seconds": 60.5
+}

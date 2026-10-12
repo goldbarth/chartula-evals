@@ -1,0 +1,56 @@
+Preview of v1.9.0
+No model calls, no files written, no publication
+
+Release: 19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+
+Facts (18):
+  #245     Feature: feat(web): inline citation badges anchored in the assistant Markdown answer (#243)
+           technical, customer
+  #244     Other: release: v1.9.0 - integrate M9 Frontend Redesign into main
+           technical, customer
+  #240     Fix: fix(web): wrap board card title so -webkit-line-clamp is not blockified (#216)
+           technical, customer
+  #239     Fix: fix(web): keep the assistant composer send button inside its panel (#215)
+           technical, customer
+  #238     Fix: fix(web): stop the Category header overlapping Due in the ticket queue (#214, #228)
+           technical, customer
+  #237     Feature: feat(web): primary action button from SuggestedNextSteps (#211)
+           technical, customer
+  #236     Feature: feat(web): command palette on Ctrl+K (#210)
+           technical, customer
+  #235     Feature: feat(web): optimistic status updates with rollback on board and detail (#209)
+           technical, customer
+  #234     Feature: feat(web): inline status and assignee edit instead of dialogs (#208)
+           technical, customer
+  #233     Feature: feat(web): inline citation badges with hover preview in the assistant chat (#207)
+           technical, customer
+  #224     Documentation: docs(repo): add v1.8.0 release notes
+           in no rendering
+  #223     Fix: fix(assistant): write-honesty and confirmation policy in the system prompt (#190, #195)
+           technical, customer
+  #222     Fix: fix(api): render summary timestamps in the user timezone (#194)
+           technical, customer
+  #221     Feature: feat(assistant): inject the agent roster into the system prompt (#193)
+           technical, customer
+  #220     Fix: fix(api): report a failed knowledge-base search as an error (#191)
+           technical, customer
+  #219     Fix: fix(assistant): score grounding by meaning, not word overlap (#188)
+           technical, customer
+  #218     Feature: feat(assistant): enforce the grounding check via tool_choice (#187)
+           technical, customer
+  #213     Feature: feat(web): design tokens - one scale for spacing, radius, elevation, and semantic color (#202)
+           technical, customer
+Dropped (1):
+  #217     test(assistant): guard that every tool description states when to call it (#186)
+           Internal is in filter.excludeCategories
+
+generate would make 4 model calls:
+  technical 1 rephrasing call, 44,286 characters of prompt, then 1 thorough check
+  customer  1 rephrasing call, 48,351 characters of prompt, then 1 thorough check
+  A thorough check sends the rendering along with the facts, so its size is known only once the rendering is.
+chartula preview
+Model:   anthropic at its default endpoint, unauthenticated, ANTHROPIC_API_KEY is not set
+         claude-sonnet-5, thinking provider-default
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after 675555a7, up to v1.9.0 (19 commits)
+Reading pull requests (19 commits)

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "tag": "v0.1.0-preview.5",
+  "changes": [
+    {
+      "title": "feat(cli): show a rendering in the terminal as text to read, not as Markdown source",
+      "number": 360,
+      "url": "https://github.com/goldbarth/chartula/pull/360",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        355
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(pipeline): mark the step of an audience that did not render as failed, and say what became of the release notes",
+      "number": 359,
+      "url": "https://github.com/goldbarth/chartula/pull/359",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        354
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): refuse a slip in --audience, refuse every argument alike, and close four small gaps in what a run says",
+      "number": 358,
+      "url": "https://github.com/goldbarth/chartula/pull/358",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        353
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(faithfulness): read a number with thousands separators as one number in the rule-based check",
+      "number": 357,
+      "url": "https://github.com/goldbarth/chartula/pull/357",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        350
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): fit the line of a running step to the terminal's width, and keep the indent of doctor's details",
+      "number": 356,
+      "url": "https://github.com/goldbarth/chartula/pull/356",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        349
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): put the spinner next to its label, and the header values on the column of the step labels",
+      "number": 352,
+      "url": "https://github.com/goldbarth/chartula/pull/352",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        351
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for 0.1.0-preview.4",
+      "number": 346,
+      "url": "https://github.com/goldbarth/chartula/pull/346",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Added\n\n- Render release summaries as formatted text on live terminals while preserving Markdown output for redirected output, CI and `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))\n- Move the running-step spinner to one space before its label without changing the positions of the label, count or elapsed time. ([#352](https://github.com/goldbarth/chartula/pull/352))\n\n### Fixed\n\n- Mark an audience’s rendering step as failed when it does not render, while continuing with the next audience. ([#359](https://github.com/goldbarth/chartula/pull/359))\n- Reject numeric audience values and empty list elements in `--audience`. ([#358](https://github.com/goldbarth/chartula/pull/358))\n- Treat numbers with thousands separators as single numbers in the rule-based faithfulness check, comparing them without commas. ([#357](https://github.com/goldbarth/chartula/pull/357))\n- Fit running-step progress lines to the current terminal width to prevent wrapping during redraws. ([#356](https://github.com/goldbarth/chartula/pull/356))",
+    "customer": "### What's New\n\n- **Terminal summaries:** You can now read release summaries in a live terminal as formatted text, with headings, bullets and a description above the entries rather than Markdown source. Redirected output, CI and `--plain` retain the original Markdown for copying or reading with a program.\n- **Progress layout:** The spinner now sits next to its step label in terminal output, and header values align with the step labels. When a step finishes, its label, count and time stay in the same columns.\n\n### Bug Fixes\n\n- **Failed audience reporting:** An audience that failed to render could show a completed step, and missing technical output could leave release notes unaccounted for. You can now distinguish failed rendering steps from completed ones and see why release notes were skipped when the technical rendering failed or was excluded.\n- **Command feedback:** Invalid `--audience` values could select an unintended audience, and rejected arguments gave inconsistent guidance. Invalid values are now rejected before a run header appears, with an error and a pointer to `chartula --help`; version guidance, failure summaries, colour help and GitHub rate-limit messages also explain their cases directly.\n- **Number checks:** The rule-based check could flag `8000` when the facts said `8,000`, yet accept an unsupported “8 retries.” It now compares numbers with and without thousands separators together, while treating comma-separated three-digit numbers without spaces, such as `100,200`, as one number.\n- **Narrow terminal output:** Running steps could wrap in narrow terminals and leave rows behind, while wrapped `doctor` details lost their indentation. When terminal width is available, progress lines fit as the window changes, and `doctor` details retain their indentation when there is enough room to wrap them."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "openai-compatible",
+    "model": "gpt-6.1-sol",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6.1-sol",
+    "checkThinking": "low"
+  }
+}

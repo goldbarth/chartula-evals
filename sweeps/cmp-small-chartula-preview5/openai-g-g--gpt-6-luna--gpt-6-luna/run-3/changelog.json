@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "tag": "v0.1.0-preview.5",
+  "changes": [
+    {
+      "title": "feat(cli): show a rendering in the terminal as text to read, not as Markdown source",
+      "number": 360,
+      "url": "https://github.com/goldbarth/chartula/pull/360",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        355
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(pipeline): mark the step of an audience that did not render as failed, and say what became of the release notes",
+      "number": 359,
+      "url": "https://github.com/goldbarth/chartula/pull/359",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        354
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): refuse a slip in --audience, refuse every argument alike, and close four small gaps in what a run says",
+      "number": 358,
+      "url": "https://github.com/goldbarth/chartula/pull/358",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        353
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(faithfulness): read a number with thousands separators as one number in the rule-based check",
+      "number": 357,
+      "url": "https://github.com/goldbarth/chartula/pull/357",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        350
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): fit the line of a running step to the terminal's width, and keep the indent of doctor's details",
+      "number": 356,
+      "url": "https://github.com/goldbarth/chartula/pull/356",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        349
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): put the spinner next to its label, and the header values on the column of the step labels",
+      "number": 352,
+      "url": "https://github.com/goldbarth/chartula/pull/352",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        351
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for 0.1.0-preview.4",
+      "number": 346,
+      "url": "https://github.com/goldbarth/chartula/pull/346",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Added\n\n- Render summaries as readable terminal text, with formatted headings, entries, labels, code, and links while preserving Markdown for redirected output and `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))\n- Align the spinner with its step label and pad header values and continuation lines to the same column. ([#352](https://github.com/goldbarth/chartula/pull/352))\n\n### Fixed\n\n- Mark an audience’s rendering step as failed when it does not render, and list release notes under `Skipped` when the technical rendering fails or is omitted. ([#359](https://github.com/goldbarth/chartula/pull/359))\n- Reject empty or numeric audience values, validate `--repo` before showing a run header, and show consistent guidance for refused arguments. Also correct the version, output spacing, help text, and rate-limit message. ([#358](https://github.com/goldbarth/chartula/pull/358))\n- Read numbers with thousands separators as a single value in the rule-based check, compare them without commas, and quote flagged numbers as written. ([#357](https://github.com/goldbarth/chartula/pull/357))\n- Fit running and finished step lines to the terminal width, and wrap `doctor` details between words while preserving their indent in terminal output. ([#356](https://github.com/goldbarth/chartula/pull/356))",
+    "customer": "### What's New\n\n- **Terminal summaries:** On a live terminal, release summaries show readable headings and bullets, with labels and breaking markers emphasized, code styled, and links shown as their text. This gives you a summary you can read without interpreting Markdown; redirected output, CI, and `--plain` keep the Markdown form.\n- **Progress display:** While a step runs in a terminal, its spinner appears next to its label, and the header values line up in a column. The step’s label, count, and time stay in place as its status changes.\n\n### Bug Fixes\n\n- **Failed audience reporting:** When an audience fails to render, its step is marked as failed, and a publishing run lists the release notes under `Skipped` with the reason. You can rely on the step status and summary to agree about what happened to the release notes.\n- **Command-line errors:** Invalid command-line arguments are refused before a run header appears, and each error points to `chartula --help`; `chartula version` identifies `chartula --version` as the command for the installed version. You can rely on the same guidance for every refused argument.\n- **Number checks:** The rule-based check reads numbers such as `8,000` as one number when comparing facts with a rendering. You can rely on the check not to flag a number supported by the facts solely because it uses thousands separators.\n- **Terminal line wrapping:** Running-step lines now fit the terminal width, and `doctor` details wrap between words while keeping their indent. You can rely on terminal output staying within the available width when it can be read; if the width cannot be read, running-step lines keep their previous form."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "openai-compatible",
+    "model": "gpt-6-luna",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6-luna",
+    "checkThinking": "disabled"
+  }
+}

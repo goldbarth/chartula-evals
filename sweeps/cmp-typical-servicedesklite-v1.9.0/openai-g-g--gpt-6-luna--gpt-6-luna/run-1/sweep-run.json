@@ -1,0 +1,37 @@
+{
+  "cell": "openai-g-g--gpt-6-luna--gpt-6-luna",
+  "repetition": 1,
+  "status": "ok",
+  "exitCode": 0,
+  "mismatches": [],
+  "notRendered": [],
+  "settings": {
+    "Chartula__Faithfulness__Thorough": "true",
+    "Chartula__FactBase__Depth": "title-and-description",
+    "Chartula__Llm__Provider": "openai-compatible",
+    "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+    "Chartula__Llm__Model": "gpt-6-luna",
+    "Chartula__Llm__Thinking": "disabled",
+    "Chartula__Faithfulness__Model": "gpt-6-luna",
+    "Chartula__Faithfulness__Thinking": "disabled"
+  },
+  "command": [
+    "chartula",
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v1.9.0",
+    "--since",
+    "675555a7",
+    "--repo",
+    "goldbarth/ServiceDeskLite",
+    "--yes"
+  ],
+  "chartula": "/home/goldbarth/.local/bin/chartula",
+  "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+  "factsSha256": "6f205eb77fde6a3ed8ed43047d1239ed2a52723c146ed6b39601dd12754041ac",
+  "openaiKey": "...trcA",
+  "anthropicKey": "...LAAA",
+  "startedAt": "2026-10-09T18:22:54+00:00",
+  "seconds": 31.2
+}

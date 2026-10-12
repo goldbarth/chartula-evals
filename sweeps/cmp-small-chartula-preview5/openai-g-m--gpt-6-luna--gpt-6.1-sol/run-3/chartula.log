@@ -1,0 +1,62 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6-luna, thinking disabled
+         thorough check: gpt-6.1-sol, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 1 in customer.
+
+Technical
+### Added
+
+- Render release summaries on live terminals as readable text, with formatted headings, bullets, labels, code, and links. Keep Markdown output unchanged when redirected, in CI, or with `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Align the spinner directly before its step label, keep completed and failed statuses in the same columns, and pad header values and continuation lines to a consistent column. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark an audience's rendering step as failed when that audience does not render, while continuing with subsequent audiences. List skipped release notes with the reason when publishing, including when the technical rendering fails or is excluded by `--audience`. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Reject malformed or numeric `--audience` values and validate `--repo` before printing a run header. Give all refused arguments consistent help guidance, clarify the `--version` command, and correct the specified output messages and spacing. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Read comma-separated thousands in the rule-based faithfulness check as one number, comparing values without separators and preserving the written form in findings. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit running-step lines to the terminal width while preserving whole status fields, and wrap `doctor` details between words with their indent on terminals. Keep plain output unwrapped. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release improves how command-line output presents release summaries, run progress, errors, and checks.
+
+### What's New
+
+- **Terminal summaries:** On a live terminal, release summaries show formatted headings, bullets, labels, code, and link text instead of Markdown source. You can read the description above the entries and rely on redirected output, CI, and `--plain` to keep the existing Markdown form.
+- **Run progress layout:** While a step runs, its spinner appears beside its label, and the header values line up in a column. The step labels keep their existing indent, and scripts can still find header values by their keys.
+
+### Bug Fixes
+
+- **Failed audience reporting:** When an audience fails to render, its step is marked as failed, and publishing runs list release notes under `Skipped` with the reason. You can rely on the step status and summary to agree, including when the technical audience is omitted.
+- **Command-line errors:** Invalid `--audience` values, including empty list entries and numbers, are refused before a run header appears, and refused arguments point to `chartula --help`. You can rely on invalid audience values not being accepted as a different audience.
+- **Number checks:** The rule-based check can flag an unsupported number as it appears in the rendering, including numbers written with thousands separators. You can rely on numbers such as `8,000` in the facts and `8000` in the rendering being compared as the same number.
+- **Terminal-width output:** On a terminal, running-step lines fit the available width, and `doctor` details wrap between words while keeping their indent. You can rely on long words remaining uncut and on plain output keeping `doctor` details unbroken.
+
+Flagged for review:
+  ! #359: "When an audience fails to render, its step is marked as failed, and publishing runs list release notes under `Skipped` with the reason." - The failed-step marking applies to any audience, but release notes are listed under `Skipped` when the technical rendering fails or the technical audience is omitted. The facts do not say that failure of any audience causes publishing runs to skip release notes.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 1 claim, 12,304 in / 246 out, 7.8 s (longest 5.3 s)
+    of which 0 in cached, 108 out reasoning
+    caught 1 claim the rule-based check missed, for 12,550 tokens in 2 calls
+  Rephrasing:       2 calls, 11,641 in / 702 out, 8.5 s (longest 5.1 s)
+    of which 11,635 in cached, 0 out reasoning
+  Total:            24,893 tokens in 19.6 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T184616Z-v0.1.0-preview.5.json

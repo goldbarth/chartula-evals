@@ -1,0 +1,63 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6-luna, thinking disabled
+         thorough check: gpt-6.1-sol, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 2 in customer.
+
+Technical
+### Added
+
+- Render release summaries in live terminals as formatted text, with headings, indented bullets, styled labels and code, and links shown as their text. Keep Markdown output unchanged when redirected or using `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Align the spinner immediately before its step label, keep the status columns fixed when a step finishes, and pad header values and continuation lines to a consistent column. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark an audience’s step as failed when its rendering fails, while continuing with later audiences. When publishing, list release notes under `Skipped` if the technical rendering failed or the technical audience was omitted. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Reject malformed audience lists and numeric audience values, validate `--repo` before starting a run, and give refused arguments consistent error guidance. Clarify the `--version`, `--plain`, and GitHub rate-limit messages, and separate the failure summary from the `Wrote:` list. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Read numbers with comma thousands separators as a single value in the rule-based faithfulness check, and compare them without the commas. Quote the number in findings as it appears in the rendering. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit running-step lines to the terminal width while preserving complete components and leaving the final column empty. Break long `doctor` details between words with their indent preserved in terminals, while leaving plain output unwrapped. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release improves the clarity of terminal output and the information shown during release runs.
+
+### What's New
+
+- **Terminal rendering:** On a live terminal, release summaries now show formatted headings, bullets, labels, code and links instead of Markdown source. This applies only to live terminal output, so copied, redirected and plain output remains unchanged; copy the Markdown from `CHANGELOG.md`.
+- **Progress display:** While a step runs in a terminal, its spinner now appears beside its label, and header values line up with their labels. The step positions stay fixed when a step finishes, so you can read progress without the status changing the layout.
+
+### Bug Fixes
+
+- **Failed audience status:** A rendering step now shows as failed when its audience does not render, even if the run continues with another audience. The summary also lists release notes under `Skipped` when publishing is enabled and the technical rendering failed or was left out, so you can see why the notes were not published.
+- **Command-line errors:** Invalid command-line arguments now receive the same help pointer, and a run header appears only after argument checks pass. You can rely on refused values being reported before a run starts, with guidance to `chartula --help`.
+- **Numbers in checks:** The rule-based check now reads numbers with thousands separators as a single number, so values such as `8,000` are compared as one value. You can rely on matching facts not being split at those separators; lists such as `1, 2, 3` remain separate numbers.
+- **Terminal line wrapping:** Running-step lines now fit within the terminal width, and long details in `doctor` wrap between words while keeping their indent. This applies to terminal output; plain `doctor` output remains unbroken, so pasted reports keep their existing form.
+
+Flagged for review:
+  ! #360: "copied, redirected and plain output remains unchanged" - Redirected output and --plain remain unchanged, but text copied from a live terminal does not: the facts explicitly say Markdown no longer copies out of the terminal as written. Readers must copy the Markdown from CHANGELOG.md instead.
+  ! #356: "Running-step lines now fit within the terminal width, and long details in `doctor` wrap between words while keeping their indent." - This omits explicit limits to both behaviors. Running-step lines retain their previous form when terminal width cannot be read. Doctor details are left to the terminal when there are fewer than 20 columns of room, and words longer than the available room are not cut.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 2 claims, 12,342 in / 340 out, 10.8 s (longest 7.9 s)
+    of which 0 in cached, 137 out reasoning
+    caught 2 claims the rule-based check missed, for 12,682 tokens in 2 calls
+  Rephrasing:       2 calls, 11,641 in / 741 out, 7.9 s (longest 4.2 s)
+    of which 11,635 in cached, 0 out reasoning
+  Total:            25,064 tokens in 22.8 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T184401Z-v0.1.0-preview.5.json

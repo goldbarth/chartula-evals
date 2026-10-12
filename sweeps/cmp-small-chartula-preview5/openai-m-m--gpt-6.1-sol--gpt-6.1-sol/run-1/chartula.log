@@ -1,0 +1,61 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6.1-sol, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 1 in customer.
+
+Technical
+### Added
+
+- Render release summaries as formatted text on live terminals while preserving Markdown output for redirected output, CI and `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Move the running-step spinner to one space before its label without changing the positions of the label, count or elapsed time. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark an audience’s rendering step as failed when it does not render, while continuing with the next audience. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Reject numeric audience values and empty list elements in `--audience`. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Treat numbers with thousands separators as single numbers in the rule-based faithfulness check, comparing them without commas. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit running-step progress lines to the current terminal width to prevent wrapping during redraws. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release focuses on readable terminal output and clearer feedback about release generation and checks.
+
+### What's New
+
+- **Terminal summaries:** You can now read release summaries in a live terminal as formatted text, with headings, bullets and a description above the entries rather than Markdown source. Redirected output, CI and `--plain` retain the original Markdown for copying or reading with a program.
+- **Progress layout:** The spinner now sits next to its step label in terminal output, and header values align with the step labels. When a step finishes, its label, count and time stay in the same columns.
+
+### Bug Fixes
+
+- **Failed audience reporting:** An audience that failed to render could show a completed step, and missing technical output could leave release notes unaccounted for. You can now distinguish failed rendering steps from completed ones and see why release notes were skipped when the technical rendering failed or was excluded.
+- **Command feedback:** Invalid `--audience` values could select an unintended audience, and rejected arguments gave inconsistent guidance. Invalid values are now rejected before a run header appears, with an error and a pointer to `chartula --help`; version guidance, failure summaries, colour help and GitHub rate-limit messages also explain their cases directly.
+- **Number checks:** The rule-based check could flag `8000` when the facts said `8,000`, yet accept an unsupported “8 retries.” It now compares numbers with and without thousands separators together, while treating comma-separated three-digit numbers without spaces, such as `100,200`, as one number.
+- **Narrow terminal output:** Running steps could wrap in narrow terminals and leave rows behind, while wrapped `doctor` details lost their indentation. When terminal width is available, progress lines fit as the window changes, and `doctor` details retain their indentation when there is enough room to wrap them.
+
+Flagged for review:
+  ! #358: "failure summaries, colour help and GitHub rate-limit messages also explain their cases directly" - The facts support clearer colour help and self-contained GitHub rate-limit messages, but not a change that makes failure summaries explain their cases directly. The failure-summary change only adds a blank line between the Wrote list and the existing audience-failure summary so it no longer looks like a list entry.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 1 claim, 12,223 in / 204 out, 8.9 s (longest 5.8 s)
+    of which 0 in cached, 72 out reasoning
+    caught 1 claim the rule-based check missed, for 12,427 tokens in 2 calls
+  Rephrasing:       2 calls, 11,641 in / 682 out, 18.4 s (longest 10.9 s)
+    of which 0 in cached, 55 out reasoning
+  Total:            24,750 tokens in 31.4 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T182148Z-v0.1.0-preview.5.json

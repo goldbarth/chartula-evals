@@ -1,0 +1,85 @@
+chartula generate
+Model:   anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+         claude-haiku-5-5, thinking disabled
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 1 in technical, 22 in customer.
+
+Technical
+### Added
+
+- Render the terminal summary as readable text rather than Markdown source: group headings become bold without their hash marks, entries become bullets with a hanging indent, the label and the Breaking marker are bold, code is coloured without backticks, and links show only their text. The description appears above the entries as a sentence. Entries wrap between words at the window width, while words longer than the room are left whole. The Breaking marker uses teal and code uses amber-glow, both chosen from the nearest 256-colour cube or 16-colour equivalent. The rendering is built in with no external viewer, and only a live terminal gets this form, while redirected output, CI and plain mode keep the Markdown and description line. Without colour the layout stays the same and code keeps its backticks, and without Unicode the bullet is a hyphen. Each row is painted separately so colour never crosses a line break, and no row reaches the last column. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Place the spinner beside its step label, in the last of the six status columns with one space before the label, and keep the status word and the rest of the line in the same columns when a step ends. Pad the header values Model, GitHub and Range to nine columns and indent their continuation lines by nine, so the header values start on the same column as the step labels, while the two-column step indent stays unchanged. Plain output carries no spinner and the header is identical with and without a terminal. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark a step as failed when its audience did not render, and continue with the next audience instead of marking the step as done. The failure is reported through the existing progress failure call, and the contract now states that a step may fail without stopping the run. A step that finished its work is marked done even if the rendering carries review flags. On a publishing run whose technical rendering failed, or was excluded by the audience option, the release notes are listed under Skipped with the reason. Without publishing they are listed under Skipped with the no-publish note even when the technical rendering failed. Plain output is unchanged. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Refuse an --audience value that has an empty place in its list or that is a number, and accept only the three audience names. Judge the value of --repo together with the other arguments before the run header is printed, so every refused argument prints its error followed by the pointer to the help. Make chartula version name chartula --version as the way to see the installed version. Add a blank line between the Wrote list and the audiences-failed line, reword the help for --plain so the NO_COLOR behaviour is a separate sentence, and make the GitHub rate limit message state the limit without a token and the raised limit with GITHUB_TOKEN. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Read numbers with thousands separators as single numbers in the rule-based faithfulness check, so that 8,000 and 8000 match each other, while lists such as 1, 2, 3 and comma-separated references stay separate numbers. The finding quotes the number as the rendering wrote it. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit the line of a running step to the terminal width by dropping whole parts in order until it fits in one row, keeping the last column empty, and drawing no frame below ten columns. Read the width with every redraw so a resized window is handled from the next frame, and keep the line unchanged when the width cannot be read. On a terminal, break a long doctor detail between words under the indent of the details, leaving words longer than the room whole, while plain output is never broken. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Flagged for review:
+  ! #358: "Make chartula version name chartula --version as the way to see the installed version." - Supported by #358, which says the line for chartula version names chartula --version; not an unsupported claim.
+
+Customer
+  description: This release makes the terminal output easier to read: summaries are formatted text, the spinner and header line up, a failed audience is marked as failed, and argument errors and numeric checks are more precise.
+
+### What's New
+
+- **Summary text in a terminal:** Release summaries in a terminal now read as formatted text instead of Markdown source: headings are bold without their hash marks, entries are bullets with a hanging indent, code is coloured without backticks, and links show as their text, such as (#294). The description appears above the entries as a plain sentence. Entries wrap at the width of the window, and a word longer than the room, such as a URL, is not cut. Breaking markers are teal and bold, and code is amber-glow. Redirected output, CI and --plain still print the Markdown and the description line as before, and docs/cli.md says where to copy the Markdown from.
+- **Spinner and header alignment:** While a step runs, its spinner now sits right before its label, so the moving character is next to the text it belongs to. When the step ends, the done or fail mark takes the spinner's place, and the label, count and time stay where they were. The header values Model, GitHub and Range now start on the same column as the step labels, and their continuation lines are indented to match. Plain output is unchanged apart from the header values sitting one space further right.
+
+### Bug Fixes
+
+- **Failed audience step and skipped notes:** An audience that failed to render now ends its step as failed, so the step list no longer shows done directly above the failed audience. Publishing runs list the release notes under Skipped with the reason, either that the technical rendering failed or that --audience left it out. Without publishing, the notes appear under Skipped (--no-publish), including when the technical rendering failed. Plain output is unchanged.
+- **Argument errors and messages:** A slip in --audience, such as a trailing comma or a number, is now refused with an error that names the three valid audiences. Every refused argument prints the same two lines, the error and a pointer to chartula --help, and the --repo value is checked before the run header is printed. Running chartula version now points to chartula --version. The Wrote list is followed by a blank line, the --plain help is clearer about NO_COLOR, and the rate limit message explains the 60 and 5000 request limits without a token and with GITHUB_TOKEN.
+- **Numbers with thousands separators:** The rule-based faithfulness check now reads numbers written with thousands separators as one number, so 8,000 in the facts matches 8000 in a rendering and the reverse. A comma is treated as a separator only when exactly three digits follow it, so lists such as 1, 2, 3 are still separate numbers. Three-digit numbers written without a space, such as 100,200, are read as one number. Flagged numbers are quoted as the rendering wrote them.
+- **Running step line and doctor details:** A running step's line is fitted to the terminal's width and redrawn as the window changes, so it no longer wraps and leaves rows behind in a narrow window. When space runs short, parts drop in order: the padding and the word commits, then the time, then the count, then the end of the label. On terminals narrower than ten columns no frame is drawn and the step shows its finished line once. In chartula doctor, details longer than the window break between words with the indent kept on each row on a terminal. Plain output is not broken.
+
+Flagged for review:
+  ! #360: "Release summaries in a terminal now read as formatted text instead of Markdown source: headings are bold without their hash marks, entries are bullets with a hanging indent, code is coloured without backticks, and links show as their text, such as (#294)." - Largely supported by #360, but the facts say code keeps its backticks without colour (NO_COLOR), so 'without backticks' is only true with colour; this is a qualification the output drops.
+  ! #360: "Breaking markers are teal and bold, and code is amber-glow." - The facts say Breaking is teal (#2DD4BF) and bold, and code is amber-glow (#FFE6A3), with 256-colour and 16-colour fallbacks. Supported.
+  ! #360: "Redirected output, CI and --plain still print the Markdown and the description line as before, and docs/cli.md says where to copy the Markdown from." - Supported by #360.
+  ! #352: "While a step runs, its spinner now sits right before its label, so the moving character is next to the text it belongs to." - Supported by #352.
+  ! #352: "When the step ends, the done or fail mark takes the spinner's place, and the label, count and time stay where they were." - Supported by #352.
+  ! #352: "The header values Model, GitHub and Range now start on the same column as the step labels, and their continuation lines are indented to match." - Supported by #352.
+  ! #352: "Plain output is unchanged apart from the header values sitting one space further right." - Supported by #352, which says the header is the same with and without a terminal and one space further right.
+  ! #359: "An audience that failed to render now ends its step as failed, so the step list no longer shows done directly above the failed audience." - Supported by #359.
+  ! #359: "Publishing runs list the release notes under Skipped with the reason, either that the technical rendering failed or that --audience left it out." - Supported by #359.
+  ! #359: "Without publishing, the notes appear under Skipped (--no-publish), including when the technical rendering failed." - Supported by #359.
+  ! #359: "Plain output is unchanged." - Supported by #359, which says plain output is unchanged.
+  ! #358: "A slip in --audience, such as a trailing comma or a number, is now refused with an error that names the three valid audiences." - Supported by #358, though the output omits that the list form itself stays valid.
+  ! #358: "Every refused argument prints the same two lines, the error and a pointer to chartula --help, and the --repo value is checked before the run header is printed." - Supported by #358.
+  ! #358: "Running chartula version now points to chartula --version." - Supported by #358.
+  ! #358: "The Wrote list is followed by a blank line, the --plain help is clearer about NO_COLOR, and the rate limit message explains the 60 and 5000 request limits without a token and with GITHUB_TOKEN." - Supported by #358.
+  ! #357: "The rule-based faithfulness check now reads numbers written with thousands separators as one number, so 8,000 in the facts matches 8000 in a rendering and the reverse." - Supported by #357.
+  ! #357: "A comma is treated as a separator only when exactly three digits follow it, so lists such as 1, 2, 3 are still separate numbers." - Supported by #357.
+  ! #357: "Three-digit numbers written without a space, such as 100,200, are read as one number." - Supported by #357.
+  ! #357: "Flagged numbers are quoted as the rendering wrote them." - Supported by #357.
+  ! #356: "A running step's line is fitted to the terminal's width and redrawn as the window changes, so it no longer wraps and leaves rows behind in a narrow window." - Supported by #356.
+  ! #356: "On terminals narrower than ten columns no frame is drawn and the step shows its finished line once." - Supported by #356.
+  ! #356: "In chartula doctor, details longer than the window break between words with the indent kept on each row on a terminal. Plain output is not broken." - Supported by #356.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 2 with findings, 23 claims, 19,221 in / 1,700 out, 7.6 s (longest 5.8 s)
+    of which 0 in cached, reasoning not reported
+    caught 23 claims the rule-based check missed, for 20,921 tokens in 2 calls
+  Rephrasing:       2 calls, 16,819 in / 2,268 out, 12.8 s (longest 6.7 s)
+    of which 0 in cached, reasoning not reported
+  Total:            40,008 tokens in 23.9 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T184711Z-v0.1.0-preview.5.json

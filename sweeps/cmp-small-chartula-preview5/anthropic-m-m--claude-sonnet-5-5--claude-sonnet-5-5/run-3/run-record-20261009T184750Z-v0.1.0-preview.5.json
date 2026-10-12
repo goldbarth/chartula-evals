@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 3,
+  "recordedAt": "2026-10-09T18:47:50+00:00",
+  "tag": "v0.1.0-preview.5",
+  "repository": "goldbarth/chartula",
+  "range": {
+    "start": "previous-tag",
+    "from": "v0.1.0-preview.4",
+    "fromCommit": "00f636c9cd449c6577fc403e26eb6cfb4ae9c57f",
+    "toCommit": "541842dfb1ab40a7bea084297f46a550b5927042"
+  },
+  "mode": "generate --no-publish",
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "claude-sonnet-5-5",
+    "checkThinking": "low"
+  },
+  "audiences": [
+    {
+      "audience": "technical",
+      "rendered": true,
+      "flags": []
+    },
+    {
+      "audience": "customer",
+      "rendered": true,
+      "flags": [
+        {
+          "text": "\"The spinner now sits right before the label, and Model:, GitHub: and Range: line up with the step labels, so the line reads as one unit.\" - The facts say the spinner moved next to its label and the header values moved to the step label column, but only that the header was padded; the \"reads as one unit\" is a gloss, not a stated fact. Minor.",
+          "pullRequest": 352
+        },
+        {
+          "text": "\"the header values sat one column left of the step labels\" - Facts say the header values started on column 8 and the step labels on column 9, which matches; however, the spinner claim 'several columns away' is supported. This claim is consistent, so no issue beyond wording.",
+          "pullRequest": 352
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "rephrase": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 16821,
+      "outputTokens": 1368,
+      "failedCalls": 0,
+      "durationSeconds": 11.496,
+      "longestCallSeconds": 7.515,
+      "retries": 0,
+      "cachedInputTokens": 0
+    },
+    "faithfulnessCheck": {
+      "calls": 2,
+      "callsWithoutUsage": 0,
+      "inputTokens": 18349,
+      "outputTokens": 274,
+      "failedCalls": 0,
+      "durationSeconds": 5.906,
+      "longestCallSeconds": 4.29,
+      "retries": 0,
+      "cachedInputTokens": 0
+    },
+    "ruleBasedCheck": {
+      "runs": 2,
+      "runsWithFindings": 0,
+      "flags": 0
+    },
+    "thoroughCheck": {
+      "runs": 2,
+      "runsWithFindings": 1,
+      "flags": 2,
+      "onlyThoroughFlags": 2,
+      "notEvaluated": 0
+    },
+    "durationSeconds": 21.091,
+    "release": {
+      "commits": 8,
+      "pullRequests": 8,
+      "facts": 7,
+      "factsWithDescription": 7,
+      "descriptionCharacters": 20294,
+      "commitsWithoutPullRequest": 0,
+      "mergeCommitsSkipped": 0
+    }
+  },
+  "facts": [
+    {
+      "title": "feat(cli): show a rendering in the terminal as text to read, not as Markdown source",
+      "number": 360,
+      "url": "https://github.com/goldbarth/chartula/pull/360",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        355
+      ],
+      "labels": [],
+      "description": "Closes #355\n\n- **Why:** below each audience heading the summary printed the rendering as it is stored: `### What needs action`, `**Breaking:**`, backticks and links as Markdown source, and the customer description as a `description:` line of a front matter the reader is not looking at. It was the one part of the terminal output that still read as a file dumped to the screen.\n- **The form on a terminal:** a group is a bold heading without its `###`, an entry is a bullet with a hanging indent, a label and `Breaking:` are bold, code is coloured and loses its backticks, and a link shows as its text, `(#294)`. The description stands above the entries as the sentence it is on the page. Entries are broken between words at the width of the window; a word longer than the room, such as a URL, is not cut.\n- **Two colours, the two roles of the Goldbarth ramp:** `Breaking:` is what the system marks, in teal (#2DD4BF) and bold; code is what the reader types, in amber-glow (#FFE6A3), the ramp's tone for highlights. Not the identity amber (#E0A34B), which a warning's mark has. An earlier state of this pull request had the marker in that amber, then both in teal, where only the weight told them apart. With 256 colours each takes the nearest of the cube (43, 223), with 16 cyan and bright yellow.\n- **Built in, not handed to `glow` or a pager:** Chartula is one binary that starts no program but `git`, and a viewer most machines do not have would make the summary depend on what is installed. A rendering is put together by `RenderingComposer`, so its structure is five constructs, and `TerminalMarkdown` reads those and nothing else. It is not a Markdown renderer and does not try to be: an `*aside*` a model writes, a lone backtick or an unclosed `**` stay as written.\n- **Links as their text** (the variant chosen in the issue's discussion): the number says which pull request, and the URL is in `CHANGELOG.md`.\n- **Only a live terminal gets this form.** Redirected output, CI and `--plain` keep the Markdown and the `description:` line exactly as before, because there the text is copied or read by a program. So this changes what #342 said about a terminal: the Markdown no longer copies out of it as written; `docs/cli.md` says where to copy it from.\n- **Without colour** (`NO_COLOR`) the layout is the same, nothing is bold, and code keeps its backticks, since they are what still marks a name. Without Unicode the bullet is a hyphen.\n- **Each row is painted on its own,** so a colour never runs over a line break into the indent, and no row reaches the last column.\n- **The flags** below a rendering stay as #211 placed them.\n\n**Verified:** the built CLI in a pseudo-terminal of 78 columns (`script`, `COLORTERM=truecolor`), `generate --no-publish` against a local stub for GitHub and the model. Bold is shown as `<b>`, the bold teal of `Breaking:` as `<B!>`, the amber-glow of code as `<c>`:\n\n```text\n<b>Customer</>\n  This release lets you choose where a release starts and keeps the filter\n  you set when a page reloads.\n\n  <b>What needs action</>\n    • <B!>Breaking:</> You can now pass <c>--since <ref></> to <c>generate</>, so a first tag no\n      longer renders the whole history of a repository that is years old.\n\n  <b>What's New</>\n    • <b>Release start:</> You can now pass <c>--since <ref></> to <c>generate</>, so a first\n      tag no longer renders the whole history of a repository that is years\n      old.\n```\n\nThe widest row is 75 columns. The same run with `--plain` prints the source as before.\n\nTests: `TerminalMarkdownTests`, new, hold the layout, the weights and both colours at each colour depth and without colour, a link as its text, what stays as written, code that contains link or bold syntax, the hanging indent, a style across a line break, no row as wide as the window from 30 to 120 columns, a long word, and a row left whole without room or width. `ReleaseCommandOutputTests` gain the summary on a terminal; its existing tests hold the plain form unchanged. Full suite 1,082 passing, build without warnings."
+    },
+    {
+      "title": "fix(pipeline): mark the step of an audience that did not render as failed, and say what became of the release notes",
+      "number": 359,
+      "url": "https://github.com/goldbarth/chartula/pull/359",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        354
+      ],
+      "labels": [],
+      "description": "Closes #354\n\nTwo things a run said, or did not say, when an audience failed.\n\n- **`· done Rendering technical` stood directly above `Technical (failed)`.** A step was marked `× fail` only when the run stopped in it, and a failed audience does not stop the run. `ReleaseRenderer` now ends the step as failed when its audience did not render, and goes on with the next one.\n- **No new call on the port:** it is `IRunProgress.Fail`, whose contract now says both cases, the run that stopped and the step whose own work failed, and that a step may begin after it. `ConsoleRunProgress` already drew that correctly; a test holds it.\n- **What the marks mean,** in the comment and in `docs/cli.md`: \"done\" says the step did its work, not that the result is good, so a rendering with review flags is done; \"fail\" says the run stopped there or the audience did not render. The steps and the summary no longer contradict each other.\n- **No line about the release notes when there was no technical rendering.** Publishing, and the `Skipped` entry that says a run published nothing, hung in the branch that writes the technical outputs. A publishing run now lists the notes under `Skipped` with the reason: the technical rendering failed, or `--audience` left it out. That second case was the same gap and is closed with it.\n- **Without publishing** the notes are listed as before, `Skipped (--no-publish)`, also when the technical rendering failed: they would have been skipped either way, and the heading says why.\n- **Plain output** is unchanged: its step lines carry no mark, and the summary reports the failed audience as before.\n\n**Reproduced first:** four tests written against the unchanged code failed, three on the missing `Skipped` entry and one on the step.\n\n**Verified** in publishing mode, which the issue had only read in the code: the built CLI in a pseudo-terminal against a local stub for GitHub and for the model, which refuses the first chat call (the technical rendering) and answers the second:\n\n```text\n  · done Reading pull requests   2/2 commits      0 s\n  × fail Rendering technical                      0 s\n  · done Rendering customer                       0 s\n  · done Checking customer                        0 s\nPartially generated v0.1.0: 1 of 2 audiences failed.\n...\nWrote:\n  - .../changelog.json\n  - .../release-v0.1.0.md\nSkipped:\n  - Release notes for v0.1.0 in octo/repo: they are the technical rendering, which failed\n\n1 of 2 audiences failed.\n```\n\nThe stub's log shows the write check (`POST releases/generate-notes`, `GET releases/tags/v0.1.0`) and no request that creates or changes a release. Exit code 1.\n\nTests: `ReleasePipelineTests` gain the publishing run with a failed technical rendering, the one without the technical audience, and the run without publishing; `ReleaseRendererTests` the step that ends as failed while the next audience renders; `ConsoleRunProgressTests` a failed step followed by a step drawn as before; `ReleaseCommandOutputTests` the `Skipped` heading of a publishing run. Full suite 1,062 passing, build without warnings."
+    },
+    {
+      "title": "fix(cli): refuse a slip in --audience, refuse every argument alike, and close four small gaps in what a run says",
+      "number": 358,
+      "url": "https://github.com/goldbarth/chartula/pull/358",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        353
+      ],
+      "labels": [],
+      "description": "Closes #353\n\nSix small things from the manual run of `0.1.0-preview.4`, one bullet each.\n\n- **A slip in `--audience` is refused.** `--audience product,` ran as `--audience product`, because empty places of a list were dropped, and `--audience 1` ran as the customer audience, because `Enum.TryParse` reads a number as the value with that number. Both are refused now, as ADR 0005 asks: a name is one of the three words and nothing else. The list form itself, `--audience technical,product`, is documented in `docs/cli.md` and stays; the issue was wrong to list it.\n- **Every refused argument prints the same two lines.** `preview --repo name-only` printed the header of the run and then the error, `generate --audience developers` the error alone, and only an unknown option was followed by the pointer to the help. Now the value of `--repo` is judged with the other arguments (`ReleaseTarget.CheckRepositoryOption`), before the header, and all of them print their error and `chartula --help lists every command and its options.` A header opens a run that started.\n- **`chartula version`** is still an unknown command, and its line names `chartula --version`.\n- **A blank line** stands between the `Wrote:` list and `1 of 2 audiences failed.`, which read as an entry of that list.\n- **The help of `--plain`** says \"NO_COLOR takes the colour only\" in a sentence of its own. It read as a third case of plain output.\n- **The rate limit message stands on its own.** Without a token it said \"see the warning at the start of the run\", which a run prints and `doctor` does not. It now says what the warning said: \"Without a token GitHub allows 60 requests an hour; a token in GITHUB_TOKEN raises that to 5000.\"\n- **Docs:** `docs/cli.md` shows the two lines of a refused value and says what a list with an empty place does; `docs/github.md` and `docs/troubleshooting.md` quote the new rate limit message.\n\n**Verified** with the built CLI, before and after:\n\n```console\n$ chartula preview --audience product, --repo name-only     # before: header, then the --repo error\n--audience has a comma with no audience next to it. Name each one, such as --audience technical,product. There are three: technical, customer, product.\nchartula --help lists every command and its options.\n$ chartula preview --audience 1 --repo name-only            # before: header, then the --repo error\nUnknown audience '1'. There are three: technical, customer, product.\nchartula --help lists every command and its options.\n$ chartula version\nUnknown command 'version'. For the installed version, run chartula --version.\n```\n\nThe `doctor` line was not run against a spent limit again; `GitHubPullRequestReaderTests` holds the message.\n\nTests: `AudienceSelectionTests` gain four lists with an empty place and three numbers; `ArgumentCheckTests` run the built CLI with four refused values and with `version`; `ReleaseTargetTests` hold the check of `--repo` from the arguments alone; `ReleaseCommandOutputTests` and `GitHubPullRequestReaderTests` expect the blank line and the new message. Full suite 1,056 passing, build without warnings."
+    },
+    {
+      "title": "fix(faithfulness): read a number with thousands separators as one number in the rule-based check",
+      "number": 357,
+      "url": "https://github.com/goldbarth/chartula/pull/357",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        350
+      ],
+      "labels": [],
+      "description": "Closes #350\n\n- **Why:** the rule-based check read numbers as text, with a pattern a comma is not part of. Facts that say `8,000` were read as `8` and `000`, so a rendering that wrote `8000` was flagged although the facts back it, and a rendering that invented \"8 retries\" was not.\n- **Fix:** the pattern reads a number with thousands separators as one number, and both sides are compared without the commas: `8,000`, `1,234,567` and `1,234.50` are `8000`, `1234567` and `1234.50`. The comparison stays a lookup of text in a set; nothing is parsed into a numeric type, so a version such as `10.0.1` compares as it did.\n- **What counts as a separator:** a comma directly followed by exactly three digits. `1, 2, 3`, `#294, #292` and `12,34` stay lists of separate numbers.\n- **One case that is read the other way now:** three-digit numbers listed without a space, `100,200`, are one number. Text alone cannot tell that from a hundred thousand, and prose puts the space; the comment on the pattern says so.\n- **The finding quotes the number as the rendering wrote it,** `'9,000'`, so it can be found in the text.\n- **Docs:** one sentence in `docs/costs-and-checks.md` for the reader of a flag, one in `docs/development/architecture.md` next to the note on #315.\n\n**Reproduced first:** the tests below were written against the unchanged checker, and 8 of them failed, among them the flag two runs on `v0.1.0-preview.4` raised (facts `Cut at 8,000 characters`, rendering `at 8000 characters`). Reproduced at the checker with the phrases of those runs, not with a new model run.\n\nTests: `RuleBasedFaithfulnessCheckerTests` gain a theory of six pairs written with and without separators, the two groups `8` and `000` that are no longer supported, two lists, a version and a decimal, and an absent number quoted as written. The fixture tests, where an echoing model must never be flagged, pass unchanged. Full suite 1,043 passing, build without warnings."
+    },
+    {
+      "title": "fix(cli): fit the line of a running step to the terminal's width, and keep the indent of doctor's details",
+      "number": 356,
+      "url": "https://github.com/goldbarth/chartula/pull/356",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        349
+      ],
+      "labels": [],
+      "description": "Closes #349\n\n- **Why:** the line of a running step is 53 to 60 columns wide and was redrawn without knowing how wide the terminal is. In a narrower window it wraps, the carriage return goes back to the start of its last row only, and every frame leaves a row behind: more than a thousand lines for a step of two minutes.\n- **Fitted, not switched to plain lines:** the line gives up whole parts until it fits in one row. First the padding and the word \"commits\" (`Reading pull requests 47/64 19 s`), then the time, then the count, and at last the end of the label. Whole parts go before one is cut, so a narrow line never ends in half a number. Falling back to the plain lines below a width would have been less code, but a narrow pane would lose the spinner, the count and the time at once, and a resize during a step would need a switch between two forms.\n- **The last column stays empty:** some terminals move to the next row as soon as it is written to. So a line may fill the width minus one.\n- **Below ten columns no frame is drawn:** the spinner and its indent alone are nine columns, so there is nothing to fit. The step shows its finished line once.\n- **The width is read with every line** (`TerminalWidth.Current`), so a window resized during a step is right from the next frame on, and the finished `· done` and `× fail` lines fit the same width. It is not part of `TerminalProfile`, which is decided once per stream.\n- **A width that cannot be read keeps the line as it was.** That includes one case measured here: with stdout and stdin both redirected and only stderr on a terminal, the runtime reports 80 columns whatever the window is.\n- **`doctor`** (the comment on the issue): on a terminal, a detail longer than the window is broken between words and every row keeps the indent of the details, where the terminal's own wrapping put the rest on column 0. A word longer than the room, such as a URL, keeps a row to itself and is not cut. Plain output is never broken, so a report pasted into an issue reads as before; below 20 columns of room the detail is left to the terminal.\n- **`docs/cli.md`** says what a narrow window shows, under \"While a run works\" and under `doctor`.\n\n**Verified:**\n- Reproduced first on `main` (`2bd14c1`): `chartula preview --tag v0.1.0-preview.4` in a pseudo-terminal of 39 columns (`script`, `stty cols 39`) draws 385 lines of 53 to 56 columns, each of which wraps.\n- The same command with this change: 363 lines drawn, the widest 36 columns, the last `  · done Reading pull requests 64/64`. At 30 columns: the widest 29, `  · done Reading pull request`.\n- `chartula doctor` at 100 and at 60 columns: the detail of a missing key is broken between words under its check, and the key URL stands on a row of its own.\n- The terminal mode sequence of #348 is written as often as before, 8 times in that run on both builds: reading the width adds none.\n\nTests: `ConsoleRunProgressTests` gain the form at ten widths, a finished step at two, no line as wide as the terminal at any width from 10 to 70, no frame below ten columns, and a resize between two frames; its existing tests now pass \"no width\", so they do not depend on the console of the test runner. `DoctorCommandTests` hold the broken detail with its indent on a terminal, and the unbroken one in plain output. Full suite 1,031 passing, build without warnings."
+    },
+    {
+      "title": "feat(cli): put the spinner next to its label, and the header values on the column of the step labels",
+      "number": 352,
+      "url": "https://github.com/goldbarth/chartula/pull/352",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        351
+      ],
+      "labels": [],
+      "description": "Closes #351\n\n- **Why:** while a step ran, its spinner stood on column 2 and its label on column 9, six empty columns apart, so the only thing on the line that moves belonged to nothing. And the header's values started on column 8, the step labels on column 9: one column reads as a mistake, not as an indent.\n- **The spinner:** it stands in the last of the six status columns, one space before the label. `Draw` passes `\"     \" + glyph` where it passed `glyph + \"     \"`; `Line` is unchanged, so the line is as long as it was and #349 has nothing more to fit.\n- **Nothing moves when a step ends:** `· done` or `× fail` fills the columns the spinner stood at the end of. The label, the count and the time keep theirs.\n- **The header is padded, not the steps moved:** `Model:`, `GitHub:` and `Range:` are padded to nine columns, and their continuation lines (the model and thinking, the thorough check's model, the lines of the range confirmation) are indented by nine. The two-column indent of the steps stays the one `doctor` and the summary use.\n- **Plain output:** the step lines carry no spinner and are unchanged; the header is the same with and without a terminal, so a script that reads `Model:` or `Range:` by its key still finds it, one space further right.\n- **Docs:** the header and the steps in `docs/cli.md`, `docs/providers.md`, `docs/github.md`, `docs/troubleshooting.md`, `docs/what-goes-into-a-release.md` and the placeholder of the bug report form show what the binary prints.\n\n**Verified:**\n- The built CLI in a pseudo-terminal (`script`, 100 columns), `chartula preview --tag v0.1.0-preview.4` on this repository:\n\n  ```text\n  Model:   anthropic at its default endpoint, unauthenticated, ANTHROPIC_API_KEY is not set\n           claude-sonnet-5, thinking provider-default\n  GitHub:  https://api.github.com/, unauthenticated, GITHUB_TOKEN is not set\n  Range:   the commits after v0.1.0-preview.3, up to v0.1.0-preview.4 (64 commits)\n         ⠼ Reading pull requests   40/64 commits    14 s\n    × fail Reading pull requests   40/64 commits    14 s\n  ```\n\n  The run had no token and stopped at GitHub's limit for unauthenticated requests, which is why the step ends in `× fail`: the last frame and the finished line differ in the status columns only.\n\nTests: `ConsoleRunProgressTests` gain the ASCII frame before its label and a theory that only the status columns change when a step ends, done or failed; `EndpointNoticeTests` holds the column every header value starts on. `ConsoleRangeGateTests`, `FirstTagTests` and `ThoroughCheckModelTests` expect the padded header. Full suite 1,014 passing, build without warnings."
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for 0.1.0-preview.4",
+      "number": 346,
+      "url": "https://github.com/goldbarth/chartula/pull/346",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": [],
+      "description": "Follows #345 and the `v0.1.0-preview.4` tag. Step 6 of `docs/development/releasing.md`.\n\n- `CHANGELOG.md` section for `0.1.0-preview.4` generated by Chartula and committed as written.\n- Run: `generate --tag v0.1.0-preview.4`, provider `openai-compatible`, model `gpt-6.1-sol`, thinking `low`, thorough check on with the same model, binary `0.1.0-preview.4+00f636c` downloaded from the draft. 64 commits, 64 pull requests, 63 facts, 137,866 tokens (134,933 in, 2,933 out), 1 min 32 s, no retries. The same run wrote the release notes, published as written.\n- **Why `gpt-6.1-sol` and `low`:** the newest model of the family preview.2 and preview.3 used. It refuses `disabled` (`reasoning_effort` `none`), which Chartula reported before any token was spent, so `low` is the nearest setting; the price per token is the same as `gpt-6-sol`.\n- **`releasing.md` step 4** shows the settings of this run, and says what preview.2 and preview.3 used and why `disabled` is gone: the example as it stood fails on `gpt-6.1-sol`.\n- Only the note above the sections was edited by hand: it gets the line for `0.1.0-preview.4`.\n- **The pinned tag moves to the new release** where it is an instruction rather than a quoted run: `CHARTULA_VERSION` in `docs/ci.md` and `docs/install.md`, the sample `--version` line in `docs/install.md`, and the template link in the `doctor` samples of `docs/getting-started.md` and `docs/troubleshooting.md`. Samples that quote a real preview.3 run (`cli.md`, `outputs.md`, `changelog-json.md`, the README) stay as they were, since they show what that run wrote.\n\n**Verification**\n\n- `toolVersion` in the run's `changelog.json` and run record is `0.1.0-preview.4+00f636c9cd449c6577fc403e26eb6cfb4ae9c57f`, the tagged commit; prompt hash `sha256:adfdfc6c...`.\n- Thorough check: technical 0 flags, customer 1 (#338: the entry says the model is told not to guess beyond a cut; the instruction is in the prompt, but the fact base of the run does not say it). The customer rendering is not in this file.\n- The new template link and `install.sh` at `v0.1.0-preview.4` both answer 200.\n\nTests: none, documentation only."
+    }
+  ]
+}

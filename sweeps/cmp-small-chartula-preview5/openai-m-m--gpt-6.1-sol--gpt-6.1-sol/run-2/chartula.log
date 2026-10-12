@@ -1,0 +1,58 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6.1-sol, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5.
+
+Technical
+### Added
+
+- Render release summaries as formatted text on live terminals, while preserving Markdown output for redirected output, CI and `--plain`. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Position the running-step spinner one space before its label without shifting the label when the step finishes. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark an audience's rendering step as failed when it does not render, while continuing with the next audience. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Reject numeric audience values and empty list elements in `--audience`. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Treat numbers with thousands separators as single numbers in the rule-based faithfulness check, comparing them without separator commas. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit running-step progress lines to the current terminal width to prevent wrapping during redraws. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release improves how Chartula presents release summaries, progress and command feedback in the terminal, and how it checks numbers in generated notes.
+
+### What's New
+
+- **Terminal summaries:** You can now read summaries in a live terminal as formatted text rather than Markdown source, with headings, bullets and the release description above the entries. Redirected output, CI and `--plain` retain the original Markdown form for copying or reading by a program.
+- **Progress layout:** The spinner now sits next to its step label, and header values align with the step labels. When a step finishes, its label, count and time stay in the same columns.
+
+### Bug Fixes
+
+- **Failed audience reporting:** An audience that failed to render could be marked done, and release notes could be missing from the skipped-output list when the technical audience failed or was excluded. You can now count on the step status to reflect whether that audience rendered and on the summary to explain why release notes were skipped, while rendering continues for the next audience.
+- **Command-line feedback:** An empty place or a number in `--audience` could select an audience instead of being rejected, and invalid arguments produced inconsistent guidance. Invalid arguments now report an error and a help pointer before a run starts; version guidance, output spacing, colour help and GitHub rate-limit messages also make the command's results and limits explicit.
+- **Number checks:** The rule-based check could flag `8000` when the facts said `8,000`, yet accept an unsupported `8` from those same facts. You can now count on numbers with thousands separators being checked as whole numbers, though a list such as `100,200` without a space is treated as one number.
+- **Narrow terminal output:** Running steps could wrap in narrow terminals and leave rows behind, while wrapped `doctor` details lost their indent. When the terminal width can be read, progress lines now fit the available row and adapt to resizing; `doctor` details retain their indent when there is at least 20 columns of room, except that long words remain uncut.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 0 with findings, 0 claims, 12,268 in / 83 out, 5.8 s (longest 3.2 s)
+    of which 0 in cached, 37 out reasoning
+    caught 0 claims the rule-based check missed, for 12,351 tokens in 2 calls
+  Rephrasing:       2 calls, 11,641 in / 711 out, 29.0 s (longest 18.0 s)
+    of which 11,635 in cached, 39 out reasoning
+  Total:            24,703 tokens in 38.7 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T184440Z-v0.1.0-preview.5.json

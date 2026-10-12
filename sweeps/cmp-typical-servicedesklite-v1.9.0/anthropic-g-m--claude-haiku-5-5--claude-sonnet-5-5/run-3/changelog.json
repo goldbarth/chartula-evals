@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 2,
+  "tag": "v1.9.0",
+  "changes": [
+    {
+      "title": "feat(web): inline citation badges anchored in the assistant Markdown answer (#243)",
+      "number": 245,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/245",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        243
+      ],
+      "labels": []
+    },
+    {
+      "title": "release: v1.9.0 - integrate M9 Frontend Redesign into main",
+      "number": 244,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/244",
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(web): wrap board card title so -webkit-line-clamp is not blockified (#216)",
+      "number": 240,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/240",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        216
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(web): keep the assistant composer send button inside its panel (#215)",
+      "number": 239,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/239",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        215
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(web): stop the Category header overlapping Due in the ticket queue (#214, #228)",
+      "number": 238,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/238",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        214,
+        228
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): primary action button from SuggestedNextSteps (#211)",
+      "number": 237,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/237",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        211
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): command palette on Ctrl+K (#210)",
+      "number": 236,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/236",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        210
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): optimistic status updates with rollback on board and detail (#209)",
+      "number": 235,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/235",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        209
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): inline status and assignee edit instead of dialogs (#208)",
+      "number": 234,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/234",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        208
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): inline citation badges with hover preview in the assistant chat (#207)",
+      "number": 233,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/233",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        207
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs(repo): add v1.8.0 release notes",
+      "number": 224,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/224",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(assistant): write-honesty and confirmation policy in the system prompt (#190, #195)",
+      "number": 223,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/223",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        190,
+        195
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(api): render summary timestamps in the user timezone (#194)",
+      "number": 222,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/222",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        194
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(assistant): inject the agent roster into the system prompt (#193)",
+      "number": 221,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/221",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        193
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(api): report a failed knowledge-base search as an error (#191)",
+      "number": 220,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/220",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        191
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(assistant): score grounding by meaning, not word overlap (#188)",
+      "number": 219,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/219",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        188
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(assistant): enforce the grounding check via tool_choice (#187)",
+      "number": 218,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/218",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        187
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(web): design tokens - one scale for spacing, radius, elevation, and semantic color (#202)",
+      "number": 213,
+      "url": "https://github.com/goldbarth/ServiceDeskLite/pull/213",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        202
+      ],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Changed\n\n- Integrate the complete M9 frontend redesign milestone into `main` as one coherent branch, combining the first-half work from `m9-frontend-redesign` with the second-half work already merged to `main`, and add the v1.9.0 release notes so the release can be tagged from a single point. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))\n\n### Added\n\n- Add inline citation badges to the assistant's Markdown answer, anchored after each cited passage title and sanitized so model-authored text cannot inject them, with a hover and focus tooltip showing source, heading and snippet, and with citations numbered by position so badges match the sources list. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))\n- Turn the first suggested next step into a primary control on the ticket header that executes its action, with remaining steps in an overflow menu; steps are tagged with their action kind at generation time, and steps without a routed action display as non-clickable text. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))\n- Add a `Ctrl/Cmd+K` command palette available on every page, listing navigation targets generated from `NavRegistry` and debounced, cancellable ticket search results, operable entirely by keyboard with focus restored on close. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))\n- Apply ticket status changes optimistically on the board and detail view, reconciling with the server on success and rolling back to the prior state with an error showing the problem code when a transition is rejected, with a sequence guard so rapid changes cannot leave the UI in a state the server does not hold. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))\n- Replace the assign and change-status dialogs on the ticket detail page with inline menu popovers that apply changes in place through the same command handlers, keeping scroll position and open tab, and remove the two dialog components. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))\n- Render streamed assistant citations as inline badges placed where the model cited a title, with a focusable tooltip, and fall back to a numbered sources list for citations not anchored inline, leaving answers without citations unchanged. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))\n- Inject the active agent roster into the chat system prompt on each request, using the same query that validates assignments, so the assistant names valid agents directly and lists them rather than guessing when a requested name is not on the roster. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))\n- Force the `check_grounding` tool through `tool_choice` once after knowledge-base passages are retrieved and no check has run, so the verdict is computed before the first streamed token for both the interactive assistant and the autonomous worker, while the model may still self-check to satisfy the requirement. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))\n- Centralize the palette, spacing and radius scales, elevation, and semantic status colours in one design token source rendered as document custom properties and used by the MudBlazor theme, replace hard-coded colour, spacing and radius values across stylesheets, and change the KPI card accent to a tone enum. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))\n\n### Fixed\n\n- Wrap the board card title in a row element so its two-line clamp with ellipsis applies, and keep long titles from stretching the lane column. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))\n- Keep the assistant composer send button inside its panel by targeting the panel with a deep selector so its padding and flex layout apply, keeping the input and button aligned at narrow widths. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))\n- Give the ticket queue `Category` column a fixed width and render its header in the uppercase label style so it no longer overlaps the `Due` header, keeping it a static label because it is not a server sort field. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))\n- Add assistant system prompt rules that forbid stating a change happened without a successful tool result in the conversation, and forbid re-asking for confirmation when the user has already requested the change, limiting confirmation to genuine user decisions. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))\n- Render ticket summary timestamps in the configured user timezone, including the zone in the prompt header, so summaries match the local times shown in the ticket detail view. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))\n- Return a failed knowledge-base search as a tool error distinct from the unavailable result, so the dashboard error rate reflects real failures, while transient faults still propagate for retry. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))\n- Score grounding by meaning: embed each substantive answer sentence and the retrieved passages in one embedding call and score sentences by similarity to their nearest passage, falling back to the lexical word-overlap evaluator when embeddings are unavailable or fail. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))",
+    "customer": "### What's New\n\n- **Inline citation badges:** Answers now show numbered citation badges placed right after the passage they support. Hovering or focusing a badge shows the source, heading and snippet, so you can check each claim without leaving the answer.\n- **Suggested next step button:** The most likely next step for a ticket now appears as a button you can press directly in the ticket header. Pressing it changes the status or assigns the owner, and the remaining suggested steps are in an overflow menu. When no step can be acted on, the header shows the suggestion as plain text.\n- **Command palette:** Ctrl+K (Cmd+K on Mac) opens a command palette on every page, even while a text field has focus. It lists the main navigation pages and matching tickets, and you can move through the results and open one with the keyboard alone.\n- **Immediate status changes:** A status change on the ticket board or the ticket detail page shows immediately, before the server replies. If the change is not allowed, the status returns to its previous value and a message gives the reason.\n- **Inline status and assignee menus:** Changing a ticket's status or assignee no longer opens a dialog. The status and assignee menus open next to the header buttons, so the ticket stays open at the same scroll position and tab.\n- **Citations in the assistant chat:** Citations from the assistant now appear next to the answer text they support, as numbered badges, and hovering or focusing one shows the source, heading and snippet. Citations the answer does not reference inline are still listed below it.\n- **Agent names in the assistant:** The assistant now knows the names of the current agents when it answers, so it can name the valid agents directly. When a name you give does not match an agent, it lists the valid names instead of guessing.\n- **Grounding check on every answer:** The assistant now checks each knowledge-base-grounded answer for support in the retrieved sources before it finishes. The check runs on every grounded answer, so you no longer depend on the model choosing to run it.\n- **Shared design values:** Colours, spacing and corner radius now follow one shared set of design values across the app. The status and priority labels look the same wherever they appear.\n\n### What's Changed\n\n- **Release v1.9.0:** Release v1.9.0 combines the frontend redesign work into the main branch.\n\n### Bug Fixes\n\n- **Board card titles:** Long ticket titles on the board are now cut off after two lines with an ellipsis, so cards in a column keep a consistent height.\n- **Assistant send button:** The send button in the assistant composer now sits inside the panel, and the input and button stay aligned when the window is narrow.\n- **Ticket queue Category header:** The Category column header in the ticket queue no longer overlaps the Due header and reads in capitals like the other column headers. Category is a static label, not a sort control.\n- **Assistant write confirmations:** The assistant no longer claims a change happened unless the change was made and reported as successful in the conversation. When you have already asked for a change, it makes the change without asking you to confirm again.\n- **Summary timestamps:** Timestamps in AI ticket summaries are shown in your configured time zone, so they match the times shown in the ticket view.\n- **Knowledge-base search errors:** A failed knowledge-base search is now reported as an error, separate from a search where the knowledge base is simply unavailable, so the dashboard error rate reflects real failures.\n- **Grounding by meaning:** Grounding checks now recognise answers that restate the sources in other words or in another language. Answers that match the sources in meaning are no longer marked as ungrounded for using different wording."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "claude-sonnet-5-5",
+    "checkThinking": "low"
+  }
+}

@@ -1,0 +1,705 @@
+{
+  "schemaVersion": 2,
+  "tag": "v0.1.0-preview.4",
+  "changes": [
+    {
+      "title": "fix(cli): list each option once in the help, and bring the roadmap up to date",
+      "number": 344,
+      "url": "https://github.com/goldbarth/chartula/pull/344",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): open each run on its command and its summary on how the run went, and group the help",
+      "number": 342,
+      "url": "https://github.com/goldbarth/chartula/pull/342",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        339
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): group doctor's checks, mark each status, and say what the warnings mean for a run",
+      "number": 341,
+      "url": "https://github.com/goldbarth/chartula/pull/341",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): show the run's progress with the Quiet Pulse spinner, and add --plain",
+      "number": 340,
+      "url": "https://github.com/goldbarth/chartula/pull/340",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(prompting): quote pull request text between tags and cut long descriptions",
+      "number": 338,
+      "url": "https://github.com/goldbarth/chartula/pull/338",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        337
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(faithfulness): compare the rule-based check's names with whitespace folded and fences taken out",
+      "number": 336,
+      "url": "https://github.com/goldbarth/chartula/pull/336",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        315
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(releases): stop before replacing the notes of a published release unless asked",
+      "number": 335,
+      "url": "https://github.com/goldbarth/chartula/pull/335",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        334
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(pipeline): say so when a release has nothing for the technical reader",
+      "number": 333,
+      "url": "https://github.com/goldbarth/chartula/pull/333",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        307
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(serialization): escape only what JSON requires in changelog.json and the run record",
+      "number": 332,
+      "url": "https://github.com/goldbarth/chartula/pull/332",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        226
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): set the flags apart from the last entry of their rendering",
+      "number": 331,
+      "url": "https://github.com/goldbarth/chartula/pull/331",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        211
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): say unauthenticated in the run header when a credential variable is unset",
+      "number": 330,
+      "url": "https://github.com/goldbarth/chartula/pull/330",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        210
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): name this version's config template when doctor finds no chartula.yaml",
+      "number": 329,
+      "url": "https://github.com/goldbarth/chartula/pull/329",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "Bump the nuget-minor-and-patch group with 3 updates",
+      "number": 328,
+      "url": "https://github.com/goldbarth/chartula/pull/328",
+      "category": "Other",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": [
+        "dependencies",
+        ".NET"
+      ]
+    },
+    {
+      "title": "docs: update badge colors and refine SVG asset styles",
+      "number": 326,
+      "url": "https://github.com/goldbarth/chartula/pull/326",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: point SECURITY to the trust boundary and to what a run sends and writes",
+      "number": 323,
+      "url": "https://github.com/goldbarth/chartula/pull/323",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: take a contributor from a fork to a merged pull request, and shape the template like the merged ones",
+      "number": 322,
+      "url": "https://github.com/goldbarth/chartula/pull/322",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        123
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: describe the run in code, the principles by their ADRs, the checks and where messages are written",
+      "number": 321,
+      "url": "https://github.com/goldbarth/chartula/pull/321",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: record ADR 0005, refuse rather than guess what the user meant",
+      "number": 320,
+      "url": "https://github.com/goldbarth/chartula/pull/320",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: record ADR 0004, the domain talks to models through IChatClient alone",
+      "number": 319,
+      "url": "https://github.com/goldbarth/chartula/pull/319",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add an ADR index and template, and date what each decision record decided, recorded and amended",
+      "number": 318,
+      "url": "https://github.com/goldbarth/chartula/pull/318",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: rework the README around a public example and the reader's path, and drop private links",
+      "number": 317,
+      "url": "https://github.com/goldbarth/chartula/pull/317",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [
+        309
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: describe how each test project is tested, and how to freeze a real release into a fixture",
+      "number": 316,
+      "url": "https://github.com/goldbarth/chartula/pull/316",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: make changelog-json.md and run-record.md schema references with a real example each",
+      "number": 314,
+      "url": "https://github.com/goldbarth/chartula/pull/314",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add glossary.md, and link its terms on their first use in every user page",
+      "number": 313,
+      "url": "https://github.com/goldbarth/chartula/pull/313",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: show the lower bound line of the run summary from a real run",
+      "number": 312,
+      "url": "https://github.com/goldbarth/chartula/pull/312",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add #307 to the launch points in ROADMAP.md",
+      "number": 308,
+      "url": "https://github.com/goldbarth/chartula/pull/308",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add outputs.md, every file a run writes and the shape of each audience",
+      "number": 306,
+      "url": "https://github.com/goldbarth/chartula/pull/306",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: turn the issue templates into forms that ask for what reproduces a run",
+      "number": 305,
+      "url": "https://github.com/goldbarth/chartula/pull/305",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: split versioning.md into the promise for users and releasing.md for maintainers",
+      "number": 304,
+      "url": "https://github.com/goldbarth/chartula/pull/304",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: say in ROADMAP.md what each point changes for a user, and link its issue",
+      "number": 303,
+      "url": "https://github.com/goldbarth/chartula/pull/303",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: make cli.md the reference for every command, option, stream and exit status",
+      "number": 302,
+      "url": "https://github.com/goldbarth/chartula/pull/302",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): refuse an option a command does not take, and honour --help after a command",
+      "number": 301,
+      "url": "https://github.com/goldbarth/chartula/pull/301",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        300
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add troubleshooting.md, the message, cause and fix of the common stops",
+      "number": 299,
+      "url": "https://github.com/goldbarth/chartula/pull/299",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add costs-and-checks.md, one home for the run summary and the measured costs",
+      "number": 298,
+      "url": "https://github.com/goldbarth/chartula/pull/298",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(observability): show each step of a run while it works",
+      "number": 297,
+      "url": "https://github.com/goldbarth/chartula/pull/297",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        283
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add a getting-started guide built around chartula doctor",
+      "number": 296,
+      "url": "https://github.com/goldbarth/chartula/pull/296",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): check the setup a run needs with chartula doctor",
+      "number": 295,
+      "url": "https://github.com/goldbarth/chartula/pull/295",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        254
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat!: keep pull request descriptions out of changelog.json, and the complete facts in the run record",
+      "number": 294,
+      "url": "https://github.com/goldbarth/chartula/pull/294",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": true,
+      "linkedIssues": [
+        260
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(facts): take closed issue numbers from the text the model reads, at every depth",
+      "number": 293,
+      "url": "https://github.com/goldbarth/chartula/pull/293",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        258,
+        12
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat!: make preview free: show the facts and what generate would send, without a model call",
+      "number": 292,
+      "url": "https://github.com/goldbarth/chartula/pull/292",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": true,
+      "linkedIssues": [
+        259
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: render a commit without a pull request next to the pull requests",
+      "number": 291,
+      "url": "https://github.com/goldbarth/chartula/pull/291",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        257
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): add the trailing slash to a GitHub API URL written without one",
+      "number": 290,
+      "url": "https://github.com/goldbarth/chartula/pull/290",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        272
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(config): read an empty excludeCategories list as dropping no category",
+      "number": 289,
+      "url": "https://github.com/goldbarth/chartula/pull/289",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        277
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): report an answer the SDK cannot read as unreadable, not as unreachable",
+      "number": 288,
+      "url": "https://github.com/goldbarth/chartula/pull/288",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        263
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(config): refuse chartula.yaml and chartula.yml side by side",
+      "number": 287,
+      "url": "https://github.com/goldbarth/chartula/pull/287",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        278
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(pipeline): check that the token may publish before the first model call",
+      "number": 285,
+      "url": "https://github.com/goldbarth/chartula/pull/285",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        262
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): print the installed version with chartula --version",
+      "number": 286,
+      "url": "https://github.com/goldbarth/chartula/pull/286",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        255
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): say that --no-publish writes every file and skips only the release notes",
+      "number": 284,
+      "url": "https://github.com/goldbarth/chartula/pull/284",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        256
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat: render a first tag from the first commit, and confirm a large range before it is read",
+      "number": 282,
+      "url": "https://github.com/goldbarth/chartula/pull/282",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        281
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for 0.1.0-preview.3",
+      "number": 280,
+      "url": "https://github.com/goldbarth/chartula/pull/280",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: turn the README into a landing page",
+      "number": 279,
+      "url": "https://github.com/goldbarth/chartula/pull/279",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: turn docs/configuration.md into a reference",
+      "number": 276,
+      "url": "https://github.com/goldbarth/chartula/pull/276",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add a guide to writing pull requests for Chartula",
+      "number": 275,
+      "url": "https://github.com/goldbarth/chartula/pull/275",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: explain what goes into a release in docs/what-goes-into-a-release.md",
+      "number": 274,
+      "url": "https://github.com/goldbarth/chartula/pull/274",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: add a complete GitHub Actions job in docs/ci.md",
+      "number": 273,
+      "url": "https://github.com/goldbarth/chartula/pull/273",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: move GitHub access to docs/github.md",
+      "number": 271,
+      "url": "https://github.com/goldbarth/chartula/pull/271",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: move provider setup to docs/providers.md",
+      "number": 270,
+      "url": "https://github.com/goldbarth/chartula/pull/270",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: move installing to docs/install.md",
+      "number": 269,
+      "url": "https://github.com/goldbarth/chartula/pull/269",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: name eight platforms, drop review mode from run metrics, and mention chartula-runs",
+      "number": 268,
+      "url": "https://github.com/goldbarth/chartula/pull/268",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: correct the changelog.json fields and show a real example",
+      "number": 267,
+      "url": "https://github.com/goldbarth/chartula/pull/267",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: correct GitHub requests, the cost of preview, and what publishing replaces",
+      "number": 266,
+      "url": "https://github.com/goldbarth/chartula/pull/266",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: document openai-compatible as a supported provider",
+      "number": 265,
+      "url": "https://github.com/goldbarth/chartula/pull/265",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    },
+    {
+      "title": "docs: move the contributor documentation to docs/development",
+      "number": 264,
+      "url": "https://github.com/goldbarth/chartula/pull/264",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Changed\n\n- Update the grouped NuGet dependencies with three minor and patch updates. ([#328](https://github.com/goldbarth/chartula/pull/328))\n\n### Added\n\n- **Breaking:** Remove pull request descriptions from `changelog.json` schema version 2, retaining complete facts in the run record. ([#294](https://github.com/goldbarth/chartula/pull/294))\n- **Breaking:** Show facts and planned model requests in `preview` instead of renderings, without calling a model or requiring a key. ([#292](https://github.com/goldbarth/chartula/pull/292))\n- Report generation outcomes in the first line of the run summary, including review flags and audience failures. ([#342](https://github.com/goldbarth/chartula/pull/342))\n- Group `doctor` checks by Repository, Model and GitHub, with verdicts that explain whether warnings prevent a run. ([#341](https://github.com/goldbarth/chartula/pull/341))\n- Add terminal-aware run progress with the Quiet Pulse spinner and a `--plain` option for plain output. ([#340](https://github.com/goldbarth/chartula/pull/340))\n- Quote pull request text between tags in model prompts, truncating descriptions beyond 8,000 characters without changing the stored facts. ([#338](https://github.com/goldbarth/chartula/pull/338))\n- Prevent `generate` from replacing published release notes unless `--replace-published` is supplied. ([#335](https://github.com/goldbarth/chartula/pull/335))\n- Show a version-tagged configuration template link when `doctor` finds no `chartula.yaml`. ([#329](https://github.com/goldbarth/chartula/pull/329))\n- Show run progress on stderr while reading pull requests, rendering audiences and checking renderings. ([#297](https://github.com/goldbarth/chartula/pull/297))\n- Add `chartula doctor` to check repository, configuration, model and GitHub setup before a generation run. ([#295](https://github.com/goldbarth/chartula/pull/295))\n- Populate `linkedIssues` from the text the model reads at every `factBase.depth`. ([#293](https://github.com/goldbarth/chartula/pull/293))\n- Include non-merge commits without merged pull requests alongside pull request changes in release range order. ([#291](https://github.com/goldbarth/chartula/pull/291))\n- Add `chartula --version` to print the installed informational version without requiring repository setup or credentials. ([#286](https://github.com/goldbarth/chartula/pull/286))\n- Support releases from the first commit through the first tag, requiring confirmation for first-tag and large ranges. ([#282](https://github.com/goldbarth/chartula/pull/282))\n\n### Fixed\n\n- Fix help grouping so each option appears once and `--replace-published` appears under What a run writes. ([#344](https://github.com/goldbarth/chartula/pull/344))\n- Normalize whitespace and remove backtick fences when comparing names in the rule-based faithfulness check. ([#336](https://github.com/goldbarth/chartula/pull/336))\n- Write an explicit no-changes sentence to `CHANGELOG.md` and release notes when the technical rendering is empty. ([#333](https://github.com/goldbarth/chartula/pull/333))\n- Use `JavaScriptEncoder.UnsafeRelaxedJsonEscaping` for readable strings in `changelog.json` and the run record without changing parsed values. ([#332](https://github.com/goldbarth/chartula/pull/332))\n- Separate rendering review flags from the last entry with a blank line and a dedicated review heading. ([#331](https://github.com/goldbarth/chartula/pull/331))\n- Identify unset or blank credential variables as unauthenticated in the run header without exposing credential values. ([#330](https://github.com/goldbarth/chartula/pull/330))\n- Validate command-specific arguments before setup begins, honoring `--help` and `-h` after a recognized command. ([#301](https://github.com/goldbarth/chartula/pull/301))\n- Append a missing trailing slash to `Chartula__GitHub__ApiBaseUrl` so relative requests retain the complete API path. ([#290](https://github.com/goldbarth/chartula/pull/290))\n- Honor `filter.excludeCategories: []` as excluding no categories instead of retaining the default exclusion. ([#289](https://github.com/goldbarth/chartula/pull/289))\n- Report model responses the SDK cannot parse as unreadable rather than treating the endpoint as unreachable. ([#288](https://github.com/goldbarth/chartula/pull/288))\n- Reject configuration directories containing both `chartula.yaml` and `chartula.yml` instead of silently selecting one. ([#287](https://github.com/goldbarth/chartula/pull/287))\n- Check publication permissions before reading pull requests or making model calls in `generate` runs that publish. ([#285](https://github.com/goldbarth/chartula/pull/285))\n- Clarify that `--no-publish` writes every file and skips only publication of GitHub release notes. ([#284](https://github.com/goldbarth/chartula/pull/284))",
+    "customer": "### What needs action\n\n- **Breaking:** `changelog.json` schema version 2 no longer includes pull request descriptions; the local run record retains the complete facts, keeping full author descriptions out of the published payload. Update consumers that need descriptions to read the run record, following [changelog-json.md](changelog-json.md).\n- **Breaking:** `preview` now shows facts, filtering reasons and planned model calls instead of rendered prose, with exact rephrasing prompt character counts and no model key, model calls or file writes. Use `generate --no-publish` to see rendered prose without publishing, as described in [docs/cli.md](docs/cli.md).\n\n### What's New\n\n- **Run summaries:** Each command opens with its name, and generation summaries lead with review flags or audience failures when present. You can read the run's outcome from the first summary line, while redirecting stdout keeps the report plain without stopping terminal progress on stderr.\n- **Setup check results:** `doctor` now groups checks under Repository, Model and GitHub, with a word alongside each terminal status symbol. Its verdict distinguishes warnings that allow a run from GitHub write warnings that would stop publishing, so you can tell whether `preview`, `generate --no-publish` or `generate` would start.\n- **Terminal progress:** Active run steps now show a spinner in live terminals, and a step ending in an exception is marked as failed rather than done. Redirected output and CI keep plain lines without terminal controls; use `--plain` on the command line to request plain output.\n- **Pull request text:** Pull request titles and descriptions are quoted in model prompts, and descriptions longer than 8,000 characters are cut there while remaining complete in the run record. The product now tells both the rephrasing model and the thorough check to treat quoted text as material, not instructions, and not to guess omitted text; this does not guarantee that attempts to steer the model cannot work.\n- **Published release protection:** `generate` now stops before its first model call if the tag already has a published release, and checks again before writing so notes published during rendering are protected too. To replace published notes, pass `--replace-published` to `generate`; drafts still update without it.\n- **Configuration template:** `doctor` now shows a configuration template link when no `chartula.yaml` is found. The link targets the installed version's tag rather than `main`, so released binaries point to a template for their version.\n- **Run progress:** Runs now show when they are reading pull requests, rendering audiences and checking renderings, with commit counts and elapsed time in a terminal. Progress stays on stderr, so a changelog redirected from stdout contains no progress lines.\n- **Setup diagnosis:** `chartula doctor` now checks the repository, configuration, model endpoint and GitHub access before generation, marking failed prerequisites and skipping dependent checks. You can use its exit code in CI to detect setup failures without writing files or publishing; the checks make a capped model call per model used and three GitHub requests.\n- **Closed issue references:** Closed issue numbers now come from the same title and description text the model reads, including at the default depth. The rule-based check accepts those references, and existing configurations using `title-description-and-issues`, `full` or `issues` continue to work as `title-and-description` without reading issue content.\n- **Direct commits:** Commits without a merged pull request now appear alongside pull requests, subject to the same filtering rules, while merge commits without a pull request are skipped. Releases can now include directly pushed fixes even when they also contain pull requests, without bringing back commits from reverted pull requests.\n- **Installed version:** `chartula --version` now prints the installed build's informational version and exits successfully from any directory, without a checkout, configuration or credentials. Its output matches the version recorded in `changelog.json`, so reports and run files identify the same build.\n- **First-tag releases:** A first tag can now be rendered from the first commit without `--whole-history`, with confirmation before GitHub requests or model calls for first tags and ranges above the confirmation threshold. You can review the range and its cost before proceeding; pass `--yes` on the command line to confirm an unattended run.\n\n### What's Changed\n\n- **Dependency updates:** The release uses Anthropic 12.53.0, coverlet.collector 10.1.0 and Microsoft.Extensions.AI.OpenAI 10.10.1.\n\n### Bug Fixes\n\n- **Help option groups:** `chartula --help` listed `--audience` twice and placed `--replace-published` under appearance options. Each option now appears once in its appropriate group, with publishing options together under “What a run writes.”\n- **Quoted-name checks:** Names supported by descriptions could receive review flags when the descriptions contained wrapped lines or fenced code blocks. The rule-based check now compares the text in the rendering's whitespace form while keeping facts separate, so supported names are recognized without accepting matches across different facts.\n- **Releases without technical changes:** A release with no changes for technical readers could produce only a heading in `CHANGELOG.md` and empty release notes. Those outputs now state that the release has no features, fixes, performance improvements or breaking changes, making the empty result explicit without a model call.\n- **Readable JSON:** Backticks and non-ASCII text in `changelog.json` and run records were obscured by character escapes when reading the raw files. Both files now retain readable characters while preserving the same values for JSON consumers.\n- **Review flag layout:** Review flags appeared directly beneath a rendering's last entry, making them look attached to that entry even when they concerned another. A separate “Flagged for review:” block now identifies them as flags for the rendering.\n- **Credential status:** Run headers claimed a key or token came from a credential variable even when it was unset or blank. The header now reports unauthenticated access and names the missing variable, matching whether requests carry credentials without exposing their values.\n- **Command-line validation:** Mistyped, incomplete or unsupported options could start unintended runs, and `generate --help` could generate and publish a draft. Invalid arguments now stop before configuration or repository access with a corrective message, while `-h` and `--help` after a known command show help without starting a run.\n- **GitHub API addresses:** A GitHub API address without a trailing slash could send requests to the wrong path and report a misleading 404. Addresses with or without the slash now resolve to the same request paths, and the header shows the address actually used.\n- **Empty category exclusions:** An empty category exclusion list kept the default Internal exclusion instead of excluding nothing. You can now count on an explicit empty list to retain every category; set `filter.excludeCategories: []` in `chartula.yaml` or `Chartula__Filter__ExcludeCategories=[]` in the environment.\n- **Unreadable model responses:** A model response the provider SDK could not read was reported as an unreachable endpoint. Error messages now distinguish a received but unreadable answer from a connection failure, showing the response status and unreadable value when available so you can identify the kind of failure.\n- **Conflicting configuration files:** When `chartula.yaml` and `chartula.yml` existed together, settings in the latter were silently ignored. The run now stops before GitHub requests or model calls and names both paths; keep one file, move the wanted settings into it and delete the other.\n- **Publishing permission check:** `generate` could spend on every model call before discovering that its token could not publish. Publishing permission is now checked before pull requests are read or models are called, though a later write can still fail; use `generate --no-publish` to write files without requiring publishing permission.\n- **No-publish help:** The help for `--no-publish` named only `changelog.json` and `CHANGELOG.md`, leaving out the release Markdown file and run record. It now states that every file is written and only GitHub release-note publication is skipped, so the help describes the command's actual output."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "openai-compatible",
+    "model": "gpt-6.1-sol",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "low",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "gpt-6.1-sol",
+    "checkThinking": "low"
+  }
+}

@@ -1,0 +1,64 @@
+chartula generate
+Model:   anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+         claude-sonnet-5-5, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 4 in customer.
+
+Technical
+### Added
+
+- Render the summary on a live terminal as readable text instead of Markdown source, with bold group headings, bulleted entries with a hanging indent, coloured code without backticks, links shown as their text, and lines wrapped between words at the window width. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Move the step spinner into the last of the six status columns, next to its label, and pad the header values `Model:`, `GitHub:` and `Range:` to nine columns so they align with the step labels. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark the step of an audience that did not render as failed, and list the release notes under `Skipped` with the reason when a publishing run has no technical rendering. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Refuse a malformed `--audience` value such as a trailing comma or a number, and print the same error and `chartula --help lists every command and its options.` pointer for every refused argument. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Read a number with thousands separators, such as `8,000`, as one number in the rule-based faithfulness check, comparing both sides without the commas. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit the line of a running step to the terminal width by dropping whole parts until it fits in one row, and keep the indent of `doctor` details when they wrap between words. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release makes terminal output easier to read and more consistent, and corrects how failed audiences, argument errors and numbers with thousands separators are reported.
+
+### What's New
+
+- **Readable summary in the terminal:** The summary printed on a live terminal showed the release text as raw Markdown, with heading marks, backticks and a front matter line. It now appears as readable text: bold headings, bulleted entries wrapped to the window width, and coloured code, so you can read it on screen without decoding the source. Redirected output, CI and `--plain` keep the Markdown as before, and the Markdown to copy now comes from the changelog file, as described in the CLI docs.
+- **Spinner and header alignment:** While a step ran, its spinner stood six columns away from its label, and the header values sat one column left of the step labels. The spinner now sits right before the label and the header values line up with the labels, so the line reads as one unit and nothing shifts when a step ends. A script that reads `Model:` or `Range:` by its key still finds it, one space further right.
+
+### Bug Fixes
+
+- When one audience failed to render, its step was still shown as done, directly above the line reporting the failure, and a publishing run said nothing about the release notes. The step is now marked as failed, and the release notes are listed under Skipped with the reason: the technical rendering failed, or `--audience` left it out. You can now trust the step marks and the summary to agree, and see why nothing was published.
+- **Argument checks and run messages:** A trailing comma or a number in `--audience` was accepted and run as a valid audience, and refused arguments printed inconsistent messages. Both are now refused, and every refused argument prints its error followed by a pointer to the help, with no run header before it. The rate limit message without a token now states the 60 requests an hour limit and the token that raises it to 5000, so you no longer need to look for an earlier warning. Smaller output fixes: `chartula version` now points to `chartula --version`, a blank line separates the Wrote list from the failure count, and the `--plain` help no longer reads as if `NO_COLOR` were a third plain case.
+- **Numbers with thousands separators:** The rule-based faithfulness check read `8,000` as two numbers, `8` and `000`, so a rendering that wrote `8000` was flagged even though the facts backed it, and an invented `8 retries` went unflagged. Numbers with thousands separators are now read as one number and compared without the commas, so you no longer need to dismiss such flags. Lists like `1, 2, 3` stay separate numbers, but `100,200` written without a space is now read as one number.
+- **Narrow terminal windows:** In a terminal narrower than the running step line, which is 53 to 60 columns wide, every redraw left a row behind, producing over a thousand lines for a two-minute step. The line now drops whole parts (padding, then time, then count, then the end of the label) to fit one row, and no frame is drawn below ten columns. On a terminal, `doctor` also wraps long details between words and keeps their indent, so narrow windows stay readable. Plain output is never wrapped.
+
+Flagged for review:
+  ! #352: "so the line reads as one unit and nothing shifts when a step ends" - The facts say the spinner stands next to its label and nothing moves when a step ends, but they do not say the line 'reads as one unit'. This is a mild embellishment. The 'nothing moves' part is supported.
+  ! #359: "You can now trust the step marks and the summary to agree, and see why nothing was published." - The facts say the steps and the summary no longer contradict each other and the Skipped entry gives a reason. 'You can now trust' is an overstated framing, though largely consistent.
+  ! #357: "so you no longer need to dismiss such flags" - The facts say nothing about users dismissing flags. They only say the number is read as one number so the false flag is not raised. This is an invented consequence.
+  ! #358: "so you no longer need to look for an earlier warning" - The facts say the message now says what the warning said, because the earlier warning is printed by a run and not by doctor. They do not say users needed to look for it. This is an embellishment.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 4 claims, 18,471 in / 428 out, 5.1 s (longest 3.4 s)
+    of which 0 in cached, reasoning not reported
+    caught 4 claims the rule-based check missed, for 18,899 tokens in 2 calls
+  Rephrasing:       2 calls, 16,821 in / 1,488 out, 12.3 s (longest 8.1 s)
+    of which 0 in cached, reasoning not reported
+  Total:            37,208 tokens in 20.9 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T182254Z-v0.1.0-preview.5.json

@@ -1,0 +1,62 @@
+chartula generate
+Model:   anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+         claude-sonnet-5-5, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.4, up to v0.1.0-preview.5 (8 commits)
+Reading pull requests (8 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.5 with review flags: 2 in customer.
+
+Technical
+### Added
+
+- Render the summary on a live terminal as readable text instead of Markdown source, with bold group headings, hanging-indent bullets, coloured code without backticks, links shown as their text, and entries wrapped between words at the window width. ([#360](https://github.com/goldbarth/chartula/pull/360))
+- Place the running step's spinner in the last status column directly before its label, and pad the header values `Model:`, `GitHub:` and `Range:` to nine columns so they line up with the step labels. ([#352](https://github.com/goldbarth/chartula/pull/352))
+
+### Fixed
+
+- Mark the step of an audience that did not render as failed, and list the release notes under `Skipped` with the reason when a publishing run has no technical rendering. ([#359](https://github.com/goldbarth/chartula/pull/359))
+- Refuse malformed `--audience` values such as a trailing comma or a number, and print the same error and `chartula --help` pointer for every refused argument. ([#358](https://github.com/goldbarth/chartula/pull/358))
+- Read numbers with thousands separators, such as `8,000`, as a single number in the rule-based faithfulness check, comparing both sides without the commas. ([#357](https://github.com/goldbarth/chartula/pull/357))
+- Fit the line of a running step to the terminal width by dropping whole parts until it fits, and keep the details indent in `doctor` output by breaking long details between words on a terminal. ([#356](https://github.com/goldbarth/chartula/pull/356))
+
+Customer
+  description: This release improves how the command line reads on a terminal, with cleaner summaries, aligned progress lines and narrow-window support, and fixes failure reporting, argument checks and number handling in the faithfulness check.
+
+### What's New
+
+- **Summary on a terminal:** The summary printed on a live terminal now shows each audience's rendering as readable text: bold group headings, bulleted entries wrapped to the window width, and no Markdown symbols or front matter line. You can read it directly in the terminal without mentally stripping Markdown. Redirected output, CI and --plain keep the Markdown as before, so copy it from the place docs/cli.md names.
+- **Spinner and header alignment:** While a step ran, the spinner stood several columns away from its step label, and the header values sat one column left of the step labels. The spinner now sits right before the label, and Model:, GitHub: and Range: line up with the step labels, so the line reads as one unit. A script that reads those header keys still finds them, one space further right.
+
+### Bug Fixes
+
+- **Failed audience reporting:** When one audience failed to render, its step still showed as done, directly above the line reporting the failure. That step is now marked as failed, and a publishing run lists the release notes under Skipped with the reason, whether the technical rendering failed or --audience left it out. The step lines and the summary now agree, and you can see why no release notes were published.
+- **Argument checks and run messages:** Mistakes in arguments were accepted or reported inconsistently: --audience with a trailing comma or a number such as 1 ran as a valid audience, and refused arguments printed different output. These are now refused, and every refused argument prints its error followed by a pointer to chartula --help. A blank line separates the Wrote: list from the failure count, and the rate limit message now explains the 60 versus 5000 requests an hour limit by itself, so you no longer have to look for an earlier warning.
+- **Numbers with thousands separators:** The rule-based faithfulness check read a number such as 8,000 as two numbers, so a rendering that wrote 8000 was wrongly flagged while an invented 8 could pass. Numbers with thousands separators are now read as one number and compared without the commas, so flags on such numbers reflect real mismatches. Three-digit numbers listed with no space, like 100,200, are now read as one number.
+- **Narrow terminal windows:** In a narrow terminal window, the line of a running step wrapped and left a new row behind with every frame, producing over a thousand lines in a two-minute step. The line now drops whole parts such as padding, time or count to fit in one row, and no frame is drawn below ten columns, so a narrow window stays readable. On a terminal, doctor also breaks long details between words and keeps their indent.
+
+Flagged for review:
+  ! #352: "The spinner now sits right before the label, and Model:, GitHub: and Range: line up with the step labels, so the line reads as one unit." - The facts say the spinner moved next to its label and the header values moved to the step label column, but only that the header was padded; the "reads as one unit" is a gloss, not a stated fact. Minor.
+  ! #352: "the header values sat one column left of the step labels" - Facts say the header values started on column 8 and the step labels on column 9, which matches; however, the spinner claim 'several columns away' is supported. This claim is consistent, so no issue beyond wording.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.5.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.5 in goldbarth/chartula
+
+Run metrics
+  Release:          8 commits, 8 pull requests, 7 facts (7 with a description, 20,294 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 2 claims, 18,349 in / 274 out, 5.9 s (longest 4.3 s)
+    of which 0 in cached, reasoning not reported
+    caught 2 claims the rule-based check missed, for 18,623 tokens in 2 calls
+  Rephrasing:       2 calls, 16,821 in / 1,368 out, 11.5 s (longest 7.5 s)
+    of which 0 in cached, reasoning not reported
+  Total:            36,812 tokens in 21.1 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T184750Z-v0.1.0-preview.5.json

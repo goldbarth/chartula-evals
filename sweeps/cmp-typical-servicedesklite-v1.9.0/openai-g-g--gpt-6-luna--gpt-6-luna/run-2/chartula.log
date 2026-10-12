@@ -1,0 +1,93 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6-luna, thinking disabled
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after 675555a7, up to v1.9.0 (19 commits)
+Reading pull requests (19 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v1.9.0 with review flags: 5 in customer.
+
+Technical
+### Changed
+
+- Integrate the M9 Frontend Redesign milestone into `main` and include the v1.9.0 release notes. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add inline citation badges anchored in sanitized assistant Markdown, with numbered sources and tooltip previews. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add actionable suggested steps to ticket headers, using the first actionable step as the primary control and keeping generic actions available as fallback. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a keyboard-operable command palette to every page, opened with `Ctrl/Cmd+K`, with navigation entries and debounced, cancellable ticket search. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Add optimistic status updates to board and detail views, reconciling successful changes and rolling back rejected ones. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Replace status and assignee dialogs with inline popovers that apply changes without navigation or modals. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline citation badges with hover and keyboard-focus previews, while retaining the sources list for citations not anchored in the answer. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Add the active agent roster to the chat system prompt and instruct the assistant to use only listed names when assigning tickets. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Require `AgentLoop` to run `check_grounding` once after retrieval when no check has run, using `tool_choice`. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Add shared design tokens for colors, spacing, radius, elevation, and semantic chip colors, and use them across stylesheets and `AppTheme`. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Wrap board card titles so the two-line clamp and ellipsis work without expanding card height. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Restore the assistant panel's scoped styles so the composer stays inset and the send button remains inside the panel. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Set a width for the `Category` column and use the uppercase header style to prevent it overlapping `Due`. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Add system-prompt rules requiring the assistant to report successful tool results before claiming changes and to avoid unnecessary confirmation requests. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Convert ticket summary timestamps to `Anthropic:UserTimeZone` before including them in the model prompt. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Mark technical failures from `search_knowledge_base` as errors while preserving the separate unavailable result. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Add semantic grounding scores based on sentence-to-passage similarity, with `LexicalGroundingEvaluator` as a fallback. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+
+Customer
+  description: This release brings together frontend updates to ticket workflows and assistant chat, alongside changes to assistant grounding and error handling.
+
+### What's New
+
+- **Inline citation badges:** Cited passage titles in assistant answers can now show numbered badges, with hover and keyboard-focus previews. When a citation title appears in the answer, its badge number matches its entry in the Sources list, and citations without a matching title remain in that list.
+- **Suggested ticket actions:** The first suggested step now appears as a button or agent picker when it maps to an available ticket action. You can run the suggested action directly, while other steps remain available in the overflow menu and generic ticket controls stay available.
+- **Command palette:** You can now open a command palette from any page with Ctrl+K or Cmd+K to search navigation links and tickets. Use the arrow keys to select a result, Enter to open it, and Escape to close the palette and return focus to where it was.
+- **Optimistic status updates:** A ticket’s status now changes on the board or detail page as soon as you request a move, before the server responds. The view reconciles with the server after an accepted move, restores the previous status after a rejected move, and shows the rejection code.
+- **Inline ticket controls:** You can now change a ticket’s status or assignee from menus in its header instead of opening a dialog. The ticket stays on its current page, tab, and scroll position, and errors appear in a snackbar.
+- **Inline citation badges:** Citations can now appear as numbered badges beside matching passage titles in assistant answers, with previews available on hover or keyboard focus. Badges share their numbering with the Sources list, which remains available for citations that are not anchored in the answer.
+- **Agent roster in assistant answers:** The assistant can now name the active agents when discussing ticket assignment. It uses the roster provided for each chat request, so it can list valid agents rather than guessing when a name is not on the roster.
+- **Grounding checks:** After knowledge-base passages are retrieved, the assistant now runs a grounding check before streaming its first answer token, unless it has already checked during that run. This ensures at least one check after retrieval, but does not ensure that every passage retrieved later in a long chain is checked.
+- **Consistent design tokens:** The interface now uses a shared scale for colors, spacing, corner radii, elevation, and chip colors across the theme and stylesheets. Status and priority chips use the same colors across the queue, board, and ticket detail views.
+
+### What's Changed
+
+- **v1.9.0 release:** This release brings together the M9 frontend redesign, including changes to ticket views, assistant chat, and interface styling.
+
+### Bug Fixes
+
+- **Board card titles:** Long ticket titles on board cards could extend the cards without being clamped. Titles now stop at two lines with an ellipsis, keeping cards within a bounded height.
+- **Assistant chat layout:** The send button could sit flush with or beyond the edge of the assistant chat panel. The composer now stays inset within the panel, with its input and button aligned at narrow and wide widths.
+- **Ticket queue headers:** The Category header could overlap the Due header in the ticket queue. The headers now sit side by side with their columns aligned, and Category uses uppercase styling.
+- **Assistant confirmations and write honesty:** The assistant could ask for confirmation again after you had already requested a change, or claim a change without a successful tool result. It now acts on requested changes without re-asking and reports a change only after the tool call succeeds.
+- **Summary timestamps:** Ticket summary timestamps could appear in UTC rather than the timezone used in the ticket details. Summaries now present creation, due, comment, and event times in the configured user timezone.
+- **Knowledge-base search errors:** A failed knowledge-base search could be reported as a successful result, making technical failures indistinguishable from an unavailable search. Technical failures are now reported as errors, while the unavailable-search outcome remains distinct.
+- **Grounding by meaning:** Correct paraphrases and translations could be marked as ungrounded because the check relied on word overlap. Grounding now uses semantic similarity when embeddings are available, with lexical scoring as a fallback when they are not.
+
+Flagged for review:
+  ! #245: "previews available on hover or keyboard focus" - PR #245 supports a hover/focus tooltip. PR #233 describes the earlier inline implementation, but the integrated v1.9.0 release notes in #244 say Markdown leads and inline badges were deferred to #243; #245 is the implementation reintroduced over sanitized Markdown. The output's duplicated entry is otherwise broadly supported, but this wording is supported by #245, not evidence of two separate delivered implementations.
+  ! "with changes to ticket views, assistant chat, and interface styling" - The v1.9.0 integration PR describes the M9 frontend redesign and release notes, but does not characterize the release as containing the assistant grounding and error-handling changes listed elsewhere in this changelog. As a claim about the release as a whole, it rephrases no single fact.
+  ! #223: "The assistant could ask for confirmation again after you had already requested a change" - PR #223 says the specific needless double-confirmation field scenario was not reproducible in five live turns before this change; the missing policy was what remained. The output presents the behavior as an established prior defect rather than a policy gap addressed by the change.
+  ! #223: "The assistant could ... claim a change without a successful tool result" - PR #223 describes write honesty as a prompt rule to prevent unsupported claims, but its live reproduction says the original field behavior was not reproducible. The output states that the assistant did make such claims as a confirmed prior behavior.
+  ! #219: "Correct paraphrases and translations could be marked as ungrounded because the check relied on word overlap." - PR #219 supports this, but the output omits the specific limitation that the grounding check still has an open whole-answer-scoping problem: non-claim sentences with content words may be counted. The heading and summary imply the grounding defect is resolved without that qualification.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/release-v1.9.0.md
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 5 claims, 22,961 in / 458 out, 5.7 s (longest 4.5 s)
+    of which 0 in cached, 0 out reasoning
+    caught 5 claims the rule-based check missed, for 23,419 tokens in 2 calls
+  Rephrasing:       2 calls, 21,775 in / 1,516 out, 16.2 s (longest 10.6 s)
+    of which 21,769 in cached, 0 out reasoning
+  Total:            46,710 tokens in 29.5 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20261009T184820Z-v1.9.0.json

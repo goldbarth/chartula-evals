@@ -1,0 +1,61 @@
+chartula generate
+Model:   anthropic at its default endpoint, key from ANTHROPIC_API_KEY
+         claude-opus-5-5, thinking low
+         thorough check: claude-sonnet-5-5, thinking low
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after 675555a7, up to v1.9.0 (19 commits)
+Reading pull requests (19 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Partially generated v1.9.0: 1 of 2 audiences failed.
+
+Technical
+### Changed
+
+- Integrate the full M9 Frontend Redesign milestone into `main` and add the v1.9.0 release notes in `docs/releases/v1.9.0.md`. ([#244](https://github.com/goldbarth/ServiceDeskLite/pull/244))
+
+### Added
+
+- Add inline `[n]` citation badges anchored in the sanitized Markdown assistant answer, with a hover/focus tooltip and unanchored citations kept in the sources list. ([#245](https://github.com/goldbarth/ServiceDeskLite/pull/245))
+- Add a primary action control in the ticket header driven by `SuggestedNextSteps`, now an `IReadOnlyList<SuggestedStep>` tagged with a `SuggestedActionKind`, with remaining steps in an overflow menu. ([#237](https://github.com/goldbarth/ServiceDeskLite/pull/237))
+- Add a keyboard-operable `CommandPalette` opened with `Ctrl/Cmd+K` on every page, offering navigation entries from `NavRegistry` and debounced, cancellable ticket search. ([#236](https://github.com/goldbarth/ServiceDeskLite/pull/236))
+- Apply ticket status changes optimistically on the board and detail view, rolling back on a rejected transition and showing a snackbar with the ProblemDetails `code`. ([#235](https://github.com/goldbarth/ServiceDeskLite/pull/235))
+- Replace `AssignTicketDialog.razor` and `ChangeStatusDialog.razor` with inline `MudMenu` popovers that change status and assignee without navigation or a modal. ([#234](https://github.com/goldbarth/ServiceDeskLite/pull/234))
+- Add inline citation badges with a hover and keyboard-focus tooltip to assistant chat answers, keeping a numbered sources list for unanchored citations. ([#233](https://github.com/goldbarth/ServiceDeskLite/pull/233))
+- Inject the active agent roster into the chat system prompt so the assistant uses only valid agent names when assigning tickets. ([#221](https://github.com/goldbarth/ServiceDeskLite/pull/221))
+- Enforce a `check_grounding` call via `tool_choice` in `AgentLoop` once after knowledge-base passages are retrieved, before the answer streams. ([#218](https://github.com/goldbarth/ServiceDeskLite/pull/218))
+- Introduce `Theme/DesignTokens.cs` as the single source for palette, spacing, radius, elevation and semantic chip colours, and change `KpiCard.Accent` to the `KpiAccent` tone enum. ([#213](https://github.com/goldbarth/ServiceDeskLite/pull/213))
+
+### Fixed
+
+- Fix board card titles not clamping to two lines by wrapping the title in a `board-card__title-row` element. ([#240](https://github.com/goldbarth/ServiceDeskLite/pull/240))
+- Fix the assistant composer send button overflowing its panel by targeting the panel through `::deep .assistant-chat`. ([#239](https://github.com/goldbarth/ServiceDeskLite/pull/239))
+- Fix the `Category` header overlapping `Due` in the ticket queue by giving the column a fixed width and an uppercase label. ([#238](https://github.com/goldbarth/ServiceDeskLite/pull/238))
+- Add a chat system prompt policy that forbids claiming a change without a successful tool result and avoids needless re-confirmation of requested writes. ([#223](https://github.com/goldbarth/ServiceDeskLite/pull/223))
+- Render ticket summary timestamps in the `Anthropic:UserTimeZone` zone instead of UTC. ([#222](https://github.com/goldbarth/ServiceDeskLite/pull/222))
+- Report a failed `search_knowledge_base` call as an error result (`IsError: true`), distinct from the unavailable path. ([#220](https://github.com/goldbarth/ServiceDeskLite/pull/220))
+- Score grounding by semantic similarity with `SemanticGroundingEvaluator`, falling back to `LexicalGroundingEvaluator` when embeddings are unavailable or fail. ([#219](https://github.com/goldbarth/ServiceDeskLite/pull/219))
+
+Customer
+  (failed) Changelog generation for 'v1.9.0' failed: the model's answer does not match the facts it was sent: no entry for fact 17.
+
+Wrote:
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/changelog.json
+  - /home/goldbarth/repos/ServiceDeskLite-sweep/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v1.9.0 in goldbarth/ServiceDeskLite
+
+1 of 2 audiences failed.
+
+Run metrics
+  Release:          19 commits, 19 pull requests, 18 facts (18 with a description, 40,459 characters)
+  Rule-based check: 1 run, 0 with findings, 0 claims, no tokens
+  Thorough check:   1 run, 0 with findings, 0 claims, 18,393 in / 25 out, 1.7 s
+    of which 0 in cached, reasoning not reported
+    caught 0 claims the rule-based check missed, for 18,418 tokens in 1 call
+  Rephrasing:       2 calls, 34,117 in / 2,663 out, 24.4 s (longest 15.1 s)
+    of which 0 in cached, reasoning not reported
+  Total:            55,198 tokens in 34.0 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/ServiceDeskLite-sweep/chartula-runs/20261009T193638Z-v1.9.0.json

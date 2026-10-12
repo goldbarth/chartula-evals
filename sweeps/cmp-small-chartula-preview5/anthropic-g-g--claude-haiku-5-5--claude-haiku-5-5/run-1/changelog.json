@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "tag": "v0.1.0-preview.5",
+  "changes": [
+    {
+      "title": "feat(cli): show a rendering in the terminal as text to read, not as Markdown source",
+      "number": 360,
+      "url": "https://github.com/goldbarth/chartula/pull/360",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        355
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(pipeline): mark the step of an audience that did not render as failed, and say what became of the release notes",
+      "number": 359,
+      "url": "https://github.com/goldbarth/chartula/pull/359",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        354
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): refuse a slip in --audience, refuse every argument alike, and close four small gaps in what a run says",
+      "number": 358,
+      "url": "https://github.com/goldbarth/chartula/pull/358",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        353
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(faithfulness): read a number with thousands separators as one number in the rule-based check",
+      "number": 357,
+      "url": "https://github.com/goldbarth/chartula/pull/357",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        350
+      ],
+      "labels": []
+    },
+    {
+      "title": "fix(cli): fit the line of a running step to the terminal's width, and keep the indent of doctor's details",
+      "number": 356,
+      "url": "https://github.com/goldbarth/chartula/pull/356",
+      "category": "Fix",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        349
+      ],
+      "labels": []
+    },
+    {
+      "title": "feat(cli): put the spinner next to its label, and the header values on the column of the step labels",
+      "number": 352,
+      "url": "https://github.com/goldbarth/chartula/pull/352",
+      "category": "Feature",
+      "userVisible": true,
+      "breaking": false,
+      "linkedIssues": [
+        351
+      ],
+      "labels": []
+    },
+    {
+      "title": "docs: add the changelog Chartula generated for 0.1.0-preview.4",
+      "number": 346,
+      "url": "https://github.com/goldbarth/chartula/pull/346",
+      "category": "Documentation",
+      "userVisible": false,
+      "breaking": false,
+      "linkedIssues": [],
+      "labels": []
+    }
+  ],
+  "renderings": {
+    "technical": "### Added\n\n- Render the terminal summary as readable text rather than Markdown source: group headings become bold without their hash marks, entries become bullets with a hanging indent, labels and the Breaking marker are bold, code is coloured without backticks, links show their text only, and the description appears as a sentence above the entries. Entries wrap at word boundaries to the window width; a word longer than the available room is not cut. The Breaking marker uses teal and code uses amber-glow, with nearest-colour mapping at 256 colours and 16-colour fallbacks. Rendering is built in and does not depend on an external viewer. Redirected output, CI and --plain keep the Markdown source and the description line unchanged. Without colour, layout is unchanged and code keeps its backticks; without Unicode the bullet is a hyphen. Each row is painted separately so colour never runs into the indent or past the last column. ([#360](https://github.com/goldbarth/chartula/pull/360))\n- Place the running step's spinner in the last of the six status columns, one space before the label, so it sits next to the text it belongs to; the finished done or fail mark fills the same columns without moving the label, count or time. Pad the header labels Model, GitHub and Range to nine columns and indent their continuation lines by nine so the header values align with the step labels. Plain step lines carry no spinner and are otherwise unchanged. Update the documented examples to match. ([#352](https://github.com/goldbarth/chartula/pull/352))\n\n### Fixed\n\n- End the step as failed when its audience did not render, and continue to the next audience instead of marking the step done beside a failed audience heading. Clarify in the comment and in the CLI docs that done means the step completed its work even if the result has review flags, and fail means the run stopped there or the audience did not render. When publishing, list the release notes under Skipped with the reason when the technical rendering failed or was excluded by --audience, instead of leaving that branch unwritten. Without publishing, list the notes as Skipped with the --no-publish heading even when the technical rendering failed. ([#359](https://github.com/goldbarth/chartula/pull/359))\n- Refuse --audience values that contain an empty list place or a numeric value, so a stray comma or a number no longer runs as a valid audience. Validate the value of --repo together with other arguments before the run header, and make every refused argument print the same error followed by a pointer to chartula --help. Make chartula version an unknown command that points to chartula --version. Separate the Wrote list from the failed-audience count with a blank line. State that NO_COLOR removes colour only in its own sentence in the --plain help. Make the rate-limit message self-contained, stating that without a token GitHub allows 60 requests an hour and a token in GITHUB_TOKEN raises that to 5000. Update the CLI, GitHub and troubleshooting documentation to show the refused-value output and the new rate-limit message. ([#358](https://github.com/goldbarth/chartula/pull/358))\n- Read numbers with thousands separators as single numbers in the rule-based faithfulness check, so 8,000 matches 8000 and 1,234,567 matches 1234567, while lists such as 1, 2, 3 and version or decimal numbers still compare as before. Quote a flagged number as the rendering wrote it so it can be found in the text. Note in the cost and checks documentation and the architecture document that three-digit numbers written without a space are read as one number. ([#357](https://github.com/goldbarth/chartula/pull/357))\n- Fit the line of a running step to the terminal width by dropping whole parts in order: padding and the word commits, then the time, then the count, then the end of the label, and draw no frame below ten columns. Keep the last column empty so a line never fills the full width. Read the terminal width with each redraw so a resized window is handled from the next frame, and keep the line unchanged when the width cannot be read. When a detail in doctor output is longer than the window on a terminal, break it between words with every row keeping the indent, while plain output stays unbroken. Describe the narrow-window behaviour in the CLI documentation under the running-work section and under doctor. ([#356](https://github.com/goldbarth/chartula/pull/356))",
+    "customer": "### What's New\n\n- **Readable summary in the terminal:** Release summaries in a terminal now read as formatted text rather than raw Markdown: headings appear without their markers, entries are bulleted with a hanging indent, and the breaking-change marker and code are styled. Links show their text, such as the pull request number, and the URL is in the changelog file. Output redirected to a file, run in CI, or using --plain still prints the Markdown source as before, so copy the text from CHANGELOG.md when you need the original.\n- **Spinner and header alignment:** While a step runs, its spinner now sits next to the step's label instead of several columns to the left, and the header values line up with the step labels. Scripts that read the header by its key still find it, one space further right.\n\n### Bug Fixes\n\n- **Failed audience in progress and summary:** A step whose audience failed to render is now marked as failed, and the run continues to the next audience. The release notes section of the summary lists them as skipped with the reason: the technical rendering failed, or --audience left it out.\n- **Refused arguments:** A misspelled or malformed --audience value, such as a trailing comma or a number, is now refused with a clear message instead of running as a different audience. Every refused argument prints its error followed by a pointer to chartula --help, and chartula version now points to chartula --version.\n- **Numbers with separators in the faithfulness check:** The rule-based faithfulness check now reads numbers with thousands separators as one number, so 8,000 in the facts matches 8000 in a rendering and is no longer flagged. Findings quote the number as the rendering wrote it.\n- **Progress line fits the terminal:** The running step line now fits the width of the terminal, so narrow windows no longer leave a trail of wrapped lines during a step. The line is redrawn at the current width on each frame, and doctor's details are broken between words under their check on a terminal."
+  },
+  "provenance": {
+    "toolVersion": "0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "promptHash": "sha256:adfdfc6c684f74d1c496f6a0fa797bf84044146b68ee21ae3284cbf40ea85724",
+    "thinking": "disabled",
+    "thoroughCheck": true,
+    "factBaseDepth": "title-and-description",
+    "checkModel": "claude-haiku-5-5",
+    "checkThinking": "disabled"
+  }
+}

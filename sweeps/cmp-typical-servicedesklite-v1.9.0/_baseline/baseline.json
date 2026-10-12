@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-09T16:20:36+00:00",
+  "command": [
+    "chartula",
+    "preview",
+    "--tag",
+    "v1.9.0",
+    "--since",
+    "675555a7",
+    "--repo",
+    "goldbarth/ServiceDeskLite",
+    "--yes",
+    "--plain"
+  ],
+  "chartula": "/home/goldbarth/.local/bin/chartula",
+  "toolVersion": "chartula 0.1.0-preview.5+541842dfb1ab40a7bea084297f46a550b5927042",
+  "clone": "/home/goldbarth/repos/ServiceDeskLite-sweep",
+  "cloneHead": "ee44ffca4c7d18cbea5d708fa2e2f5efdc30490e",
+  "config": {},
+  "tagCommit": "3c461b5e2cb5f9736793e1cb59442b456427c664",
+  "release": {
+    "commits": 19,
+    "pullRequests": 19,
+    "facts": 18,
+    "factsWithDescription": 18,
+    "descriptionCharacters": 40459
+  },
+  "promptCharacters": {
+    "technical": 44286,
+    "customer": 48351
+  },
+  "previewSha256": "34d3233ac522d22dd4fd030f86fa3da2b5ecb614d9bc3d425a8d32894e15bdf6"
+}

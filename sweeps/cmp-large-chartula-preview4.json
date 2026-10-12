@@ -1,0 +1,111 @@
+{
+  "comparison": "cmp-2026-10",
+  "case": {
+    "size": "large",
+    "repository": "goldbarth/chartula",
+    "range": "v0.1.0-preview.3..v0.1.0-preview.4",
+    "pullRequests": 64,
+    "why": "64 pull requests in one real release. The baseline finds 63 facts with 169,045 characters of description; 28 are rendered, the 35 documentation facts are in no rendering. 13 fixes, 12 features, two of them breaking (#294, #292). A little over the 40 to 60 asked for; the next real single release below it is 31."
+  },
+  "clone": "~/repos/chartula-sweep-cmp",
+  "chartula": "chartula",
+  "tag": "v0.1.0-preview.4",
+  "args": [
+    "generate",
+    "--no-publish",
+    "--tag",
+    "v0.1.0-preview.4",
+    "--repo",
+    "goldbarth/chartula",
+    "--yes"
+  ],
+  "repetitions": 3,
+  "requireBaseline": true,
+  "env": {
+    "Chartula__Faithfulness__Thorough": "true",
+    "Chartula__FactBase__Depth": "title-and-description"
+  },
+  "cells": [
+    {
+      "name": "openai-g-g--gpt-6-luna--gpt-6-luna",
+      "note": "cheap renders, cheap checks; thinking disabled and disabled",
+      "provider": "openai",
+      "configuration": "g-g",
+      "env": {
+        "Chartula__Llm__Provider": "openai-compatible",
+        "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+        "Chartula__Llm__Model": "gpt-6-luna",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "gpt-6-luna",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      }
+    },
+    {
+      "name": "openai-g-m--gpt-6-luna--gpt-6.1-sol",
+      "note": "cheap renders, middle checks; thinking disabled and low",
+      "provider": "openai",
+      "configuration": "g-m",
+      "env": {
+        "Chartula__Llm__Provider": "openai-compatible",
+        "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+        "Chartula__Llm__Model": "gpt-6-luna",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "gpt-6.1-sol",
+        "Chartula__Faithfulness__Thinking": "low"
+      }
+    },
+    {
+      "name": "openai-m-m--gpt-6.1-sol--gpt-6.1-sol",
+      "note": "middle renders, middle checks; thinking low and low",
+      "provider": "openai",
+      "configuration": "m-m",
+      "env": {
+        "Chartula__Llm__Provider": "openai-compatible",
+        "Chartula__Llm__BaseUrl": "https://api.openai.com/v1",
+        "Chartula__Llm__Model": "gpt-6.1-sol",
+        "Chartula__Llm__Thinking": "low",
+        "Chartula__Faithfulness__Model": "gpt-6.1-sol",
+        "Chartula__Faithfulness__Thinking": "low"
+      }
+    },
+    {
+      "name": "anthropic-g-g--claude-haiku-5-5--claude-haiku-5-5",
+      "note": "cheap renders, cheap checks; thinking disabled and disabled",
+      "provider": "anthropic",
+      "configuration": "g-g",
+      "env": {
+        "Chartula__Llm__Provider": "anthropic",
+        "Chartula__Llm__Model": "claude-haiku-5-5",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "claude-haiku-5-5",
+        "Chartula__Faithfulness__Thinking": "disabled"
+      }
+    },
+    {
+      "name": "anthropic-g-m--claude-haiku-5-5--claude-sonnet-5-5",
+      "note": "cheap renders, middle checks; thinking disabled and low",
+      "provider": "anthropic",
+      "configuration": "g-m",
+      "env": {
+        "Chartula__Llm__Provider": "anthropic",
+        "Chartula__Llm__Model": "claude-haiku-5-5",
+        "Chartula__Llm__Thinking": "disabled",
+        "Chartula__Faithfulness__Model": "claude-sonnet-5-5",
+        "Chartula__Faithfulness__Thinking": "low"
+      }
+    },
+    {
+      "name": "anthropic-m-m--claude-sonnet-5-5--claude-sonnet-5-5",
+      "note": "middle renders, middle checks; thinking low and low",
+      "provider": "anthropic",
+      "configuration": "m-m",
+      "env": {
+        "Chartula__Llm__Provider": "anthropic",
+        "Chartula__Llm__Model": "claude-sonnet-5-5",
+        "Chartula__Llm__Thinking": "low",
+        "Chartula__Faithfulness__Model": "claude-sonnet-5-5",
+        "Chartula__Faithfulness__Thinking": "low"
+      }
+    }
+  ]
+}

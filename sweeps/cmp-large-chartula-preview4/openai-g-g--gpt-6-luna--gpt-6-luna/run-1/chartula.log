@@ -1,0 +1,121 @@
+chartula generate
+Model:   openai-compatible at https://api.openai.com/v1, key from OPENAI_API_KEY
+         gpt-6-luna, thinking disabled
+GitHub:  https://api.github.com/, token from GITHUB_TOKEN
+Range:   the commits after v0.1.0-preview.3, up to v0.1.0-preview.4 (64 commits)
+Reading pull requests (64 commits)
+Rendering technical
+Rendering customer
+Checking technical
+Checking customer
+Generated v0.1.0-preview.4 with review flags: 8 in customer.
+
+Technical
+### Changed
+
+- Update the Anthropic, `coverlet.collector`, and `Microsoft.Extensions.AI.OpenAI` NuGet dependencies to newer versions. ([#328](https://github.com/goldbarth/chartula/pull/328))
+
+### Added
+
+- **Breaking:** Remove descriptions from the published `changelog.json` schema and retain complete fact entries, including descriptions, in the run record. ([#294](https://github.com/goldbarth/chartula/pull/294))
+- **Breaking:** Make `preview` show fact decisions and planned model calls without making model calls or writing files. ([#292](https://github.com/goldbarth/chartula/pull/292))
+- Show each run's outcome in its opening summary, add audience headings, and group command help options. ([#342](https://github.com/goldbarth/chartula/pull/342))
+- Group `doctor` checks by Repository, Model, and GitHub, display status marks, and clarify whether warnings prevent a run. ([#341](https://github.com/goldbarth/chartula/pull/341))
+- Show run progress with a terminal-aware spinner and add the `--plain` option to every command. ([#340](https://github.com/goldbarth/chartula/pull/340))
+- Quote pull request titles and descriptions in prompts, neutralize embedded tags, and truncate long descriptions in prompts. ([#338](https://github.com/goldbarth/chartula/pull/338))
+- Stop before replacing a published release unless `--replace-published` is specified. ([#335](https://github.com/goldbarth/chartula/pull/335))
+- Have `doctor` link to the version-specific configuration template when `chartula.yaml` is missing. ([#329](https://github.com/goldbarth/chartula/pull/329))
+- Display run steps as they proceed, including pull request reading, audience rendering, and checks. ([#297](https://github.com/goldbarth/chartula/pull/297))
+- Add `chartula doctor` to check whether the setup needed for a run is ready. ([#295](https://github.com/goldbarth/chartula/pull/295))
+- Determine linked issue numbers from the text read by the model at every fact-base depth, and accept the previous depth values as aliases. ([#293](https://github.com/goldbarth/chartula/pull/293))
+- Include direct commits without pull requests as changes, while skipping merge commits without pull requests. ([#291](https://github.com/goldbarth/chartula/pull/291))
+- Add `chartula --version` to print the installed informational version. ([#286](https://github.com/goldbarth/chartula/pull/286))
+- Allow first-tag ranges and confirm first-tag or large ranges before reading them. ([#282](https://github.com/goldbarth/chartula/pull/282))
+
+### Fixed
+
+- List each CLI option once under its correct help group and update the roadmap and documentation. ([#344](https://github.com/goldbarth/chartula/pull/344))
+- Compare rendering names and facts after folding whitespace and removing code fences. ([#336](https://github.com/goldbarth/chartula/pull/336))
+- Write a standard message in technical outputs when a release has no content for technical readers, while keeping `renderings.technical` empty. ([#333](https://github.com/goldbarth/chartula/pull/333))
+- Use relaxed JSON escaping for `changelog.json` and the run record so their contents are more readable. ([#332](https://github.com/goldbarth/chartula/pull/332))
+- Separate review flags from the final entry of a rendering with a blank line and a dedicated heading. ([#331](https://github.com/goldbarth/chartula/pull/331))
+- Show credentials as unauthenticated in the run header when their environment variables are unset or blank. ([#330](https://github.com/goldbarth/chartula/pull/330))
+- Validate command-line options before starting, reject invalid or unsupported options, and honor `-h` and `--help` after a command. ([#301](https://github.com/goldbarth/chartula/pull/301))
+- Append a trailing slash to GitHub API base URLs when needed so relative request paths resolve correctly. ([#290](https://github.com/goldbarth/chartula/pull/290))
+- Treat an empty `filter.excludeCategories` list as excluding no categories. ([#289](https://github.com/goldbarth/chartula/pull/289))
+- Report model responses the SDK cannot parse as unreadable answers rather than unreachable endpoints. ([#288](https://github.com/goldbarth/chartula/pull/288))
+- Refuse to run when both `chartula.yaml` and `chartula.yml` are present. ([#287](https://github.com/goldbarth/chartula/pull/287))
+- Check whether the token can publish before the first model call in `generate`. ([#285](https://github.com/goldbarth/chartula/pull/285))
+- Clarify that `--no-publish` writes every file and omits only GitHub release notes. ([#284](https://github.com/goldbarth/chartula/pull/284))
+
+Customer
+  description: This release changes release data and generation workflows, while adding clearer run output and checks for common setup and publishing issues.
+
+### What needs action
+
+- **Breaking:** The published `changelog.json` no longer includes pull request descriptions, and its schema version is now 2. Use the run record’s `facts` to access complete descriptions; update consumers of version 1 files to read them from the run record.
+- **Breaking:** `preview` now shows the facts, what would be sent for each audience, and the prompt’s character count without making a model call or writing files. Use `generate --no-publish` when you need to see the rendered prose without publishing it.
+
+### What's New
+
+- **Run summary:** The run summary now opens with a line that reflects whether generation succeeded, had review flags, or failed for some audiences. Audience renderings appear under their audience names, so you can see which audience each one belongs to.
+- **Doctor report:** `chartula doctor` now groups its checks and shows each status with a symbol and word in terminal output. When a warning concerns GitHub write access, the verdict distinguishes whether `preview` and `generate --no-publish` can start from whether `generate` will stop.
+- **Run progress:** While a run is in progress, its steps now appear on stderr, with a spinner in supported terminals and plain lines otherwise. Use `--plain` on any command for plain output.
+- **Quoted pull request text:** Pull request titles and descriptions are now quoted in the prompts, with long descriptions cut in the prompt. The model is instructed to treat quoted text as material to rephrase, not as instructions.
+- **Published release protection:** `generate` now stops before its first model call when the release is already published, unless you explicitly allow replacement. Pass `--replace-published` to replace it, or `--no-publish` to write files without publishing release notes.
+- **Config template hint:** When `chartula doctor` finds no `chartula.yaml`, it now points to the template for the installed version. You can use that template to find the configuration options available for your version.
+- **Run progress:** Run steps now appear on stderr as they start, with their progress and elapsed time in a terminal. You can follow a run without waiting for its final output.
+- **Setup checks:** `chartula doctor` now checks the setup a run needs and reports which checks pass, warn, fail, or are skipped. You can run it before `generate` to identify setup issues first.
+- **Closed issue numbers:** `linkedIssues` now includes closed issue numbers found in the text the model reads, including at the default depth. If your configuration uses `title-description-and-issues`, `full`, or `issues`, those values continue to work as `title-and-description`.
+- **Direct commits:** Commits in the release range that are not part of a merged pull request now appear as changes alongside pull requests; merge commits without a pull request are skipped. The run summary and record report the counts of direct and skipped merge commits.
+- **Version command:** `chartula --version` now prints the installed version and exits successfully. You can check it from any directory without a checkout, configuration, key, or token.
+- **First-tag ranges:** A first tag now includes commits from the first commit without an extra flag, and large ranges require confirmation before GitHub is contacted. In non-interactive runs, pass `--yes` to confirm the range up front.
+
+### What's Changed
+
+- **Dependency updates:** The Anthropic, coverlet.collector, and Microsoft.Extensions.AI.OpenAI dependencies have been updated. You do not need to take any action.
+
+### Bug Fixes
+
+- **Help options:** The command help now lists each option once under its correct group. You can refer to the help for an accurate list of command options.
+- **Faithfulness checks:** The rule-based check now recognizes names in rendered text when whitespace differs or fenced code blocks are present. Names absent from the facts remain flagged.
+- **Empty technical releases:** When a release has no technical changes to show, `CHANGELOG.md` and the release notes now say that it has no features, fixes, performance improvements, or breaking changes. The technical rendering in `changelog.json` remains empty.
+- **Readable JSON files:** `changelog.json` and the run record now leave characters such as backticks and non-ASCII text readable in the files. Their parsed values remain the same.
+- **Review flags:** Review flags now appear after a blank line under their own heading, rather than directly beneath the last rendering entry. Multi-line flags keep their continuation lines aligned under the flag.
+- **Credential status:** The run header now says when a credential variable is unset or blank, while naming the variable to set. When it is set, the header continues to name the variable without showing its value.
+- **Command-line validation:** Commands now stop on unknown, misplaced, repeated, or incomplete options instead of proceeding with arguments they cannot read as intended. Use `-h` or `--help` after a command to show help and exit successfully.
+- **GitHub API URL:** A GitHub API base URL without a trailing slash now works, and the run header shows the URL used for requests. You can enter the URL with or without its trailing slash.
+- **Empty category filter:** An empty `filter.excludeCategories` list now means no categories are excluded, including when set through the environment variable. You can keep internal changes by setting the list to empty.
+- **Model response errors:** When the model endpoint answers but its response cannot be read, the error now identifies it as an unreadable answer rather than an unreachable endpoint. You can distinguish a response-format problem from a connectivity problem.
+- **Conflicting config files:** A run now stops if both `chartula.yaml` and `chartula.yml` are present, naming both paths and explaining how to resolve the conflict. Keep one file and move the settings you want into it.
+- **Publish permission check:** `generate` now checks whether the token can publish release notes before making model calls. If the check fails, use `--no-publish` to write files without publishing, or address the reported permission issue.
+- **`--no-publish` help:** The help now clarifies that `--no-publish` writes every file and skips only GitHub release notes. You can use it to generate files without publishing release notes.
+
+Flagged for review:
+  ! "This release changes release data and generation workflows, while adding clearer run output and checks for common setup and publishing issues." - No individual pull request fact supports this as a description of the release as a whole; the sentence synthesizes several changes and characterizes the release overall.
+  ! #292: "**Breaking:** `preview` now shows the facts, what would be sent for each audience, and the prompt’s character count without making a model call or writing files. Use `generate --no-publish` when you need to see the rendered prose without publishing it." - The factual description of preview is supported, but labeling the change as **Breaking** is not. The cited fact says it is breaking because preview no longer prints renderings, and that generate --no-publish shows prose; the output does not say that preview no longer prints renderings, instead emphasizing its new preview contents.
+  ! #342: "The run summary now opens with a line that reflects whether generation succeeded, had review flags, or failed for some audiences." - The new first-line forms distinguish generated output, review flags, partial audience failures, and no rendered audience. The output's “whether generation succeeded” generalization is broader than those stated cases and may imply a success/failure verdict beyond the described wording.
+  ! #340: "Run steps now appear on stderr as they start, with their progress and elapsed time in a terminal." - The prior progress feature says stderr progress is shown; terminal lines are rewritten and show time, while without a terminal there is one plain line per step as it starts. The claim that progress and elapsed time appear “as they start” does not preserve this distinction and overstates what is displayed at step start.
+  ! #329: "You can use that template to find the configuration options available for your version." - The fact supports that doctor links to the installed version’s config template, because main may list keys unknown to that version. It says nothing about the template being a comprehensive guide to all configuration options.
+  ! #297: "Run steps now appear on stderr as they start, with their progress and elapsed time in a terminal. You can follow a run without waiting for its final output." - This duplicates the progress claim and overstates it: the facts say plain output shows one line per step as it starts, and terminal output updates live; they do not claim that every step’s progress and elapsed time appear at its start.
+  ! #291: "The run summary and record report the counts of direct and skipped merge commits." - The summary and run record report commits without a pull request and merge commits skipped. Calling the former “direct” commits is not how the fact describes the fields and risks implying a narrower category than all commits without a merged PR.
+  ! #290: "The run header shows the URL used for requests." - The fact says the normalized URL in the header is the URL requests actually go to. The output says “the URL used,” which is supported, but this claim is placed under “Bug Fixes” and describes the behavior as working with or without a slash, both supported. No issue here.
+
+Wrote:
+  - /home/goldbarth/repos/chartula-sweep-cmp/changelog.json
+  - /home/goldbarth/repos/chartula-sweep-cmp/release-v0.1.0-preview.4.md
+  - /home/goldbarth/repos/chartula-sweep-cmp/CHANGELOG.md
+Skipped (--no-publish):
+  - Release notes for v0.1.0-preview.4 in goldbarth/chartula
+
+Run metrics
+  Release:          64 commits, 64 pull requests, 63 facts (63 with a description, 169,045 characters)
+  Rule-based check: 2 runs, 0 with findings, 0 claims, no tokens
+  Thorough check:   2 runs, 1 with findings, 8 claims, 90,799 in / 701 out, 8.0 s (longest 6.5 s)
+    of which 0 in cached, 0 out reasoning
+    caught 8 claims the rule-based check missed, for 91,500 tokens in 2 calls
+  Rephrasing:       2 calls, 43,785 in / 2,373 out, 23.5 s (longest 15.1 s)
+    of which 1,591 in cached, 0 out reasoning
+  Total:            137,658 tokens in 1 min 0 s
+  Retries:          none
+  Recorded in /home/goldbarth/repos/chartula-sweep-cmp/chartula-runs/20261009T183114Z-v0.1.0-preview.4.json

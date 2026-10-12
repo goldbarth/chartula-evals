@@ -1,0 +1,45 @@
+---
+title: Release 0.1.0-preview.4
+description: This release makes Chartula cheaper and clearer to run, with a free preview, a doctor setup check, live progress, a published-release safeguard and a leaner changelog.json.
+publishedAt: 2026-10-07
+---
+
+### What needs action
+
+- **Breaking:** The published changelog.json no longer contains pull request descriptions, so internal notes, measurements and links an author wrote for reviewers are not in it. It now has schema version 2, and the complete facts, descriptions included, stay in the local run record, so anything that read descriptions from changelog.json has to read them from the run record instead.
+- **Breaking:** The preview command no longer prints renderings and no longer calls the model. It shows each fact with the audiences that carry it, each dropped change with the setting that dropped it, and how many model calls and prompt characters generate would send, so you can check a release without a key or any model cost. To see the written prose without publishing, run generate with --no-publish.
+
+### What's New
+
+- **Run summary and help:** The run summary now opens on a line saying how the run went, such as whether review flags were raised or some audiences failed. Each rendering sits under its audience name, each run opens on its command name, and the help groups its options. "Generated" reports what the run did, not that the text is verified.
+- **Doctor report:** The doctor command now groups its checks under Repository, Model and GitHub, and marks each status with a symbol and a word. Its closing line counts the warnings and says what a run would do, including when generate would stop at the GitHub write check, so you can trust that line before you run. Plain output keeps the old word-only columns.
+- **Run progress spinner:** The progress of a run in a terminal now shows an animated spinner on the active step, and a finished step stays as a done line. A step that fails shows as failed above the error, so you can see where the run stopped. Add --plain to any command, or redirect the output, to get plain lines with no control characters.
+- **Quoted pull request text:** Pull request titles and descriptions are now quoted between tags in the text sent to the model, and descriptions over 8,000 characters are cut in the prompt only. The model is told the quoted text is material to rephrase and not instructions, which makes text written to steer it less likely to work, though not impossible.
+- **Published releases:** Running generate on a tag whose release is already published now stops before the first model call, so existing notes are no longer replaced without asking. The run costs nothing and names the release link, and to replace the notes on purpose you pass --replace-published to generate. The doctor GitHub write check warns about this case too.
+- **Config template hint:** When doctor finds no chartula.yaml, it now also links the configuration template for your installed version. You can start from that template, and it matches the keys your version accepts.
+- **Step-by-step progress:** A run now shows each step while it works: reading pull requests, rendering each audience and checking each rendering. In a terminal the current line updates with a running time, and without one each step is a single plain line on stderr, so a slow run no longer looks like a hanging one. Standard output is unchanged.
+- **Setup check with doctor:** A new doctor command checks the setup a run needs, one line per check marked ok, warn, fail or skip. It exits 1 when a check fails and 0 otherwise, so you can run it before generate, including in CI. It writes and publishes nothing, and names variables, never their values.
+- **Closed issue numbers:** Closed issue numbers, such as those after Closes, are now read from the same text the model reads, at every depth. A rendering that keeps such a number is no longer flagged at the default depth. The factBase depth setting now takes title-only or title-and-description, and the old values still work in an existing chartula.yaml.
+- **Commits without a pull request:** A commit pushed straight to main without a pull request now appears in the release next to the pull requests, so such a fix no longer ships unmentioned. Chore and ci commits are still dropped as Internal, and merge commits without a pull request are skipped. The run summary reports how many such commits there were.
+- **Version command:** Running chartula --version now prints the installed version and exits with 0. It works from any directory without a checkout, configuration, key or token, so you can name your exact build in a bug report.
+- **First tag and large ranges:** A first tag is now rendered from the first commit with no flag, and the --whole-history option is gone. A first tag, or a range above 200 commits by default, asks for confirmation twice before any GitHub request or model call, and answering anything but y stops with nothing spent. Without a terminal the run stops unless you pass --yes, and range.confirmAboveCommits changes the threshold.
+
+### What's Changed
+
+- **Dependency updates:** Three dependencies were updated to newer minor and patch versions: Anthropic, coverlet.collector and Microsoft.Extensions.AI.OpenAI.
+
+### Bug Fixes
+
+- **Help listing:** The help listed --replace-published under the wrong group and showed --audience twice. Each option now appears once under its group, so you can read the help as it is. The doctor documentation now also names a published release as a cause of a GitHub write warning.
+- **False faithfulness flags:** The rule-based check flagged names that a pull request description wrapped over two lines, and text around fenced code blocks, although the facts contained them. It now compares with whitespace folded and fences removed, so you no longer have to dismiss these flags. Names the facts do not contain are still flagged.
+- **Releases with nothing technical:** A release with nothing for the technical reader, such as one with only chore and docs changes, used to get an empty heading in CHANGELOG.md and empty release notes. It now carries the sentence "This release has no features, fixes, performance improvements or breaking changes.", so you can tell it from a run that lost its text. The technical rendering in changelog.json stays empty.
+- **Readable JSON files:** changelog.json and the run record escaped every backtick and non-ASCII character, which made them hard to read raw. They now escape only what JSON requires, so you can read and diff them directly. Parsed values are identical and the schema version does not change.
+- **Flag layout:** Review flags printed right under the last entry of a rendering and looked attached to it. They now come after a blank line under their own Flagged for review heading, so you can see they may concern any entry.
+- **Credential line in header:** The run header said a token or key came from a variable even when that variable was unset. It now says unauthenticated and names the unset variable, so the header agrees with the warning. A blank variable counts as unset.
+- **Option checking:** Commands used to ignore options they did not recognise, so generate --help started a run and --nopublish could publish. They now check the options first and refuse unknown, misplaced, repeated or valueless ones with a suggestion, and --help after a command prints the help and starts nothing, so a typo no longer costs a run.
+- **GitHub API URL:** A GitHub API URL set without a trailing slash, as GitHub Enterprise documents it, sent requests to the wrong path and failed with a misleading 404. The slash is now added for you, and the run header shows the URL actually used.
+- **Empty excludeCategories:** Setting filter.excludeCategories to an empty list in chartula.yaml still dropped the Internal category. An empty list now drops no category, so you can keep internal work in a release. The same works through the matching environment variable.
+- **Unreadable model answers:** A model answer the SDK could not read was reported as an endpoint that could not be reached. The message now says the endpoint answered but the answer could not be read, with the unreadable value, so you no longer have to look for a network problem.
+- **Two configuration files:** With chartula.yaml and chartula.yml in the same directory, one was silently ignored. The run now stops with a configuration error naming both paths, so settings you edit are never left out. Keep one file and delete the other.
+- **Publish check up front:** With a token that could not publish, generate only found out after every model call. It now checks before the first model call, so you no longer pay for a run that cannot publish. The run stops with exit 1 and names --no-publish, which still writes the files.
+- **No-publish help text:** The help text said --no-publish writes only some files. It now says every file is written and only the GitHub release notes are not published, so the help matches what the option does.
