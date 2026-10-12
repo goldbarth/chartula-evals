@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="349" viewBox="0 0 1300 349" role="img" aria-labelledby="title desc">
+<title id="title">Faktentiefe und Thorough Check: Wartezeit</title><desc id="desc">Sekunden · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</desc>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif}text{fill:#172b42}</style>
+<rect width="1300" height="349" fill="#fff"/>
+<text x="30.0" y="35.0" font-size="22" style="fill:#172b42" text-anchor="start" font-weight="700">Faktentiefe und Thorough Check: Wartezeit</text>
+<text x="30.0" y="62.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">Sekunden · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</text>
+<text x="30.0" y="100.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Typisch</text>
+<line x1="390.0" y1="120.0" x2="390.0" y2="216.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="390.0" y="309.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="566.2" y1="120.0" x2="566.2" y2="216.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="566.2" y="309.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">11</text>
+<line x1="742.5" y1="120.0" x2="742.5" y2="216.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="742.5" y="309.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">22</text>
+<line x1="918.8" y1="120.0" x2="918.8" y2="216.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="918.8" y="309.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">33</text>
+<line x1="1095.0" y1="120.0" x2="1095.0" y2="216.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1095.0" y="309.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">43</text>
+<text x="30.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus</text>
+<line x1="1015.8" y1="134.0" x2="1042.8" y2="134.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1041.3" y1="125.0" x2="1041.3" y2="143.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 40,2700 Sekunden; ok</title>
+<circle cx="1042.8" cy="129.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 38,6080 Sekunden; ok</title>
+<circle cx="1015.8" cy="134.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 40,1780 Sekunden; ok</title>
+<circle cx="1041.3" cy="139.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">40 · n=3</text>
+<text x="30.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus · ohne Prüfung</text>
+<line x1="924.4" y1="168.0" x2="959.1" y2="168.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="940.2" y1="159.0" x2="940.2" y2="177.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 32,9690 Sekunden; ok</title>
+<circle cx="924.4" cy="163.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 33,9430 Sekunden; ok</title>
+<circle cx="940.2" cy="168.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 35,1050 Sekunden; ok</title>
+<circle cx="959.1" cy="173.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">34 · n=3</text>
+<text x="30.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus · nur Titel</text>
+<line x1="817.2" y1="202.0" x2="869.7" y2="202.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="855.4" y1="193.0" x2="855.4" y2="211.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 26,3570 Sekunden; ok</title>
+<circle cx="817.2" cy="197.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 29,5910 Sekunden; ok</title>
+<circle cx="869.7" cy="202.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 28,7120 Sekunden; ok</title>
+<circle cx="855.4" cy="207.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">29 · n=3</text>
+<text x="30.0" y="332.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median nur vollständig; unvollständige Versuche als X, keine Konfidenzintervalle.</text>
+</svg>

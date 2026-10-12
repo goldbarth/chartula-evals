@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="933" viewBox="0 0 1700 933" role="img" aria-labelledby="title desc">
+<title id="title">Wie umfangreich sind die Texte? · customer</title><desc id="desc">Zeichen · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</desc>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif}text{fill:#172b42}</style>
+<rect width="1700" height="933" fill="#fff"/>
+<text x="30.0" y="35.0" font-size="22" style="fill:#172b42" text-anchor="start" font-weight="700">Wie umfangreich sind die Texte? · customer</text>
+<text x="30.0" y="62.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">Zeichen · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</text>
+<text x="30.0" y="100.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Klein</text>
+<line x1="295.0" y1="120.0" x2="295.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="295.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="382.5" y1="120.0" x2="382.5" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="382.5" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">2,4k</text>
+<line x1="470.0" y1="120.0" x2="470.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="470.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">4,8k</text>
+<line x1="557.5" y1="120.0" x2="557.5" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="557.5" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">7,2k</text>
+<line x1="645.0" y1="120.0" x2="645.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="645.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">9,6k</text>
+<text x="30.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-G</text>
+<line x1="355.9" y1="134.0" x2="366.8" y2="134.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="356.0" y1="125.0" x2="356.0" y2="143.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 1.674,0000 Zeichen; ok</title>
+<circle cx="355.9" cy="129.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 1.972,0000 Zeichen; ok</title>
+<circle cx="366.8" cy="134.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 1.675,0000 Zeichen; ok</title>
+<circle cx="356.0" cy="139.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.675 · n=3</text>
+<text x="30.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-M</text>
+<line x1="353.9" y1="168.0" x2="357.9" y2="168.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="354.0" y1="159.0" x2="354.0" y2="177.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 1.621,0000 Zeichen; ok</title>
+<circle cx="354.0" cy="163.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 1.728,0000 Zeichen; ok</title>
+<circle cx="357.9" cy="168.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 1.618,0000 Zeichen; ok</title>
+<circle cx="353.9" cy="173.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.621 · n=3</text>
+<text x="30.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI M-M</text>
+<line x1="361.9" y1="202.0" x2="367.1" y2="202.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="366.5" y1="193.0" x2="366.5" y2="211.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 1.838,0000 Zeichen; ok</title>
+<circle cx="361.9" cy="197.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 1.965,0000 Zeichen; ok</title>
+<circle cx="366.5" cy="202.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 1.981,0000 Zeichen; ok</title>
+<circle cx="367.1" cy="207.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.965 · n=3</text>
+<text x="30.0" y="240.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI P-M</text>
+<text x="295.0" y="240.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">nicht gemessen</text>
+<text x="30.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-G</text>
+<line x1="368.7" y1="270.0" x2="415.6" y2="270.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="400.9" y1="261.0" x2="400.9" y2="279.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.025,0000 Zeichen; ok</title>
+<circle cx="368.7" cy="265.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 2.909,0000 Zeichen; ok</title>
+<circle cx="400.9" cy="270.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 3.313,0000 Zeichen; ok</title>
+<circle cx="415.6" cy="275.0" r="4" fill="#087e73"/>
+</g>
+<text x="663.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.909 · n=3</text>
+<text x="30.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-M</text>
+<line x1="354.6" y1="304.0" x2="375.0" y2="304.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="375.0" y1="295.0" x2="375.0" y2="313.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 1.637,0000 Zeichen; ok</title>
+<circle cx="354.6" cy="299.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 2.196,0000 Zeichen; ok</title>
+<circle cx="375.0" cy="304.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 2.197,0000 Zeichen; incomplete</title>
+<line x1="371.0" y1="305.0" x2="379.0" y2="313.0" stroke="#b66615" stroke-width="2"/>
+<line x1="371.0" y1="313.0" x2="379.0" y2="305.0" stroke="#b66615" stroke-width="2"/>
+</g>
+<text x="663.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.196 · n=3</text>
+<text x="30.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic M-M</text>
+<line x1="373.7" y1="338.0" x2="406.8" y2="338.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="392.6" y1="329.0" x2="392.6" y2="347.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.072,0000 Zeichen; ok</title>
+<circle cx="406.8" cy="333.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 2.162,0000 Zeichen; ok</title>
+<circle cx="373.7" cy="338.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 2.681,0000 Zeichen; ok</title>
+<circle cx="392.6" cy="343.0" r="4" fill="#087e73"/>
+</g>
+<text x="663.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.681 · n=3</text>
+<text x="30.0" y="376.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic P-M</text>
+<text x="295.0" y="376.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">nicht gemessen</text>
+<text x="30.0" y="502.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median über gerenderte Zielgruppen, auch aus teilweise vollständigen Läufen.</text>
+<text x="880.0" y="100.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Typisch</text>
+<line x1="1145.0" y1="120.0" x2="1145.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1145.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="1232.5" y1="120.0" x2="1232.5" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1232.5" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">2,4k</text>
+<line x1="1320.0" y1="120.0" x2="1320.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1320.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">4,8k</text>
+<line x1="1407.5" y1="120.0" x2="1407.5" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1407.5" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">7,2k</text>
+<line x1="1495.0" y1="120.0" x2="1495.0" y2="386.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1495.0" y="479.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">9,6k</text>
+<text x="880.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-G</text>
+<line x1="1290.2" y1="134.0" x2="1304.9" y2="134.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1299.0" y1="125.0" x2="1299.0" y2="143.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.988,0000 Zeichen; ok</title>
+<circle cx="1290.2" cy="129.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 4.391,0000 Zeichen; ok</title>
+<circle cx="1304.9" cy="134.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 4.230,0000 Zeichen; ok</title>
+<circle cx="1299.0" cy="139.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">4.230 · n=3</text>
+<text x="880.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-M</text>
+<line x1="1296.5" y1="168.0" x2="1302.6" y2="168.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1297.0" y1="159.0" x2="1297.0" y2="177.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 4.160,0000 Zeichen; ok</title>
+<circle cx="1296.5" cy="163.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 4.328,0000 Zeichen; ok</title>
+<circle cx="1302.6" cy="168.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 4.176,0000 Zeichen; ok</title>
+<circle cx="1297.0" cy="173.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">4.176 · n=3</text>
+<text x="880.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI M-M</text>
+<line x1="1321.7" y1="202.0" x2="1332.3" y2="202.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1328.6" y1="193.0" x2="1328.6" y2="211.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 5.042,0000 Zeichen; ok</title>
+<circle cx="1328.6" cy="197.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 4.853,0000 Zeichen; ok</title>
+<circle cx="1321.7" cy="202.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 5.143,0000 Zeichen; ok</title>
+<circle cx="1332.3" cy="207.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">5.042 · n=3</text>
+<text x="880.0" y="240.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI P-M</text>
+<line x1="1314.3" y1="236.0" x2="1332.7" y2="236.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1328.6" y1="227.0" x2="1328.6" y2="245.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 4.650,0000 Zeichen; ok</title>
+<circle cx="1314.3" cy="231.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 5.154,0000 Zeichen; ok</title>
+<circle cx="1332.7" cy="236.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 5.043,0000 Zeichen; ok</title>
+<circle cx="1328.6" cy="241.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="240.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">5.043 · n=3</text>
+<text x="880.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-G</text>
+<line x1="1285.3" y1="270.0" x2="1305.1" y2="270.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1295.2" y1="261.0" x2="1295.2" y2="279.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-2: 4.398,0000 Zeichen; ok</title>
+<circle cx="1305.1" cy="267.5" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 3.854,0000 Zeichen; ok</title>
+<circle cx="1285.3" cy="272.5" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">4.126 · n=2</text>
+<text x="880.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-M</text>
+<line x1="1278.7" y1="304.0" x2="1293.4" y2="304.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1283.7" y1="295.0" x2="1283.7" y2="313.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.672,0000 Zeichen; ok</title>
+<circle cx="1278.7" cy="299.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 4.076,0000 Zeichen; ok</title>
+<circle cx="1293.4" cy="304.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 3.810,0000 Zeichen; ok</title>
+<circle cx="1283.7" cy="309.0" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.810 · n=3</text>
+<text x="880.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic M-M</text>
+<line x1="1342.6" y1="338.0" x2="1369.3" y2="338.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1353.2" y1="329.0" x2="1353.2" y2="347.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 5.426,0000 Zeichen; ok</title>
+<circle cx="1342.6" cy="333.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 6.160,0000 Zeichen; ok</title>
+<circle cx="1369.3" cy="338.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 5.719,0000 Zeichen; ok</title>
+<circle cx="1353.2" cy="343.0" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">5.719 · n=3</text>
+<text x="880.0" y="376.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic P-M</text>
+<line x1="1310.8" y1="372.0" x2="1315.8" y2="372.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1313.3" y1="363.0" x2="1313.3" y2="381.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 4.553,0000 Zeichen; ok</title>
+<circle cx="1310.8" cy="369.5" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 4.690,0000 Zeichen; ok</title>
+<circle cx="1315.8" cy="374.5" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="376.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">4.622 · n=2</text>
+<text x="880.0" y="502.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median über gerenderte Zielgruppen, auch aus teilweise vollständigen Läufen.</text>
+<text x="30.0" y="514.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Groß</text>
+<line x1="295.0" y1="534.0" x2="295.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="295.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="382.5" y1="534.0" x2="382.5" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="382.5" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">2,4k</text>
+<line x1="470.0" y1="534.0" x2="470.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="470.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">4,8k</text>
+<line x1="557.5" y1="534.0" x2="557.5" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="557.5" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">7,2k</text>
+<line x1="645.0" y1="534.0" x2="645.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="645.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">9,6k</text>
+<text x="30.0" y="552.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-G</text>
+<line x1="526.3" y1="548.0" x2="563.4" y2="548.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="555.7" y1="539.0" x2="555.7" y2="557.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 6.352,0000 Zeichen; ok</title>
+<circle cx="526.3" cy="543.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 7.373,0000 Zeichen; ok</title>
+<circle cx="563.4" cy="548.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 7.160,0000 Zeichen; ok</title>
+<circle cx="555.7" cy="553.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="552.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">7.160 · n=3</text>
+<text x="30.0" y="586.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-M</text>
+<line x1="522.4" y1="582.0" x2="545.4" y2="582.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="542.2" y1="573.0" x2="542.2" y2="591.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 6.878,0000 Zeichen; ok</title>
+<circle cx="545.4" cy="577.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 6.246,0000 Zeichen; ok</title>
+<circle cx="522.4" cy="582.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 6.790,0000 Zeichen; ok</title>
+<circle cx="542.2" cy="587.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="586.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">6.790 · n=3</text>
+<text x="30.0" y="620.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI M-M</text>
+<line x1="604.1" y1="616.0" x2="606.8" y2="616.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="604.2" y1="607.0" x2="604.2" y2="625.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 8.492,0000 Zeichen; ok</title>
+<circle cx="604.2" cy="611.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 8.490,0000 Zeichen; ok</title>
+<circle cx="604.1" cy="616.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 8.563,0000 Zeichen; ok</title>
+<circle cx="606.8" cy="621.0" r="4" fill="#2563a6"/>
+</g>
+<text x="663.0" y="620.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">8.492 · n=3</text>
+<text x="30.0" y="654.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI P-M</text>
+<text x="295.0" y="654.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">nicht gemessen</text>
+<text x="30.0" y="688.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-G</text>
+<line x1="494.6" y1="684.0" x2="565.6" y2="684.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="533.9" y1="675.0" x2="533.9" y2="693.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 7.433,0000 Zeichen; ok</title>
+<circle cx="565.6" cy="679.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 6.561,0000 Zeichen; ok</title>
+<circle cx="533.9" cy="684.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 5.481,0000 Zeichen; ok</title>
+<circle cx="494.6" cy="689.0" r="4" fill="#087e73"/>
+</g>
+<text x="663.0" y="688.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">6.561 · n=3</text>
+<text x="30.0" y="722.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-M</text>
+<line x1="518.0" y1="718.0" x2="530.3" y2="718.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="530.2" y1="709.0" x2="530.2" y2="727.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 6.125,0000 Zeichen; ok</title>
+<circle cx="518.0" cy="713.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 6.463,0000 Zeichen; ok</title>
+<circle cx="530.3" cy="718.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 6.460,0000 Zeichen; ok</title>
+<circle cx="530.2" cy="723.0" r="4" fill="#087e73"/>
+</g>
+<text x="663.0" y="722.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">6.460 · n=3</text>
+<text x="30.0" y="756.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic M-M</text>
+<line x1="572.3" y1="752.0" x2="619.1" y2="752.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="614.7" y1="743.0" x2="614.7" y2="761.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 7.617,0000 Zeichen; ok</title>
+<circle cx="572.3" cy="747.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 8.901,0000 Zeichen; ok</title>
+<circle cx="619.1" cy="752.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 8.781,0000 Zeichen; ok</title>
+<circle cx="614.7" cy="757.0" r="4" fill="#087e73"/>
+</g>
+<text x="663.0" y="756.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">8.781 · n=3</text>
+<text x="30.0" y="790.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic P-M</text>
+<text x="295.0" y="790.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">nicht gemessen</text>
+<text x="30.0" y="916.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median über gerenderte Zielgruppen, auch aus teilweise vollständigen Läufen.</text>
+<text x="880.0" y="514.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Schwierige Quelldaten</text>
+<line x1="1145.0" y1="534.0" x2="1145.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1145.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="1232.5" y1="534.0" x2="1232.5" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1232.5" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">2,4k</text>
+<line x1="1320.0" y1="534.0" x2="1320.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1320.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">4,8k</text>
+<line x1="1407.5" y1="534.0" x2="1407.5" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1407.5" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">7,2k</text>
+<line x1="1495.0" y1="534.0" x2="1495.0" y2="800.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1495.0" y="893.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">9,6k</text>
+<text x="880.0" y="552.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-G</text>
+<text x="1513.0" y="552.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Zielgruppe fehlt / Wert unbekannt</text>
+<text x="880.0" y="586.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI G-M</text>
+<text x="1513.0" y="586.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Zielgruppe fehlt / Wert unbekannt</text>
+<text x="880.0" y="620.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI M-M</text>
+<line x1="1169.0" y1="616.0" x2="1173.9" y2="616.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1170.8" y1="607.0" x2="1170.8" y2="625.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 708,0000 Zeichen; ok</title>
+<circle cx="1170.8" cy="611.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 795,0000 Zeichen; ok</title>
+<circle cx="1173.9" cy="616.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 659,0000 Zeichen; ok</title>
+<circle cx="1169.0" cy="621.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="620.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">708 · n=3</text>
+<text x="880.0" y="654.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">OpenAI P-M</text>
+<line x1="1170.4" y1="650.0" x2="1172.2" y2="650.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1171.7" y1="641.0" x2="1171.7" y2="659.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 746,0000 Zeichen; ok</title>
+<circle cx="1172.2" cy="645.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 699,0000 Zeichen; ok</title>
+<circle cx="1170.4" cy="650.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 732,0000 Zeichen; ok</title>
+<circle cx="1171.7" cy="655.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1513.0" y="654.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">732 · n=3</text>
+<text x="880.0" y="688.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-G</text>
+<line x1="1189.3" y1="684.0" x2="1190.7" y2="684.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1190.0" y1="675.0" x2="1190.0" y2="693.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-2: 1.216,0000 Zeichen; ok</title>
+<circle cx="1189.3" cy="681.5" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 1.256,0000 Zeichen; ok</title>
+<circle cx="1190.7" cy="686.5" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="688.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.236 · n=2</text>
+<text x="880.0" y="722.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic G-M</text>
+<line x1="1176.9" y1="718.0" x2="1189.3" y2="718.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1187.8" y1="709.0" x2="1187.8" y2="727.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 875,0000 Zeichen; ok</title>
+<circle cx="1176.9" cy="713.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 1.216,0000 Zeichen; ok</title>
+<circle cx="1189.3" cy="718.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 1.176,0000 Zeichen; ok</title>
+<circle cx="1187.8" cy="723.0" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="722.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.176 · n=3</text>
+<text x="880.0" y="756.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic M-M</text>
+<line x1="1181.5" y1="752.0" x2="1187.8" y2="752.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1186.2" y1="743.0" x2="1186.2" y2="761.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 1.132,0000 Zeichen; ok</title>
+<circle cx="1186.2" cy="747.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 1.002,0000 Zeichen; ok</title>
+<circle cx="1181.5" cy="752.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 1.176,0000 Zeichen; ok</title>
+<circle cx="1187.8" cy="757.0" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="756.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">1.132 · n=3</text>
+<text x="880.0" y="790.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Anthropic P-M</text>
+<line x1="1170.9" y1="786.0" x2="1173.0" y2="786.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="1171.1" y1="777.0" x2="1171.1" y2="795.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 717,0000 Zeichen; ok</title>
+<circle cx="1171.1" cy="781.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-2: 712,0000 Zeichen; ok</title>
+<circle cx="1170.9" cy="786.0" r="4" fill="#087e73"/>
+</g>
+<g><title>run-3: 768,0000 Zeichen; ok</title>
+<circle cx="1173.0" cy="791.0" r="4" fill="#087e73"/>
+</g>
+<text x="1513.0" y="790.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">717 · n=3</text>
+<text x="880.0" y="916.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median über gerenderte Zielgruppen, auch aus teilweise vollständigen Läufen.</text>
+</svg>

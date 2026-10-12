@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="723" viewBox="0 0 1300 723" role="img" aria-labelledby="title desc">
+<title id="title">Wie umfangreich sind die Texte? · technical</title><desc id="desc">Zeichen · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</desc>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif}text{fill:#172b42}</style>
+<rect width="1300" height="723" fill="#fff"/>
+<text x="30.0" y="35.0" font-size="22" style="fill:#172b42" text-anchor="start" font-weight="700">Wie umfangreich sind die Texte? · technical</text>
+<text x="30.0" y="62.0" font-size="13" style="fill:#52677c" text-anchor="start" font-weight="400">Zeichen · Punkte: einzelne Läufe · schwarzer Strich: Median · Linie: beobachtetes Min–Max · X: unvollständiger Versuch</text>
+<text x="30.0" y="100.0" font-size="17" style="fill:#172b42" text-anchor="start" font-weight="700">Typisch</text>
+<line x1="390.0" y1="120.0" x2="390.0" y2="590.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="390.0" y="683.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">0,00</text>
+<line x1="566.2" y1="120.0" x2="566.2" y2="590.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="566.2" y="683.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">1,7k</text>
+<line x1="742.5" y1="120.0" x2="742.5" y2="590.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="742.5" y="683.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">3,5k</text>
+<line x1="918.8" y1="120.0" x2="918.8" y2="590.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="918.8" y="683.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">5,2k</text>
+<line x1="1095.0" y1="120.0" x2="1095.0" y2="590.0" stroke="#dce4ec" stroke-width="1"/>
+<text x="1095.0" y="683.0" font-size="11" style="fill:#52677c" text-anchor="middle" font-weight="400">6,9k</text>
+<text x="30.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">luna-Prüfer luna</text>
+<line x1="715.6" y1="134.0" x2="735.4" y2="134.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="724.6" y1="125.0" x2="724.6" y2="143.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.388,0000 Zeichen; ok</title>
+<circle cx="735.4" cy="129.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 3.194,0000 Zeichen; ok</title>
+<circle cx="715.6" cy="134.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.282,0000 Zeichen; ok</title>
+<circle cx="724.6" cy="139.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="138.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.282 · n=3</text>
+<text x="30.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">luna · aus</text>
+<line x1="708.8" y1="168.0" x2="766.4" y2="168.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="728.3" y1="159.0" x2="728.3" y2="177.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.127,0000 Zeichen; ok</title>
+<circle cx="708.8" cy="163.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 3.692,0000 Zeichen; ok</title>
+<circle cx="766.4" cy="168.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.318,0000 Zeichen; ok</title>
+<circle cx="728.3" cy="173.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="172.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.318 · n=3</text>
+<text x="30.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">luna · hoch</text>
+<line x1="730.1" y1="202.0" x2="776.2" y2="202.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="735.6" y1="193.0" x2="735.6" y2="211.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.390,0000 Zeichen; ok</title>
+<circle cx="735.6" cy="197.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 3.788,0000 Zeichen; ok</title>
+<circle cx="776.2" cy="202.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.336,0000 Zeichen; ok</title>
+<circle cx="730.1" cy="207.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="206.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.390 · n=3</text>
+<text x="30.0" y="240.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">luna · niedrig</text>
+<line x1="717.5" y1="236.0" x2="741.0" y2="236.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="736.8" y1="227.0" x2="736.8" y2="245.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.443,0000 Zeichen; ok</title>
+<circle cx="741.0" cy="231.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 3.212,0000 Zeichen; ok</title>
+<circle cx="717.5" cy="236.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.402,0000 Zeichen; ok</title>
+<circle cx="736.8" cy="241.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="240.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.402 · n=3</text>
+<text x="30.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">luna · mittel</text>
+<line x1="711.1" y1="270.0" x2="743.2" y2="270.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="727.9" y1="261.0" x2="727.9" y2="279.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.314,0000 Zeichen; ok</title>
+<circle cx="727.9" cy="265.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 3.150,0000 Zeichen; ok</title>
+<circle cx="711.1" cy="270.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.464,0000 Zeichen; ok</title>
+<circle cx="743.2" cy="275.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="274.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.314 · n=3</text>
+<text x="30.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol-Prüfer luna</text>
+<line x1="682.0" y1="304.0" x2="689.8" y2="304.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="688.2" y1="295.0" x2="688.2" y2="313.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.925,0000 Zeichen; ok</title>
+<circle cx="688.2" cy="299.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.864,0000 Zeichen; ok</title>
+<circle cx="682.0" cy="304.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.941,0000 Zeichen; ok</title>
+<circle cx="689.8" cy="309.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="308.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.925 · n=3</text>
+<text x="30.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus</text>
+<line x1="665.1" y1="338.0" x2="674.0" y2="338.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="671.4" y1="329.0" x2="671.4" y2="347.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.698,0000 Zeichen; ok</title>
+<circle cx="665.1" cy="333.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.760,0000 Zeichen; ok</title>
+<circle cx="671.4" cy="338.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.786,0000 Zeichen; ok</title>
+<circle cx="674.0" cy="343.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="342.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.760 · n=3</text>
+<text x="30.0" y="376.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus · ohne Prüfung</text>
+<line x1="671.1" y1="372.0" x2="712.4" y2="372.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="698.2" y1="363.0" x2="698.2" y2="381.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.162,0000 Zeichen; ok</title>
+<circle cx="712.4" cy="367.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.757,0000 Zeichen; ok</title>
+<circle cx="671.1" cy="372.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 3.023,0000 Zeichen; ok</title>
+<circle cx="698.2" cy="377.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="376.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.023 · n=3</text>
+<text x="30.0" y="410.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · aus · nur Titel</text>
+<line x1="610.6" y1="406.0" x2="614.5" y2="406.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="612.1" y1="397.0" x2="612.1" y2="415.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.164,0000 Zeichen; ok</title>
+<circle cx="610.6" cy="401.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.179,0000 Zeichen; ok</title>
+<circle cx="612.1" cy="406.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.202,0000 Zeichen; ok</title>
+<circle cx="614.5" cy="411.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="410.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.179 · n=3</text>
+<text x="30.0" y="444.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · hoch</text>
+<line x1="664.4" y1="440.0" x2="679.0" y2="440.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="673.5" y1="431.0" x2="673.5" y2="449.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.835,0000 Zeichen; ok</title>
+<circle cx="679.0" cy="435.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.781,0000 Zeichen; ok</title>
+<circle cx="673.5" cy="440.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.692,0000 Zeichen; ok</title>
+<circle cx="664.4" cy="445.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="444.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.781 · n=3</text>
+<text x="30.0" y="478.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · niedrig</text>
+<line x1="661.5" y1="474.0" x2="697.4" y2="474.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="678.4" y1="465.0" x2="678.4" y2="483.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.015,0000 Zeichen; ok</title>
+<circle cx="697.4" cy="469.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.829,0000 Zeichen; ok</title>
+<circle cx="678.4" cy="474.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.663,0000 Zeichen; ok</title>
+<circle cx="661.5" cy="479.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="478.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.829 · n=3</text>
+<text x="30.0" y="512.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">sol · mittel</text>
+<line x1="658.6" y1="508.0" x2="674.4" y2="508.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="663.4" y1="499.0" x2="663.4" y2="517.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.790,0000 Zeichen; ok</title>
+<circle cx="674.4" cy="503.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-2: 2.635,0000 Zeichen; ok</title>
+<circle cx="658.6" cy="508.0" r="4" fill="#2563a6"/>
+</g>
+<g><title>run-3: 2.682,0000 Zeichen; ok</title>
+<circle cx="663.4" cy="513.0" r="4" fill="#2563a6"/>
+</g>
+<text x="1113.0" y="512.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">2.682 · n=3</text>
+<text x="30.0" y="546.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Qwen 14B-Prüfer Granite 8B</text>
+<line x1="670.4" y1="542.0" x2="1042.8" y2="542.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="792.7" y1="533.0" x2="792.7" y2="551.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 2.750,0000 Zeichen; ok</title>
+<circle cx="670.4" cy="534.5" r="4" fill="#7552a0"/>
+</g>
+<g><title>run-2: 3.849,0000 Zeichen; ok</title>
+<circle cx="782.4" cy="539.5" r="4" fill="#7552a0"/>
+</g>
+<g><title>run-3: 4.052,0000 Zeichen; ok</title>
+<circle cx="803.1" cy="544.5" r="4" fill="#7552a0"/>
+</g>
+<g><title>run-3.failed-20260925T145840: 6.403,0000 Zeichen; failed</title>
+<line x1="1038.8" y1="545.5" x2="1046.8" y2="553.5" stroke="#b66615" stroke-width="2"/>
+<line x1="1038.8" y1="553.5" x2="1046.8" y2="545.5" stroke="#b66615" stroke-width="2"/>
+</g>
+<text x="1113.0" y="546.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.950 · n=4</text>
+<text x="30.0" y="580.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">Qwen 14B-Prüfer Qwen 14B</text>
+<line x1="716.2" y1="576.0" x2="780.4" y2="576.0" stroke="#8396a8" stroke-width="2"/>
+<line x1="771.5" y1="567.0" x2="771.5" y2="585.0" stroke="#172b42" stroke-width="2"/>
+<g><title>run-1: 3.742,0000 Zeichen; ok</title>
+<circle cx="771.5" cy="571.0" r="4" fill="#7552a0"/>
+</g>
+<g><title>run-2: 3.829,0000 Zeichen; ok</title>
+<circle cx="780.4" cy="576.0" r="4" fill="#7552a0"/>
+</g>
+<g><title>run-3: 3.200,0000 Zeichen; ok</title>
+<circle cx="716.2" cy="581.0" r="4" fill="#7552a0"/>
+</g>
+<text x="1113.0" y="580.0" font-size="12" style="fill:#172b42" text-anchor="start" font-weight="400">3.742 · n=3</text>
+<text x="30.0" y="706.0" font-size="11" style="fill:#52677c" text-anchor="start" font-weight="400">Median über gerenderte Zielgruppen, auch aus teilweise vollständigen Läufen.</text>
+</svg>
