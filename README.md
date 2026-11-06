@@ -68,12 +68,13 @@ a human label and a judge verdict are comparable only if both were made against 
 
 ## Status
 
-As of 2026-09-21.
+As of 2026-09-21, spot checks as of 2026-10-07.
 Three audiences, three different stages of the same pipeline.
 
 **Customer.** The criterion is written: nine axes, v1.0.0 tagged and frozen, with a B2 fix already in the tree and waiting on a separation run before it becomes v2.0.0.
 Three of the nine axes measure well enough to gate on; the other six are recorded as out, with the reason, rather than left in a queue, and a count from those is a direction rather than a figure.
-Two spot checks have read a sample of the judge's verdicts back against a person: 50 of 50 and 46 of 49 agreed, so the judge has not drifted and the instrument loop stays closed.
+Three spot checks have read a sample of the judge's verdicts back against a person: 50 of 50, 46 of 49 and 44 of 50 agreed.
+The third found the judge letting through one kind of sentence on C3, so since 2026-10-07 the instrument loop is open again, for C3 only, until its text is rewritten and its 53 entries are labelled again.
 
 The production loop is running and the work is in Chartula.
 Every change measured since the freeze is in [`docs/measurements.md`](docs/measurements.md).
